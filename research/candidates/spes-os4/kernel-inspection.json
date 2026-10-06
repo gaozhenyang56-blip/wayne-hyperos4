@@ -1,0 +1,5 @@
+{
+  "header_version": 3,
+  "kernel_size": 22620391,
+  "kernel_banner": "Linux version 4.19.325-hanbal-gforce-base (ahmed@AAZ-PC) (Android (14488419, +pgo, +bolt, +lto, +mlgo, based on r584948) clang version 22.0.0 (https://android.googlesource.com/toolchain/llvm-project 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99), LLD 22.0.0 (/mnt/disks/build-disk/src/googleplex-android/llvm-r584948-release/out/llvm-project/llvm 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99)) #2 SMP PREEMPT Wed Sep 2 16:18:06 UTC 2026\n"
+}

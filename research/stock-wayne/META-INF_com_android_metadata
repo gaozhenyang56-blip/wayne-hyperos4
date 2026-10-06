@@ -1,0 +1,9 @@
+ota-property-files=metadata:69:303         
+ota-required-cache=0
+ota-type=BLOCK
+post-build=xiaomi/wayne/wayne:9/PKQ1.180904.001/V12.0.2.0.PDCCNXM:user/release-keys
+post-build-incremental=V12.0.2.0.PDCCNXM
+post-sdk-level=28
+post-security-patch-level=2020-11-05
+post-timestamp=1611153316
+pre-device=wayne

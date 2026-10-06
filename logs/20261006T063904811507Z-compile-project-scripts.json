@@ -1,0 +1,16 @@
+{
+  "label": "compile-project-scripts",
+  "started_utc": "2026-10-06T06:39:04.811507+00:00",
+  "finished_utc": "2026-10-06T06:39:04.839235+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "compileall",
+    "-q",
+    "tools"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T063904811507Z-compile-project-scripts.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

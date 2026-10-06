@@ -1,0 +1,14 @@
+{
+  "label": "finalize-mi8937-download-name",
+  "started_utc": "2026-10-06T06:39:44.075633+00:00",
+  "finished_utc": "2026-10-06T06:39:44.077061+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "mv",
+    "downloads/mi8937-hyperos4.zip.part",
+    "downloads/mi8937-hyperos4.zip"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T063944075633Z-finalize-mi8937-download-name.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

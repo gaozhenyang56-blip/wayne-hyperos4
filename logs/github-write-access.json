@@ -1,0 +1,12 @@
+{
+  "observed_utc_date": "2026-10-06",
+  "repository": "gaozhenyang56-blip/wayne-hyperos4",
+  "visibility": "public",
+  "reported_repository_permissions": {"push": true, "admin": true},
+  "operation": "GitHub plugin create_file README.md",
+  "result": "failed",
+  "http_status": 403,
+  "error_code": "FORBIDDEN",
+  "message": "Resource not accessible by integration",
+  "remote_files_written": false
+}

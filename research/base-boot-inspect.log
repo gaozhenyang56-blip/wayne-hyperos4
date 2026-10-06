@@ -1,0 +1,9 @@
+{
+  "image": "/workspace/wayne-hyperos4/research/base-miku-a15/boot.img",
+  "sha256": "c428340018fedf8f92ffc38802bf79d41e058102781723b8eaaac70294017e75",
+  "header_version": 1,
+  "kernel_size": 17278888,
+  "ramdisk_size": 1445664,
+  "page_size": 4096,
+  "kernel_banner": "Linux version 4.19.315-Miku-Vampire_v2-g3a74d7 (nobody@android-build) (Android (11967740, +pgo, +bolt, +lto, +mlgo, based on r522817) clang version 18.0.1 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), LLD 18.0.1) #1 SMP PREEMPT Sun Feb 9 03:32:52 CST 2025\n"
+}

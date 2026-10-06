@@ -1,0 +1,544 @@
+{
+  "zip_size": 8702343766,
+  "http_bytes_read": 386041,
+  "metadata": {
+    "META-INF/com/android/metadata": "ota-property-files=payload_metadata.bin:4939:319093,payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                        \nota-required-cache=0\nota-streaming-property-files=payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                          \nota-type=AB\npost-build=Xiaomi/dada/dada:17/CP2A.260605.016/17OS4.0.260902.005534479.QCPECN.S:user/release-keys\npost-build-incremental=17OS4.0.260902.005534479.QCPECN.S\npost-sdk-level=37\npost-security-patch-level=2026-08-01\npost-timestamp=1788305388\npre-device=dada\n",
+    "payload_properties.txt": "FILE_HASH=g5Ce2PUuYECT55D1lko/CJpO341+zIleUc9slRkdT1A=\nFILE_SIZE=8702335155\nMETADATA_HASH=4x7qPguLjd3yXb1TmFsChJxeyepQ17GIDbfrh177uKw=\nMETADATA_SIZE=318826\n"
+  }
+}
+{
+  "version": 2,
+  "manifest_size": 318802,
+  "manifest_sha256": "88751567da0154f717aabe448d79ff5605db0a0c46182455026111c0840458e4",
+  "metadata_hash_verified": true,
+  "signature_verified": false,
+  "metadata_signature_size": 267,
+  "payload_offset_in_zip": 4939,
+  "data_offset_in_zip": 324032,
+  "block_size": 4096,
+  "dynamic_groups": [
+    {
+      "name": "qti_dynamic_partitions",
+      "size": 11800674304,
+      "partitions": [
+        "odm",
+        "product",
+        "system",
+        "system_dlkm",
+        "system_ext",
+        "vendor",
+        "vendor_dlkm",
+        "mi_product",
+        "mi_ext"
+      ]
+    }
+  ],
+  "partitions": [
+    {
+      "name": "abl",
+      "size": 335872,
+      "sha256": "21b3f591cfdc630cef69a1941dc76e1f3ae4628d9f57bb2712c465d497da4530",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 276232
+    },
+    {
+      "name": "aop",
+      "size": 372736,
+      "sha256": "de98d820d6e9efadc3ed7fe0ca9048f8a37a33b5ced57e0fd8236b2afef2b569",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 107104
+    },
+    {
+      "name": "aop_config",
+      "size": 32768,
+      "sha256": "b4872ac934beae7ae2466ea73f8d3b27ae0920a32311741db1ed8f876d14ab9e",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 3576
+    },
+    {
+      "name": "bluetooth",
+      "size": 3993600,
+      "sha256": "452bcbcf22be7e8646083a16dba469dc9df24a973480a7bcc813b6818ecf24d3",
+      "operation_count": 2,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 679176
+    },
+    {
+      "name": "boot",
+      "size": 100663296,
+      "sha256": "3795dc3ff21d4c1ce558e1822f15eaeab5c2e5f74a89a2365b5a115fd3838d0d",
+      "operation_count": 48,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 10872159
+    },
+    {
+      "name": "countrycode",
+      "size": 1048576,
+      "sha256": "fcac0085b1c1bd8fe557b9c7eac818df8c056bbc0e584a19d0ea736c3e4d433d",
+      "operation_count": 1,
+      "operation_types": [
+        1
+      ],
+      "payload_data_bytes": 271
+    },
+    {
+      "name": "cpucp",
+      "size": 319488,
+      "sha256": "21208f9349049354b9c862821f2add53d34f1e923b8df5549e469046a489b5c5",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 98064
+    },
+    {
+      "name": "cpucp_dtb",
+      "size": 16384,
+      "sha256": "1ddb2cb1e96a2e7ae5f4092bfe0fb73edb929661af04c4dd1e0268262e3c8b2d",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1760
+    },
+    {
+      "name": "devcfg",
+      "size": 61440,
+      "sha256": "567e9f499e36fdcf27dc6a0e2d4ae002ef676e6331d33655429282a4a4845240",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 17008
+    },
+    {
+      "name": "dsp",
+      "size": 67108864,
+      "sha256": "8520909ba534affbbd707fa02d2bc18cc93802b2446f2d38d5924773a71f6355",
+      "operation_count": 32,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 19102900
+    },
+    {
+      "name": "dtbo",
+      "size": 18874368,
+      "sha256": "59b11c347fa533ede872c91cb64a8fdd8593114766168d9eb4a3e6fb05aee818",
+      "operation_count": 9,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 54495
+    },
+    {
+      "name": "featenabler",
+      "size": 106496,
+      "sha256": "202865199d0d75e2c2a8aa086ee887a65c2a89ecb6fdf7d7cd58cd9faa35a0e5",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 30704
+    },
+    {
+      "name": "hyp",
+      "size": 1613824,
+      "sha256": "910837343905262c92aa56c201e1750e605527d2ac5adcb011a3d3805c581406",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 492492
+    },
+    {
+      "name": "idmanager",
+      "size": 69632,
+      "sha256": "4361b106c020e2a2e5f2b09c01cc0ad2f431c603595bc11cc0685c28f2aafcee",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 20072
+    },
+    {
+      "name": "imagefv",
+      "size": 6299648,
+      "sha256": "e05d19a6c7a669f78f1b2c3fc2160659f76e25702058bd45b04400920deda76b",
+      "operation_count": 4,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 1696296
+    },
+    {
+      "name": "init_boot",
+      "size": 8388608,
+      "sha256": "fd0457072a0623f87649f396e29cdb6e909cc57174286b2d73581e658189cef5",
+      "operation_count": 4,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 2011155
+    },
+    {
+      "name": "keymaster",
+      "size": 454656,
+      "sha256": "10fe86cb417d94c51562edb8b8db8e4e6f31c0cedd1d61f9499dfa1ff6f6850d",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 138532
+    },
+    {
+      "name": "modem",
+      "size": 195686400,
+      "sha256": "c73ae73b10fbd64ef4f91170adf1f3d2efbcdec6f0f915a24d5ec97bb5790c04",
+      "operation_count": 94,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 83185731
+    },
+    {
+      "name": "modemfirmware",
+      "size": 136876032,
+      "sha256": "4f31f25d2f33f193e8e02f1bfc6b08900ad872f73dc7fd84a96816fe6548b987",
+      "operation_count": 66,
+      "operation_types": [
+        0,
+        8
+      ],
+      "payload_data_bytes": 84929988
+    },
+    {
+      "name": "multiimgqti",
+      "size": 12288,
+      "sha256": "bd619dd9ef992af0ee627fbb15cac9082df167d8f47da9b1ae814bc1f6c8db77",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1964
+    },
+    {
+      "name": "odm",
+      "size": 3594305536,
+      "sha256": "08c827cee79916a6459cac814f679269fe495cb2735b000946aac2af5ce17f08",
+      "operation_count": 1714,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 2851837483
+    },
+    {
+      "name": "pdp",
+      "size": 212992,
+      "sha256": "18bb19db8e51122825c6f62c8f1f5ed06a2d5efaf2c1e62e05d15650fba0ddd9",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 53000
+    },
+    {
+      "name": "pdp_cdb",
+      "size": 16384,
+      "sha256": "fcfa5cb80401069600155879857b60ac7118a735e4600c378fc209129a8cb4a0",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1512
+    },
+    {
+      "name": "product",
+      "size": 4334202880,
+      "sha256": "8b3e10d5060557d455db44c3dad0aea86eeb471ef7c4d1337ea0de60fca840d3",
+      "operation_count": 2067,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 3526920069
+    },
+    {
+      "name": "pvmfw",
+      "size": 1048576,
+      "sha256": "e9391ca5aa436dd4df0b024041837a571a45bed43cd2fd943a2f4de9b409f19a",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 264316
+    },
+    {
+      "name": "qupfw",
+      "size": 65536,
+      "sha256": "7a080cbd96cd19c91a96a7aa54de176876fa4f1c3dbfdf475b5022bb58f32b5c",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 18168
+    },
+    {
+      "name": "recovery",
+      "size": 104857600,
+      "sha256": "6d9da78b77b68f5226ee75c8e5891a7052c02de253faf569e0e86a30ed103b17",
+      "operation_count": 50,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 25869173
+    },
+    {
+      "name": "shrm",
+      "size": 151552,
+      "sha256": "1422b7f1675956222ed0d671d2a32939ad876b6d5259ece685519f2c8d7594c7",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 75388
+    },
+    {
+      "name": "soccp_dcd",
+      "size": 20480,
+      "sha256": "6e74c73772f0d78ec90c4389289fd83fb82acb109a2506b4f57da15497030b33",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 3008
+    },
+    {
+      "name": "soccp_debug",
+      "size": 147456,
+      "sha256": "035916349294811c8ac176143f5e8ee3c68b8af6eb495629c9c42bc002bd51ec",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 12808
+    },
+    {
+      "name": "spuservice",
+      "size": 94208,
+      "sha256": "7ec715143cd1af2bec19d79d6f2086f4ad5e47b4027130f2588668331b49aab6",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 25544
+    },
+    {
+      "name": "system",
+      "size": 976527360,
+      "sha256": "67fc2780e1f8722b6c44755bb4be9840f63716b5dabd285d2f075ca8858059e9",
+      "operation_count": 466,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 720322767
+    },
+    {
+      "name": "system_dlkm",
+      "size": 15294464,
+      "sha256": "ff199be67cdbf3c06dbca6ef0ac0cd6581cd5367eef345520749bdb275756312",
+      "operation_count": 8,
+      "operation_types": [
+        0,
+        8
+      ],
+      "payload_data_bytes": 12492332
+    },
+    {
+      "name": "system_ext",
+      "size": 823607296,
+      "sha256": "1614560542afe648ac3627a3558173b5aea465f016027aaeaccfbd684a10ba43",
+      "operation_count": 393,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 567168488
+    },
+    {
+      "name": "tz",
+      "size": 4173824,
+      "sha256": "e1cc1561197a7da991aace04abb3b202af30f9215a7e4e91640a13282666bb8d",
+      "operation_count": 2,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1095820
+    },
+    {
+      "name": "uefi",
+      "size": 2842624,
+      "sha256": "86064c4eb64666cf7c09f3922ca0de087b812b2269f9b52ab5bce1fb782fb75c",
+      "operation_count": 2,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1350420
+    },
+    {
+      "name": "uefisecapp",
+      "size": 204800,
+      "sha256": "dcd3da3f2c9acc40031d3f46d5f52496cff39e9a92c0ce372388129bcea74378",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 54264
+    },
+    {
+      "name": "vbmeta",
+      "size": 12288,
+      "sha256": "48aab5ddbe846bbf02d6e80c8991c32302c04962586436502eb37b48e79763a0",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 2924
+    },
+    {
+      "name": "vbmeta_system",
+      "size": 4096,
+      "sha256": "22979caedd1eb1c1ade7ce4567f79c681ab9e2e727dce9a65faa4fbf64c2892a",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 2260
+    },
+    {
+      "name": "vendor",
+      "size": 743759872,
+      "sha256": "95dd9e6271528ef47893774327c94de3bb55b16f736fe53892e4d6dc3d0e26e8",
+      "operation_count": 355,
+      "operation_types": [
+        0,
+        1,
+        8
+      ],
+      "payload_data_bytes": 541871372
+    },
+    {
+      "name": "vendor_boot",
+      "size": 100663296,
+      "sha256": "0d6d756f65ba2e62429c8042cbc4ba34b5264ec0720f195018de282083146188",
+      "operation_count": 48,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 23134195
+    },
+    {
+      "name": "vendor_dlkm",
+      "size": 88461312,
+      "sha256": "4dd4b218f6dd8150eec9d8d25a2b948ebb675af475716966ba3ea85355d202bc",
+      "operation_count": 43,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 51729820
+    },
+    {
+      "name": "vm-bootsys",
+      "size": 20971520,
+      "sha256": "5986e97fd8edca677fd8f90cbec12df30bd88b9751f3c1fc089f87fcb9084dd4",
+      "operation_count": 10,
+      "operation_types": [
+        1,
+        8
+      ],
+      "payload_data_bytes": 3656021
+    },
+    {
+      "name": "xbl",
+      "size": 1191936,
+      "sha256": "b73017ec258f395ca4bccf47d473f45a302d3d81002c8c3d85df450cb90b0b99",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 407376
+    },
+    {
+      "name": "xbl_config",
+      "size": 348160,
+      "sha256": "ab20251c7e752f1bfd2e65c16573e8df9b251ad06227847815aec8f394357341",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 34112
+    },
+    {
+      "name": "xbl_ramdump",
+      "size": 946176,
+      "sha256": "cfb6093eabdf3c70b7deec2e8540266afe462f12ec0aacfc1cde3dad828b036c",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 301704
+    },
+    {
+      "name": "mi_product",
+      "size": 348160,
+      "sha256": "009aa3e6b8a07cf8741af6eb9972b25bcfd2b4e69fb9ae89524b433806511b6e",
+      "operation_count": 1,
+      "operation_types": [
+        8
+      ],
+      "payload_data_bytes": 1808
+    },
+    {
+      "name": "mi_ext",
+      "size": 170819584,
+      "sha256": "3869d63d07b9f1fcdca3edb6fe48cb45d64cc0b565ab586dddba94d9b7489bc1",
+      "operation_count": 82,
+      "operation_types": [
+        0,
+        8
+      ],
+      "payload_data_bytes": 169589964
+    }
+  ],
+  "snapshot_enabled": true,
+  "vabc_enabled": true,
+  "security_patch_level": "2026-08-01"
+}

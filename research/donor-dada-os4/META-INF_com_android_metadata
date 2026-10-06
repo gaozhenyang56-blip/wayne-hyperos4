@@ -1,0 +1,10 @@
+ota-property-files=payload_metadata.bin:4939:319093,payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                        
+ota-required-cache=0
+ota-streaming-property-files=payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                          
+ota-type=AB
+post-build=Xiaomi/dada/dada:17/CP2A.260605.016/17OS4.0.260902.005534479.QCPECN.S:user/release-keys
+post-build-incremental=17OS4.0.260902.005534479.QCPECN.S
+post-sdk-level=37
+post-security-patch-level=2026-08-01
+post-timestamp=1788305388
+pre-device=dada

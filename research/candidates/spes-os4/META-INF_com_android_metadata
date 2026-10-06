@@ -1,0 +1,10 @@
+ota-property-files=payload_metadata.bin:3379:246346,payload.bin:3379:3858211465,payload_properties.txt:3858214902:156,apex_info.pb:1854:807,care_map.pb:2708:624,metadata:69:678,metadata.pb:815:991                         
+ota-required-cache=0
+ota-streaming-property-files=payload.bin:3379:3858211465,payload_properties.txt:3858214902:156,apex_info.pb:1854:807,care_map.pb:2708:624,metadata:69:678,metadata.pb:815:991                           
+ota-type=AB
+post-build=Redmi/spes/spes:13/TKQ1.221114.001/V816.0.4.0.TGKMIXM:user/release-keys
+post-build-incremental=V816.0.4.0.TGKMIXM
+post-sdk-level=33
+post-security-patch-level=2024-03-01
+post-timestamp=1712803022
+pre-device=spes

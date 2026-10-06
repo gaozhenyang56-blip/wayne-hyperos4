@@ -1,0 +1,20 @@
+# Remove all existing dynamic partitions and groups before applying full OTA
+remove_all_groups
+# Add group xiaomi_dynamic_partitions with maximum size 6241120256
+add_group xiaomi_dynamic_partitions 6241120256
+# Add partition system to group xiaomi_dynamic_partitions
+add system xiaomi_dynamic_partitions
+# Add partition vendor to group xiaomi_dynamic_partitions
+add vendor xiaomi_dynamic_partitions
+# Add partition product to group xiaomi_dynamic_partitions
+add product xiaomi_dynamic_partitions
+# Add partition system_ext to group xiaomi_dynamic_partitions
+add system_ext xiaomi_dynamic_partitions
+# Grow partition system from 0 to 639102976
+resize system 639102976
+# Grow partition vendor from 0 to 209600512
+resize vendor 209600512
+# Grow partition product from 0 to 344276992
+resize product 344276992
+# Grow partition system_ext from 0 to 232849408
+resize system_ext 232849408

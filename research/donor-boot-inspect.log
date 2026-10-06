@@ -1,0 +1,8 @@
+{
+  "image": "/workspace/wayne-hyperos4/research/donor-dada-os4/init_boot.img",
+  "sha256": "fd0457072a0623f87649f396e29cdb6e909cc57174286b2d73581e658189cef5",
+  "header_version": 4,
+  "kernel_size": 0,
+  "ramdisk_size": 2588280,
+  "page_size": 4096
+}

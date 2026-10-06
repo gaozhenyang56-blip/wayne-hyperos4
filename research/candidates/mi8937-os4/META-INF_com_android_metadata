@@ -1,0 +1,9 @@
+ota-property-files=metadata:69:385,metadata.pb:522:336                 
+ota-required-cache=0
+ota-type=BLOCK
+post-build=xiaomi/ugg/ugg:7.1.2/N2G47H/V11.0.2.0.NDKMIXM:user/release-keys
+post-build-incremental=1650392190
+post-sdk-level=32
+post-security-patch-level=2022-04-05
+post-timestamp=1650392098
+pre-device=mi8937,landtoni,land,santoni,prada,ulova,ulysse,ugglite,ugg,rova,rolex,riva

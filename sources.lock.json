@@ -1,0 +1,22 @@
+{
+  "miku-wayne": {
+    "url": "https://github.com/Diva-Room/Miku_device_xiaomi_wayne.git",
+    "commit": "9571a6b2159b0eac21a96fa67fb2e5973ce3111f",
+    "partial_checkout": false
+  },
+  "miku-kernel": {
+    "url": "https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne.git",
+    "commit": "3a74d7524415628550fa99dfc85d06d9a93459f3",
+    "partial_checkout": true
+  },
+  "miku-vendor": {
+    "url": "https://github.com/Diva-Room/Miku_vendor_xiaomi_wayne.git",
+    "commit": "777c030be4405054567fc821745b33de82bdcb4a",
+    "partial_checkout": true
+  },
+  "erofs-utils": {
+    "url": "https://github.com/erofs/erofs-utils.git",
+    "commit": "1c230a485f25837cb51d6fc79332f30758d9006c",
+    "partial_checkout": false
+  }
+}

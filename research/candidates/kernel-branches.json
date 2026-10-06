@@ -1,0 +1,34 @@
+[
+  {
+    "branch": "creek-v-oss",
+    "commit": "cc78885016d9819dd25b4a42edd74ebbf0966be2"
+  },
+  {
+    "branch": "ginkgo-p-oss",
+    "commit": "ed1d7fc3e85fdb6416a5e38025a9692bcc29e5b2"
+  },
+  {
+    "branch": "ginkgo-q-oss",
+    "commit": "82e7d59525bd170160d671ea76c5f8721208d857"
+  },
+  {
+    "branch": "lavender-p-oss",
+    "commit": "cf2a90f96348c6a3142d53ca209983da18c72410"
+  },
+  {
+    "branch": "lavender-q-oss",
+    "commit": "b16ba644a26986cc4cc3cf526eb497b9fa91a043"
+  },
+  {
+    "branch": "spes-r-oss",
+    "commit": "88afd32564211f4cfb60171ed8cbeaa734860601"
+  },
+  {
+    "branch": "topaz-t-oss",
+    "commit": "345999da0be9cd37afdf87b15449d30b585a7091"
+  },
+  {
+    "branch": "xun-t-oss",
+    "commit": "0418ef63b947c0cfe144074fae559ea9dfc3638e"
+  }
+]

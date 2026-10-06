@@ -1,0 +1,9 @@
+{
+  "image": "research/candidates/mi8937-os4/boot.img",
+  "sha256": "ef6b44133f0802dc7b7576e1edad2db597f990766d9193cc3f5cc7b181f6fb3e",
+  "header_version": 0,
+  "kernel_size": 19508890,
+  "ramdisk_size": 1468522,
+  "page_size": 2048,
+  "kernel_banner": "Linux version 4.19.325-cip135-st19-FuntimeKernel-v2.5-[OC]-erofs (builder@android) (ZyC clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1), GNU ld (GNU Binutils) 2.44.50.20250704) #1 SMP PREEMPT Wed Aug 19 17:17:42 UTC 2026\n"
+}

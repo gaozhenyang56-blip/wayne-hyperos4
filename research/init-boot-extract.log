@@ -1,0 +1,11 @@
+{
+  "partition": "init_boot",
+  "size": 8388608,
+  "sha256": "fd0457072a0623f87649f396e29cdb6e909cc57174286b2d73581e658189cef5",
+  "payload_operation_hashes_verified": true,
+  "partition_hash_verified": true,
+  "ota_signature_verified": false,
+  "http_bytes_read": 2011156,
+  "source_url": "https://cdnorg.d.miui.com/OS4.0.0.8.XOCCNXM/dada-ota_full-OS4.0.0.8.XOCCNXM-user-17.0-f6a0447d15.zip",
+  "purpose": "analysis_only_do_not_flash"
+}

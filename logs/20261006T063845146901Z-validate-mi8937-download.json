@@ -1,0 +1,15 @@
+{
+  "label": "validate-mi8937-download",
+  "started_utc": "2026-10-06T06:38:45.146901+00:00",
+  "finished_utc": "2026-10-06T06:39:00.274380+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/check_local_zip.py",
+    "downloads/mi8937-hyperos4.zip.part",
+    "research/candidates/mi8937-os4"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T063845146901Z-validate-mi8937-download.log",
+  "output_sha256": "758721fdba94440563202b8201d59c9f9bffef830b29ab19247fe86e0e275bc0"
+}

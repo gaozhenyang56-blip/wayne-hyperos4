@@ -1,0 +1,199 @@
+{
+  "url": "https://hugeota.d.miui.com/V12.0.2.0.PDCCNXM/miui_MI6X_V12.0.2.0.PDCCNXM_7c0078f6ae_9.0.zip",
+  "zip_size": 2026885811,
+  "status": "inspection_only",
+  "boot_tested": false,
+  "entries": [
+    {
+      "name": "META-INF/com/android/metadata",
+      "size": 303,
+      "compressed_size": 303,
+      "compression": 0
+    },
+    {
+      "name": "compatibility.zip",
+      "size": 8688,
+      "compressed_size": 8688,
+      "compression": 0
+    },
+    {
+      "name": "system.new.dat.br",
+      "size": 1590618961,
+      "compressed_size": 1590618961,
+      "compression": 0
+    },
+    {
+      "name": "system.patch.dat",
+      "size": 0,
+      "compressed_size": 0,
+      "compression": 0
+    },
+    {
+      "name": "vendor.new.dat.br",
+      "size": 356135377,
+      "compressed_size": 356135377,
+      "compression": 0
+    },
+    {
+      "name": "vendor.patch.dat",
+      "size": 0,
+      "compressed_size": 0,
+      "compression": 0
+    },
+    {
+      "name": "META-INF/com/google/android/update-binary",
+      "size": 1947304,
+      "compressed_size": 867449,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/com/google/android/updater-script",
+      "size": 3527,
+      "compressed_size": 720,
+      "compression": 8
+    },
+    {
+      "name": "boot.img",
+      "size": 26248522,
+      "compressed_size": 16127818,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/BTFM.bin",
+      "size": 569344,
+      "compressed_size": 277756,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/NON-HLOS.bin",
+      "size": 112412160,
+      "compressed_size": 54033262,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/abl.elf",
+      "size": 151552,
+      "compressed_size": 109713,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/cmnlib.mbn",
+      "size": 222184,
+      "compressed_size": 128783,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/cmnlib64.mbn",
+      "size": 274104,
+      "compressed_size": 152684,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/devcfg.mbn",
+      "size": 49068,
+      "compressed_size": 14550,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/dspso.bin",
+      "size": 16777216,
+      "compressed_size": 4047811,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/hyp.mbn",
+      "size": 278528,
+      "compressed_size": 97935,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/keymaster64.mbn",
+      "size": 311784,
+      "compressed_size": 134271,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/mdtp.img",
+      "size": 17808306,
+      "compressed_size": 596901,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/mdtpsecapp.mbn",
+      "size": 1078856,
+      "compressed_size": 454414,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/pmic.elf",
+      "size": 39720,
+      "compressed_size": 13535,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/rpm.mbn",
+      "size": 224808,
+      "compressed_size": 119070,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/splash.img",
+      "size": 28010208,
+      "compressed_size": 493780,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/tz.mbn",
+      "size": 1970176,
+      "compressed_size": 528488,
+      "compression": 8
+    },
+    {
+      "name": "firmware-update/xbl.elf",
+      "size": 2564345,
+      "compressed_size": 1908126,
+      "compression": 8
+    },
+    {
+      "name": "system.transfer.list",
+      "size": 14027,
+      "compressed_size": 3936,
+      "compression": 8
+    },
+    {
+      "name": "vendor.transfer.list",
+      "size": 4334,
+      "compressed_size": 1367,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/com/android/otacert",
+      "size": 1594,
+      "compressed_size": 1077,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/MANIFEST.MF",
+      "size": 2221,
+      "compressed_size": 970,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/CERT.SF",
+      "size": 2274,
+      "compressed_size": 1019,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/CERT.RSA",
+      "size": 1634,
+      "compressed_size": 1143,
+      "compression": 8
+    }
+  ],
+  "metadata": {
+    "META-INF/com/android/metadata": "ota-property-files=metadata:69:303         \nota-required-cache=0\nota-type=BLOCK\npost-build=xiaomi/wayne/wayne:9/PKQ1.180904.001/V12.0.2.0.PDCCNXM:user/release-keys\npost-build-incremental=V12.0.2.0.PDCCNXM\npost-sdk-level=28\npost-security-patch-level=2020-11-05\npost-timestamp=1611153316\npre-device=wayne\n",
+    "META-INF/com/google/android/updater-script": "getprop(\"ro.product.device\") == \"wayne\" || abort(\"E3004: This package is for \\\"wayne\\\" devices; this is a \\\"\" + getprop(\"ro.product.device\") + \"\\\".\");\nui_print(\"Target: xiaomi/wayne/wayne:9/PKQ1.180904.001/V12.0.2.0.PDCCNXM:user/release-keys\");\nshow_progress(0.100000, 5);\nshow_progress(0.200000, 10);\npackage_extract_file(\"boot.img\", \"/dev/block/bootdevice/by-name/boot\");\nshow_progress(0.600000, 250);\nui_print(\"Patching system image unconditionally...\");\nblock_image_update(\"/dev/block/bootdevice/by-name/system\", package_extract_file(\"system.transfer.list\"), \"system.new.dat.br\", \"system.patch.dat\") ||\n  abort(\"E1001: Failed to update system image.\");\nui_print(\"Patching vendor image unconditionally...\");\nblock_image_update(\"/dev/block/bootdevice/by-name/vendor\", package_extract_file(\"vendor.transfer.list\"), \"vendor.new.dat.br\", \"vendor.patch.dat\") ||\n  abort(\"E2001: Failed to update vendor image.\");\n\n# ---- radio update tasks ----\n\nui_print(\"Patching firmware images...\");\nifelse(msm.boot_update(\"main\"), (\npackage_extract_file(\"firmware-update/mdtpsecapp.mbn\", \"/dev/block/bootdevice/by-name/mdtpsecapp\");\npackage_extract_file(\"firmware-update/cmnlib64.mbn\", \"/dev/block/bootdevice/by-name/cmnlib64\");\npackage_extract_file(\"firmware-update/splash.img\", \"/dev/block/bootdevice/by-name/splash\");\npackage_extract_file(\"firmware-update/cmnlib.mbn\", \"/dev/block/bootdevice/by-name/cmnlib\");\npackage_extract_file(\"firmware-update/hyp.mbn\", \"/dev/block/bootdevice/by-name/hyp\");\npackage_extract_file(\"firmware-update/pmic.elf\", \"/dev/block/bootdevice/by-name/pmic\");\npackage_extract_file(\"firmware-update/tz.mbn\", \"/dev/block/bootdevice/by-name/tz\");\npackage_extract_file(\"firmware-update/mdtp.img\", \"/dev/block/bootdevice/by-name/mdtp\");\npackage_extract_file(\"firmware-update/keymaster64.mbn\", \"/dev/block/bootdevice/by-name/keymaster\");\npackage_extract_file(\"firmware-update/abl.elf\", \"/dev/block/bootdevice/by-name/abl\");\npackage_extract_file(\"firmware-update/devcfg.mbn\", \"/dev/block/bootdevice/by-name/devcfg\");\npackage_extract_file(\"firmware-update/xbl.elf\", \"/dev/block/bootdevice/by-name/xbl\");\npackage_extract_file(\"firmware-update/rpm.mbn\", \"/dev/block/bootdevice/by-name/rpm\");\n), \"\");\nifelse(msm.boot_update(\"backup\"), (\npackage_extract_file(\"firmware-update/cmnlib64.mbn\", \"/dev/block/bootdevice/by-name/cmnlib64bak\");\npackage_extract_file(\"firmware-update/cmnlib.mbn\", \"/dev/block/bootdevice/by-name/cmnlibbak\");\npackage_extract_file(\"firmware-update/hyp.mbn\", \"/dev/block/bootdevice/by-name/hypbak\");\npackage_extract_file(\"firmware-update/pmic.elf\", \"/dev/block/bootdevice/by-name/pmicbak\");\npackage_extract_file(\"firmware-update/tz.mbn\", \"/dev/block/bootdevice/by-name/tzbak\");\npackage_extract_file(\"firmware-update/keymaster64.mbn\", \"/dev/block/bootdevice/by-name/keymasterbak\");\npackage_extract_file(\"firmware-update/abl.elf\", \"/dev/block/bootdevice/by-name/ablbak\");\npackage_extract_file(\"firmware-update/devcfg.mbn\", \"/dev/block/bootdevice/by-name/devcfgbak\");\npackage_extract_file(\"firmware-update/xbl.elf\", \"/dev/block/bootdevice/by-name/xblbak\");\npackage_extract_file(\"firmware-update/rpm.mbn\", \"/dev/block/bootdevice/by-name/rpmbak\");\n), \"\");\nmsm.boot_update(\"finalize\");\npackage_extract_file(\"firmware-update/dspso.bin\", \"/dev/block/bootdevice/by-name/dsp\");\npackage_extract_file(\"firmware-update/NON-HLOS.bin\", \"/dev/block/bootdevice/by-name/modem\");\npackage_extract_file(\"firmware-update/BTFM.bin\", \"/dev/block/bootdevice/by-name/bluetooth\");\nshow_progress(0.100000, 2);\nset_progress(1.000000);\n"
+  },
+  "http_bytes_read": 68914
+}

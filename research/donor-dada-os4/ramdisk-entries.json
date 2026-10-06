@@ -1,0 +1,122 @@
+[
+  {
+    "name": "debug_ramdisk",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "dev",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "init",
+    "mode": "0o100750",
+    "size": 2812376
+  },
+  {
+    "name": "metadata",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "mnt",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "proc",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "second_stage_resources",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "sys",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/bin",
+    "mode": "0o40751",
+    "size": 0
+  },
+  {
+    "name": "system/bin/getevent",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/getprop",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/modprobe",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/setprop",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/snapuserd",
+    "mode": "0o120755",
+    "size": 17
+  },
+  {
+    "name": "system/bin/snapuserd_ramdisk",
+    "mode": "0o100755",
+    "size": 1273352
+  },
+  {
+    "name": "system/bin/start",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/stop",
+    "mode": "0o120755",
+    "size": 15
+  },
+  {
+    "name": "system/bin/toolbox_ramdisk",
+    "mode": "0o100755",
+    "size": 801216
+  },
+  {
+    "name": "system/etc",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc/init",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc/init/snapuserd.rc",
+    "mode": "0o100644",
+    "size": 537
+  },
+  {
+    "name": "system/etc/ramdisk",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc/ramdisk/build.prop",
+    "mode": "0o100644",
+    "size": 1005
+  }
+]

@@ -1,0 +1,67 @@
+[
+  {
+    "name": "debug_ramdisk",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "dev",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "fstab.qcom",
+    "mode": "0o100640",
+    "size": 5098
+  },
+  {
+    "name": "init",
+    "mode": "0o100750",
+    "size": 3090864
+  },
+  {
+    "name": "metadata",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "mnt",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "proc",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "second_stage_resources",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "sys",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc/ramdisk",
+    "mode": "0o40755",
+    "size": 0
+  },
+  {
+    "name": "system/etc/ramdisk/build.prop",
+    "mode": "0o100644",
+    "size": 809
+  }
+]

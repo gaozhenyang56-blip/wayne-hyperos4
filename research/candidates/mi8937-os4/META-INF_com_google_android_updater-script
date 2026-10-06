@@ -1,0 +1,39 @@
+assert(getprop("ro.product.device") == "mi8937" || getprop("ro.build.product") == "mi8937" || 
+       getprop("ro.product.device") == "landtoni" || getprop("ro.build.product") == "landtoni" || 
+       getprop("ro.product.device") == "land" || getprop("ro.build.product") == "land" || 
+       getprop("ro.product.device") == "santoni" || getprop("ro.build.product") == "santoni" || 
+       getprop("ro.product.device") == "prada" || getprop("ro.build.product") == "prada" || 
+       getprop("ro.product.device") == "ulova" || getprop("ro.build.product") == "ulova" || 
+       getprop("ro.product.device") == "ulysse" || getprop("ro.build.product") == "ulysse" || 
+       getprop("ro.product.device") == "ugglite" || getprop("ro.build.product") == "ugglite" || 
+       getprop("ro.product.device") == "ugg" || getprop("ro.build.product") == "ugg" || 
+       getprop("ro.product.device") == "rova" || getprop("ro.build.product") == "rova" || 
+       getprop("ro.product.device") == "rolex" || getprop("ro.build.product") == "rolex" || 
+       getprop("ro.product.device") == "riva" || getprop("ro.build.product") == "riva" || abort("E3004: This package is for device: mi8937,landtoni,land,santoni,prada,ulova,ulysse,ugglite,ugg,rova,rolex,riva; this device is " + getprop("ro.product.device") + "."););
+ui_print("Target: Xiaomi/santoni/santoni:7.1.2/N2G47H/9.6.20:user/release-keys");
+ifelse(is_mounted("/system"), unmount("/system"));
+ui_print("  ");
+ui_print(" ____________________________________________ ");
+ui_print("|                                            |");
+ui_print("|         H Y P E R  O S  4  B E T A         |");
+ui_print("|____________________________________________|");
+ui_print("  [BUILD]    : 4.0.0.16.XPCCNXM");
+ui_print("  [OS]       : Android 17");
+ui_print("  [KERNEL]   : 4.19.325 EROFS KSU Next");
+ui_print("  [DEV]      : @alpha269");
+ui_print(" -------------------------------------------- ");
+ui_print("  COMPATIBILITY:");
+ui_print("  - Santoni, Land, Ugg and other Mi8937 devices");
+ui_print(" ____________________________________________ ");
+ui_print("  ");
+ui_print("Patching system image unconditionally...");
+show_progress(0.800000, 0);
+block_image_update("/dev/block/bootdevice/by-name/system", package_extract_file("vendor.transfer.list"), "system.new.dat", "system.patch.dat") ||
+  abort("E1001: Failed to update system image.");
+ui_print("Patching vendor image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update("/dev/block/bootdevice/by-name/cust", package_extract_file("system.transfer.list"), "vendor.new.dat", "vendor.patch.dat") ||
+  abort("E2001: Failed to update vendor image.");
+package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
+show_progress(0.100000, 10);
+set_progress(1.000000);

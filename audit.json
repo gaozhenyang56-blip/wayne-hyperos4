@@ -1,0 +1,85 @@
+{
+  "status": "NOT_PORTED",
+  "flashable_package_created": false,
+  "real_device_testing": false,
+  "user_kernel_constraint": "4.19",
+  "reference_kernel_banner": "Linux version 4.19.315-Miku-Vampire_v2-g3a74d7 (nobody@android-build) (Android (11967740, +pgo, +bolt, +lto, +mlgo, based on r522817) clang version 18.0.1 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), LLD 18.0.1) #1 SMP PREEMPT Sun Feb 9 03:32:52 CST 2025\n",
+  "donor_build_metadata": "ota-property-files=payload_metadata.bin:4939:319093,payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                        \nota-required-cache=0\nota-streaming-property-files=payload.bin:4939:8702335155,payload_properties.txt:8702340152:156,apex_info.pb:2392:1457,care_map.pb:3896:976,metadata:69:711,metadata.pb:848:1496                          \nota-type=AB\npost-build=Xiaomi/dada/dada:17/CP2A.260605.016/17OS4.0.260902.005534479.QCPECN.S:user/release-keys\npost-build-incremental=17OS4.0.260902.005534479.QCPECN.S\npost-sdk-level=37\npost-security-patch-level=2026-08-01\npost-timestamp=1788305388\npre-device=dada\n",
+  "verified_donor_partition_hashes": [
+    {
+      "partition": "init_boot",
+      "size": 8388608,
+      "sha256": "fd0457072a0623f87649f396e29cdb6e909cc57174286b2d73581e658189cef5"
+    },
+    {
+      "partition": "system",
+      "size": 976527360,
+      "sha256": "67fc2780e1f8722b6c44755bb4be9840f63716b5dabd285d2f075ca8858059e9"
+    },
+    {
+      "partition": "system_ext",
+      "size": 823607296,
+      "sha256": "1614560542afe648ac3627a3558173b5aea465f016027aaeaccfbd684a10ba43"
+    }
+  ],
+  "fcm": {
+    "vendor_target_level": 5,
+    "donor_framework_levels": {
+      "202504": [
+        "6.12.0"
+      ],
+      "202604": [
+        "6.18.0"
+      ],
+      "8": [
+        "5.15.0",
+        "6.1.0"
+      ],
+      "7": [
+        "5.10.107",
+        "5.15.41"
+      ],
+      "202404": [
+        "6.6.0"
+      ]
+    },
+    "vendor_level_matrix_present": false
+  },
+  "boot": {
+    "reference_header_version": 1,
+    "donor_init_boot_header_version": 4,
+    "donor_boot_partition_size": 100663296,
+    "reference_boot_partition_max": 67108864
+  },
+  "capacity": {
+    "reference_group_upper_bound": 6241120256,
+    "retained_vendor_size": 209600512,
+    "proposed_donor_partitions": [
+      "system",
+      "system_ext",
+      "product",
+      "mi_ext"
+    ],
+    "unmodified_image_total": 6514757632,
+    "excess_bytes": 273637376,
+    "actual_device_geometry_verified": false
+  },
+  "selinux": {
+    "vendor_policy_version": "202404",
+    "matching_platform_mapping_present": true,
+    "combined_policy_compile_verified": false
+  },
+  "unresolved": [
+    "FCM 5 support and legacy HAL compatibility in Android 17 framework",
+    "Rebuild wayne boot v1 using the 4.19 device kernel and adapted Android 17 ramdisk",
+    "Trim/rebuild product and mi_ext while retaining required framework and signed app dependencies",
+    "Linker namespace access, exported symbols, graphics and camera ABI compatibility",
+    "Compile merged SELinux policy and verify init services, encryption, APEX and BPF requirements"
+  ],
+  "limits": [
+    "No full ROM ZIP downloaded or whole-ROM hash/signature verified; required entries/partitions were fetched by ranges",
+    "Manifest metadata hash and extracted donor partition hashes verified, but OTA cryptographic signature not verified",
+    "Library file existence is not proof of namespace, exported symbol or runtime compatibility",
+    "FCM mismatch does not prove all possible 4.19 ports impossible; it rejects an unchanged image swap"
+  ]
+}

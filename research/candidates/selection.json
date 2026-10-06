@@ -1,0 +1,109 @@
+{
+  "selection": "spes",
+  "selection_status": "provisional",
+  "reason": "Snapdragon 680; extracted port boot contains Linux 4.19.325; explicit full HyperOS4 community ROM link",
+  "download": {
+    "success": true,
+    "id": "kmZT7B8z",
+    "name": "hos4.0.0.17.wpacnxm_a17_spes.zip",
+    "size": 4813008353,
+    "views": 221,
+    "bandwidth_used": 470733340654,
+    "bandwidth_used_paid": 0,
+    "downloads": 188,
+    "date_upload": "2026-09-06T03:22:27.024Z",
+    "date_last_view": "2026-10-05T17:20:29.71Z",
+    "mime_type": "application/zip",
+    "thumbnail_href": "/file/kmZT7B8z/thumbnail",
+    "hash_sha256": "cec53dad779dc1e4c4477f24da00408a209a1d1d70fcbae25f1639b8f7e907c2",
+    "delete_after_date": "0001-01-01T00:00:00Z",
+    "delete_after_downloads": 0,
+    "availability": "",
+    "availability_message": "",
+    "abuse_type": "",
+    "abuse_reporter_name": "",
+    "can_edit": false,
+    "can_download": true,
+    "show_ads": true,
+    "allow_video_player": true,
+    "download_speed_limit": 0
+  },
+  "kernel": {
+    "header_version": 3,
+    "kernel_size": 22620391,
+    "kernel_banner": "Linux version 4.19.325-hanbal-gforce-base (ahmed@AAZ-PC) (Android (14488419, +pgo, +bolt, +lto, +mlgo, based on r584948) clang version 22.0.0 (https://android.googlesource.com/toolchain/llvm-project 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99), LLD 22.0.0 (/mnt/disks/build-disk/src/googleplex-android/llvm-r584948-release/out/llvm-project/llvm 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99)) #2 SMP PREEMPT Wed Sep 2 16:18:06 UTC 2026\n"
+  },
+  "internal_system_version_verified": false,
+  "ota_metadata_reused_android": 13,
+  "secondary_reference": "Mi8937 HyperOS4 Android17 4.19 non-RDP",
+  "secondary_reference_record": {
+    "id": "hyperos-4.0.0.16-beta",
+    "device": "Mi8937",
+    "name": "HyperOS 4.0.0.16 Beta",
+    "shortName": "HyperOS 4 Beta",
+    "android": "17",
+    "channel": "experimental",
+    "date": "2026-08-27",
+    "size": "2.50 GB",
+    "maintainer": "alpha",
+    "supports": [
+      "santoni",
+      "ugg",
+      "land"
+    ],
+    "mirrors": [
+      {
+        "label": "Google Drive",
+        "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
+        "primary": true
+      },
+      {
+        "label": "Telegram",
+        "url": "https://t.me/santonibackup/76",
+        "primary": false
+      }
+    ],
+    "extras": [
+      {
+        "label": "KernelSU Next Manager",
+        "url": "https://github.com/KernelSU-Next/KernelSU-Next/releases/download/v3.3.0/KernelSU_Next_v3.3.0_33214-release.apk"
+      }
+    ],
+    "recovery": {
+      "label": "OrangeFox Recovery",
+      "url": "https://t.me/R3SPX_UPDATES/4527"
+    },
+    "screenshots": [],
+    "screenshotsAlbum": null,
+    "install": [
+      "Wipe System, Vendor, Data, Dalvik/ART Cache, Cache, Metadata, Internal storage",
+      "Format data > yes",
+      "Flash the ROM zip",
+      "Reboot to system and wait 10 minutes to boot",
+      "Done"
+    ],
+    "bugs": [],
+    "changelog": [
+      "Initial Port from Xiaomi 17 OS4 Beta",
+      "Update kernel to latest sources and OC Gpu to 598MHz",
+      "Fixed a scenario where WiFi won't connect in Russian and Indonesian languages",
+      "Fixed Fingerprint"
+    ],
+    "notes": [
+      "• Includes GApps",
+      "• Not recommended for 2/16 & Mi8917",
+      "• Do not change wallpaper from home screen",
+      "• Warning: Do not change the kernel, or you will get a bootloop",
+      "• Experimental ROM; Not for daily usage",
+      "",
+      "Credits:",
+      "• @juezhi6668 for the surfaceflinger patch",
+      "• @Venusidk & @wannqn for helping",
+      "• @me_cafebabe for the resources"
+    ],
+    "noteStyle": "callout",
+    "_source": "data/releases/Mi8937/hyperos-4.0.0.16-beta.json"
+  },
+  "other_os4_candidate": "topaz/tapas community ROM, 5.15 kernel source, Snapdragon685",
+  "same_soc_no_os4_verified": "lavender Snapdragon660 community ports found only HyperOS1/2"
+}
