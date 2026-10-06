@@ -1,0 +1,17 @@
+{
+  "label": "reconstruct-mi8937-system",
+  "started_utc": "2026-10-06T06:58:24.909854+00:00",
+  "finished_utc": "2026-10-06T06:58:39.859935+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/rebuild_zip_block.py",
+    "downloads/mi8937-hyperos4.zip",
+    "system.new.dat",
+    "vendor.transfer.list",
+    "research/candidates/mi8937-os4/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T065824909854Z-reconstruct-mi8937-system.log",
+  "output_sha256": "259bdf85a7f6bca33b3071f2aa245d0e7d3f52fee455429600d395c958f0c58e"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "extract-mi8937-vendor-reference",
+  "started_utc": "2026-10-06T07:00:03.802784+00:00",
+  "finished_utc": "2026-10-06T07:00:04.276385+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/fsck.erofs",
+    "--extract=research/candidates/mi8937-os4/vendor",
+    "--no-preserve-owner",
+    "--preserve-perms",
+    "--xattrs",
+    "research/candidates/mi8937-os4/vendor.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070003802784Z-extract-mi8937-vendor-reference.log",
+  "output_sha256": "ceb837ef6eab7a8566a052e3bf100761677c73bf600744a81ab825fe89488401"
+}

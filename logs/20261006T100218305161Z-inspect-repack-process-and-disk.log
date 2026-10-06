@@ -1,0 +1,24 @@
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          32G   28G  2.7G  92% /
+2.8G	artifacts/experimental/system.img
+6.7G	artifacts/experimental/system.img.part
+Processing system_ext/lib64/vendor.qti.data.factory@2.5.so ...
+Processing system_ext/lib64/vendor.qti.data.factory@2.6.so ...
+Processing system_ext/lib64/vendor.qti.data.factory@2.7.so ...
+Processing system_ext/lib64/vendor.qti.data.factory@2.8.so ...
+Processing system_ext/lib64/vendor.qti.data.factoryser   8697       03:01 Ss   python3
+   8700       03:01 S    python3
+   8701       03:01 Sl   mkfs.erofs
+   8879       00:00 Ss   python3
+?? research/wayne-os4-native.json
+?? research/wayne-os4-policy/
+?? research/wayne-os4-system-metadata.json
+?? research/wayne-system-metadata-check.json
+?? tools/audit_native_pair.py
+?? tools/build_system_overlay.py
+?? tools/build_wayne_boot.py
+?? tools/check_policy.py
+?? tools/erofs_metadata.py
+?? tools/extract_zip_entry_stream.py
+?? tools/rebuild_zip_block.py
+?? tools/repack_system_metadata.py

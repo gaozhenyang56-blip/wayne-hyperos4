@@ -1,0 +1,246 @@
+}  // namespace details
+
+// A HalManifest is reported by the hardware and query-able from
+// framework code. This is the API for the framework.
+struct HalManifest : public HalGroup<ManifestHal>,
+                     public XmlFileGroup<ManifestXmlFile>,
+                     public WithFileName {
+   public:
+
+    // Construct a device HAL manifest.
+    HalManifest() : mType(SchemaType::DEVICE) {}
+
+    bool add(ManifestHal&& hal, std::string* error = nullptr);
+    // Move all hals from another HalManifest to this.
+    bool addAllHals(HalManifest* other, std::string* error = nullptr);
+
+    // Given a component name (e.g. "android.hardware.camera"),
+    // return getHal(name)->transport if the component exist and v exactly matches
+    // one of the versions in that component, else EMPTY
+    Transport getHidlTransport(const std::string& name, const Version& v,
+                               const std::string& interfaceName,
+                               const std::string& instanceName) const;
+
+    // Check compatibility against a compatibility matrix. Considered compatible if
+    // - framework manifest vs. device compat-mat
+    //     - checkIncompatibility for HALs returns only optional HALs
+    //     - one of manifest.vndk match compat-mat.vndk
+    // - device manifest vs. framework compat-mat
+    //     - checkIncompatibility for HALs returns only optional HALs
+    //     - manifest.sepolicy.version match one of compat-mat.sepolicy.sepolicy-version
+    bool checkCompatibility(const CompatibilityMatrix& mat, std::string* error = nullptr,
+                            CheckFlags::Type flags = CheckFlags::DEFAULT) const;
+
+    // Generate a compatibility matrix such that checkCompatibility will return true.
+    CompatibilityMatrix generateCompatibleMatrix() const;
+
+    // Returns all component names.
+    std::set<std::string> getHalNames() const;
+
+    // Returns all component names and versions, e.g.
+    // "android.hardware.camera.device@1.0", "android.hardware.camera.device@3.2",
+    // "android.hardware.nfc@1.0"]
+    std::set<std::string> getHalNamesAndVersions() const;
+
+    // Type of the manifest. FRAMEWORK or DEVICE.
+    SchemaType type() const;
+    void setType(SchemaType type);
+                         const std::string& interfaceName, const std::string& instance) const;
+
+    // Return whether a given AIDL instance is in this manifest with any version.
+    bool hasAidlInstance(const std::string& package, const std::string& interfaceName,
+                         const std::string& instance) const;
+
+    // Return whether a given native instance is in getNativeInstances(...).
+    bool hasNativeInstance(const std::string& package, const std::string& instance) const;
+
+    // Insert the given instance. After inserting it, the instance will be available via
+    // forEachInstance* functions. This modifies the manifest.
+    // Return whether this operation is successful.
+    bool insertInstance(const FqInstance& fqInstance, Transport transport, Arch arch, HalFormat fmt,
+                        std::string* error = nullptr);
+
+    // Add everything from another manifest. If no errors (return true), it is guaranteed
+    // that other->empty() == true after execution.
+    [[nodiscard]] bool addAll(HalManifest* other, std::string* error = nullptr);
+
+   protected:
+    // Check before add()
+    bool shouldAdd(const ManifestHal& toAdd, std::string* error) const;
+    bool shouldAddXmlFile(const ManifestXmlFile& toAdd) const override;
+
+    bool forEachInstanceOfVersion(
+        HalFormat format, ExclusiveTo exclusiveTo, const std::string& package,
+        const Version& expectVersion,
+        const std::function<bool(const ManifestInstance&)>& func) const override;
+
+    bool forEachNativeInstance(const std::string& package,
+                               const std::function<bool(const ManifestInstance&)>& func) const;
+
+   private:
+    friend struct HalManifestConverter;
+    friend class VintfObject;
+    friend class AssembleVintfImpl;
+    friend class details::CheckVintfUtils;
+    friend struct LibVintfTest;
+    friend class details::FmOnlyVintfObject;
+    friend std::string dump(const HalManifest &vm);
+    friend bool operator==(const HalManifest &lft, const HalManifest &rgt);
+
+    status_t fetchAllInformation(const FileSystem* fileSystem, const std::string& path,
+                                 std::string* error = nullptr);
+
+    details::Instances expandInstances(const std::string& name) const;
+
+    // Return a list of error messages (for each <hal> name) that does NOT conform to
+    // the given compatibility matrix. It does not contain components that are optional.
+    // That is, return empty list iff
+    // (instance in matrix) => (instance in manifest).
+    std::vector<std::string> checkIncompatibleHals(const CompatibilityMatrix& mat) const;
+
+    void removeHals(const std::string& name, size_t majorVer);
+
+    // Returns a list of instance names that are in this manifest but
+    // are not specified in the given matrix, whether the HAL is specified as an optional or
+    // required HAL.
+    // That is, return empty list iff
+    // (instance in manifest) => (instance in matrix).
+    std::set<std::string> checkUnusedHals(
+        const CompatibilityMatrix& mat,
+        const std::vector<HidlInterfaceMetadata>& hidlMetadata) const;
+
+    // Check that manifest has no entries.
+    bool empty() const;
+
+    // Alternative to forEachInstance if you just need a set of instance names instead.
+    Transport transport{Transport::EMPTY};
+    forEachInstanceOfInterface(HalFormat::HIDL, ExclusiveTo::EMPTY, package, v, interfaceName,
+                               [&](const auto& e) {
+                                   if (e.instance() == instanceName) {
+                                       transport = e.transport();
+                                   }
+                                   return transport == Transport::EMPTY;  // if not found, continue
+                               });
+    if (transport == Transport::EMPTY) {
+        LOG(DEBUG) << "HalManifest::getHidlTransport(" << mType << "): Cannot find "
+                   << toFQNameString(package, v, interfaceName, instanceName);
+    }
+    return transport;
+}
+
+bool HalManifest::forEachInstanceOfVersion(
+    HalFormat format, ExclusiveTo exclusiveTo, const std::string& package,
+    const Version& expectVersion, const std::function<bool(const ManifestInstance&)>& func) const {
+    for (const ManifestHal* hal : getHals(package)) {
+        bool cont = hal->forEachInstance([&](const ManifestInstance& manifestInstance) {
+            if (manifestInstance.format() == format &&
+                manifestInstance.version().minorAtLeast(expectVersion) &&
+                manifestInstance.exclusiveTo() == exclusiveTo) {
+                return func(manifestInstance);
+            }
+            return true;
+        });
+        if (!cont) return false;
+    }
+    return true;
+}
+
+bool HalManifest::forEachNativeInstance(
+    const std::string& package, const std::function<bool(const ManifestInstance&)>& func) const {
+    for (const ManifestHal* hal : getHals(package)) {
+        bool cont = hal->forEachInstance([&](const ManifestInstance& manifestInstance) {
+            if (manifestInstance.format() == HalFormat::NATIVE) {
+                return func(manifestInstance);
+            }
+            return true;
+        });
+        if (!cont) return false;
+    }
+    return true;
+}
+
+// indent = 2, {"foo"} => "foo"
+// indent = 2, {"foo", "bar"} => "\n  foo\n  bar";
+template <typename Container>
+void multilineIndent(std::ostream& os, size_t indent, const Container& lines) {
+    if (lines.size() == 1) {
+        os << *lines.begin();
+        return;
+    }
+    for (const auto& line : lines) {
+        os << "\n";
+        for (size_t i = 0; i < indent; ++i) os << " ";
+        os << line;
+    }
+}
+
+std::set<std::string> HalManifest::checkUnusedHals(
+    const CompatibilityMatrix& mat, const std::vector<HidlInterfaceMetadata>& hidlMetadata) const {
+/*
+ * Copyright (C) 2017 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef ANDROID_VINTF_DISABLED_CHECKS_H_
+#define ANDROID_VINTF_DISABLED_CHECKS_H_
+
+namespace android {
+namespace vintf {
+
+namespace CheckFlags {
+
+// Flags for *::checkCompatibility functions.
+class Type {
+   public:
+#define VINTF_CHECK_FLAGS_FIELD(name, bit)                                                    \
+    [[nodiscard]] constexpr Type enable##name() const { return Type(mValue | (1 << bit)); }   \
+    [[nodiscard]] constexpr Type disable##name() const { return Type(mValue & ~(1 << bit)); } \
+    constexpr bool is##name##Enabled() const { return mValue & (1 << bit); }
+
+    VINTF_CHECK_FLAGS_FIELD(Avb, 0)
+    VINTF_CHECK_FLAGS_FIELD(RuntimeInfo, 1)
+    VINTF_CHECK_FLAGS_FIELD(Kernel, 2)
+#undef VINTF_CHECK_FLAGS_FIELD
+
+    explicit constexpr Type(int32_t value) : mValue(value) {}
+
+   private:
+    int32_t mValue;
+};
+
+constexpr Type ENABLE_ALL_CHECKS{~0};
+constexpr Type DISABLE_ALL_CHECKS{0};
+// Disable AVB version check in RuntimeInfo::checkCompatibility
+constexpr Type DISABLE_AVB_CHECK = ENABLE_ALL_CHECKS.disableAvb();
+// Disable RuntimeInfo <-> Framework Matrix check. This implies DISABLE_AVB_CHECK.
+constexpr Type DISABLE_RUNTIME_INFO = ENABLE_ALL_CHECKS.disableRuntimeInfo();
+
+// Default flag if no flag is provided.
+constexpr Type DEFAULT = DISABLE_AVB_CHECK;
+
+// tests
+static_assert(ENABLE_ALL_CHECKS.isAvbEnabled(), "");
+static_assert(ENABLE_ALL_CHECKS.isRuntimeInfoEnabled(), "");
+static_assert(!DISABLE_AVB_CHECK.isAvbEnabled(), "");
+static_assert(DISABLE_AVB_CHECK.isRuntimeInfoEnabled(), "");
+static_assert(DISABLE_RUNTIME_INFO.isAvbEnabled(), "");
+static_assert(!DISABLE_RUNTIME_INFO.isRuntimeInfoEnabled(), "");
+
+}  // namespace CheckFlags
+}  // namespace vintf
+}  // namespace android
+
+#endif  // ANDROID_VINTF_DISABLED_CHECKS_H_
+1112:android::base::Result<void> VintfObject::checkUnusedHals(
+1122:    auto unused = manifest->checkUnusedHals(*matrix, hidlMetadata);

@@ -1,0 +1,31 @@
+Usage: tools/local/usr/bin/secilc [OPTION]... FILE...
+
+Options:
+  -o, --output=<file>            write binary policy to <file>
+                                 (default: policy.<version>)
+  -f, --filecontext=<file>       write file contexts to <file>
+                                 (default: file_contexts)
+  -t, --target=<type>            specify target architecture. may be selinux or
+                                 xen. (default: selinux)
+  -M, --mls true|false           build an mls policy. Must be true or false.
+                                 This will override the (mls boolean) statement
+                                 if present in the policy
+  -c, --policyvers=<version>     build a binary policy with a given <version>
+                                 (default: 34)
+  -U, --handle-unknown=<action>  how to handle unknown classes or permissions.
+                                 may be deny, allow, or reject. (default: deny)
+                                 This will override the (handleunknown action)
+                                 statement if present in the policy
+  -D, --disable-dontaudit        do not add dontaudit rules to the binary policy
+  -P, --preserve-tunables        treat tunables as booleans
+  -Q, --qualified-names          Allow names containing dots (qualified names).
+                                 Blocks, blockinherits, blockabstracts, and
+                                 in-statements will not be allowed.
+  -m, --multiple-decls           allow some statements to be re-declared
+  -N, --disable-neverallow       do not check neverallow rules
+  -G, --expand-generated         Expand and remove auto-generated attributes
+  -X, --expand-size <SIZE>       Expand type attributes with fewer than <SIZE>
+                                 members.
+  -O, --optimize                 optimize final policy
+  -v, --verbose                  increment verbosity level
+  -h, --help                     display usage information

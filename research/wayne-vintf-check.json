@@ -1,0 +1,21 @@
+{
+  "aosp_commit": "9a095008eaf2b4ac7cb6e9d2da6aeca596f04062",
+  "device_matrix_source": "research/base-miku-a15/system/system/etc/vintf/compatibility_matrix.device.xml",
+  "device_matrix_sha256": "c7b69d30d11e1dc0bc4f679bc4621d038b24b986d5ad7fa13040431d7887e24f",
+  "check": {
+    "exit_code": 0,
+    "output": "HAL manifest/framework matrix compatibility passed.\nRuntime kernel, APEX manifests and linker namespaces are not covered.\n"
+  },
+  "negative_control": {
+    "mutation": "composer 2.1 to 99.0",
+    "exit_code": 1,
+    "output": "UNMATCHED HAL DECLARATIONS (no HIDL inheritance metadata)\nandroid.hardware.graphics.composer@99.0::IComposer/default\n"
+  },
+  "hidl_inheritance_metadata_provided": false,
+  "not_covered": [
+    "actual kernel configuration",
+    "APEX manifests",
+    "linker namespaces",
+    "HAL runtime functionality"
+  ]
+}

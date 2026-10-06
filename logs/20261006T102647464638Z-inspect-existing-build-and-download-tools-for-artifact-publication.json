@@ -1,0 +1,14 @@
+{
+  "label": "inspect-existing-build-and-download-tools-for-artifact-publication",
+  "started_utc": "2026-10-06T10:26:47.464638+00:00",
+  "finished_utc": "2026-10-06T10:26:48.137942+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg --files tools | sort; rg -n \"gdrive|drive.google|Mi8937|mi8937|1_Tu|usercontent|confirm\" tools research/candidates/mi8937-os4-release.json; cat config/fcm5-source.json; head -65 tools/erofs_metadata.py; gh api user --jq .login"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102647464638Z-inspect-existing-build-and-download-tools-for-artifact-publication.log",
+  "output_sha256": "daf84a005880f7edbfb9fe9169a407856ccc7ddc5556f77fee2bd263d885516a"
+}

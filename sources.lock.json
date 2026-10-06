@@ -18,5 +18,45 @@
     "url": "https://github.com/erofs/erofs-utils.git",
     "commit": "1c230a485f25837cb51d6fc79332f30758d9006c",
     "partial_checkout": false
+  },
+  "libvintf": {
+    "url": "https://android.googlesource.com/platform/system/libvintf",
+    "commit": "9a095008eaf2b4ac7cb6e9d2da6aeca596f04062",
+    "partial_checkout": false
+  },
+  "libbase": {
+    "url": "https://android.googlesource.com/platform/system/libbase",
+    "commit": "6d19b5c690fa4220c10e42c2326150bbd4d4b7bb",
+    "partial_checkout": false
+  },
+  "logging": {
+    "url": "https://android.googlesource.com/platform/system/logging",
+    "commit": "bcac7c30d88a3773a7c0bc9f5617a23a886331fd",
+    "partial_checkout": false
+  },
+  "fmt": {
+    "url": "https://github.com/fmtlib/fmt.git",
+    "commit": "4afd0e498e9e1dd68775cc52087df774a19c761f",
+    "partial_checkout": false
+  },
+  "tinyxml2": {
+    "url": "https://github.com/leethomason/tinyxml2.git",
+    "commit": "8224e427b655b83dae5e2298f1e6919523a78737",
+    "partial_checkout": false
+  },
+  "system-core": {
+    "url": "https://android.googlesource.com/platform/system/core",
+    "commit": "a3b721a32242006b59cb12bd62c9133632af3a2d",
+    "partial_checkout": true
+  },
+  "libhidl": {
+    "url": "https://android.googlesource.com/platform/system/libhidl",
+    "commit": "b0ef8291501f69e6532a1bd84920824eb8f6ac95",
+    "partial_checkout": false
+  },
+  "hidl-tools": {
+    "url": "https://android.googlesource.com/platform/system/tools/hidl",
+    "commit": "d11716d0c896b6850c53ba59642570d60966843a",
+    "partial_checkout": false
   }
 }

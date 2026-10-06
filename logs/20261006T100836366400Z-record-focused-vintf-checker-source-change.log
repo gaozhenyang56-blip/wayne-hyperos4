@@ -1,0 +1,46 @@
+diff --git a/tools/vintf_pair_check.cpp b/tools/vintf_pair_check.cpp
+new file mode 100644
+index 0000000..48d75a2
+--- /dev/null
++++ b/tools/vintf_pair_check.cpp
+@@ -0,0 +1,40 @@
++// Focused host check using unmodified AOSP libvintf; not full checkvintf/APEX validation.
++#include <fstream>
++#include <iostream>
++#include <vector>
++#include <vintf/HalManifest.h>
++#include <vintf/CompatibilityMatrix.h>
++#include <vintf/parse_xml.h>
++
++using namespace android::vintf;
++static std::string read(const char* path) {
++    std::ifstream stream(path);
++    if (!stream) throw std::runtime_error(std::string("Cannot open ")+path);
++    return std::string(std::istreambuf_iterator<char>(stream), {});
++}
++int main(int argc, char** argv) {
++    try {
++        if (argc < 3) throw std::runtime_error("Usage: checker vendor-manifest matrix...");
++        HalManifest manifest;
++        std::string error;
++        if (!fromXml(&manifest, read(argv[1]), &error)) throw std::runtime_error(error);
++        std::vector<CompatibilityMatrix> matrices;
++        for (int i=2;i<argc;++i) {
++            CompatibilityMatrix matrix;
++            if (!fromXml(&matrix,read(argv[i]),&error)) throw std::runtime_error(std::string(argv[i])+": "+error);
++            matrices.push_back(std::move(matrix));
++        }
++        auto combined=CompatibilityMatrix::combine(manifest.level(),manifest.level(),&matrices,&error);
++        if (!combined) throw std::runtime_error(error);
++        if (!manifest.checkCompatibility(*combined,&error)) {
++            std::cerr << "INCOMPATIBLE\n" << error << "\n";
++            return 1;
++        }
++        std::cout << "HAL manifest/framework matrix compatibility passed.\n"
++                  << "Runtime kernel, APEX manifests and linker namespaces are not covered.\n";
++        return 0;
++    } catch (const std::exception& e) {
++        std::cerr << e.what() << "\n";
++        return 2;
++    }
++}

@@ -1,0 +1,15 @@
+{
+  "label": "inventory-donor-inode-metadata",
+  "started_utc": "2026-10-06T09:56:23.948067+00:00",
+  "finished_utc": "2026-10-06T09:56:24.826397+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/erofs_metadata.py",
+    "research/candidates/mi8937-os4/system.img",
+    "research/candidates/mi8937-os4/inode-metadata.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095623948067Z-inventory-donor-inode-metadata.log",
+  "output_sha256": "3ddca82e9f2e2671866a0cc95d4bca01313ef0eddc33c197566bae11fd53c1aa"
+}

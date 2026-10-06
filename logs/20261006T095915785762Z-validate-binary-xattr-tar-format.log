@@ -1,0 +1,12 @@
+mkfs.erofs 1.8.6
+Processing . ...
+Processing file ...
+Build completed.
+
+------
+Filesystem UUID: 383539f6-db63-490d-aa64-5e5248d8fab9
+Filesystem total blocks: 1 (of 4096-byte blocks)
+Filesystem total inodes: 2
+Filesystem total metadata blocks: 1
+Filesystem total deduplicated bytes (of source files): 0
+binary capability and SELinux label roundtrip passed

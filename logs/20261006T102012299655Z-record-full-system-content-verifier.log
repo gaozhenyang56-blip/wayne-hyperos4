@@ -1,0 +1,1 @@
+Added tools/verify_system_contents.py: SHA-256 comparison for all original regular files, exact symlink targets, expected overlay content and inode types; metadata checked separately.

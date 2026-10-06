@@ -1,0 +1,17 @@
+{
+  "label": "retry-host-fmt-source-after-space-recovery",
+  "started_utc": "2026-10-06T10:03:59.459260+00:00",
+  "finished_utc": "2026-10-06T10:04:00.264021+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/fmtlib/fmt.git",
+    "sources/fmt"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100359459260Z-retry-host-fmt-source-after-space-recovery.log",
+  "output_sha256": "573b7137b4b1bf822af2a166b08c2f9ee4878c6ac67d465dbefd78067eba7923"
+}

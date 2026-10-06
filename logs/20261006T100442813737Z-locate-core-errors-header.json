@@ -1,0 +1,14 @@
+{
+  "label": "locate-core-errors-header",
+  "started_utc": "2026-10-06T10:04:42.813737+00:00",
+  "finished_utc": "2026-10-06T10:04:42.820021+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg --files sources/system-core/libutils | rg \"Errors.h|Android.bp\" | head -10"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100442813737Z-locate-core-errors-header.log",
+  "output_sha256": "ed9d53f372d24c5a2827ae52fd7da82310007d96b969d2f289add063348b4bb2"
+}

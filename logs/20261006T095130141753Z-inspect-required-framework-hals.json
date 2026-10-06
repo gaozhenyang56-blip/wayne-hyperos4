@@ -1,0 +1,14 @@
+{
+  "label": "inspect-required-framework-hals",
+  "started_utc": "2026-10-06T09:51:30.141753+00:00",
+  "finished_utc": "2026-10-06T09:51:30.170104+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,xml.etree.ElementTree as E,json; r=pathlib.Path(\"research/candidates/mi8937-os4/system\");o={};\nfor p in [r/\"system/etc/vintf/compatibility_matrix.device.xml\",r/\"product/etc/vintf/compatibility_matrix.xml\"]:\n m=E.parse(p).getroot();req=[x.findtext(\"name\") for x in m.findall(\"hal\") if x.get(\"optional\")!=\"true\"];o[str(p.relative_to(r))]={\"required_hals\":req,\"total_hals\":len(m.findall(\"hal\"))}\npathlib.Path(\"research/candidates/mi8937-os4/framework-required-hals.json\").write_text(json.dumps(o,indent=2));print(json.dumps(o,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095130141753Z-inspect-required-framework-hals.log",
+  "output_sha256": "ffc1081de75d9506597b9618fb2cfdc136935548b451f761eed16da2a56fa499"
+}

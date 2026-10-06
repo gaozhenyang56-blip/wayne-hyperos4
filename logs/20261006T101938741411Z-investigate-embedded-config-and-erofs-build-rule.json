@@ -1,0 +1,14 @@
+{
+  "label": "investigate-embedded-config-and-erofs-build-rule",
+  "started_utc": "2026-10-06T10:19:38.741411+00:00",
+  "finished_utc": "2026-10-06T10:19:39.484453+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "git -C sources/miku-kernel show HEAD:fs/Makefile | tail -45; git -C sources/miku-kernel show HEAD:fs/erofs/Makefile; git -C sources/miku-kernel show HEAD:kernel/configs.c | head -75; head -18 research/base-miku-a15/kernel.config; python3 -c 'import json; m=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\")); print(list(m)); print(list(m[\"paths\"].items())[:2])'"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101938741411Z-investigate-embedded-config-and-erofs-build-rule.log",
+  "output_sha256": "60e01e6a8689f06211f8e5ceda1322fa19626030e57f10cd27ef7c40d0dde24e"
+}

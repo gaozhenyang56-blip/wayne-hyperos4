@@ -1,0 +1,14 @@
+{
+  "label": "audit-erofs-kernel-modules-and-fstab",
+  "started_utc": "2026-10-06T10:18:56.866493+00:00",
+  "finished_utc": "2026-10-06T10:18:56.960177+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n \"EROFS|F2FS|EXT4|MODULES|IKCONFIG\" research/base-miku-a15/kernel.config; rg --files research/base-miku-a15/vendor | rg \"(erofs|modules|fstab)\"; cat research/base-miku-a15/ramdisk/fstab.qcom; cat research/base-miku-a15/dynamic_partitions_op_list; rg -n \"EROFS|erofs\" sources/miku-wayne sources/miku-kernel/arch/arm64/configs; ls -l artifacts/experimental"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101856866493Z-audit-erofs-kernel-modules-and-fstab.log",
+  "output_sha256": "959ac2945598a7c077816c017cce0eb37bdcb820261daaa53917e076e484996c"
+}

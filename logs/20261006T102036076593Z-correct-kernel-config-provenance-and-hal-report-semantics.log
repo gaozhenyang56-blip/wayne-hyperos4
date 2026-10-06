@@ -1,0 +1,17 @@
+{
+  "source": "research/base-miku-a15/boot.img",
+  "kernel_sha256": "9aae8717994722a6b71bb2e3b481714ebc1a70e9663dd3b871fad82cfcd826f9",
+  "config_sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+  "bytes": 169235,
+  "marker_offset": 22566052,
+  "config": "research/base-miku-a15/kernel.config",
+  "actual_build_configuration": false,
+  "provenance_warning": "kernel/Makefile embeds arch/arm64/configs/vendor/sdm660-perf-full_defconfig, not the generated build .config",
+  "matches_hardcoded_defconfig": true,
+  "erofs_binary_evidence": [
+    "erofs_fill_super",
+    "erofs_load_compr_cfgs",
+    "erofs_superblock_csum_verify"
+  ]
+}
+Corrected HAL attribute interpretation; pinned all host-checker source commits.

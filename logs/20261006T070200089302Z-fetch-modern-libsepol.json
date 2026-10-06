@@ -1,0 +1,16 @@
+{
+  "label": "fetch-modern-libsepol",
+  "started_utc": "2026-10-06T07:02:00.089302+00:00",
+  "finished_utc": "2026-10-06T07:02:00.148467+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "curl",
+    "-fsSL",
+    "https://deb.debian.org/debian/pool/main/libs/libsepol/libsepol2_3.11-1_amd64.deb",
+    "-o",
+    "downloads/libsepol-3.11.deb"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070200089302Z-fetch-modern-libsepol.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "fetch-host-android-log-source",
+  "started_utc": "2026-10-06T09:59:47.481912+00:00",
+  "finished_utc": "2026-10-06T09:59:47.486858+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://android.googlesource.com/platform/system/logging",
+    "sources/logging"
+  ],
+  "exit_code": 128,
+  "output": "logs/20261006T095947481912Z-fetch-host-android-log-source.log",
+  "output_sha256": "00c04be5533fc8d87e3dbcc790de809f5798bea24e86cb2ea362a4cfa07bf1e9"
+}

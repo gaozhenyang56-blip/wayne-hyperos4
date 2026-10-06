@@ -1,0 +1,28 @@
+<E> erofs: failed to parse source directory: [Error 2] No such file or directory
+mkfs.erofs 1.8.6
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/repack_system_metadata.py", line 42, in main
+    if stat.S_ISDIR(mode):entry.type=tarfile.DIRTYPE;tar.addfile(entry)
+                                                     ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tarfile.py", line 2285, in addfile
+    self.fileobj.write(buf)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tarfile.py", line 443, in write
+    self.__write(s)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tarfile.py", line 451, in __write
+    self.fileobj.write(self.buf[:self.bufsize])
+BrokenPipeError: [Errno 32] Broken pipe
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/repack_system_metadata.py", line 63, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/wayne-hyperos4/tools/repack_system_metadata.py", line 35, in main
+    with tarfile.open(fileobj=process.stdin,mode='w|',format=tarfile.PAX_FORMAT) as tar:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tarfile.py", line 2940, in __exit__
+    self.fileobj.close()
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/tarfile.py", line 467, in close
+    self.fileobj.write(self.buf)
+BrokenPipeError: [Errno 32] Broken pipe

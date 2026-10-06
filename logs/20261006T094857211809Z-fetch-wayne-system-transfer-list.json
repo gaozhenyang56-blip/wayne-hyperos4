@@ -1,0 +1,17 @@
+{
+  "label": "fetch-wayne-system-transfer-list",
+  "started_utc": "2026-10-06T09:48:57.211809+00:00",
+  "finished_utc": "2026-10-06T09:49:01.379010+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/inspect_ota.py",
+    "https://downloads.sourceforge.net/project/divarelease/wayne_Vampire_v0.6.0/MikuUI-Vampire_v2-wayne-25020901-OFFICIAL.zip",
+    "research/base-miku-a15",
+    "--extract-entry",
+    "system.transfer.list"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T094857211809Z-fetch-wayne-system-transfer-list.log",
+  "output_sha256": "edea844e22475a41a501790e2f7f4b5752ebe13351c2092741f2c7e7bc06f5bb"
+}

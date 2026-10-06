@@ -1,0 +1,19 @@
+{
+  "label": "compile-wayne-os4-selinux-runtime-mode",
+  "started_utc": "2026-10-06T07:03:27.379336+00:00",
+  "finished_utc": "2026-10-06T07:03:27.957629+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "env",
+    "LD_LIBRARY_PATH=tools/local/usr/lib/x86_64-linux-gnu",
+    "python3",
+    "tools/check_policy.py",
+    "research/candidates/mi8937-os4/system",
+    "research/base-miku-a15/vendor",
+    "research/wayne-os4-policy/runtime",
+    "--runtime-mode"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070327379336Z-compile-wayne-os4-selinux-runtime-mode.log",
+  "output_sha256": "e2156cb53e2cef5937f2d46f979e52d025844e0bf39d0cffa3ac0095ef214c9b"
+}

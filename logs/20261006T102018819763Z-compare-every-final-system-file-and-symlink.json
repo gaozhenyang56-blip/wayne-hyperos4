@@ -1,0 +1,18 @@
+{
+  "label": "compare-every-final-system-file-and-symlink",
+  "started_utc": "2026-10-06T10:20:18.819763+00:00",
+  "finished_utc": "2026-10-06T10:20:23.468498+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_system_contents.py",
+    "research/candidates/mi8937-os4/system",
+    "downloads/verified-wayne-system",
+    "research/candidates/mi8937-os4/inode-metadata.json",
+    "artifacts/experimental/overlay.tar",
+    "research/wayne-system-content-check.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102018819763Z-compare-every-final-system-file-and-symlink.log",
+  "output_sha256": "886a8c41d1826ccae6a4c1a1567584cada5d4a50cfef9bfea8cd89417789ef36"
+}

@@ -1,0 +1,14 @@
+{
+  "label": "cross-check-erofs-implementation-in-kernel-binary",
+  "started_utc": "2026-10-06T10:19:09.183425+00:00",
+  "finished_utc": "2026-10-06T10:19:09.469167+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,struct,zlib,re; b=pathlib.Path(\"research/base-miku-a15/boot.img\").read_bytes(); page=struct.unpack_from(\"<I\",b,36)[0]; image=zlib.decompressobj(31).decompress(b[page:]); print(\"IKCONFIG markers:\",[m.start() for m in re.finditer(b\"IKCFG_ST\",image)]); terms=[b\"erofs\",b\"EROFS\",b\"erofs_fill_super\",b\"erofs_fs_type\",b\"erofs_superblock\"];\nfor t in terms:\n positions=[m.start() for m in re.finditer(t,image)]; print(t.decode(),len(positions),positions[:10]);\n for pos in positions[:3]:print(repr(image[max(0,pos-40):pos+100]))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101909183425Z-cross-check-erofs-implementation-in-kernel-binary.log",
+  "output_sha256": "24886d09bc478b4837f3cee2a822f01b5a6f6cf09a0719563d35b59bf541cd09"
+}

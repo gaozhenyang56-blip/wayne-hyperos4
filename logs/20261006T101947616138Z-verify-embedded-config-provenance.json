@@ -1,0 +1,14 @@
+{
+  "label": "verify-embedded-config-provenance",
+  "started_utc": "2026-10-06T10:19:47.616138+00:00",
+  "finished_utc": "2026-10-06T10:19:48.134255+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "git -C sources/miku-kernel ls-tree HEAD kernel/config_data.h; git -C sources/miku-kernel show HEAD:kernel/Makefile | rg -n -C 3 \"config_data|configs\"; git -C sources/miku-kernel show HEAD:kernel/config_data.h | head -5; git -C sources/miku-kernel show HEAD:fs/erofs/super.c | tail -45; cat research/base-miku-a15/kernel-version.txt"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101947616138Z-verify-embedded-config-provenance.log",
+  "output_sha256": "68fdf69b6553554d1600dad44867ad23564ee952a10269e29aa8941612d02330"
+}

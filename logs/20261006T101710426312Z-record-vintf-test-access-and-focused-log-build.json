@@ -1,0 +1,14 @@
+{
+  "label": "record-vintf-test-access-and-focused-log-build",
+  "started_utc": "2026-10-06T10:17:10.426312+00:00",
+  "finished_utc": "2026-10-06T10:17:10.438011+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Modified focused VINTF checker: expose unmodified combine via existing AOSP test friend; omit unused event-tag/logprint sources rather than importing graphics dependencies.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101710426312Z-record-vintf-test-access-and-focused-log-build.log",
+  "output_sha256": "0d24682f26f91e1794684074d14eb281cf6ba7e2b7933644eeedd4b25a12c9a5"
+}

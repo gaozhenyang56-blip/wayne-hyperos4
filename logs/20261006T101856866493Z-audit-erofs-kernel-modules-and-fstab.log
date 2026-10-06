@@ -1,0 +1,107 @@
+112:CONFIG_IKCONFIG=y
+113:CONFIG_IKCONFIG_PROC=y
+755:CONFIG_MODULES_USE_ELF_RELA=y
+784:CONFIG_MODULES=y
+801:CONFIG_MODULES_TREE_LOOKUP=y
+4728:# CONFIG_EROFS_FS is not set
+5544:CONFIG_EXT4_FS=y
+5545:CONFIG_EXT4_USE_FOR_EXT2=y
+5546:CONFIG_EXT4_FS_POSIX_ACL=y
+5547:CONFIG_EXT4_FS_SECURITY=y
+5548:CONFIG_EXT4_ENCRYPTION=y
+5549:CONFIG_EXT4_FS_ENCRYPTION=y
+5550:# CONFIG_EXT4_DEBUG is not set
+5561:CONFIG_F2FS_FS=y
+5562:CONFIG_F2FS_STAT_FS=y
+5563:CONFIG_F2FS_FS_XATTR=y
+5564:CONFIG_F2FS_FS_POSIX_ACL=y
+5565:CONFIG_F2FS_FS_SECURITY=y
+5566:# CONFIG_F2FS_CHECK_FS is not set
+5567:CONFIG_F2FS_FS_ENCRYPTION=y
+5568:# CONFIG_F2FS_FAULT_INJECTION is not set
+5569:# CONFIG_F2FS_FS_COMPRESSION is not set
+research/base-miku-a15/vendor/lib/libmmcamera2_imglib_modules.so
+research/base-miku-a15/vendor/lib/libmmcamera2_isp_modules.so
+research/base-miku-a15/vendor/lib/libmmcamera2_sensor_modules.so
+research/base-miku-a15/vendor/lib/libmmcamera2_stats_modules.so
+research/base-miku-a15/vendor/lib/libmmcamera2_pproc_modules.so
+research/base-miku-a15/vendor/lib/libmmcamera2_iface_modules.so
+research/base-miku-a15/vendor/etc/fstab.qcom
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# NOTE: /system and /vendor partitions are now early-mounted and the fstab entry is specified in device tree (duplicated below for recovery image purposes only):
+#       /proc/device-tree/firmware/android/fstab/system
+#       /proc/device-tree/firmware/android/fstab/vendor
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+# Non-A/B fstab.qcom variant
+#<src>                                                   <mnt_point>          <type>  <mnt_flags and options>                                                                         <fs_mgr_flags>
+system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/misc                       /misc                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
+/dev/block/bootdevice/by-name/bluetooth                  /vendor/bt_firmware  vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait
+/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*    /storage/usbotg      vfat    nosuid,nodev                                                                                    wait,voldmanaged=usbotg:auto
+/dev/block/bootdevice/by-name/dsp                        /vendor/dsp          ext4    ro,nosuid,nodev,barrier=1                                                                       wait
+/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/cache                      /cache               f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,quota
+/dev/block/bootdevice/by-name/cache                      /cache               ext4    nosuid,nodev,noatime,barrier=1                                                                  wait
+/dev/block/bootdevice/by-name/persist                    /mnt/vendor/persist  ext4    nosuid,nodev,barrier=1,noatime                                                                  wait,check
+/dev/block/bootdevice/by-name/boot                       /boot                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/recovery                   /recovery            emmc    defaults                                                                                        recoveryonly
+# Remove all existing dynamic partitions and groups before applying full OTA
+remove_all_groups
+# Add group xiaomi_dynamic_partitions with maximum size 6241120256
+add_group xiaomi_dynamic_partitions 6241120256
+# Add partition system to group xiaomi_dynamic_partitions
+add system xiaomi_dynamic_partitions
+# Add partition vendor to group xiaomi_dynamic_partitions
+add vendor xiaomi_dynamic_partitions
+# Add partition product to group xiaomi_dynamic_partitions
+add product xiaomi_dynamic_partitions
+# Add partition system_ext to group xiaomi_dynamic_partitions
+add system_ext xiaomi_dynamic_partitions
+# Grow partition system from 0 to 639102976
+resize system 639102976
+# Grow partition vendor from 0 to 209600512
+resize vendor 209600512
+# Grow partition product from 0 to 344276992
+resize product 344276992
+# Grow partition system_ext from 0 to 232849408
+resize system_ext 232849408
+sources/miku-kernel/arch/arm64/configs/vendor/wayne_defconfig:801:CONFIG_EROFS_FS=y
+sources/miku-kernel/arch/arm64/configs/vendor/sdm660-perf-full_defconfig:4728:# CONFIG_EROFS_FS is not set
+sources/miku-kernel/arch/arm64/configs/gki_defconfig:441:CONFIG_EROFS_FS=y
+sources/miku-kernel/arch/arm64/configs/gki_defconfig:442:CONFIG_EROFS_FS_PCPU_KTHREAD=y
+sources/miku-kernel/arch/arm64/configs/gki_defconfig:443:CONFIG_EROFS_FS_PCPU_KTHREAD_HIPRI=y
+sources/miku-wayne/rootdir/etc/fstab.qcom:14:system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+sources/miku-wayne/rootdir/etc/fstab.qcom:16:system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+sources/miku-wayne/rootdir/etc/fstab.qcom:18:product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+sources/miku-wayne/rootdir/etc/fstab.qcom:20:vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+sources/miku-wayne/BoardConfig.mk:123:TARGE_USE_EROFS := true
+sources/miku-wayne/BoardConfig.mk:124:ifeq ($(TARGE_USE_EROFS), true)
+sources/miku-wayne/BoardConfig.mk:125:BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+sources/miku-wayne/BoardConfig.mk:126:BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
+sources/miku-wayne/BoardConfig.mk:127:BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := erofs
+sources/miku-wayne/BoardConfig.mk:128:BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := erofs
+sources/miku-wayne/BoardConfig.mk:129:BOARD_EROFS_PCLUSTER_SIZE := 262144
+sources/miku-wayne/BoardConfig.mk:130:BOARD_EROFS_COMPRESSOR := lz4
+total 2890368
+-rw------- 1 agent agent   18755584 Oct  6 09:48 boot.img
+-rw------- 1 agent agent       1221 Oct  6 09:48 boot.img.json
+-rw------- 1 agent agent      32768 Oct  6 09:53 overlay.img
+-rw------- 1 agent agent       1721 Oct  6 09:53 overlay.json
+-rw------- 1 agent agent     245760 Oct  6 09:53 overlay.tar
+-rw------- 1 agent agent 2940690432 Oct  6 10:04 system.img

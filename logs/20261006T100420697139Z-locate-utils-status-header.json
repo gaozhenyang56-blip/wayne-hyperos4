@@ -1,0 +1,14 @@
+{
+  "label": "locate-utils-status-header",
+  "started_utc": "2026-10-06T10:04:20.697139+00:00",
+  "finished_utc": "2026-10-06T10:04:21.130773+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json;u=\"https://android.googlesource.com/platform/system/libutils/+/refs/heads/main/?format=JSON\";d=json.loads(urllib.request.urlopen(u).read().decode()[4:]);print([x[\"name\"] for x in d[\"entries\"]])"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T100420697139Z-locate-utils-status-header.log",
+  "output_sha256": "9158ede088c5a0f0f1162b5bf061f334320370eff7bf423c84d7f2dab8123b79"
+}

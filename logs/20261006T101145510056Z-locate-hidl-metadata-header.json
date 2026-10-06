@@ -1,0 +1,14 @@
+{
+  "label": "locate-hidl-metadata-header",
+  "started_utc": "2026-10-06T10:11:45.510056+00:00",
+  "finished_utc": "2026-10-06T10:11:45.518284+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg --files sources/libhidl | rg \"metadata.h|metadata.cpp\"; command -v clang++"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T101145510056Z-locate-hidl-metadata-header.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

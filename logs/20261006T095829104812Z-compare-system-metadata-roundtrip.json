@@ -1,0 +1,14 @@
+{
+  "label": "compare-system-metadata-roundtrip",
+  "started_utc": "2026-10-06T09:58:29.104812+00:00",
+  "finished_utc": "2026-10-06T09:58:29.228424+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; a=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\"))[\"paths\"];b=json.load(open(\"research/wayne-os4-system-metadata.json\"))[\"paths\"];dif=[];\nfor p,x in a.items():\n y=b.get(p,{})\n for k in [\"uid\",\"gid\",\"mode\",\"xattrs_base64\"]:\n  if x[k]!=y.get(k):dif.append({\"path\":p,\"field\":k,\"before\":x[k],\"after\":y.get(k)})\nout={\"original_paths\":len(a),\"rebuilt_paths\":len(b),\"differences\":dif,\"new_paths\":sorted(set(b)-set(a)),\"success\":not dif};pathlib.Path(\"research/wayne-system-metadata-check.json\").write_text(json.dumps(out,indent=2));print(json.dumps({k:v for k,v in out.items() if k!=\"differences\"}));print(dif[:8]);raise SystemExit(bool(dif))"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095829104812Z-compare-system-metadata-roundtrip.log",
+  "output_sha256": "82887cf12c527b74b6fa37653be0c2e69f8dee0782452d60f545614eed15bcde"
+}

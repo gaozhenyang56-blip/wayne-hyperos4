@@ -1,0 +1,14 @@
+{
+  "label": "validate-binary-xattr-tar-format",
+  "started_utc": "2026-10-06T09:59:15.785762+00:00",
+  "finished_utc": "2026-10-06T09:59:15.858401+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,base64,tarfile,io,pathlib,subprocess; from sys import path; path.insert(0,\"tools\");from erofs_metadata import inventory; d=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\"))[\"paths\"]; cap=next(v[\"xattrs_base64\"] for v in d.values() if \"security.capability\" in v[\"xattrs_base64\"]);p=pathlib.Path(\"downloads/xattr-fixture.tar\");t=tarfile.open(p,\"w\",format=tarfile.PAX_FORMAT);a=tarfile.TarInfo(\".\");a.type=tarfile.DIRTYPE;a.mode=493;t.addfile(a);a=tarfile.TarInfo(\"file\");a.size=1;a.mode=493;a.pax_headers={\"SCHILY.xattr.\"+k:base64.b64decode(v).decode(\"utf-8\",\"surrogateescape\") for k,v in cap.items()};t.addfile(a,io.BytesIO(b\"x\"));t.close();subprocess.run([\"tools/local/usr/bin/mkfs.erofs\",\"--tar=f\",\"downloads/xattr-fixture.img\",str(p)],check=True);actual=inventory(pathlib.Path(\"downloads/xattr-fixture.img\"),\"tools/local/usr/bin/dump.erofs\")[\"paths\"][\"file\"][\"xattrs_base64\"];assert actual==cap,(actual,cap);print(\"binary capability and SELinux label roundtrip passed\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095915785762Z-validate-binary-xattr-tar-format.log",
+  "output_sha256": "a32c96ef8e5a3be3cff9826b81ea0a94e7fcd2497fc679885d5367dacb422867"
+}

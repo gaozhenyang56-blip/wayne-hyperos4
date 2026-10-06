@@ -1,0 +1,14 @@
+{
+  "label": "compare-corrected-system-metadata",
+  "started_utc": "2026-10-06T10:05:12.646894+00:00",
+  "finished_utc": "2026-10-06T10:05:12.704730+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; a=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\"))[\"paths\"];b=json.load(open(\"research/wayne-os4-system-metadata.json\"))[\"paths\"];dif=[];\nfor p,x in a.items():\n y=b.get(p,{})\n for k in [\"uid\",\"gid\",\"mode\",\"xattrs_base64\"]:\n  if x[k]!=y.get(k):dif.append({\"path\":p,\"field\":k})\no={\"original_paths\":len(a),\"rebuilt_paths\":len(b),\"differences\":dif,\"new_paths\":sorted(set(b)-set(a)),\"success\":not dif};pathlib.Path(\"research/wayne-system-metadata-check.json\").write_text(json.dumps(o,indent=2));print(json.dumps(o));raise SystemExit(bool(dif))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100512646894Z-compare-corrected-system-metadata.log",
+  "output_sha256": "04e0a2b573b788aa26a038932c5bce06f9b300866f92f8545ab9c3aa573af2a2"
+}

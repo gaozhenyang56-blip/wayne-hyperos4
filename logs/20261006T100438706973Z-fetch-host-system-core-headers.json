@@ -1,0 +1,19 @@
+{
+  "label": "fetch-host-system-core-headers",
+  "started_utc": "2026-10-06T10:04:38.706973+00:00",
+  "finished_utc": "2026-10-06T10:04:41.686086+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "--filter=blob:none",
+    "--sparse",
+    "https://android.googlesource.com/platform/system/core",
+    "sources/system-core"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100438706973Z-fetch-host-system-core-headers.log",
+  "output_sha256": "84873bd323607660268a9dfb33783e62fd2b98cbc59e67c2b576c9021e46ecec"
+}

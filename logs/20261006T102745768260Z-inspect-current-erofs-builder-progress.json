@@ -1,0 +1,14 @@
+{
+  "label": "inspect-current-erofs-builder-progress",
+  "started_utc": "2026-10-06T10:27:45.768260+00:00",
+  "finished_utc": "2026-10-06T10:27:45.775740+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "ps -eo pid,etime,pcpu,stat,wchan:24,args | rg \"mkfs.erofs|repack_system_metadata\"; tail -c 700 logs/*rebuild-system-with-verified-wayne-device-matrix.log; df -h ."
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102745768260Z-inspect-current-erofs-builder-progress.log",
+  "output_sha256": "0985499e8e73178cf48178c249d6f8514aa1fcd81f495ea9275d5384b8ea17ef"
+}

@@ -1,0 +1,2 @@
+HAL manifest/framework matrix compatibility passed.
+Runtime kernel, APEX manifests and linker namespaces are not covered.

@@ -1,0 +1,1 @@
+Modified tools/build_system_overlay.py: require actual wayne device framework matrix and replace donor hardware matrix. Restored target HAL declarations pass AOSP checkUnusedHals; invalid composer major version is rejected.

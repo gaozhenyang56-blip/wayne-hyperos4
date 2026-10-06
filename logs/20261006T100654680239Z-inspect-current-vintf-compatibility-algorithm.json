@@ -1,0 +1,14 @@
+{
+  "label": "inspect-current-vintf-compatibility-algorithm",
+  "started_utc": "2026-10-06T10:06:54.680239+00:00",
+  "finished_utc": "2026-10-06T10:06:54.690312+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n \"checkIncompatibility|isOptional|optional|mandatory\" sources/libvintf/HalManifest.cpp | head -25; sed -n \"370,445p\" sources/libvintf/HalManifest.cpp; rg -n \"kver|kKernel|LIBVINTF_TARGET\" sources/libvintf/RuntimeInfo.cpp sources/libvintf/KernelInfo.cpp"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100654680239Z-inspect-current-vintf-compatibility-algorithm.log",
+  "output_sha256": "38bbe488f83f2d736ea799ec4beafdf41f73a67388d68d4dac457af7b58935e2"
+}

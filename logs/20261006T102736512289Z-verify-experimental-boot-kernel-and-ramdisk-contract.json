@@ -1,0 +1,14 @@
+{
+  "label": "verify-experimental-boot-kernel-and-ramdisk-contract",
+  "started_utc": "2026-10-06T10:27:36.512289+00:00",
+  "finished_utc": "2026-10-06T10:27:36.647263+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,struct,hashlib,json,sys; sys.path.insert(0,\"tools\"); from build_wayne_boot import cpio_records; from unpack_boot import decode_ramdisk; original=pathlib.Path(\"research/base-miku-a15/boot.img\").read_bytes(); output=pathlib.Path(\"artifacts/experimental/boot.img\").read_bytes();\ndef parts(data):\n page=struct.unpack_from(\"<I\",data,36)[0]; ks=struct.unpack_from(\"<I\",data,8)[0]; rs=struct.unpack_from(\"<I\",data,16)[0]; offset=page+((ks+page-1)//page)*page; return data[page:page+ks],data[offset:offset+rs]\nok,orr=parts(original); nk,nrr=parts(output); assert ok==nk,\"Kernel/DTB changed\"; assert original[64:576]==output[64:576],\"cmdline/header identity fields changed\"; records={name:content for name,fields,content in cpio_records(decode_ramdisk(nrr))}; donor=pathlib.Path(\"research/candidates/mi8937-os4/ramdisk/init\").read_bytes(); assert records[\"init\"]==donor,\"Donor init mismatch\"; fstab=records[\"fstab.qcom\"].decode(); assert all(not row.split() or row.split()[0] not in [\"product\",\"system_ext\"] for row in fstab.splitlines()); identity=hashlib.sha1();\nfor payload in [nk,nrr,b\"\",b\"\"]:identity.update(payload);identity.update(struct.pack(\"<I\",len(payload)))\nassert output[576:596]==identity.digest(),\"Boot ID mismatch\"; report={\"success\":True,\"kernel_and_appended_dtb_preserved\":True,\"cmdline_preserved\":True,\"boot_id_verified\":True,\"donor_first_stage_init_sha256\":hashlib.sha256(donor).hexdigest(),\"merged_partition_fstab_verified\":True,\"boot_size\":len(output),\"boot_sha256\":hashlib.sha256(output).hexdigest(),\"hardware_tested\":False}; pathlib.Path(\"research/wayne-boot-check.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps(report,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102736512289Z-verify-experimental-boot-kernel-and-ramdisk-contract.log",
+  "output_sha256": "3bc5e369a47da62e5b6a2ab5483df3a74910234584829308271170418c1f4afc"
+}

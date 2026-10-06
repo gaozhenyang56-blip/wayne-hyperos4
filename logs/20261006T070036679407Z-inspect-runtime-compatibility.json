@@ -1,0 +1,14 @@
+{
+  "label": "inspect-runtime-compatibility",
+  "started_utc": "2026-10-06T07:00:36.679407+00:00",
+  "finished_utc": "2026-10-06T07:00:36.710882+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,xml.etree.ElementTree as E,json,struct; base=pathlib.Path(\"research/candidates/mi8937-os4\"); roots={\"reference_vendor\":base/\"vendor\",\"wayne_vendor\":pathlib.Path(\"research/base-miku-a15/vendor\")}; o={};\nfor label,root in roots.items():\n m=E.parse(root/\"etc/vintf/manifest.xml\").getroot(); o[label]={\"target_level\":m.get(\"target-level\"),\"policy_version\":(root/\"etc/selinux/plat_sepolicy_vers.txt\").read_text().strip()}\nfor label,p in {\"mi8937_first_stage_init\":base/\"ramdisk/init\",\"mi8937_second_stage_init\":base/\"system/system/bin/init\",\"wayne_first_stage_init\":pathlib.Path(\"research/base-miku-a15/ramdisk/init\")}.items():\n d=p.read_bytes();o[label]={\"elf_class\":d[4],\"machine\":struct.unpack_from(\"<H\",d,18)[0],\"size\":len(d)}\nprint(json.dumps(o,indent=2));(base/\"runtime-layout.json\").write_text(json.dumps(o,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070036679407Z-inspect-runtime-compatibility.log",
+  "output_sha256": "75593f7895c8c0631f2ced018a292732323b9a8306e42a24a8f1eb0793b7f9fc"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "repack-system-with-raw-pax-xattrs",
+  "started_utc": "2026-10-06T09:59:16.416514+00:00",
+  "finished_utc": "2026-10-06T10:03:44.721420+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/repack_system_metadata.py",
+    "research/candidates/mi8937-os4/system",
+    "research/candidates/mi8937-os4/inode-metadata.json",
+    "artifacts/experimental/overlay.tar",
+    "artifacts/experimental/system.img"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095916416514Z-repack-system-with-raw-pax-xattrs.log",
+  "output_sha256": "7dde9018b936a6fcfcd0e7ccf7b7e80ed1bf154cfc5fdc34856a5b3658d00626"
+}

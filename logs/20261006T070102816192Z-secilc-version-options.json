@@ -1,0 +1,13 @@
+{
+  "label": "secilc-version-options",
+  "started_utc": "2026-10-06T07:01:02.816192+00:00",
+  "finished_utc": "2026-10-06T07:01:02.817726+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/secilc",
+    "--help"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T070102816192Z-secilc-version-options.log",
+  "output_sha256": "a2fbf39ba1e59d8f23336061532fcb579896d05af51a5089953c27f6d11e041c"
+}

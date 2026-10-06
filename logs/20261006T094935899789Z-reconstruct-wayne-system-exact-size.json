@@ -1,0 +1,17 @@
+{
+  "label": "reconstruct-wayne-system-exact-size",
+  "started_utc": "2026-10-06T09:49:35.899789+00:00",
+  "finished_utc": "2026-10-06T09:49:39.997609+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/convert_block_ota.py",
+    "research/base-miku-a15/system.new.dat.br",
+    "research/base-miku-a15/system.transfer.list",
+    "639102976",
+    "research/base-miku-a15/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T094935899789Z-reconstruct-wayne-system-exact-size.log",
+  "output_sha256": "066b74ca1e86a3a6251702e2abb4cd721aee2680af11c5ad085ce0b30a22161c"
+}

@@ -1,0 +1,21 @@
+{
+  "aosp_commit": "9a095008eaf2b4ac7cb6e9d2da6aeca596f04062",
+  "manifest_fragments": 19,
+  "manifest_matrix_metadata_exit_code": 0,
+  "hal_declaration_check": {
+    "exit_code": 1,
+    "output": "UNMATCHED HAL DECLARATIONS (no HIDL inheritance metadata)\nandroid.hardware.radio.config@1.2::IRadioConfig/default\nandroid.hardware.thermal@1.0::IThermal/default\ncom.fingerprints.extension@1.0::IFingerprintAuthenticator/default\ncom.fingerprints.extension@1.0::IFingerprintCalibration/default\ncom.fingerprints.extension@1.0::IFingerprintEngineering/default\ncom.fingerprints.extension@1.0::IFingerprintNavigation/default\ncom.fingerprints.extension@1.0::IFingerprintRecalibration/default\ncom.fingerprints.extension@1.0::IFingerprintSenseTouch/default\ncom.fingerprints.extension@1.0::IFingerprintSensorTest/default\ncom.qualcomm.qti.ant@1.0::IAntHci/default\nvendor.goodix.hardware.fingerprint@1.0::IGoodixBiometricsFingerprint/default\nvendor.qti.gnss@1.2::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@2.1::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@3.0::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@4.0::ILocHidlGnss/gnss_vendor\n"
+  },
+  "negative_control": {
+    "mutation": "composer 2.1 to 99.0",
+    "exit_code": 1,
+    "output": "UNMATCHED HAL DECLARATIONS (no HIDL inheritance metadata)\nandroid.hardware.graphics.composer@99.0::IComposer/default\nandroid.hardware.radio.config@1.2::IRadioConfig/default\nandroid.hardware.thermal@1.0::IThermal/default\ncom.fingerprints.extension@1.0::IFingerprintAuthenticator/default\ncom.fingerprints.extension@1.0::IFingerprintCalibration/default\ncom.fingerprints.extension@1.0::IFingerprintEngineering/default\ncom.fingerprints.extension@1.0::IFingerprintNavigation/default\ncom.fingerprints.extension@1.0::IFingerprintRecalibration/default\ncom.fingerprints.extension@1.0::IFingerprintSenseTouch/default\ncom.fingerprints.extension@1.0::IFingerprintSensorTest/default\ncom.qualcomm.qti.ant@1.0::IAntHci/default\nvendor.goodix.hardware.fingerprint@1.0::IGoodixBiometricsFingerprint/default\nvendor.qti.gnss@1.2::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@2.1::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@3.0::ILocHidlGnss/gnss_vendor\nvendor.qti.gnss@4.0::ILocHidlGnss/gnss_vendor\n"
+  },
+  "hidl_inheritance_metadata_provided": false,
+  "not_covered": [
+    "runtime kernel",
+    "APEX manifests",
+    "linker namespaces",
+    "HAL runtime functionality"
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "label": "fetch-fcm5-source",
+  "started_utc": "2026-10-06T07:01:02.849643+00:00",
+  "finished_utc": "2026-10-06T07:01:03.188251+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,base64,pathlib; u=\"https://android.googlesource.com/platform/hardware/interfaces/+/refs/tags/android-15.0.0_r1/compatibility_matrices/compatibility_matrix.5.xml?format=TEXT\"; d=base64.b64decode(urllib.request.urlopen(u,timeout=30).read()); p=pathlib.Path(\"config/compatibility_matrix.5.xml\");p.parent.mkdir(exist_ok=True);p.write_bytes(d);print(u);print(len(d))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070102849643Z-fetch-fcm5-source.log",
+  "output_sha256": "6b13a1d9beef828000aeaa83bdc49ac3e2299b1c15a3945811bf307e357d2cc0"
+}

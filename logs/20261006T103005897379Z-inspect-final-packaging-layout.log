@@ -1,0 +1,88 @@
+{
+  "checked_original_paths": 9134,
+  "expected_modified_files": [
+    "product/etc/build.prop",
+    "system/build.prop",
+    "system/etc/vintf/compatibility_matrix.5.xml",
+    "system/etc/vintf/compatibility_matrix.device.xml",
+    "system_ext/etc/build.prop"
+  ],
+  "added_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "failures": [],
+  "success": true
+}
+{
+  "original_paths": 9134,
+  "rebuilt_paths": 9135,
+  "differences": [],
+  "new_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "success": true
+}
+109-TARGET_USES_UM_4_19 := true
+110-
+111-# Partitions
+112:BOARD_SUPER_PARTITION_SIZE := 6241124352
+113:BOARD_SUPER_PARTITION_GROUPS := xiaomi_dynamic_partitions
+114:BOARD_SUPER_PARTITION_METADATA_DEVICE := system
+115:BOARD_SUPER_PARTITION_BLOCK_DEVICES := system vendor cust
+116:BOARD_SUPER_PARTITION_SYSTEM_DEVICE_SIZE := 3221225472
+117:BOARD_SUPER_PARTITION_VENDOR_DEVICE_SIZE := 2147483648
+118:BOARD_SUPER_PARTITION_CUST_DEVICE_SIZE := 872415232
+119:BOARD_XIAOMI_DYNAMIC_PARTITIONS_PARTITION_LIST := system vendor system_ext product
+120:BOARD_XIAOMI_DYNAMIC_PARTITIONS_SIZE := 6241120256 # (BOARD_SUPER_PARTITION_SIZE - 4MB)
+121-
+122-BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+123-TARGE_USE_EROFS := true
+--
+136-
+137-BOARD_FLASH_BLOCK_SIZE := 131072
+138-
+139:BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
+140:BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+141:BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x04000000
+142-
+143-TARGET_COPY_OUT_VENDOR := vendor
+144-TARGET_COPY_OUT_PRODUCT := product
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# NOTE: /system and /vendor partitions are now early-mounted and the fstab entry is specified in device tree (duplicated below for recovery image purposes only):
+#       /proc/device-tree/firmware/android/fstab/system
+#       /proc/device-tree/firmware/android/fstab/vendor
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+# Non-A/B fstab.qcom variant
+#<src>                                                   <mnt_point>          <type>  <mnt_flags and options>                                                                         <fs_mgr_flags>
+system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/misc                       /misc                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
+/dev/block/bootdevice/by-name/bluetooth                  /vendor/bt_firmware  vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait
+/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*    /storage/usbotg      vfat    nosuid,nodev                                                                                    wait,voldmanaged=usbotg:auto
+ M .gitignore
+ M AGENTS.md
+ M README.md
+ M docs/donors.md
+ M docs/worklog.md
+ M research/base-miku-a15/inspection.json
+ M sources.lock.json
+ M tools/record_step.py
+?? artifacts/experimental/
+?? config/
+?? docs/operations/
+?? logs/20261006T065740455232Z-inspect-mi8937-block-layout.json

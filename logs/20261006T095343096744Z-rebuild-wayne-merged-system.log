@@ -1,0 +1,5 @@
+<W> erofs: EXPERIMENTAL rebuild mode in use. Use at your own risk!
+mkfs.erofs 1.8.6
+<E> erofs: failed to load research/candidates/mi8937-os4/system.img
+<E> erofs: 	Could not format the device : [Error 95] Operation not supported
+

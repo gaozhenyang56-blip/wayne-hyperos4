@@ -1,0 +1,1 @@
+Corrected VINTF checker after meaningful negative control: current AOSP checkCompatibility does not match HAL versions; now also call unmodified checkUnusedHals through existing test friend. No generated HIDL inheritance metadata available, so unmatched results require review. Earlier pass alone was insufficient.

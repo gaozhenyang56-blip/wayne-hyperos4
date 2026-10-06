@@ -1,0 +1,14 @@
+{
+  "label": "audit-mi8937-properties",
+  "started_utc": "2026-10-06T06:59:25.216461+00:00",
+  "finished_utc": "2026-10-06T06:59:25.257111+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,json,os; r=pathlib.Path(\"research/candidates/mi8937-os4/system\"); out={};\nfor p in r.rglob(\"build.prop\"):\n if p.is_symlink(): continue\n out[str(p.relative_to(r))]={k:v for row in p.read_text(errors=\"replace\").splitlines() if \"=\" in row for k,v in [row.split(\"=\",1)] if k.startswith((\"ro.build.\",\"ro.system.build.\",\"ro.mi.os.\",\"ro.product.cpu.\",\"ro.product.system.\"))}\nfor p in r.iterdir(): print(p.name, \"-> \"+os.readlink(p) if p.is_symlink() else \"\")\npathlib.Path(\"research/candidates/mi8937-os4/properties.json\").write_text(json.dumps(out,indent=2)); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T065925216461Z-audit-mi8937-properties.log",
+  "output_sha256": "f799226c9da0f42caa6e87dc89825c668e681fbb44a6198c882e89b778829055"
+}

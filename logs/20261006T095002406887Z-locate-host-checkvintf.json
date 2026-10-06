@@ -1,0 +1,14 @@
+{
+  "label": "locate-host-checkvintf",
+  "started_utc": "2026-10-06T09:50:02.406887+00:00",
+  "finished_utc": "2026-10-06T09:50:02.842753+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json,pathlib; u=\"https://api.github.com/repos/LineageOS/android_prebuilts_build-tools/contents/linux-x86/bin?ref=lineage-22.2\"; d=json.load(urllib.request.urlopen(u)); rows=[{\"name\":x[\"name\"],\"download_url\":x.get(\"download_url\")} for x in d]; pathlib.Path(\"research/host-tools-index.json\").write_text(json.dumps(rows,indent=2)); print([x for x in rows if \"vintf\" in x[\"name\"] or \"assemble\" in x[\"name\"]])"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095002406887Z-locate-host-checkvintf.log",
+  "output_sha256": "9158ede088c5a0f0f1162b5bf061f334320370eff7bf423c84d7f2dab8123b79"
+}

@@ -1,0 +1,42 @@
+{
+  "vendor_policy_version": "202404",
+  "policy_binary_version": 30,
+  "command": [
+    "tools/local/usr/bin/secilc",
+    "-m",
+    "-M",
+    "true",
+    "-G",
+    "-c",
+    "30",
+    "-o",
+    "research/wayne-os4-policy/policy.bin",
+    "-f",
+    "research/wayne-os4-policy/file_contexts.generated",
+    "research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil",
+    "research/candidates/mi8937-os4/system/system/etc/selinux/mapping/202404.cil",
+    "research/candidates/mi8937-os4/system/system/etc/selinux/mapping/202404.compat.cil",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/system_ext_sepolicy.cil",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/mapping/202404.cil",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/mapping/202404.compat.cil",
+    "research/candidates/mi8937-os4/system/product/etc/selinux/product_sepolicy.cil",
+    "research/candidates/mi8937-os4/system/product/etc/selinux/mapping/202404.cil",
+    "research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil",
+    "research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil"
+  ],
+  "exit_code": 255,
+  "neverallow_check_disabled": false,
+  "inputs": {
+    "research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil": "5b463f556391a6e2486056132da8a814b896c66c2d4d63f042ab83e3a50d1087",
+    "research/candidates/mi8937-os4/system/system/etc/selinux/mapping/202404.cil": "a5f6b060114f66b0190b05815c42d993f4c8a98a843ed9205fdaf0d7a5ca5974",
+    "research/candidates/mi8937-os4/system/system/etc/selinux/mapping/202404.compat.cil": "801ad38741a5a078e4795feef41dfc6f44fef23d083ee08e4d5095f074b8f344",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/system_ext_sepolicy.cil": "4bd7dea8c506a79755e47fc43c7290925538599e894d9cba489ae616def0b851",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/mapping/202404.cil": "38da4cf88c0f1aca12438e3745f6934a65812587be85618bf8b648bf3309ae12",
+    "research/candidates/mi8937-os4/system/system_ext/etc/selinux/mapping/202404.compat.cil": "b4d844057f2c4d585981e10d6ed092857419bb0c87e6ec524d2a613a6b725428",
+    "research/candidates/mi8937-os4/system/product/etc/selinux/product_sepolicy.cil": "38ec7e429ca9750339573ecc55616f377f25ec24fa82b0b5b8b8dd432bed4adc",
+    "research/candidates/mi8937-os4/system/product/etc/selinux/mapping/202404.cil": "9eafa4355e2474c062fad49e81df66ffd67e01ef8904b23bffb2eded9b585838",
+    "research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil": "198609b8489d798c83ff0561c3c6b74235b4f539ed4950039aec5f0a9ab21387",
+    "research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil": "5036a72b766368f5db8cd4199d8fa94ac92fbfa2e3220b616a75770d9c1a41de"
+  },
+  "success": false
+}

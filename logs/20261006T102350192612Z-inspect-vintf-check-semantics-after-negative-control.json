@@ -1,0 +1,14 @@
+{
+  "label": "inspect-vintf-check-semantics-after-negative-control",
+  "started_utc": "2026-10-06T10:23:50.192612+00:00",
+  "finished_utc": "2026-10-06T10:23:50.200230+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n -C 8 \"checkCompatibility|checkIncompatibleHals|optional|mOptional\" sources/libvintf/HalManifest.cpp; sed -n \"1,110p\" sources/libvintf/MatrixHal.cpp; sed -n \"1,80p\" sources/libvintf/include/vintf/MatrixHal.h; rg -n -C 2 \"graphics.composer\" config/compatibility_matrix.5.xml"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102350192612Z-inspect-vintf-check-semantics-after-negative-control.log",
+  "output_sha256": "096ec6343534f82e6d1f73d25e814cb1e684160659e41ad6a18bba3a8ed3f8a3"
+}

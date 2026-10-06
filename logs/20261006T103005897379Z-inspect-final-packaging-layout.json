@@ -1,0 +1,17 @@
+{
+  "label": "inspect-final-packaging-layout",
+  "started_utc": "2026-10-06T10:30:05.897379+00:00",
+  "finished_utc": "2026-10-06T10:30:05.909601+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat research/wayne-system-content-check.json; cat research/wayne-system-metadata-check.json; rg -n -C 3 \"SUPER|DYNAMIC|PARTITION_SIZE|RETROFIT|BLOCK_DEVICES\" sources/miku-wayne/BoardConfig.mk; cat research/base-miku-a15/vendor/etc/fstab.qcom | head -27; git status --short | head -12"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103005897379Z-inspect-final-packaging-layout.log",
+  "output_sha256": "89f92766b3c6b1f90548e152bb2f1aa54a1c05ea5664d97cef99d9f9997ec465",
+  "action": "确认修正后的 system 镜像检查结果，并核对 wayne 动态分区布局，为最终刷机包准备打包依据。",
+  "outcome": "本次读取检查报告和设备树分区定义；具体结论以报告为准，大型成品将使用同一仓库的 Releases 发布。",
+  "next_step": "完成分区与安装方式的检查，生成带哈希和明确验证状态的成品，再上传到 GitHub。"
+}

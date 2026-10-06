@@ -1,0 +1,14 @@
+{
+  "label": "inspect-focused-checker-build-failures",
+  "started_utc": "2026-10-06T10:10:26.663082+00:00",
+  "finished_utc": "2026-10-06T10:10:26.675515+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n \"error:\" tools/local/vintf-build/*.log | head -30; head -40 sources/libbase/posix_strerror_r.cpp; rg --files sources/system-core/libutils | rg \"FastStrcmp.h\"; sed -n \"15,40p\" /usr/include/c++/14/stdatomic.h; sed -n \"25,43p\" sources/libvintf/include/vintf/HalManifest.h"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101026663082Z-inspect-focused-checker-build-failures.log",
+  "output_sha256": "600be05fb05b8a12e2dec8e5face8c974788c8cb63f03c88b15e3d17a2f795a6"
+}

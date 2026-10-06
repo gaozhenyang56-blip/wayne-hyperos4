@@ -1,0 +1,17 @@
+{
+  "label": "fetch-host-libbase-source",
+  "started_utc": "2026-10-06T09:58:08.976022+00:00",
+  "finished_utc": "2026-10-06T09:58:09.545128+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://android.googlesource.com/platform/system/libbase",
+    "sources/libbase"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095808976022Z-fetch-host-libbase-source.log",
+  "output_sha256": "09197bf14456106e5eec0b3a4a4489fad89615c9f7415e8c9d5ea40e6ba05dc3"
+}

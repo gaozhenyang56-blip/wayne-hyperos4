@@ -1,0 +1,25 @@
+{
+  "reference_vendor": {
+    "target_level": "5",
+    "policy_version": "33.0"
+  },
+  "wayne_vendor": {
+    "target_level": "5",
+    "policy_version": "202404"
+  },
+  "mi8937_first_stage_init": {
+    "elf_class": 2,
+    "machine": 183,
+    "size": 3249568
+  },
+  "mi8937_second_stage_init": {
+    "elf_class": 2,
+    "machine": 183,
+    "size": 2724912
+  },
+  "wayne_first_stage_init": {
+    "elf_class": 2,
+    "machine": 183,
+    "size": 3090864
+  }
+}

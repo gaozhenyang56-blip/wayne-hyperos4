@@ -1,0 +1,14 @@
+{
+  "label": "extract-config-from-decompressed-wayne-kernel",
+  "started_utc": "2026-10-06T10:18:43.242616+00:00",
+  "finished_utc": "2026-10-06T10:18:43.942988+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,struct,zlib,json,hashlib; p=pathlib.Path(\"research/base-miku-a15/boot.img\"); b=p.read_bytes(); page=struct.unpack_from(\"<I\",b,36)[0]; size=struct.unpack_from(\"<I\",b,8)[0]; k=b[page:page+size]; d=zlib.decompressobj(31); image=d.decompress(k); marker=image.find(b\"IKCFG_ST\"); print(\"Decompressed bytes\",len(image),\"IKCONFIG marker\",marker); assert marker>=0,\"Actual decompressed kernel does not embed IKCONFIG\"; c=zlib.decompressobj(31).decompress(image[marker+8:]); o=pathlib.Path(\"research/base-miku-a15/kernel.config\"); o.write_bytes(c); report={\"source\":str(p),\"kernel_sha256\":hashlib.sha256(k).hexdigest(),\"config_sha256\":hashlib.sha256(c).hexdigest(),\"bytes\":len(c),\"marker_offset\":marker,\"config\":str(o)}; pathlib.Path(\"research/base-miku-a15/kernel-config.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps(report)); print(\"\\n\".join(x for x in c.decode().splitlines() if any(t in x for t in [\"CONFIG_SECURITY_SELINUX\", \"CONFIG_EROFS\", \"CONFIG_ANDROID_BINDER\"])))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101843242616Z-extract-config-from-decompressed-wayne-kernel.log",
+  "output_sha256": "49149c41e93428ab484f71eba0ffc2acd236ea80fc9ef53c977159b7608b9a4f"
+}

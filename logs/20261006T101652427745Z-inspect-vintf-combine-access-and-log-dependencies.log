@@ -1,0 +1,188 @@
+    // Add a <kernel> tag to "this". Error if there is a conflict.
+    bool addKernel(MatrixKernel&& kernel, std::string* error);
+
+    // Merge <sepolicy> with other's <sepolicy>. Error if there is a conflict.
+    bool addSepolicy(CompatibilityMatrix* other, std::string* error);
+
+    // Merge <avb><vbmeta-version> with other's <avb><vbmeta-version>. Error if there is a conflict.
+    bool addAvbMetaVersion(CompatibilityMatrix* other, std::string* error);
+
+    // Merge <vndk> with other's <vndk>. Error if there is a conflict.
+    bool addVndk(CompatibilityMatrix* other, std::string* error);
+
+    // Merge <vendor-ndk> with other's <vendor-ndk>. Error if there is a conflict.
+    bool addVendorNdk(CompatibilityMatrix* other, std::string* error);
+
+    // Merge <system-sdk> with other's <system-sdk>.
+    bool addSystemSdk(CompatibilityMatrix* other, std::string* error);
+
+    // Add everything in inputMatrix to "this" as optional.
+    bool addAllAsOptional(CompatibilityMatrix* inputMatrix, std::string* error);
+
+    // Add all HALs as optional HALs from "other". This function moves MatrixHal objects
+    // from "other".
+    // Require other->level() > this->level(), otherwise do nothing.
+    bool addAllHalsAsOptional(CompatibilityMatrix* other, std::string* error);
+
+    // Similar to addAllHalsAsOptional but on <xmlfile> entries.
+    bool addAllXmlFilesAsOptional(CompatibilityMatrix* other, std::string* error);
+
+    // Combine a set of framework compatibility matrices. For each CompatibilityMatrix in matrices
+    // (in the order of level(), where UNSPECIFIED (empty) is treated as deviceLevel)
+    // - If level() < deviceLevel:
+    //    - If kernelLevel is UNSPECIFIED, ignore
+    //    - If kernelLevel is not UNSPECIFIED and level() < kernelLevel, ignore
+    //    - If kernelLevel is not UNSPECIFIED and level() >= kernelLevel, add kernel()
+    // - If level() == UNSPECIFIED or level() == deviceLevel,
+    //   - Add as hard requirements. See combineSameFcmVersion
+    // - If level() > deviceLevel,
+    //   - all <hal> versions and <xmlfile>s are added as optional.
+    //   - <kernel minlts="x.y.z"> is added only if x.y does not exist in a file
+    //     with lower level()
+    //   - <sepolicy>, <avb><vbmeta-version> is ignored
+    // Return the combined matrix, nullptr if any error (e.g. conflict of information).
+    static std::unique_ptr<CompatibilityMatrix> combine(Level deviceLevel, Level kernelLevel,
+                                                        std::vector<CompatibilityMatrix>* matrices,
+                                                        std::string* error);
+
+    // Combine a set of device compatibility matrices.
+    static std::unique_ptr<CompatibilityMatrix> combineDeviceMatrices(
+        std::vector<CompatibilityMatrix>* matrices, std::string* error);
+
+    status_t fetchAllInformation(const FileSystem* fileSystem, const std::string& path,
+                                 std::string* error = nullptr);
+
+    MatrixHal* splitInstance(MatrixHal* existingHal, const std::string& interface,
+                             const std::string& instance, bool isRegex);
+
+    // Return whether instance is in "this"; that is, instance is in any <instance> tag or
+    // matches any <regex-instance> tag.
+    bool matchInstance(HalFormat format, ExclusiveTo exclusiveTo, const std::string& halName,
+                       const Version& version, const std::string& interfaceName,
+                       const std::string& instance) const;
+
+    // Return the minlts of the latest <kernel>, or empty value if any error (e.g. this is not an
+    // FCM, or there are no <kernel> tags).
+    [[nodiscard]] KernelVersion getLatestKernelMinLts() const;
+
+    friend struct HalManifest;
+    friend struct RuntimeInfo;
+    friend struct CompatibilityMatrixConverter;
+    friend struct LibVintfTest;
+126:    //   - Add as hard requirements. See combineSameFcmVersion
+132:    // Return the combined matrix, nullptr if any error (e.g. conflict of information).
+133:    static std::unique_ptr<CompatibilityMatrix> combine(Level deviceLevel, Level kernelLevel,
+138:    static std::unique_ptr<CompatibilityMatrix> combineDeviceMatrices(
+157:    friend struct HalManifest;
+158:    friend struct RuntimeInfo;
+159:    friend struct CompatibilityMatrixConverter;
+160:    friend struct LibVintfTest;
+161:    friend struct FrameworkCompatibilityMatrixCombineTest;
+162:    friend struct DeviceCompatibilityMatrixCombineTest;
+163:    friend class VintfObject;
+164:    friend class AssembleVintfImpl;
+165:    friend class KernelInfo;
+166:    friend class details::CheckVintfUtils;
+167:    friend bool operator==(const CompatibilityMatrix &, const CompatibilityMatrix &);
+/*
+ * Copyright (C) 2007 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+#ifndef _LIBS_UTILS_THREAD_DEFS_H
+#define _LIBS_UTILS_THREAD_DEFS_H
+
+#include <stdint.h>
+#include <sys/types.h>
+#include <system/graphics.h>
+#include <system/thread_defs.h>
+
+// ---------------------------------------------------------------------------
+// C API
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+#ifdef _WIN32
+typedef uint32_t android_thread_id_t;
+#else
+typedef void* android_thread_id_t;
+#endif
+
+typedef int (*android_thread_func_t)(void*);
+
+#ifdef __cplusplus
+} // extern "C"
+#endif
+
+// ---------------------------------------------------------------------------
+// C++ API
+#ifdef __cplusplus
+namespace android {
+// ---------------------------------------------------------------------------
+
+typedef android_thread_id_t thread_id_t;
+typedef android_thread_func_t thread_func_t;
+
+enum {
+    PRIORITY_LOWEST         = ANDROID_PRIORITY_LOWEST,
+    PRIORITY_BACKGROUND     = ANDROID_PRIORITY_BACKGROUND,
+    PRIORITY_NORMAL         = ANDROID_PRIORITY_NORMAL,
+    PRIORITY_FOREGROUND     = ANDROID_PRIORITY_FOREGROUND,
+    PRIORITY_DISPLAY        = ANDROID_PRIORITY_DISPLAY,
+    PRIORITY_URGENT_DISPLAY = ANDROID_PRIORITY_URGENT_DISPLAY,
+    PRIORITY_AUDIO          = ANDROID_PRIORITY_AUDIO,
+    PRIORITY_URGENT_AUDIO   = ANDROID_PRIORITY_URGENT_AUDIO,
+    PRIORITY_HIGHEST        = ANDROID_PRIORITY_HIGHEST,
+    PRIORITY_DEFAULT        = ANDROID_PRIORITY_DEFAULT,
+    PRIORITY_MORE_FAVORABLE = ANDROID_PRIORITY_MORE_FAVORABLE,
+    PRIORITY_LESS_FAVORABLE = ANDROID_PRIORITY_LESS_FAVORABLE,
+};
+
+// ---------------------------------------------------------------------------
+}  // namespace android
+#endif  // __cplusplus
+1002:    entry->tag = android_lookupEventTag_len(map, &entry->tagLen, tagIndex);
+downloads/
+sources/
+tools/local/
+__pycache__/
+*.pyc
+*.img
+*.bin
+*.pb
+*.gz-dtb
+*.dat
+*.br
+*.zip
+*.part
+*.bundle
+*.tar
+research/**/file_contexts.generated
+research/**/system/
+research/**/system_ext/
+research/**/vendor/
+research/**/ramdisk/
+research/**/*.html
+research/**/*.js
+{
+  "original_paths": 9134,
+  "rebuilt_paths": 9135,
+  "differences": [],
+  "new_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "success": true
+}

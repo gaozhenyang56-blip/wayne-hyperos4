@@ -1,0 +1,1 @@
+[{"target": "lib/hw/camera.sdm660.so", "missing": 0, "unresolved": 0}, {"target": "lib/hw/android.hardware.camera.provider@2.4-impl.so", "missing": 0, "unresolved": 0}, {"target": "bin/hw/android.hardware.camera.provider@2.4-service", "missing": 0, "unresolved": 0}, {"target": "bin/hw/android.hardware.graphics.composer@2.1-service", "missing": 0, "unresolved": 0}]

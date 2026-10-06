@@ -1,0 +1,14 @@
+{
+  "label": "inspect-vintf-manifest-merge-and-compressed-kernel",
+  "started_utc": "2026-10-06T10:18:11.318047+00:00",
+  "finished_utc": "2026-10-06T10:18:11.357428+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n \"addAll|add\\(\" sources/libvintf/include/vintf/HalManifest.h; head -35 research/base-miku-a15/vendor/etc/vintf/manifest.xml; head -25 research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.power-service.wayne.xml; python3 -c 'import pathlib,struct; b=pathlib.Path(\"research/base-miku-a15/boot.img\").read_bytes(); p=struct.unpack_from(\"<I\",b,36)[0]; print(b[p:p+16].hex())'; sed -n \"210,280p\" sources/libvintf/HalManifest.cpp"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101811318047Z-inspect-vintf-manifest-merge-and-compressed-kernel.log",
+  "output_sha256": "424951ceea4743545c43321bcc9e67bae5e2b3902c79c0a1c1247b94aaac57f5"
+}

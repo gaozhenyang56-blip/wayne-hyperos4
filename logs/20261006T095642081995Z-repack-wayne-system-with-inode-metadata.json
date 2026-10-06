@@ -1,0 +1,17 @@
+{
+  "label": "repack-wayne-system-with-inode-metadata",
+  "started_utc": "2026-10-06T09:56:42.081995+00:00",
+  "finished_utc": "2026-10-06T09:56:42.135168+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/repack_system_metadata.py",
+    "research/candidates/mi8937-os4/system",
+    "research/candidates/mi8937-os4/inode-metadata.json",
+    "artifacts/experimental/overlay.tar",
+    "artifacts/experimental/system.img"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095642081995Z-repack-wayne-system-with-inode-metadata.log",
+  "output_sha256": "7165b377431853118bbe8d208a2648d325bf18f385298dacafe55fdec9887030"
+}

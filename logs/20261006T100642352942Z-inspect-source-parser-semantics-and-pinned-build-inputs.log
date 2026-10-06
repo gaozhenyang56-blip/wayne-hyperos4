@@ -1,0 +1,62 @@
+
+    // Add all HALs as optional HALs from "other". This function moves MatrixHal objects
+    // from "other".
+    // Require other->level() > this->level(), otherwise do nothing.
+    bool addAllHalsAsOptional(CompatibilityMatrix* other, std::string* error);
+
+    // Similar to addAllHalsAsOptional but on <xmlfile> entries.
+    bool addAllXmlFilesAsOptional(CompatibilityMatrix* other, std::string* error);
+
+    // Combine a set of framework compatibility matrices. For each CompatibilityMatrix in matrices
+    // (in the order of level(), where UNSPECIFIED (empty) is treated as deviceLevel)
+    // - If level() < deviceLevel:
+    //    - If kernelLevel is UNSPECIFIED, ignore
+    //    - If kernelLevel is not UNSPECIFIED and level() < kernelLevel, ignore
+    //    - If kernelLevel is not UNSPECIFIED and level() >= kernelLevel, add kernel()
+    // - If level() == UNSPECIFIED or level() == deviceLevel,
+    //   - Add as hard requirements. See combineSameFcmVersion
+    // - If level() > deviceLevel,
+    //   - all <hal> versions and <xmlfile>s are added as optional.
+    //   - <kernel minlts="x.y.z"> is added only if x.y does not exist in a file
+    //     with lower level()
+    //   - <sepolicy>, <avb><vbmeta-version> is ignored
+    // Return the combined matrix, nullptr if any error (e.g. conflict of information).
+    static std::unique_ptr<CompatibilityMatrix> combine(Level deviceLevel, Level kernelLevel,
+                                                        std::vector<CompatibilityMatrix>* matrices,
+                                                        std::string* error);
+
+    // Combine a set of device compatibility matrices.
+    static std::unique_ptr<CompatibilityMatrix> combineDeviceMatrices(
+        std::vector<CompatibilityMatrix>* matrices, std::string* error);
+
+    status_t fetchAllInformation(const FileSystem* fileSystem, const std::string& path,
+                                 std::string* error = nullptr);
+
+    MatrixHal* splitInstance(MatrixHal* existingHal, const std::string& interface,
+                             const std::string& instance, bool isRegex);
+
+    // Check compatibility against a compatibility matrix. Considered compatible if
+    // - framework manifest vs. device compat-mat
+    //     - checkIncompatibility for HALs returns only optional HALs
+    //     - one of manifest.vndk match compat-mat.vndk
+    // - device manifest vs. framework compat-mat
+    //     - checkIncompatibility for HALs returns only optional HALs
+    //     - manifest.sepolicy.version match one of compat-mat.sepolicy.sepolicy-version
+    bool checkCompatibility(const CompatibilityMatrix& mat, std::string* error = nullptr,
+                            CheckFlags::Type flags = CheckFlags::DEFAULT) const;
+
+    // Generate a compatibility matrix such that checkCompatibility will return true.
+    CompatibilityMatrix generateCompatibleMatrix() const;
+
+    // Returns all component names.
+    std::set<std::string> getHalNames() const;
+
+errors_test.cpp
+errors_unix.cpp
+errors_windows.cpp
+posix_strerror_r.cpp
+result.cpp
+result_test.cpp
+6d19b5c690fa4220c10e42c2326150bbd4d4b7bb
+bcac7c30d88a3773a7c0bc9f5617a23a886331fd
+4afd0e498e9e1dd68775cc52087df774a19c761f

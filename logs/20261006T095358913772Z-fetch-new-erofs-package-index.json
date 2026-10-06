@@ -1,0 +1,16 @@
+{
+  "label": "fetch-new-erofs-package-index",
+  "started_utc": "2026-10-06T09:53:58.913772+00:00",
+  "finished_utc": "2026-10-06T09:53:59.140067+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "curl",
+    "-fsSL",
+    "https://deb.debian.org/debian/pool/main/e/erofs-utils/",
+    "-o",
+    "downloads/erofs-index.html"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095358913772Z-fetch-new-erofs-package-index.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

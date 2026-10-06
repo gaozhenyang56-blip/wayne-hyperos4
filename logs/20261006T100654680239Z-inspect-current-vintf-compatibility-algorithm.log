@@ -1,0 +1,80 @@
+703:const std::optional<KernelInfo>& HalManifest::kernel() const {
+707:bool HalManifest::mergeKernel(std::optional<KernelInfo>* other, std::string* error) {
+        // If there is at least one match, do not consider it unused.
+        if (manifestInstance.format() == HalFormat::HIDL) {
+            auto range =
+                childrenMap.equal_range(manifestInstance.getFqInstance().getFqNameString());
+            for (auto it = range.first; it != range.second; ++it) {
+                details::FQName fqName;
+                CHECK(fqName.setTo(it->second));
+                if (mat.matchInstance(manifestInstance.format(), manifestInstance.exclusiveTo(),
+                                      fqName.package(), fqName.getVersion(), fqName.name(),
+                                      manifestInstance.instance())) {
+                    return true;
+                }
+            }
+        }
+
+        // If no match is found, consider it unused.
+        ret.insert(manifestInstance.description());
+        return true;
+    });
+
+    return ret;
+}
+
+static bool checkVendorNdkCompatibility(const VendorNdk& matVendorNdk,
+                                        const std::vector<VendorNdk>& manifestVendorNdk,
+                                        std::string* error) {
+    // For pre-P vendor images, device compatibility matrix does not specify <vendor-ndk>
+    // tag. Ignore the check for these devices.
+    // VNDK is no longer a dependency for vendor version 35 and beyond. On these images,
+    // <vendor-ndk> is also empty.
+    if (matVendorNdk.version().empty()) {
+        return true;
+    }
+    for (const auto& vndk : manifestVendorNdk) {
+        if (vndk.version() != matVendorNdk.version()) {
+            continue;
+        }
+        // version matches, check libraries
+        std::vector<std::string> diff;
+        std::set_difference(matVendorNdk.libraries().begin(), matVendorNdk.libraries().end(),
+                            vndk.libraries().begin(), vndk.libraries().end(),
+                            std::inserter(diff, diff.begin()));
+        if (!diff.empty()) {
+            if (error != nullptr) {
+                *error = "Vndk libs incompatible for version " + matVendorNdk.version() +
+                         ". These libs are not in framework manifest:";
+                for (const auto& name : diff) {
+                    *error += " " + name;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    // no match is found.
+    if (error != nullptr) {
+        *error = "Vndk version " + matVendorNdk.version() + " is not supported. " +
+                 "Supported versions in framework manifest are: [";
+        for (const auto& vndk : manifestVendorNdk) {
+            *error += " " + vndk.version();
+        }
+        *error += "]";
+    }
+    return false;
+}
+
+static bool checkSystemSdkCompatibility(const SystemSdk& matSystemSdk,
+                                        const SystemSdk& manifestSystemSdk, std::string* error) {
+    SystemSdk notSupported = matSystemSdk.removeVersions(manifestSystemSdk);
+    if (!notSupported.empty()) {
+        if (error) {
+            *error =
+                "The following System SDK versions are required by device "
+                "compatibility matrix but not supported by the framework manifest: [" +
+                base::Join(notSupported.versions(), ", ") + "]. Supported versions are: [" +
+sources/libvintf/RuntimeInfo.cpp:24:#include <kver/kernel_release.h>
+sources/libvintf/RuntimeInfo.cpp:148:        android::kver::KernelRelease::Parse(kernelReleaseString, true /* allow suffix */);

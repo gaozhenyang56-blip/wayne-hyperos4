@@ -1,0 +1,14 @@
+{
+  "label": "inspect-kernel-config-and-erofs-verification-options",
+  "started_utc": "2026-10-06T10:17:24.841328+00:00",
+  "finished_utc": "2026-10-06T10:17:24.880020+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg --files research/base-miku-a15 | head -30; tools/local/usr/bin/fsck.erofs --help; cat research/base-miku-a15/boot/inspection.json 2>/dev/null; rg -n \"KernelConfigs|matchKernel|setVersion|setConfigs\" sources/libvintf/include/vintf/KernelInfo.h; cat research/candidates/mi8937-os4/framework-required-hals.json | head -22; sed -n \"1,100p\" tools/build_wayne_boot.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101724841328Z-inspect-kernel-config-and-erofs-verification-options.log",
+  "output_sha256": "dfd1de40337036809563d9ad42da34b885dd0448323ab8474b4f45e855432dc0"
+}

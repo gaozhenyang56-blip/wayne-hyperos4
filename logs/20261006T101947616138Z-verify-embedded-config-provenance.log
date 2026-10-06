@@ -1,0 +1,70 @@
+78-obj-$(CONFIG_UTS_NS) += utsname.o
+79-obj-$(CONFIG_USER_NS) += user_namespace.o
+80-obj-$(CONFIG_PID_NS) += pid_namespace.o
+81:obj-$(CONFIG_IKCONFIG) += configs.o
+82-obj-$(CONFIG_IKHEADERS) += kheaders.o
+83-obj-$(CONFIG_SMP) += stop_machine.o
+84-obj-$(CONFIG_KPROBES_SANITY_TEST) += test_kprobes.o
+--
+125-obj-$(CONFIG_ZONE_DEVICE) += memremap.o
+126-obj-$(CONFIG_RSEQ) += rseq.o
+127-
+128:$(obj)/configs.o: $(obj)/config_data.h
+129-
+130:targets += config_data.gz
+131:$(obj)/config_data.gz: arch/arm64/configs/vendor/sdm660-perf-full_defconfig FORCE
+132-	$(call if_changed,gzip)
+133-
+134:      filechk_ikconfiggz = (echo "static const char kernel_config_data[] __used = MAGIC_START"; cat $< | scripts/bin2c; echo "MAGIC_END;")
+135:targets += config_data.h
+136:$(obj)/config_data.h: $(obj)/config_data.gz FORCE
+137-	$(call filechk,ikconfiggz)
+138-
+139-$(obj)/kheaders.o: $(obj)/kheaders_data.tar.xz
+fatal: path 'kernel/config_data.h' does not exist in 'HEAD'
+	} else if (sbi->cache_strategy == EROFS_ZIP_CACHE_READAROUND) {
+		seq_puts(seq, ",cache_strategy=readaround");
+	}
+#endif
+	return 0;
+}
+
+static int erofs_remount(struct super_block *sb, int *flags, char *data)
+{
+	struct erofs_sb_info *sbi = EROFS_SB(sb);
+	unsigned int org_mnt_opt = sbi->mount_opt;
+	int err;
+
+	DBG_BUGON(!sb_rdonly(sb));
+	err = erofs_parse_options(sb, data);
+	if (err)
+		goto out;
+
+	if (test_opt(sbi, POSIX_ACL))
+		sb->s_flags |= SB_POSIXACL;
+	else
+		sb->s_flags &= ~SB_POSIXACL;
+
+	*flags |= SB_RDONLY;
+	return 0;
+out:
+	sbi->mount_opt = org_mnt_opt;
+	return err;
+}
+
+const struct super_operations erofs_sops = {
+	.put_super = erofs_put_super,
+	.alloc_inode = erofs_alloc_inode,
+	.destroy_inode = erofs_destroy_inode,
+	.statfs = erofs_statfs,
+	.show_options = erofs_show_options,
+	.remount_fs = erofs_remount,
+};
+
+module_init(erofs_module_init);
+module_exit(erofs_module_exit);
+
+MODULE_DESCRIPTION("Enhanced ROM File System");
+MODULE_AUTHOR("Gao Xiang, Chao Yu, Miao Xie, CONSUMER BG, HUAWEI Inc.");
+MODULE_LICENSE("GPL");
+Linux version 4.19.315-Miku-Vampire_v2-g3a74d7 (nobody@android-build) (Android (11967740, +pgo, +bolt, +lto, +mlgo, based on r522817) clang version 18.0.1 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), LLD 18.0.1) #1 SMP PREEMPT Sun Feb 9 03:32:52 CST 2025

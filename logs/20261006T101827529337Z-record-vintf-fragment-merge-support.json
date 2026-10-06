@@ -1,0 +1,14 @@
+{
+  "label": "record-vintf-fragment-merge-support",
+  "started_utc": "2026-10-06T10:18:27.529337+00:00",
+  "finished_utc": "2026-10-06T10:18:27.540109+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Modified tools/vintf_pair_check.cpp: parse and merge vendor HAL fragments with unmodified AOSP addAllHals before comparing combined framework matrices. No APEX or runtime coverage claimed.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101827529337Z-record-vintf-fragment-merge-support.log",
+  "output_sha256": "6af4800962dee4bff6b592a95ea11c11eba3411d75be2941ad39239556075b68"
+}

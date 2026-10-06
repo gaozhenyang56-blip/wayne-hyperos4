@@ -1,0 +1,16 @@
+{
+  "label": "build-wayne-os4-boot-candidate",
+  "started_utc": "2026-10-06T09:47:56.306404+00:00",
+  "finished_utc": "2026-10-06T09:47:57.065888+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_wayne_boot.py",
+    "research/base-miku-a15/boot.img",
+    "research/candidates/mi8937-os4/ramdisk/init",
+    "artifacts/experimental/boot.img"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T094756306404Z-build-wayne-os4-boot-candidate.log",
+  "output_sha256": "20f60aaccfa3701127a6770933e585bee896772ce55f3a146176cffeca715f16"
+}

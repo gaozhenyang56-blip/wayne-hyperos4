@@ -1,0 +1,15 @@
+{
+  "label": "unpack-modern-secilc",
+  "started_utc": "2026-10-06T07:02:00.178773+00:00",
+  "finished_utc": "2026-10-06T07:02:00.182499+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "dpkg-deb",
+    "-x",
+    "downloads/secilc-3.11.deb",
+    "tools/local"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070200178773Z-unpack-modern-secilc.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

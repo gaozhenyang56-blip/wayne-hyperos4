@@ -1,0 +1,180 @@
+# 项目约束与记录要求
+
+目标：小米 6X（wayne），用户指定 Linux 4.19；没有真机测试。
+
+- 每一阶段的检索、下载、失败、修改和检查都写入 docs/worklog.md，附上证据位置。
+- 后续执行命令优先通过 tools/record_step.py 运行，保留 UTC 时间、参数、输出与退出码。
+- 用户明确要求：每一次操作写入 Markdown 并加时间戳。所有后续命令必须通过 record_step.py 自动写入 docs/operations/YYYY-MM-DD.md；时间用 America/Los_Angeles 的 ISO 8601，另附 UTC 审计时间。
+- 文件修改、工具 API、仓库同步等非命令操作，也必须在相同 MD 中逐次记入时间、动作、结果。失败照样记录。不得以 JSON 或工具对话输出替代 MD。
+- 每个有意义的修改单独提交并推送到公开仓库，不伪造过去的提交时间或不存在的操作。
+- 前期历史只能按已有证据追记，标注追记；精确原始命令缺失时不要猜测。
+- 原始镜像不进入 Git；大小、来源和哈希进入 artifacts，最终成品上传 Releases 或分卷资产。
+- 缺少真机测试必须明确写在成品状态中，静态检查不能称为启动成功。
+- 不执行供体刷机脚本，不将供体 firmware、bootloader、modem 或 vendor 当作 wayne 硬件支持。
+
+- 用户要求 MD 实时上传：每次 MD 修改后立即同步到 GitHub，成功后才继续下一步。逐次日志须按操作更新并逐次提交；不将整个阶段的 MD 修改积攒到最后。同步自身的读取和记账属于该次操作，不递归生成无限日志。
+// Focused host check using unmodified AOSP libvintf; not full checkvintf/APEX validation.
+#include <fstream>
+#include <iostream>
+#include <vector>
+#include <vintf/HalManifest.h>
+#include <vintf/CompatibilityMatrix.h>
+#include <vintf/parse_xml.h>
+
+using namespace android::vintf;
+static std::string read(const char* path) {
+    std::ifstream stream(path);
+    if (!stream) throw std::runtime_error(std::string("Cannot open ")+path);
+    return std::string(std::istreambuf_iterator<char>(stream), {});
+}
+int main(int argc, char** argv) {
+    try {
+        if (argc < 3) throw std::runtime_error("Usage: checker vendor-manifest matrix...");
+        HalManifest manifest;
+        std::string error;
+        if (!fromXml(&manifest, read(argv[1]), &error)) throw std::runtime_error(error);
+        std::vector<CompatibilityMatrix> matrices;
+        for (int i=2;i<argc;++i) {
+            CompatibilityMatrix matrix;
+            if (!fromXml(&matrix,read(argv[i]),&error)) throw std::runtime_error(std::string(argv[i])+": "+error);
+            matrices.push_back(std::move(matrix));
+        }
+        auto combined=CompatibilityMatrix::combine(manifest.level(),manifest.level(),&matrices,&error);
+        if (!combined) throw std::runtime_error(error);
+        if (!manifest.checkCompatibility(*combined,&error)) {
+            std::cerr << "INCOMPATIBLE\n" << error << "\n";
+            return 1;
+        }
+        std::cout << "HAL manifest/framework matrix compatibility passed.\n"
+                  << "Runtime kernel, APEX manifests and linker namespaces are not covered.\n";
+        return 0;
+    } catch (const std::exception& e) {
+        std::cerr << e.what() << "\n";
+        return 2;
+    }
+}
+#!/usr/bin/env python3
+"""Stream source files to mkfs.erofs, restoring ownership and binary xattrs."""
+import argparse
+import base64
+import io
+import json
+import os
+import pathlib
+import stat
+import subprocess
+import tarfile
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('root',type=pathlib.Path)
+    parser.add_argument('metadata',type=pathlib.Path)
+    parser.add_argument('overlay',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    args=parser.parse_args();metadata=json.loads(args.metadata.read_text());patches={}
+    with tarfile.open(args.overlay) as tar:
+        for entry in tar:
+            if entry.isfile():patches[entry.name]=tar.extractfile(entry).read()
+    paths=metadata['paths'].copy()
+    for name in patches:
+        if name not in paths:
+            paths[name]={'nid':-1,'mode':stat.S_IFREG|0o644,'uid':0,'gid':0,
+                         'xattrs_base64':{'security.selinux':base64.b64encode(b'u:object_r:system_file:s0').decode()}}
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    part=args.output.with_suffix(args.output.suffix+'.part')
+    command=['tools/local/usr/bin/mkfs.erofs','--tar=f','-zlz4hc','-T1230768000',
+             '-U36b70828-7600-5b69-9c83-f2d6d7f8ae01',str(part)]
+    process=subprocess.Popen(command,stdin=subprocess.PIPE);seen={}
+    try:
+        with tarfile.open(fileobj=process.stdin,mode='w|',format=tarfile.PAX_FORMAT) as tar:
+            for name,record in sorted(paths.items(),key=lambda x:(x[0].count('/'),x[0])):
+                source=args.root/name;entry=tarfile.TarInfo(name)
+                entry.uid=record['uid'];entry.gid=record['gid'];entry.mode=stat.S_IMODE(record['mode'])
+                entry.mtime=metadata['epoch']
+                entry.pax_headers={'SCHILY.xattr.'+key:base64.b64decode(value).decode('utf-8','surrogateescape')
+                                   for key,value in record['xattrs_base64'].items()}
+                mode=record['mode'];nid=record['nid']
+                if stat.S_ISDIR(mode):entry.type=tarfile.DIRTYPE;tar.addfile(entry)
+                elif stat.S_ISLNK(mode):entry.type=tarfile.SYMTYPE;entry.linkname=os.readlink(source);tar.addfile(entry)
+                elif stat.S_ISREG(mode):
+                    if nid in seen and name not in patches:
+                        entry.type=tarfile.LNKTYPE;entry.linkname=seen[nid];tar.addfile(entry)
+                    else:
+                        if nid>=0:seen[nid]=name
+                        if name in patches:
+                            entry.size=len(patches[name]);tar.addfile(entry,io.BytesIO(patches[name]))
+                        else:
+                            entry.size=source.stat().st_size
+                            with source.open('rb') as stream:tar.addfile(entry,stream)
+                else:raise ValueError('Unsupported special inode '+name)
+        process.stdin.close();code=process.wait()
+        if code:raise RuntimeError('mkfs.erofs failed: '+str(code))
+    except BaseException:
+        process.stdin.close();process.terminate();process.wait();raise
+    part.replace(args.output)
+    print(json.dumps({'paths':len(paths),'patched_files':list(patches),'output':str(args.output)}))
+
+
+if __name__=='__main__':main()
+{
+  "miku-wayne": {
+    "url": "https://github.com/Diva-Room/Miku_device_xiaomi_wayne.git",
+    "commit": "9571a6b2159b0eac21a96fa67fb2e5973ce3111f",
+    "partial_checkout": false
+  },
+  "miku-kernel": {
+    "url": "https://github.com/Diva-Room/Miku_kernel_xiaomi_wayne.git",
+    "commit": "3a74d7524415628550fa99dfc85d06d9a93459f3",
+    "partial_checkout": true
+  },
+  "miku-vendor": {
+    "url": "https://github.com/Diva-Room/Miku_vendor_xiaomi_wayne.git",
+    "commit": "777c030be4405054567fc821745b33de82bdcb4a",
+    "partial_checkout": true
+  },
+  "erofs-utils": {
+    "url": "https://github.com/erofs/erofs-utils.git",
+    "commit": "1c230a485f25837cb51d6fc79332f30758d9006c",
+    "partial_checkout": false
+  }
+}research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.device.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.202404.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.7.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.8.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.202604.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/manifest_services_android.frameworks.vibrator.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.system.mieed-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.system.suspend-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.frameworks.stats-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.system.vold-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/app_launcher_service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.system.net.netd-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/android.system.keystore2-service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/manifest_services_android.frameworks.devicestate.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/manifest_media_c2_software.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/manifest_services_android.frameworks.location.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest/manifest_android.frameworks.cameraservice.service.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix.202504.xml
+research/candidates/mi8937-os4/system/system/etc/vintf/manifest.xml
+research/base-miku-a15/vendor/etc/vintf/compatibility_matrix.xml
+research/base-miku-a15/vendor/etc/vintf/manifest.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.graphics.mapper-impl-qti-display.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.thermal@2.0-service.qti.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.lights.wayne.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.wifi-service.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.wifi.hostapd.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/bluetooth_audio.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.ir@1.0-service.wayne.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.health@2.1.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.usb@1.3-service-qti.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.power-service.wayne.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/vendor.qti.gnss@4.0-service.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.drm-service.clearkey.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.gnss@2.1-service-qti.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/manifest_android.hardware.drm@1.3-service.widevine.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/vendor.qti.hardware.display.allocator-service.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.biometrics.fingerprint@2.1-service.wayne.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.wifi.supplicant.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/android.hardware.cas@1.2-service.xml
+research/base-miku-a15/vendor/etc/vintf/manifest/vendor.qti.hardware.vibrator.service.xml

@@ -1,0 +1,141 @@
+    license_kinds: [
+        "SPDX-license-identifier-Apache-2.0",
+    ],
+    license_text: [
+        "NOTICE",
+    ],
+}
+
+liblog_sources = [
+    "log_event_list.cpp",
+    "log_event_write.cpp",
+    "logger_name.cpp",
+    "logger_read.cpp",
+    "logger_write.cpp",
+    "logprint.cpp",
+    "properties.cpp",
+]
+liblog_target_sources = [
+    "event_tag_map.cpp",
+    "log_time.cpp",
+    "pmsg_reader.cpp",
+    "pmsg_writer.cpp",
+    "logd_reader.cpp",
+    "logd_writer.cpp",
+]
+
+cc_library_headers {
+    name: "liblog_headers",
+    host_supported: true,
+    vendor_available: true,
+    product_available: true,
+    ramdisk_available: true,
+    vendor_ramdisk_available: true,
+    recovery_available: true,
+    apex_available: [
+        "//apex_available:platform",
+        "//apex_available:anyapex",
+    ],
+    min_sdk_version: "29",
+    sdk_version: "minimum",
+    native_bridge_supported: true,
+    export_include_dirs: ["include"],
+    system_shared_libs: [],
+    stl: "none",
+    target: {
+        windows: {
+            enabled: true,
+        },
+        linux_bionic: {
+            enabled: true,
+        },
+        vendor: {
+            override_export_include_dirs: ["include_vndk"],
+        },
+        product: {
+            override_export_include_dirs: ["include_vndk"],
+        },
+    },
+}
+
+// Shared and static library for host and device
+// ========================================================
+cc_defaults {
+    name: "liblog.defaults",
+    defaults: ["bug_24465209_workaround"],
+    host_supported: true,
+    ramdisk_available: true,
+    vendor_ramdisk_available: true,
+    recovery_available: true,
+    native_bridge_supported: true,
+    srcs: liblog_sources,
+
+    target: {
+        android: {
+            version_script: "liblog.map.txt",
+            srcs: liblog_target_sources,
+            // AddressSanitizer runtime library depends on liblog.
+            sanitize: {
+                address: false,
+            },
+        },
+        windows: {
+            enabled: true,
+        },
+        not_windows: {
+            srcs: ["event_tag_map.cpp"],
+        },
+        linux_bionic: {
+            enabled: true,
+        },
+    },
+
+    header_libs: [
+        "libbase_headers",
+        "libcutils_headers",
+        "liblog_headers",
+219:    __android_log_set_default_tag(tag.c_str());
+327:    __android_log_message log_message = {sizeof(__android_log_message),     lg_id, priority, tag,
+329:    __android_log_logd_logger(&log_message);
+331:    __android_log_buf_print(lg_id, priority, tag, "%s", message);
+409:    __android_log_set_logger([](const struct __android_log_message* log_message) {
+425:    __android_log_set_aborter([](const char* abort_message) { Aborter()(abort_message); });
+513:      __android_log_call_aborter(msg.c_str());
+528:    __android_log_message log_message = {
+529:        sizeof(__android_log_message), LOG_ID_DEFAULT, priority, tag, file, line, message};
+530:    __android_log_write_log_message(&log_message);
+547:    return PriorityToLogSeverity(__android_log_get_minimum_priority());
+555:  // we need to fall back to using gMinimumLogSeverity, since __android_log_is_loggable() will not
+559:    return __android_log_is_loggable(priority, tag, ANDROID_LOG_INFO);
+568:    return PriorityToLogSeverity(__android_log_set_minimum_priority(priority));
+        "chrono_utils.cpp",
+        "cmsg.cpp",
+        "file.cpp",
+        "hex.cpp",
+        "logging.cpp",
+        "mapped_file.cpp",
+        "parsebool.cpp",
+        "parsenetaddress.cpp",
+        "posix_strerror_r.cpp",
+        "process.cpp",
+        "properties.cpp",
+        "result.cpp",
+        "stringprintf.cpp",
+        "strings.cpp",
+        "threads.cpp",
+        "test_utils.cpp",
+    ],
+
+    cppflags: ["-Wexit-time-destructors"],
+    shared_libs: ["liblog"],
+    target: {
+        android: {
+            sanitize: {
+                misc_undefined: ["integer"],
+            },
+
+        },
+        linux: {
+            srcs: [
+                "errors_unix.cpp",
+            ],

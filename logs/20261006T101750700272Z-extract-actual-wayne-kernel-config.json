@@ -1,0 +1,14 @@
+{
+  "label": "extract-actual-wayne-kernel-config",
+  "started_utc": "2026-10-06T10:17:50.700272+00:00",
+  "finished_utc": "2026-10-06T10:17:50.746532+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,struct,zlib,json,hashlib; p=pathlib.Path(\"research/base-miku-a15/boot.img\"); b=p.read_bytes(); page=struct.unpack_from(\"<I\",b,36)[0]; size=struct.unpack_from(\"<I\",b,8)[0]; k=b[page:page+size]; marker=k.find(b\"IKCFG_ST\"); print(\"IKCONFIG marker\",marker); assert marker>=0,\"Actual kernel does not embed IKCONFIG\"; d=zlib.decompressobj(31); c=d.decompress(k[marker+8:]); assert c.startswith(b\"#\"),\"Invalid kernel config\"; o=pathlib.Path(\"research/base-miku-a15/kernel.config\"); o.write_bytes(c); report={\"source\":str(p),\"kernel_sha256\":hashlib.sha256(k).hexdigest(),\"config_sha256\":hashlib.sha256(c).hexdigest(),\"bytes\":len(c),\"marker_offset\":marker,\"config\":str(o)}; pathlib.Path(\"research/base-miku-a15/kernel-config.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps(report)); print(\"\\n\".join(x for x in c.decode().splitlines() if any(t in x for t in [\"CONFIG_SECURITY_SELINUX\", \"CONFIG_EROFS\", \"CONFIG_ANDROID_BINDER\", \"CONFIG_SECURITY_SELINUX_POLICYDB_VERSION_MAX\"])))"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T101750700272Z-extract-actual-wayne-kernel-config.log",
+  "output_sha256": "24f54f8b8e5b7137c3438753cf55ed2d68aea1034b07aae104399b73d1da7685"
+}

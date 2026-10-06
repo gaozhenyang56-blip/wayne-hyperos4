@@ -1,0 +1,14 @@
+{
+  "label": "check-release-access-and-latest-artifact-size",
+  "started_utc": "2026-10-06T10:27:12.674500+00:00",
+  "finished_utc": "2026-10-06T10:27:13.340236+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "gh api repos/gaozhenyang56-blip/wayne-hyperos4 --jq .permissions; ls -lh artifacts/experimental/system.img; df -h ."
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102712674500Z-check-release-access-and-latest-artifact-size.log",
+  "output_sha256": "ccb8be58263a6cc3e5b00ab2dabfdb87a5743ee2a61af9a593af38f93adcc8fc"
+}

@@ -1,0 +1,14 @@
+{
+  "label": "diagnose-stalled-erofs-build",
+  "started_utc": "2026-10-06T10:03:33.001326+00:00",
+  "finished_utc": "2026-10-06T10:03:33.009182+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "ps -p 8697,8700,8701 -o pid,ppid,etime,stat,wchan:28,comm; tail -3 logs/*repack-system-with-raw-pax-xattrs.log; df -h ."
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100333001326Z-diagnose-stalled-erofs-build.log",
+  "output_sha256": "fd3aa2ddff5e129fefe908ad8b59db95418cdc3ef49bdfa4b4894ab3856cee07"
+}

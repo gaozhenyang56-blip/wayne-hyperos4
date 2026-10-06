@@ -1,0 +1,13 @@
+{
+  "label": "build-aosp-vintf-focused-checker",
+  "started_utc": "2026-10-06T10:08:36.407675+00:00",
+  "finished_utc": "2026-10-06T10:08:43.560209+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_vintf_checker.py"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T100836407675Z-build-aosp-vintf-focused-checker.log",
+  "output_sha256": "b659f8c831837f298c368e849984e3a132b2d10915bf839b15d2c8aed5f55397"
+}

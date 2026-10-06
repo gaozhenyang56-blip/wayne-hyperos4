@@ -1,0 +1,15 @@
+{
+  "label": "unpack-secilc-tool",
+  "started_utc": "2026-10-06T07:01:02.777215+00:00",
+  "finished_utc": "2026-10-06T07:01:02.781900+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "dpkg-deb",
+    "-x",
+    "downloads/secilc.deb",
+    "tools/local"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070102777215Z-unpack-secilc-tool.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}

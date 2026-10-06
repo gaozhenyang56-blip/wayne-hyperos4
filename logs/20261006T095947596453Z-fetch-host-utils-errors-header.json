@@ -1,0 +1,14 @@
+{
+  "label": "fetch-host-utils-errors-header",
+  "started_utc": "2026-10-06T09:59:47.596453+00:00",
+  "finished_utc": "2026-10-06T09:59:47.771410+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,base64,pathlib; p=pathlib.Path(\"sources/host-headers/utils/Errors.h\");p.parent.mkdir(parents=True,exist_ok=True);p.write_bytes(base64.b64decode(urllib.request.urlopen(\"https://android.googlesource.com/platform/system/libutils/+/refs/heads/main/include/utils/Errors.h?format=TEXT\").read()));print(p)"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095947596453Z-fetch-host-utils-errors-header.log",
+  "output_sha256": "3b7a3428ed7055c66355d3ba13c73d6b30da078a599e56084bf39123efb59ef1"
+}

@@ -1,0 +1,8 @@
+    PID    PPID     ELAPSED STAT WCHAN                        COMMAND
+   8697     435       04:16 Ss   do_wait                      python3
+   8700    8697       04:16 S    do_wait                      python3
+   8701    8700       04:16 Sl   futex_wait                   mkfs.erofs
+Processing system_ext/lib64/vendor.qti.data.factory@2.7.so ...
+Processing system_ext/lib64/vendor.qti.data.factory@2.8.so ...
+Processing system_ext/lib64/vendor.qti.data.factoryserFilesystem      Size  Used Avail Use% Mounted on
+overlay          32G   28G  2.7G  92% /

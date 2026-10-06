@@ -1,0 +1,4 @@
+sources/hidl-tools/metadata/include/hidl/metadata.h
+sources/hidl-tools/metadata/test.cpp
+sources/hidl-tools/metadata/Android.bp
+sources/hidl-tools/metadata/parser.cpp

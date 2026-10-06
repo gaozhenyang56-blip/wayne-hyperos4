@@ -1,0 +1,14 @@
+{
+  "label": "check-merged-wayne-hals-against-hyperos4-framework",
+  "started_utc": "2026-10-06T10:19:23.735824+00:00",
+  "finished_utc": "2026-10-06T10:19:23.759576+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "tools/local/vintf_pair_check research/base-miku-a15/vendor/etc/vintf/manifest.xml research/base-miku-a15/vendor/etc/vintf/manifest/*.xml config/compatibility_matrix.5.xml research/candidates/mi8937-os4/system/system/etc/vintf/compatibility_matrix*.xml"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101923735824Z-check-merged-wayne-hals-against-hyperos4-framework.log",
+  "output_sha256": "2f47fefa2051cda73a3d1d0db390ee1a78a6abca8e087baade2f0d2fcb32667c"
+}

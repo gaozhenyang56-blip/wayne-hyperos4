@@ -1,0 +1,48 @@
+{
+  "changes": {
+    "system/build.prop": {
+      "before": "9ea4634f9e9c23e04c9799fb6ec2c117de2766b1702395372c22480d206d4729",
+      "after": "b4dabfbe3f309b1a9a07bc9e00dcbc42f3742c236f7209db5d269e8ed254adaa",
+      "properties": {
+        "ro.product.system.device": "wayne",
+        "ro.product.system.name": "wayne_hyperos4",
+        "ro.product.system.brand": "Xiaomi",
+        "ro.product.system.manufacturer": "Xiaomi",
+        "ro.product.system.model": "MI 6X"
+      }
+    },
+    "system_ext/etc/build.prop": {
+      "before": "6a87e586202dc0258a3594136098c08bf62941e6179750ee3a6f2e4ee49235b6",
+      "after": "9b6d22e5a82e5ccc98be93cae4a42405e87df7cd41f59270f743c4d2295ad874",
+      "properties": {
+        "ro.product.system_ext.device": "wayne",
+        "ro.product.system_ext.name": "wayne_hyperos4",
+        "ro.product.system_ext.brand": "Xiaomi",
+        "ro.product.system_ext.manufacturer": "Xiaomi",
+        "ro.product.system_ext.model": "MI 6X"
+      }
+    },
+    "product/etc/build.prop": {
+      "before": "2876ebc36e89ee0c16ee4be0bab8f617f0a0e04477df51e092dc0fc7c8d3dd6c",
+      "after": "125d2578e64d5626b386d4aa321b662f11d47a4d7ba33b33b9db915b31c6dbe6",
+      "properties": {
+        "ro.product.product.device": "wayne",
+        "ro.product.product.name": "wayne_hyperos4",
+        "ro.product.product.brand": "Xiaomi",
+        "ro.product.product.manufacturer": "Xiaomi",
+        "ro.product.product.model": "MI 6X"
+      }
+    },
+    "system/etc/vintf/compatibility_matrix.5.xml": {
+      "after": "e9f02d60324cfac5c6566c1bbdb3786323a18a0ffe175d06658c1df4d8955d1b",
+      "source": "config/compatibility_matrix.5.xml"
+    },
+    "system/etc/vintf/compatibility_matrix.device.xml": {
+      "before": "cee761dcc1ecbbb5c8169cace340bd201cd8734c19e17d34ec3a1580e8e23076",
+      "after": "c7b69d30d11e1dc0bc4f679bc4621d038b24b986d5ad7fa13040431d7887e24f",
+      "source": "config/compatibility_matrix.device.wayne.xml"
+    }
+  },
+  "uid_gid_and_selinux_explicit": true,
+  "payload_files": 5
+}

@@ -1,0 +1,13 @@
+{
+  "label": "build-focused-vintf-checker-with-test-access",
+  "started_utc": "2026-10-06T10:17:16.398958+00:00",
+  "finished_utc": "2026-10-06T10:17:41.287135+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_vintf_checker.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101716398958Z-build-focused-vintf-checker-with-test-access.log",
+  "output_sha256": "63069c442d9c07f54d2570b90949e652de4882ff5441065ea3fbfea9b192f387"
+}

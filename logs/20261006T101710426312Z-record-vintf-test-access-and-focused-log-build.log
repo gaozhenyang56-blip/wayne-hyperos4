@@ -1,0 +1,1 @@
+Modified focused VINTF checker: expose unmodified combine via existing AOSP test friend; omit unused event-tag/logprint sources rather than importing graphics dependencies.

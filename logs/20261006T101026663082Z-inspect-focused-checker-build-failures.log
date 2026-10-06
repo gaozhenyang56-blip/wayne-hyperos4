@@ -1,0 +1,110 @@
+tools/local/vintf-build/0.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/10.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/12.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/16.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/18.log:4:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/2.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/1.log:3:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/11.log:4:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+tools/local/vintf-build/13.log:4:/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h:79:17: error: ‘find’ is not a member of ‘std’; did you mean ‘std::ranges::find’?
+tools/local/vintf-build/23.log:11:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:218:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:14:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:218:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:17:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:218:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:22:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:326:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:25:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:326:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:28:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:326:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:33:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:408:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:36:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:408:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:39:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:408:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:44:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:424:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:47:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:424:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:50:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:424:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:55:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:512:37: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:58:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:512:42: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:61:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:512:9: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:66:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:69:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:72:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+tools/local/vintf-build/23.log:77:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:35: error: expected primary-expression before numeric constant
+tools/local/vintf-build/23.log:80:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:40: error: expected primary-expression before ‘)’ token
+tools/local/vintf-build/23.log:83:/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+//
+// Copyright (C) 2021 The Android Open Source Project
+//
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+//
+
+/* Undefine _GNU_SOURCE so that this compilation unit can access the
+ * posix version of strerror_r */
+#undef _GNU_SOURCE
+#include <string.h>
+
+namespace android {
+namespace base {
+
+extern "C" int posix_strerror_r(int errnum, char* buf, size_t buflen) {
+#ifdef _WIN32
+  return strerror_s(buf, buflen, errnum);
+#else
+  return strerror_r(errnum, buf, buflen);
+#endif
+}
+
+}  // namespace base
+}  // namespace android
+sources/system-core/libutils/include/utils/FastStrcmp.h
+
+// Under Section 7 of GPL version 3, you are granted additional
+// permissions described in the GCC Runtime Library Exception, version
+// 3.1, as published by the Free Software Foundation.
+
+// You should have received a copy of the GNU General Public License and
+// a copy of the GCC Runtime Library Exception along with this program;
+// see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+// <http://www.gnu.org/licenses/>.
+
+/** @file include/stdatomic.h
+ *  This is a Standard C++ Library header.
+ */
+
+#ifndef _GLIBCXX_STDATOMIC_H
+#define _GLIBCXX_STDATOMIC_H
+
+#define __glibcxx_want_stdatomic_h
+#include <bits/version.h>
+
+#ifdef __cpp_lib_stdatomic_h // C++ >= 23
+#include <atomic>
+
+#define _Atomic(_Tp) ::std::atomic<_Tp>
+
+using std::memory_order;
+#include <vector>
+
+#include <hidl/metadata.h>
+
+#include "CheckFlags.h"
+#include "FileSystem.h"
+#include "HalGroup.h"
+#include "KernelInfo.h"
+#include "Level.h"
+#include "ManifestHal.h"
+#include "ManifestInstance.h"
+#include "MapValueIterator.h"
+#include "SchemaType.h"
+#include "SystemSdk.h"
+#include "VendorNdk.h"
+#include "Version.h"
+#include "Vndk.h"
+#include "WithFileName.h"
+#include "XmlFileGroup.h"

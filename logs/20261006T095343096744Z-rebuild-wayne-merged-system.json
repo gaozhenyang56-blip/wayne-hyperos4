@@ -1,0 +1,18 @@
+{
+  "label": "rebuild-wayne-merged-system",
+  "started_utc": "2026-10-06T09:53:43.096744+00:00",
+  "finished_utc": "2026-10-06T09:53:43.099267+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/mkfs.erofs",
+    "--clean=data",
+    "-zlz4hc",
+    "-T1230768000",
+    "artifacts/experimental/system.img",
+    "artifacts/experimental/overlay.img",
+    "research/candidates/mi8937-os4/system.img"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T095343096744Z-rebuild-wayne-merged-system.log",
+  "output_sha256": "f3686da761dafd7d1d829a140c318222094c57eb4f68dd0bf374403507a13075"
+}

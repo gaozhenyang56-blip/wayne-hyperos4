@@ -1,0 +1,206 @@
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:2435
+  (neverallow base_typeattr_227_202404 virtual_face_hal_prop_202404 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78808 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (property_service (set)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:2434
+  (neverallow base_typeattr_226_202404 virtual_face_hal_prop_202404 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78813 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (file (read getattr map open)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5837
+  (neverallow base_typeattr_224_202404 vendor_persist_camera_prop_202404 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system_ext/etc/selinux/system_ext_sepolicy.cil:11241 from device/qcom/sepolicy/generic/private/aid_config_app.te:10
+      (allow vendor_aid_config_app vendor_persist_camera_prop (property_service (set)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5828
+  (neverallow base_typeattr_225_202404 virtual_fingerprint_hal_prop_202404 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78855 from system/sepolicy/private/virtual_fingerprint.te:7
+      (allow virtual_fingerprint virtual_fingerprint_prop (file (read getattr map open)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5827
+  (neverallow base_typeattr_225_202404 virtual_face_hal_prop_202404 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78813 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (file (read getattr map open)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5729
+  (neverallow base_typeattr_224_202404 telephony_config_prop_202404 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:44578 from system/sepolicy/private/init_dev_config.te:6
+      (allow init_dev_config telephony_config_prop (property_service (set)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5649
+  (neverallow base_typeattr_224_202404 media_variant_prop_202404 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:44558 from system/sepolicy/private/init_dev_config.te:5
+      (allow init_dev_config media_variant_prop (property_service (set)))
+
+neverallow check failed at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5469
+  (neverallow base_typeattr_224_202404 apexd_select_prop_202404 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:44538 from system/sepolicy/private/init_dev_config.te:4
+      (allow init_dev_config apexd_select_prop (property_service (set)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system_ext/etc/selinux/system_ext_sepolicy.cil:2242 from device/qcom/sepolicy/generic/public/property.te:30
+  (neverallow base_typeattr_241 vendor_persist_camera_prop (property_service (set)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/plat_pub_versioned.cil:5835
+      (allow vendor_init_202404 vendor_persist_camera_prop_202404 (property_service (set)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:72218 from system/sepolicy/private/system_server.te:1893
+  (neverallow system_server self (capability (sys_module)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:7150
+      (allow system_server_202404 self (capability (sys_module)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:57930 from system/sepolicy/private/property.te:812
+  (neverallow domain system_and_vendor_property_type (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:44143 from system/sepolicy/private/init.te:713
+      (allow init property_type (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78808 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78850 from system/sepolicy/private/virtual_fingerprint.te:7
+      (allow virtual_fingerprint virtual_fingerprint_prop (property_service (set)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:57929 from system/sepolicy/private/property.te:812
+  (neverallow domain system_and_vendor_property_type (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:29239 from system/sepolicy/private/dumpstate.te:518
+      (allow dumpstate property_type (file (read getattr map open)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:43312 from system/sepolicy/private/init.te:137
+      (allow init property_type (file (read write create getattr setattr relabelto append map unlink rename open)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78813 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (file (read getattr map open)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78855 from system/sepolicy/private/virtual_fingerprint.te:7
+      (allow virtual_fingerprint virtual_fingerprint_prop (file (read getattr map open)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:57584 from system/sepolicy/private/property.te:175
+  (neverallow base_typeattr_375 base_typeattr_930 (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78808 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (property_service (set)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78850 from system/sepolicy/private/virtual_fingerprint.te:7
+      (allow virtual_fingerprint virtual_fingerprint_prop (property_service (set)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:57579 from system/sepolicy/private/property.te:175
+  (neverallow base_typeattr_243 base_typeattr_929 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78813 from system/sepolicy/private/virtual_face.te:7
+      (allow virtual_face virtual_face_prop (file (read getattr map open)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:78855 from system/sepolicy/private/virtual_fingerprint.te:7
+      (allow virtual_fingerprint virtual_fingerprint_prop (file (read getattr map open)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:54122 from system/sepolicy/private/pcc_component.te:366
+  (neverallow pcc_component pcc_component (icmp_socket (ioctl read write create getattr setattr lock append map bind connect getopt setopt shutdown)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:5751
+      (allow netdomain self (icmp_socket (ioctl read write create getattr setattr lock append map bind connect getopt setopt shutdown)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:35053 from system/sepolicy/private/hal_configstore.te:45
+  (neverallow hal_configstore_server base_typeattr_620 (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:24543 from system/sepolicy/private/domain.te:196
+      (allow base_typeattr_241 vendor_file_type (file (read getattr map execute open)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26853 from system/sepolicy/private/domain.te:2329
+  (neverallow base_typeattr_526 base_typeattr_527 (file (ioctl read write create setattr lock relabelfrom append unlink link rename open watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:7995
+      (allow hal_power_default debugfs_wlan (file (ioctl read getattr lock map open watch watch_reads)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:8007
+      (allow hal_power_default debugfs_sched_features (file (ioctl read write getattr lock append map open watch watch_reads)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26815 from system/sepolicy/private/domain.te:2208
+  (neverallow base_typeattr_522 base_typeattr_523 (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:3904
+      (allow hal_drm firmware_file (file (ioctl read getattr lock map open watch watch_reads)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26676 from system/sepolicy/private/domain.te:2056
+  (neverallow base_typeattr_289 base_typeattr_297 (file (execute execute_no_trans)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:24543 from system/sepolicy/private/domain.te:196
+      (allow base_typeattr_241 vendor_file_type (file (read getattr map execute open)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26129 from system/sepolicy/private/domain.te:1110
+  (neverallow base_typeattr_447 base_typeattr_448 (dir (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads add_name remove_name reparent search rmdir)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:41774 from system/sepolicy/private/heapprofd.te:36
+      (allow heapprofd vendor_file_type (dir (ioctl read getattr lock open watch watch_reads search)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:73218 from system/sepolicy/private/traced_perf.te:33
+      (allow traced_perf vendor_file_type (dir (ioctl read getattr lock open watch watch_reads search)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:74154 from system/sepolicy/private/ueventd.te:35
+      (allow ueventd base_typeattr_1081 (dir (ioctl read getattr lock open watch watch_reads search)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26104 from system/sepolicy/private/domain.te:1084
+  (neverallow base_typeattr_444 base_typeattr_445 (lnk_file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:24528 from system/sepolicy/private/domain.te:196
+      (allow domain vendor_file_type (lnk_file (read getattr open)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:41780 from system/sepolicy/private/heapprofd.te:36
+      (allow heapprofd vendor_file_type (lnk_file (ioctl read getattr lock map open watch watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:73224 from system/sepolicy/private/traced_perf.te:33
+      (allow traced_perf vendor_file_type (lnk_file (ioctl read getattr lock map open watch watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:74160 from system/sepolicy/private/ueventd.te:35
+      (allow ueventd base_typeattr_1081 (lnk_file (ioctl read getattr lock map open watch watch_reads)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26103 from system/sepolicy/private/domain.te:1084
+  (neverallow base_typeattr_444 base_typeattr_445 (file (create setattr lock relabelfrom relabelto unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:41779 from system/sepolicy/private/heapprofd.te:36
+      (allow heapprofd vendor_file_type (file (ioctl read getattr lock map open watch watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:73223 from system/sepolicy/private/traced_perf.te:33
+      (allow traced_perf vendor_file_type (file (ioctl read getattr lock map open watch watch_reads)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:74159 from system/sepolicy/private/ueventd.te:35
+      (allow ueventd base_typeattr_1081 (file (ioctl read getattr lock map open watch watch_reads)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:26098 from system/sepolicy/private/domain.te:1060
+  (neverallow base_typeattr_442 base_typeattr_443 (sock_file (create setattr lock relabelfrom relabelto map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads)))
+    <root>
+    allow at research/base-miku-a15/vendor/etc/selinux/vendor_sepolicy.cil:5465
+      (allow vendor_location_app_202404 qmuxd_socket (sock_file (read write create getattr setattr unlink)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:25781 from system/sepolicy/private/domain.te:802
+  (neverallow domain vendor_file_type (file (write create setattr relabelfrom append unlink link rename)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:22610 from system/sepolicy/private/crosvm.te:104
+      (allow crosvm_domain vendor_vm_data_file (file (write)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:29961 from system/sepolicy/private/early_virtmgr.te:68
+      (allow early_virtmgr_domain vendor_vm_data_file (file (read write getattr)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:79295 from system/sepolicy/private/virtualizationmanager.te:145
+      (allow virtualizationmanager_domain vendor_vm_data_file (file (read write getattr)))
+
+neverallow check failed at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:22832 from system/sepolicy/private/crosvm.te:209
+  (neverallow crosvm_domain base_typeattr_388 (file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:22567 from system/sepolicy/private/crosvm.te:54
+      (allow crosvm_domain vendor_vm_data_file (file (ioctl read getattr lock)))
+    <root>
+    allow at research/candidates/mi8937-os4/system/system/etc/selinux/plat_sepolicy.cil:22610 from system/sepolicy/private/crosvm.te:104
+      (allow crosvm_domain vendor_vm_data_file (file (write)))
+
+Failed to generate binary
+Failed to build policydb

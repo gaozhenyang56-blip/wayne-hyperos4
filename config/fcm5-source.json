@@ -1,0 +1,158 @@
+{
+  "source": "research/base-miku-a15/system/system/etc/vintf/compatibility_matrix.5.xml",
+  "sha256": "e9f02d60324cfac5c6566c1bbdb3786323a18a0ffe175d06658c1df4d8955d1b",
+  "kernel_requirements": [
+    {
+      "version": "4.4.302",
+      "level": "5"
+    },
+    {
+      "version": "4.4.302",
+      "level": "5"
+    },
+    {
+      "version": "4.4.302",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.9.165",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.14.180",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "4.19.110",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    },
+    {
+      "version": "5.4.61",
+      "level": "5"
+    }
+  ]
+}

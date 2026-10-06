@@ -1,0 +1,16 @@
+2187873 research/wayne-os4-system-metadata.json
+2187648 research/candidates/mi8937-os4/inode-metadata.json
+553869 logs/20261006T100345928013Z-repack-system-after-freeing-required-workspace.log
+553869 logs/20261006T095657168673Z-repack-system-tar-stdin-fix.log
+524732 logs/20261006T095916416514Z-repack-system-with-raw-pax-xattrs.log
+182054 config/compatibility_matrix.5.xml
+169235 research/base-miku-a15/kernel.config
+78280 docs/operations/2026-10-06.md
+35763 research/wayne-os4-native.json
+27648 research/candidates/mi8937-os4/system.transfer.list
+19363 logs/20261006T101608541768Z-resume-inspect-workspace.log
+18904 logs/20261006T102116581125Z-inspect-documentation-before-status-update.log
+17745 research/wayne-os4-policy/compiler.log
+17173 logs/20261006T100836407675Z-build-aosp-vintf-focused-checker.log
+15434 logs/20261006T102102554099Z-inspect-policy-results-and-publish-input-sizes.log
+total 6889282

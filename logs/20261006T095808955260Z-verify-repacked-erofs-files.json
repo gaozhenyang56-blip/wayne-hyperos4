@@ -1,0 +1,17 @@
+{
+  "label": "verify-repacked-erofs-files",
+  "started_utc": "2026-10-06T09:58:08.955260+00:00",
+  "finished_utc": "2026-10-06T09:58:14.947528+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/fsck.erofs",
+    "--extract=downloads/verified-wayne-system",
+    "--no-preserve-owner",
+    "--preserve-perms",
+    "--xattrs",
+    "artifacts/experimental/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095808955260Z-verify-repacked-erofs-files.log",
+  "output_sha256": "7d42bbe9a625f69bf216f99a289c37982ac99f79a68786648e61cb3ce9fd1561"
+}

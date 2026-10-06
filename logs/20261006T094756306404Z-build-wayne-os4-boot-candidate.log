@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/build_wayne_boot.py", line 109, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/workspace/wayne-hyperos4/tools/build_wayne_boot.py", line 97, in main
+    if emitted!=updated:raise ValueError('CPIO roundtrip mismatch')
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: CPIO roundtrip mismatch

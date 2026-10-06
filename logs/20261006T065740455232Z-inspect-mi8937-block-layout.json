@@ -1,0 +1,14 @@
+{
+  "label": "inspect-mi8937-block-layout",
+  "started_utc": "2026-10-06T06:57:40.455232+00:00",
+  "finished_utc": "2026-10-06T06:57:40.481894+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import zipfile,json; z=zipfile.ZipFile(\"downloads/mi8937-hyperos4.zip\"); out={};\nfor n in [\"system.transfer.list\",\"vendor.transfer.list\"]:\n s=z.read(n).decode(); rows=s.splitlines(); blocks=0; end=0\n for r in rows[4:]:\n  a=r.split(); v=list(map(int,a[1].split(\",\")))[1:]; end=max(end,max(v))\n  if a[0]==\"new\": blocks+=sum(b-a for a,b in zip(v[::2],v[1::2]))\n out[n]={\"header\":rows[:4],\"new_bytes\":blocks*4096,\"image_size\":end*4096,\"commands\":len(rows)-4}; print(n,s[:200])\nprint(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T065740455232Z-inspect-mi8937-block-layout.log",
+  "output_sha256": "c73fd8ebd92dda75823acb38318aa77f9ef017ef35aaf27fd947de021bcb3f1e"
+}

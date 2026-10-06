@@ -1,0 +1,68 @@
+/workspace/wayne-hyperos4/sources/logging/liblog/event_tag_map.cpp
+In file included from /workspace/wayne-hyperos4/sources/system-core/libutils/include/utils/RWLock.h:28,
+                 from /workspace/wayne-hyperos4/sources/logging/liblog/event_tag_map.cpp:36:
+/workspace/wayne-hyperos4/sources/system-core/libutils/include/utils/ThreadDefs.h:22:10: fatal error: system/graphics.h: No such file or directory
+   22 | #include <system/graphics.h>
+      |          ^~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/tools/vintf_pair_check.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:41,
+                 from /workspace/wayne-hyperos4/tools/vintf_pair_check.cpp:5:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:47:44: warning: ‘VndkVersionRange’ is deprecated [-Wdeprecated-declarations]
+   47 |     const VndkVersionRange &versionRange() const { return mVersionRange; }
+      |                                            ^~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:28:23: note: declared here
+   28 | struct [[deprecated]] VndkVersionRange {
+      |                       ^~~~~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:57:22: warning: ‘VndkVersionRange’ is deprecated [-Wdeprecated-declarations]
+   57 |     VndkVersionRange mVersionRange;
+      |                      ^~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:28:23: note: declared here
+   28 | struct [[deprecated]] VndkVersionRange {
+      |                       ^~~~~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:63:80: warning: ‘VndkVersionRange’ is deprecated [-Wdeprecated-declarations]
+   63 | inline bool operator==(const VndkVersionRange &lft, const VndkVersionRange &rgt) {
+      |                                                                                ^
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:28:23: note: declared here
+   28 | struct [[deprecated]] VndkVersionRange {
+      |                       ^~~~~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:63:80: warning: ‘VndkVersionRange’ is deprecated [-Wdeprecated-declarations]
+   63 | inline bool operator==(const VndkVersionRange &lft, const VndkVersionRange &rgt) {
+      |                                                                                ^
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:28:23: note: declared here
+   28 | struct [[deprecated]] VndkVersionRange {
+      |                       ^~~~~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:68:56: warning: ‘Vndk’ is deprecated [-Wdeprecated-declarations]
+   68 | inline bool operator==(const Vndk &lft, const Vndk &rgt) {
+      |                                                        ^
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:45:23: note: declared here
+   45 | struct [[deprecated]] Vndk {
+      |                       ^~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:68:56: warning: ‘Vndk’ is deprecated [-Wdeprecated-declarations]
+   68 | inline bool operator==(const Vndk &lft, const Vndk &rgt) {
+      |                                                        ^
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:45:23: note: declared here
+   45 | struct [[deprecated]] Vndk {
+      |                       ^~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:259:21: warning: ‘Vndk’ is deprecated [-Wdeprecated-declarations]
+  259 |         std::vector<Vndk> mVndks;
+      |                     ^~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:45:23: note: declared here
+   45 | struct [[deprecated]] Vndk {
+      |                       ^~~~
+In file included from /workspace/wayne-hyperos4/tools/vintf_pair_check.cpp:6:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/CompatibilityMatrix.h:183:14: warning: ‘Vndk’ is deprecated [-Wdeprecated-declarations]
+  183 |         Vndk mVndk;
+      |              ^~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Vndk.h:45:23: note: declared here
+   45 | struct [[deprecated]] Vndk {
+      |                       ^~~~
+/workspace/wayne-hyperos4/tools/vintf_pair_check.cpp: In function ‘int main(int, char**)’:
+/workspace/wayne-hyperos4/tools/vintf_pair_check.cpp:27:51: error: ‘static std::unique_ptr<android::vintf::CompatibilityMatrix> android::vintf::CompatibilityMatrix::combine(android::vintf::Level, android::vintf::Level, std::vector<android::vintf::CompatibilityMatrix>*, std::string*)’ is private within this context
+   27 |         auto combined=CompatibilityMatrix::combine(manifest.level(),manifest.level(),&matrices,&error);
+      |                       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/CompatibilityMatrix.h:133:49: note: declared private here
+  133 |     static std::unique_ptr<CompatibilityMatrix> combine(Level deviceLevel, Level kernelLevel,
+      |                                                 ^~~~~~~
+

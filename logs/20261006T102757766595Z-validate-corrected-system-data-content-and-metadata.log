@@ -1,0 +1,24 @@
+{
+  "checked_original_paths": 9134,
+  "expected_modified_files": [
+    "product/etc/build.prop",
+    "system/build.prop",
+    "system/etc/vintf/compatibility_matrix.5.xml",
+    "system/etc/vintf/compatibility_matrix.device.xml",
+    "system_ext/etc/build.prop"
+  ],
+  "added_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "failures": [],
+  "success": true
+}
+{
+  "original_paths": 9134,
+  "rebuilt_paths": 9135,
+  "differences": [],
+  "new_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "success": true
+}

@@ -1,0 +1,17 @@
+{
+  "label": "rebuild-system-with-verified-wayne-device-matrix",
+  "started_utc": "2026-10-06T10:26:23.219987+00:00",
+  "finished_utc": "2026-10-06T10:27:14.936748+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/repack_system_metadata.py",
+    "research/candidates/mi8937-os4/system",
+    "research/candidates/mi8937-os4/inode-metadata.json",
+    "artifacts/experimental/overlay.tar",
+    "artifacts/experimental/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102623219987Z-rebuild-system-with-verified-wayne-device-matrix.log",
+  "output_sha256": "6affb7579eeb8119189b70e15a70fee58aaeafca66b997547cb4f36faff25602"
+}

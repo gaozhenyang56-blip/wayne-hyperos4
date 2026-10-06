@@ -1,0 +1,1 @@
+Modified tools/build_vintf_checker.py: real HIDL metadata include, GNU C++23 atomics, standard algorithm include, POSIX strerror feature flag, host-only logging availability macro; AOSP VINTF implementation unchanged.

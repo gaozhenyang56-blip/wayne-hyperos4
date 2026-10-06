@@ -1,0 +1,7 @@
+{
+  "size": 639762432,
+  "sha256": "6ef8dbe526a6fd53ae2b034352eac49714c443a7e5eaf2f54f54c046fff8ad6a",
+  "source": "research/base-miku-a15/system.new.dat.br",
+  "original_image_sha256_verified": false,
+  "purpose": "analysis_only"
+}

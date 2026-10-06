@@ -1,0 +1,11 @@
+IKCONFIG markers: [22566052]
+erofs 31 [27928190, 27928207, 28012536, 28181741, 28181843, 28352282, 28352309, 28438394, 28609890, 28609904]
+b'fs_extent_node\x00app direct:\t%-16llu\n\x00NMI\x00erofs_fill_super\x00erofs_load_compr_cfgs\x00bogus i_mode (%o) @ nid %llu\n\x00corrupted dir block %d @ nid %l'
+b'p direct:\t%-16llu\n\x00NMI\x00erofs_fill_super\x00erofs_load_compr_cfgs\x00bogus i_mode (%o) @ nid %llu\n\x00corrupted dir block %d @ nid %llu\n\x00invalid de[0]'
+b'data cross block boundary @ nid %llu\n\x00z_erofs_extent_lookback\x00_pid\x00create\x00include/linux/fsnotify.h\x00getsession\x00getcap\x00nnp_transition\x00ipc_info'
+EROFS 0 []
+erofs_fill_super 1 [27928190]
+b'fs_extent_node\x00app direct:\t%-16llu\n\x00NMI\x00erofs_fill_super\x00erofs_load_compr_cfgs\x00bogus i_mode (%o) @ nid %llu\n\x00corrupted dir block %d @ nid %l'
+erofs_fs_type 0 []
+erofs_superblock 1 [28859938]
+b': cannot allocate ECC parity workspace\n\x00erofs_superblock_csum_verify\x00,cache_strategy=disabled\x00erofs_fill_symlink\x00EXPERIMENTAL big pcluster f'

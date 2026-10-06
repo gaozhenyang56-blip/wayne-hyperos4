@@ -1,0 +1,17 @@
+{
+  "label": "fetch-hidl-metadata-headers",
+  "started_utc": "2026-10-06T10:11:44.589742+00:00",
+  "finished_utc": "2026-10-06T10:11:45.474045+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://android.googlesource.com/platform/system/libhidl",
+    "sources/libhidl"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101144589742Z-fetch-hidl-metadata-headers.log",
+  "output_sha256": "6de9e6f18844d3caeb0eb92057e5cf929594ca6f14f7f379db7716b8421a7997"
+}

@@ -1,0 +1,15 @@
+{
+  "label": "recheck-final-system-inode-metadata",
+  "started_utc": "2026-10-06T10:05:11.564630+00:00",
+  "finished_utc": "2026-10-06T10:05:12.580053+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/erofs_metadata.py",
+    "artifacts/experimental/system.img",
+    "research/wayne-os4-system-metadata.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100511564630Z-recheck-final-system-inode-metadata.log",
+  "output_sha256": "388ce2dc012df54a72df11fe48cc11fa2c2f26916b8410beef7a93d2a56faa22"
+}

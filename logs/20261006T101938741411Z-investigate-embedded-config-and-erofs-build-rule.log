@@ -1,0 +1,146 @@
+obj-$(CONFIG_EXPORTFS)		+= exportfs/
+obj-$(CONFIG_NFSD)		+= nfsd/
+obj-$(CONFIG_LOCKD)		+= lockd/
+obj-$(CONFIG_NLS)		+= nls/
+obj-$(CONFIG_UNICODE)		+= unicode/
+obj-$(CONFIG_SYSV_FS)		+= sysv/
+obj-$(CONFIG_CIFS)		+= cifs/
+obj-$(CONFIG_HPFS_FS)		+= hpfs/
+obj-$(CONFIG_NTFS_FS)		+= ntfs/
+obj-$(CONFIG_UFS_FS)		+= ufs/
+obj-$(CONFIG_EFS_FS)		+= efs/
+obj-$(CONFIG_JFFS2_FS)		+= jffs2/
+obj-$(CONFIG_UBIFS_FS)		+= ubifs/
+obj-$(CONFIG_AFFS_FS)		+= affs/
+obj-$(CONFIG_ROMFS_FS)		+= romfs/
+obj-$(CONFIG_QNX4FS_FS)		+= qnx4/
+obj-$(CONFIG_QNX6FS_FS)		+= qnx6/
+obj-$(CONFIG_AUTOFS_FS)		+= autofs/
+obj-$(CONFIG_ADFS_FS)		+= adfs/
+obj-$(CONFIG_FUSE_FS)		+= fuse/
+obj-$(CONFIG_OVERLAY_FS)	+= overlayfs/
+obj-$(CONFIG_ORANGEFS_FS)       += orangefs/
+obj-$(CONFIG_INCREMENTAL_FS)	+= incfs/
+obj-$(CONFIG_UDF_FS)		+= udf/
+obj-$(CONFIG_SUN_OPENPROMFS)	+= openpromfs/
+obj-$(CONFIG_OMFS_FS)		+= omfs/
+obj-$(CONFIG_JFS_FS)		+= jfs/
+obj-$(CONFIG_XFS_FS)		+= xfs/
+obj-$(CONFIG_9P_FS)		+= 9p/
+obj-$(CONFIG_AFS_FS)		+= afs/
+obj-$(CONFIG_NILFS2_FS)		+= nilfs2/
+obj-$(CONFIG_BEFS_FS)		+= befs/
+obj-$(CONFIG_HOSTFS)		+= hostfs/
+obj-$(CONFIG_CACHEFILES)	+= cachefiles/
+obj-$(CONFIG_DEBUG_FS)		+= debugfs/
+obj-$(CONFIG_TRACING)		+= tracefs/
+obj-$(CONFIG_OCFS2_FS)		+= ocfs2/
+obj-$(CONFIG_BTRFS_FS)		+= btrfs/
+obj-$(CONFIG_GFS2_FS)           += gfs2/
+obj-$(CONFIG_F2FS_FS)		+= f2fs/
+obj-y				+= exofs/ # Multiple modules
+obj-$(CONFIG_CEPH_FS)		+= ceph/
+obj-$(CONFIG_PSTORE)		+= pstore/
+obj-$(CONFIG_EFIVAR_FS)		+= efivarfs/
+obj-$(CONFIG_EROFS_FS)		+= erofs/
+# SPDX-License-Identifier: GPL-2.0-only
+
+obj-$(CONFIG_EROFS_FS) += erofs.o
+erofs-objs := super.o inode.o data.o namei.o dir.o utils.o pcpubuf.o
+erofs-$(CONFIG_EROFS_FS_XATTR) += xattr.o
+erofs-$(CONFIG_EROFS_FS_ZIP) += decompressor.o zmap.o zdata.o
+/*
+ * kernel/configs.c
+ * Echo the kernel .config file used to build the kernel
+ *
+ * Copyright (C) 2002 Khalid Aziz <khalid_aziz@hp.com>
+ * Copyright (C) 2002 Randy Dunlap <rdunlap@xenotime.net>
+ * Copyright (C) 2002 Al Stone <ahs3@fc.hp.com>
+ * Copyright (C) 2002 Hewlett-Packard Company
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or (at
+ * your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but
+ * WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE, GOOD TITLE or
+ * NON INFRINGEMENT.  See the GNU General Public License for more
+ * details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+ */
+
+#include <linux/kernel.h>
+#include <linux/module.h>
+#include <linux/proc_fs.h>
+#include <linux/seq_file.h>
+#include <linux/init.h>
+#include <linux/uaccess.h>
+
+/**************************************************/
+/* the actual current config file                 */
+
+/*
+ * Define kernel_config_data and kernel_config_data_size, which contains the
+ * wrapped and compressed configuration file.  The file is first compressed
+ * with gzip and then bounded by two eight byte magic numbers to allow
+ * extraction from a binary kernel image:
+ *
+ *   IKCFG_ST
+ *   <image>
+ *   IKCFG_ED
+ */
+#define MAGIC_START	"IKCFG_ST"
+#define MAGIC_END	"IKCFG_ED"
+#include "config_data.h"
+
+
+#define MAGIC_SIZE (sizeof(MAGIC_START) - 1)
+#define kernel_config_data_size \
+	(sizeof(kernel_config_data) - 1 - MAGIC_SIZE * 2)
+
+#ifdef CONFIG_IKCONFIG_PROC
+
+static ssize_t
+ikconfig_read_current(struct file *file, char __user *buf,
+		      size_t len, loff_t * offset)
+{
+	return simple_read_from_buffer(buf, len, offset,
+				       kernel_config_data + MAGIC_SIZE,
+				       kernel_config_data_size);
+}
+
+static const struct file_operations ikconfig_file_ops = {
+	.owner = THIS_MODULE,
+	.read = ikconfig_read_current,
+	.llseek = default_llseek,
+};
+
+static int __init ikconfig_init(void)
+{
+	struct proc_dir_entry *entry;
+
+#
+# Automatically generated file; DO NOT EDIT.
+# Linux/arm64 4.19.152 Kernel Configuration
+#
+
+#
+# Compiler: Android (6573524 based on r383902b) clang version 11.0.2 (https://android.googlesource.com/toolchain/llvm-project b397f81060ce6d701042b782172ed13bee898b79)
+#
+CONFIG_GCC_VERSION=0
+CONFIG_CC_IS_CLANG=y
+CONFIG_CLANG_VERSION=110002
+CONFIG_CC_HAS_ASM_GOTO=y
+CONFIG_IRQ_WORK=y
+CONFIG_BUILDTIME_EXTABLE_SORT=y
+CONFIG_THREAD_INFO_IN_TASK=y
+
+#
+# General setup
+['image', 'block_size', 'epoch', 'paths']
+[('.', {'nid': 79, 'mode': 16877, 'uid': 0, 'gid': 0, 'xattrs_base64': {'security.selinux': 'dTpvYmplY3Rfcjpyb290ZnM6czA='}}), ('adb_keys', {'nid': 108, 'mode': 41380, 'uid': 0, 'gid': 0, 'xattrs_base64': {'security.selinux': 'dTpvYmplY3RfcjpzeXN0ZW1fZmlsZTpzMA=='}})]

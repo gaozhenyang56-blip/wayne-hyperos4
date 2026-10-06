@@ -1,0 +1,14 @@
+{
+  "label": "inspect-largest-unpublished-files",
+  "started_utc": "2026-10-06T10:22:48.377900+00:00",
+  "finished_utc": "2026-10-06T10:22:48.405293+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,pathlib; names=subprocess.check_output([\"git\",\"ls-files\",\"--others\",\"--exclude-standard\"],text=True).splitlines(); sizes=sorted([(pathlib.Path(n).stat().st_size,n) for n in names],reverse=True); print(\"\\n\".join(str(s)+\" \"+n for s,n in sizes[:15])); print(\"total\",sum(s for s,n in sizes))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102248377900Z-inspect-largest-unpublished-files.log",
+  "output_sha256": "f169f5499bc857ae1345b86016e9ba68534481817dd32a3ce0b4bf86aa24c0be"
+}

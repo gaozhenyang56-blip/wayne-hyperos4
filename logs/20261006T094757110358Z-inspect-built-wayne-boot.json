@@ -1,0 +1,15 @@
+{
+  "label": "inspect-built-wayne-boot",
+  "started_utc": "2026-10-06T09:47:57.110358+00:00",
+  "finished_utc": "2026-10-06T09:47:57.507608+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/unpack_boot.py",
+    "artifacts/experimental/boot.img",
+    "research/wayne-os4-boot"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T094757110358Z-inspect-built-wayne-boot.log",
+  "output_sha256": "22cbede89deffc4f1b4d00e590aa6b529d124ac6684b4bdf1d0de3bc66bb58be"
+}

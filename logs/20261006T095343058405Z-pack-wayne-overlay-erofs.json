@@ -1,0 +1,17 @@
+{
+  "label": "pack-wayne-overlay-erofs",
+  "started_utc": "2026-10-06T09:53:43.058405+00:00",
+  "finished_utc": "2026-10-06T09:53:43.063697+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/mkfs.erofs",
+    "--tar=f",
+    "-zlz4hc",
+    "-T1230768000",
+    "artifacts/experimental/overlay.img",
+    "artifacts/experimental/overlay.tar"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095343058405Z-pack-wayne-overlay-erofs.log",
+  "output_sha256": "67f6f72300e1e8a2f5f2c6155335a6b2defc4c869b38bb842cd88ecbf58cd7a6"
+}

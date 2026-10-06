@@ -1,0 +1,17 @@
+{
+  "label": "clear-project-markdown-except-readme",
+  "started_utc": "2026-10-06T10:30:32.186777+00:00",
+  "finished_utc": "2026-10-06T10:30:32.221059+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,json,subprocess; root=pathlib.Path(\".\"); names=set(subprocess.check_output([\"git\",\"ls-files\"],text=True).splitlines()+subprocess.check_output([\"git\",\"ls-files\",\"--others\",\"--exclude-standard\"],text=True).splitlines()); cleared=[];\nfor name in sorted(names):\n p=root/name\n if p.suffix.lower()==\".md\" and p.name.lower()!=\"readme.md\" and p.is_file():p.write_text(\"\");cleared.append(name)\nrequirements={\"markdown_progress\":{\"language\":\"Chinese\",\"fields\":[\"做了什么\",\"发生了什么\",\"下一步\"],\"timestamps\":True,\"upload_after_each_edit\":True,\"raw_commands_and_output\":\"logs only\"},\"final_rom\":\"Publish to gaozhenyang56-blip/wayne-hyperos4 Releases with hashes and honest no-device-test status\"}; pathlib.Path(\"config/project-requirements.json\").write_text(json.dumps(requirements,ensure_ascii=False,indent=2)+\"\\n\"); pathlib.Path(\"/tmp/wayne-cleared-md.json\").write_text(json.dumps(cleared)); print(json.dumps({\"cleared\":cleared,\"readme_preserved\":True},ensure_ascii=False))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103032186777Z-clear-project-markdown-except-readme.log",
+  "output_sha256": "652f89dc6f9da87a7af5c3a8b4a14da6ac3362bf2a1602fce7a2dbbd60e9bcaa",
+  "action": "按最新要求清空项目中 README 以外的旧 Markdown 内容，保留 README。",
+  "outcome": "旧 MD 内容已清空；README 保持原样。旧内容仍可从 Git 历史查看，记录要求另外保存在项目配置中。",
+  "next_step": "立即同步清空结果；从本条开始，用中文记录后续适配、测试和最终刷机包上传进展。"
+}

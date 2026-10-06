@@ -1,0 +1,617 @@
+{
+  "method": "filename and ELF class inventory, first provider selected",
+  "limitations": [
+    "Android linker namespaces not evaluated",
+    "APEX internal libraries not extracted",
+    "Symbol versions not evaluated",
+    "Transitive undefined symbols not exhaustively checked",
+    "Vendor provider preference may differ from runtime"
+  ],
+  "results": [
+    {
+      "target": "lib/hw/camera.sdm660.so",
+      "elf_class": 1,
+      "missing_dependency_files": [],
+      "unresolved_target_symbols_under_inventory": [],
+      "ambiguous_providers": {
+        "libhardware.so": [
+          "research/base-miku-a15/vendor/lib/libhardware.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhardware.so"
+        ],
+        "libutils.so": [
+          "research/base-miku-a15/vendor/lib/libutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libutils.so"
+        ],
+        "libcutils.so": [
+          "research/base-miku-a15/vendor/lib/libcutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcutils.so"
+        ],
+        "libui.so": [
+          "research/base-miku-a15/vendor/lib/libui.so",
+          "research/candidates/mi8937-os4/system/system/lib/libui.so"
+        ],
+        "libcamera_metadata.so": [
+          "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcamera_metadata.so"
+        ],
+        "libbinder.so": [
+          "research/base-miku-a15/vendor/lib/libbinder.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbinder.so"
+        ],
+        "libion.so": [
+          "research/base-miku-a15/vendor/lib/libion.so",
+          "research/candidates/mi8937-os4/system/system/lib/libion.so"
+        ],
+        "libhidltransport.so": [
+          "research/base-miku-a15/vendor/lib/libhidltransport.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhidltransport.so"
+        ],
+        "libhidlbase.so": [
+          "research/base-miku-a15/vendor/lib/libhidlbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhidlbase.so"
+        ],
+        "libc++.so": [
+          "research/base-miku-a15/vendor/lib/libc++.so",
+          "research/candidates/mi8937-os4/system/system/lib/libc++.so"
+        ],
+        "libbase.so": [
+          "research/base-miku-a15/vendor/lib/libbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbase.so"
+        ],
+        "libgralloctypes.so": [
+          "research/base-miku-a15/vendor/lib/libgralloctypes.so",
+          "research/candidates/mi8937-os4/system/system/lib/libgralloctypes.so"
+        ],
+        "android.hardware.graphics.mapper@4.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@4.0.so"
+        ],
+        "android.hardware.graphics.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.0.so"
+        ],
+        "android.hardware.graphics.common@1.1.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.1.so"
+        ],
+        "android.hardware.graphics.common@1.2.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.2.so"
+        ],
+        "android.hardware.common-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.common-V2-ndk.so"
+        ],
+        "android.hardware.graphics.allocator-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator-V2-ndk.so"
+        ],
+        "android.hardware.graphics.allocator@2.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@2.0.so"
+        ],
+        "android.hardware.graphics.allocator@3.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@3.0.so"
+        ],
+        "android.hardware.graphics.allocator@4.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@4.0.so"
+        ],
+        "android.hardware.graphics.mapper@2.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.0.so"
+        ],
+        "android.hardware.graphics.mapper@2.1.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.1.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.1.so"
+        ],
+        "android.hardware.graphics.mapper@3.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@3.0.so"
+        ]
+      },
+      "selected_dependency_closure": [
+        "research/base-miku-a15/vendor/lib/android.frameworks.displayservice@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@2.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@3.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@4.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common-V5-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.1.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+        "research/base-miku-a15/vendor/lib/hw/camera.sdm660.so",
+        "research/base-miku-a15/vendor/lib/libbase.so",
+        "research/base-miku-a15/vendor/lib/libbinder.so",
+        "research/base-miku-a15/vendor/lib/libc++.so",
+        "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+        "research/base-miku-a15/vendor/lib/libcutils.so",
+        "research/base-miku-a15/vendor/lib/libgralloc.qti.so",
+        "research/base-miku-a15/vendor/lib/libgralloctypes.so",
+        "research/base-miku-a15/vendor/lib/libhal_dbg.so",
+        "research/base-miku-a15/vendor/lib/libhardware.so",
+        "research/base-miku-a15/vendor/lib/libhidlbase.so",
+        "research/base-miku-a15/vendor/lib/libhidltransport.so",
+        "research/base-miku-a15/vendor/lib/libion.so",
+        "research/base-miku-a15/vendor/lib/libmmcamera_interface.so",
+        "research/base-miku-a15/vendor/lib/libmmjpeg_interface.so",
+        "research/base-miku-a15/vendor/lib/libqdMetaData.so",
+        "research/base-miku-a15/vendor/lib/libqomx_core.so",
+        "research/base-miku-a15/vendor/lib/libqservice.so",
+        "research/base-miku-a15/vendor/lib/libui.so",
+        "research/base-miku-a15/vendor/lib/libutils.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libc.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl_android.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libm.so",
+        "research/candidates/mi8937-os4/system/system/lib/ld-android.so",
+        "research/candidates/mi8937-os4/system/system/lib/libapexsupport.so",
+        "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+        "research/candidates/mi8937-os4/system/system/lib/liblog.so",
+        "research/candidates/mi8937-os4/system/system/lib/libsync.so",
+        "research/candidates/mi8937-os4/system/system/lib/libvndksupport.so"
+      ]
+    },
+    {
+      "target": "lib/hw/android.hardware.camera.provider@2.4-impl.so",
+      "elf_class": 1,
+      "missing_dependency_files": [],
+      "unresolved_target_symbols_under_inventory": [],
+      "ambiguous_providers": {
+        "android.hardware.camera.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.camera.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.camera.common@1.0.so"
+        ],
+        "android.hardware.camera.device@3.2.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.2.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.camera.device@3.2.so"
+        ],
+        "android.hardware.graphics.mapper@2.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.0.so"
+        ],
+        "android.hardware.graphics.mapper@3.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@3.0.so"
+        ],
+        "android.hardware.graphics.mapper@4.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@4.0.so"
+        ],
+        "android.hidl.allocator@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hidl.allocator@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hidl.allocator@1.0.so"
+        ],
+        "android.hidl.memory@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hidl.memory@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hidl.memory@1.0.so"
+        ],
+        "libcamera_metadata.so": [
+          "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcamera_metadata.so"
+        ],
+        "libcutils.so": [
+          "research/base-miku-a15/vendor/lib/libcutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcutils.so"
+        ],
+        "libhardware.so": [
+          "research/base-miku-a15/vendor/lib/libhardware.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhardware.so"
+        ],
+        "libhidlbase.so": [
+          "research/base-miku-a15/vendor/lib/libhidlbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhidlbase.so"
+        ],
+        "libtinyxml2.so": [
+          "research/base-miku-a15/vendor/lib/libtinyxml2.so",
+          "research/candidates/mi8937-os4/system/system/lib/libtinyxml2.so"
+        ],
+        "libutils.so": [
+          "research/base-miku-a15/vendor/lib/libutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libutils.so"
+        ],
+        "libc++.so": [
+          "research/base-miku-a15/vendor/lib/libc++.so",
+          "research/candidates/mi8937-os4/system/system/lib/libc++.so"
+        ],
+        "libbase.so": [
+          "research/base-miku-a15/vendor/lib/libbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbase.so"
+        ],
+        "libui.so": [
+          "research/base-miku-a15/vendor/lib/libui.so",
+          "research/candidates/mi8937-os4/system/system/lib/libui.so"
+        ],
+        "libgralloctypes.so": [
+          "research/base-miku-a15/vendor/lib/libgralloctypes.so",
+          "research/candidates/mi8937-os4/system/system/lib/libgralloctypes.so"
+        ],
+        "android.hardware.graphics.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.0.so"
+        ],
+        "android.hardware.graphics.common@1.1.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.1.so"
+        ],
+        "android.hardware.graphics.common@1.2.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.2.so"
+        ],
+        "android.hardware.common-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.common-V2-ndk.so"
+        ],
+        "libbinder.so": [
+          "research/base-miku-a15/vendor/lib/libbinder.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbinder.so"
+        ],
+        "libfmq.so": [
+          "research/base-miku-a15/vendor/lib/libfmq.so",
+          "research/candidates/mi8937-os4/system/system/lib/libfmq.so"
+        ],
+        "android.hardware.graphics.allocator-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator-V2-ndk.so"
+        ],
+        "android.hardware.graphics.allocator@2.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@2.0.so"
+        ],
+        "android.hardware.graphics.allocator@3.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@3.0.so"
+        ],
+        "android.hardware.graphics.allocator@4.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@4.0.so"
+        ],
+        "android.hardware.graphics.mapper@2.1.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.1.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.1.so"
+        ],
+        "libjpeg.so": [
+          "research/base-miku-a15/vendor/lib/libjpeg.so",
+          "research/candidates/mi8937-os4/system/system/lib/libjpeg.so"
+        ],
+        "libhidlmemory.so": [
+          "research/base-miku-a15/vendor/lib/libhidlmemory.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhidlmemory.so"
+        ],
+        "android.hidl.memory.token@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hidl.memory.token@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hidl.memory.token@1.0.so"
+        ]
+      },
+      "selected_dependency_closure": [
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.common@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.2.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.3.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.4.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.5.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.6.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.provider@2.4-external.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.provider@2.4-legacy.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.provider@2.4.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@2.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@3.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@4.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common-V5-ndk.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.1.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+        "research/base-miku-a15/vendor/lib/android.hidl.allocator@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hidl.memory.token@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hidl.memory@1.0.so",
+        "research/base-miku-a15/vendor/lib/camera.device@1.0-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.2-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.3-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.4-external-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.4-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.5-external-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.5-impl.so",
+        "research/base-miku-a15/vendor/lib/camera.device@3.6-external-impl.so",
+        "research/base-miku-a15/vendor/lib/hw/android.hardware.camera.provider@2.4-impl.so",
+        "research/base-miku-a15/vendor/lib/libbase.so",
+        "research/base-miku-a15/vendor/lib/libbinder.so",
+        "research/base-miku-a15/vendor/lib/libc++.so",
+        "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+        "research/base-miku-a15/vendor/lib/libcutils.so",
+        "research/base-miku-a15/vendor/lib/libexif.so",
+        "research/base-miku-a15/vendor/lib/libfmq.so",
+        "research/base-miku-a15/vendor/lib/libgralloctypes.so",
+        "research/base-miku-a15/vendor/lib/libhardware.so",
+        "research/base-miku-a15/vendor/lib/libhidlbase.so",
+        "research/base-miku-a15/vendor/lib/libhidlmemory.so",
+        "research/base-miku-a15/vendor/lib/libjpeg.so",
+        "research/base-miku-a15/vendor/lib/libtinyxml2.so",
+        "research/base-miku-a15/vendor/lib/libui.so",
+        "research/base-miku-a15/vendor/lib/libutils.so",
+        "research/base-miku-a15/vendor/lib/libyuv.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libc.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl_android.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libm.so",
+        "research/candidates/mi8937-os4/system/system/lib/ld-android.so",
+        "research/candidates/mi8937-os4/system/system/lib/libapexsupport.so",
+        "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+        "research/candidates/mi8937-os4/system/system/lib/liblog.so",
+        "research/candidates/mi8937-os4/system/system/lib/libsync.so",
+        "research/candidates/mi8937-os4/system/system/lib/libvndksupport.so"
+      ]
+    },
+    {
+      "target": "bin/hw/android.hardware.camera.provider@2.4-service",
+      "elf_class": 1,
+      "missing_dependency_files": [],
+      "unresolved_target_symbols_under_inventory": [],
+      "ambiguous_providers": {
+        "android.hardware.camera.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.camera.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.camera.common@1.0.so"
+        ],
+        "android.hardware.camera.device@3.2.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.2.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.camera.device@3.2.so"
+        ],
+        "android.hardware.graphics.mapper@2.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.0.so"
+        ],
+        "android.hardware.graphics.mapper@3.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@3.0.so"
+        ],
+        "android.hardware.graphics.mapper@4.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@4.0.so"
+        ],
+        "android.hidl.allocator@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hidl.allocator@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hidl.allocator@1.0.so"
+        ],
+        "android.hidl.memory@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hidl.memory@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hidl.memory@1.0.so"
+        ],
+        "libbinder.so": [
+          "research/base-miku-a15/vendor/lib/libbinder.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbinder.so"
+        ],
+        "libcamera_metadata.so": [
+          "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcamera_metadata.so"
+        ],
+        "libcutils.so": [
+          "research/base-miku-a15/vendor/lib/libcutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libcutils.so"
+        ],
+        "libhardware.so": [
+          "research/base-miku-a15/vendor/lib/libhardware.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhardware.so"
+        ],
+        "libhidlbase.so": [
+          "research/base-miku-a15/vendor/lib/libhidlbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libhidlbase.so"
+        ],
+        "libutils.so": [
+          "research/base-miku-a15/vendor/lib/libutils.so",
+          "research/candidates/mi8937-os4/system/system/lib/libutils.so"
+        ],
+        "libc++.so": [
+          "research/base-miku-a15/vendor/lib/libc++.so",
+          "research/candidates/mi8937-os4/system/system/lib/libc++.so"
+        ],
+        "libbase.so": [
+          "research/base-miku-a15/vendor/lib/libbase.so",
+          "research/candidates/mi8937-os4/system/system/lib/libbase.so"
+        ],
+        "android.hardware.graphics.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.0.so"
+        ],
+        "android.hardware.graphics.common@1.1.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.1.so"
+        ],
+        "android.hardware.graphics.common@1.2.so": [
+          "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+          "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.2.so"
+        ]
+      },
+      "selected_dependency_closure": [
+        "research/base-miku-a15/vendor/bin/hw/android.hardware.camera.provider@2.4-service",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.common@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.2.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.3.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.4.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.device@3.5.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.camera.provider@2.4.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so",
+        "research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so",
+        "research/base-miku-a15/vendor/lib/android.hidl.allocator@1.0.so",
+        "research/base-miku-a15/vendor/lib/android.hidl.memory@1.0.so",
+        "research/base-miku-a15/vendor/lib/libbase.so",
+        "research/base-miku-a15/vendor/lib/libbinder.so",
+        "research/base-miku-a15/vendor/lib/libc++.so",
+        "research/base-miku-a15/vendor/lib/libcamera_metadata.so",
+        "research/base-miku-a15/vendor/lib/libcutils.so",
+        "research/base-miku-a15/vendor/lib/libhardware.so",
+        "research/base-miku-a15/vendor/lib/libhidlbase.so",
+        "research/base-miku-a15/vendor/lib/libutils.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libc.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libdl_android.so",
+        "research/candidates/mi8937-os4/system/system/lib/bootstrap/libm.so",
+        "research/candidates/mi8937-os4/system/system/lib/ld-android.so",
+        "research/candidates/mi8937-os4/system/system/lib/libapexsupport.so",
+        "research/candidates/mi8937-os4/system/system/lib/liblog.so",
+        "research/candidates/mi8937-os4/system/system/lib/libvndksupport.so"
+      ]
+    },
+    {
+      "target": "bin/hw/android.hardware.graphics.composer@2.1-service",
+      "elf_class": 2,
+      "missing_dependency_files": [],
+      "unresolved_target_symbols_under_inventory": [],
+      "ambiguous_providers": {
+        "android.hardware.graphics.composer@2.1.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.composer@2.1.so",
+          "research/candidates/mi8937-os4/system/system_ext/lib64/android.hardware.graphics.composer@2.1.so"
+        ],
+        "libbase.so": [
+          "research/base-miku-a15/vendor/lib64/libbase.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libbase.so",
+          "research/candidates/mi8937-os4/system/product/lib64/libbase.so"
+        ],
+        "libbinder.so": [
+          "research/base-miku-a15/vendor/lib64/libbinder.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libbinder.so"
+        ],
+        "libcutils.so": [
+          "research/base-miku-a15/vendor/lib64/libcutils.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libcutils.so",
+          "research/candidates/mi8937-os4/system/product/lib64/libcutils.so"
+        ],
+        "libfmq.so": [
+          "research/base-miku-a15/vendor/lib64/libfmq.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libfmq.so"
+        ],
+        "libhardware.so": [
+          "research/base-miku-a15/vendor/lib64/libhardware.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libhardware.so"
+        ],
+        "libhidlbase.so": [
+          "research/base-miku-a15/vendor/lib64/libhidlbase.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libhidlbase.so",
+          "research/candidates/mi8937-os4/system/product/lib64/libhidlbase.so"
+        ],
+        "libutils.so": [
+          "research/base-miku-a15/vendor/lib64/libutils.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libutils.so",
+          "research/candidates/mi8937-os4/system/product/lib64/libutils.so"
+        ],
+        "libc++.so": [
+          "research/base-miku-a15/vendor/lib64/libc++.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libc++.so",
+          "research/candidates/mi8937-os4/system/product/lib64/libc++.so"
+        ],
+        "libui.so": [
+          "research/base-miku-a15/vendor/lib64/libui.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libui.so"
+        ],
+        "android.hardware.graphics.allocator-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.allocator-V2-ndk.so"
+        ],
+        "android.hardware.graphics.allocator@2.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.allocator@2.0.so"
+        ],
+        "android.hardware.graphics.allocator@3.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.allocator@3.0.so"
+        ],
+        "android.hardware.graphics.allocator@4.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.allocator@4.0.so"
+        ],
+        "android.hardware.graphics.common@1.2.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.2.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.common@1.2.so"
+        ],
+        "android.hardware.graphics.mapper@2.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@2.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.mapper@2.0.so"
+        ],
+        "android.hardware.graphics.mapper@2.1.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@2.1.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.mapper@2.1.so"
+        ],
+        "android.hardware.graphics.mapper@3.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@3.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.mapper@3.0.so"
+        ],
+        "android.hardware.graphics.mapper@4.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@4.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.mapper@4.0.so"
+        ],
+        "libgralloctypes.so": [
+          "research/base-miku-a15/vendor/lib64/libgralloctypes.so",
+          "research/candidates/mi8937-os4/system/system/lib64/libgralloctypes.so"
+        ],
+        "android.hardware.graphics.common@1.0.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.0.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.common@1.0.so"
+        ],
+        "android.hardware.graphics.common@1.1.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.1.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.graphics.common@1.1.so"
+        ],
+        "android.hardware.common-V2-ndk.so": [
+          "research/base-miku-a15/vendor/lib64/android.hardware.common-V2-ndk.so",
+          "research/candidates/mi8937-os4/system/system/lib64/android.hardware.common-V2-ndk.so"
+        ]
+      },
+      "selected_dependency_closure": [
+        "research/base-miku-a15/vendor/bin/hw/android.hardware.graphics.composer@2.1-service",
+        "research/base-miku-a15/vendor/lib64/android.hardware.common-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator-V2-ndk.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@2.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@3.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.allocator@4.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common-V5-ndk.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.1.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.common@1.2.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.composer@2.1-resources.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.composer@2.1.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@2.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@2.1.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@3.0.so",
+        "research/base-miku-a15/vendor/lib64/android.hardware.graphics.mapper@4.0.so",
+        "research/base-miku-a15/vendor/lib64/libbase.so",
+        "research/base-miku-a15/vendor/lib64/libbinder.so",
+        "research/base-miku-a15/vendor/lib64/libc++.so",
+        "research/base-miku-a15/vendor/lib64/libcutils.so",
+        "research/base-miku-a15/vendor/lib64/libfmq.so",
+        "research/base-miku-a15/vendor/lib64/libgralloctypes.so",
+        "research/base-miku-a15/vendor/lib64/libhardware.so",
+        "research/base-miku-a15/vendor/lib64/libhidlbase.so",
+        "research/base-miku-a15/vendor/lib64/libhwc2on1adapter.so",
+        "research/base-miku-a15/vendor/lib64/libhwc2onfbadapter.so",
+        "research/base-miku-a15/vendor/lib64/libui.so",
+        "research/base-miku-a15/vendor/lib64/libutils.so",
+        "research/candidates/mi8937-os4/system/system/lib64/bootstrap/libc.so",
+        "research/candidates/mi8937-os4/system/system/lib64/bootstrap/libdl.so",
+        "research/candidates/mi8937-os4/system/system/lib64/bootstrap/libdl_android.so",
+        "research/candidates/mi8937-os4/system/system/lib64/bootstrap/libm.so",
+        "research/candidates/mi8937-os4/system/system/lib64/ld-android.so",
+        "research/candidates/mi8937-os4/system/system/lib64/libapexsupport.so",
+        "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+        "research/candidates/mi8937-os4/system/system/lib64/liblog.so",
+        "research/candidates/mi8937-os4/system/system/lib64/libsync.so",
+        "research/candidates/mi8937-os4/system/system/lib64/libvndksupport.so"
+      ]
+    }
+  ],
+  "runtime_compatibility_proven": false
+}

@@ -1,0 +1,10 @@
+{
+  "archive": "downloads/mi8937-hyperos4.zip",
+  "data_member": "vendor.new.dat",
+  "transfer_member": "system.transfer.list",
+  "size": 359817216,
+  "sha256": "e0623649390f3f2de1a6401e4924c488419e14b283d3421b38dd99e1a249b678",
+  "zip_member_crc_verified": true,
+  "original_image_hash_verified": false,
+  "usage": "offline_analysis"
+}

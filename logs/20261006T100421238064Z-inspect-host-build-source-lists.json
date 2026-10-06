@@ -1,0 +1,14 @@
+{
+  "label": "inspect-host-build-source-lists",
+  "started_utc": "2026-10-06T10:04:21.238064+00:00",
+  "finished_utc": "2026-10-06T10:04:21.257996+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "sed -n \"25,120p\" sources/logging/liblog/Android.bp; rg -n \"__android_log_|android_log_\" sources/libbase/logging.cpp | head -20; sed -n \"90,120p\" sources/libbase/Android.bp"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100421238064Z-inspect-host-build-source-lists.log",
+  "output_sha256": "a3597208bba6729f68675f7f3b1fcb0f01227876b140d3c40ab9ba2b5c6d0114"
+}

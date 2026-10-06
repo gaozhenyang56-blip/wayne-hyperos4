@@ -7,10 +7,38 @@ import json
 import pathlib
 import subprocess
 import sys
+import shlex
+from zoneinfo import ZoneInfo
+
+
+def append_markdown(root, report, imported=False):
+    """Every operation gets a human-readable timestamped entry as well as JSON."""
+    start=datetime.datetime.fromisoformat(report['started_utc'])
+    end=datetime.datetime.fromisoformat(report.get('finished_utc',report['started_utc']))
+    local=start.astimezone(ZoneInfo('America/Los_Angeles'))
+    folder=root/'docs/operations';folder.mkdir(parents=True,exist_ok=True)
+    target=folder/(local.strftime('%Y-%m-%d')+'.md')
+    if not target.exists():target.write_text('# 逐次操作日志\n\n时间显示为 America/Los_Angeles，同时保留 UTC 审计时间。\n\n')
+    if 'UTC 起始：'+start.isoformat() in target.read_text():
+        return
+    with target.open('a') as stream:
+        stream.write('## '+local.isoformat()+' — '+report['label']+'\n\n')
+        if imported:stream.write('依据已有 JSON 日志追记；以下为原始执行时间。\n\n')
+        stream.write('UTC 起始：'+start.isoformat()+'；结束：'+end.isoformat()+'。\n\n')
+        stream.write('做了什么：'+report.get('action', report['label'])+'\n\n')
+        outcome=report.get('outcome') if report.get('exit_code')==0 else report.get('failure_note')
+        stream.write('发生了什么：'+(outcome or ('该项操作完成。' if report.get('exit_code')==0 else '该项操作未完成，需要先定位失败原因。'))+'\n\n')
+        stream.write('下一步：'+report.get('next_step','根据本项结果继续验证或修复；具体安排见最新进展。')+'\n\n')
+        if report.get('output'):stream.write('证据：[原始日志](../../'+report['output']+')。\n\n')
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--show-output', action='store_true')
+    parser.add_argument('--action', help='Chinese description of what was done; required for new operations')
+    parser.add_argument('--outcome', help='Observed result when the operation succeeds')
+    parser.add_argument('--failure-note', help='Observed result when the operation fails')
+    parser.add_argument('--next', dest='next_step', help='Concrete next step; required for new operations')
     parser.add_argument('label')
     parser.add_argument('command', nargs=argparse.REMAINDER)
     args = parser.parse_args()
@@ -33,6 +61,13 @@ def main():
               'output': str(output.relative_to(root)),
               'output_sha256': hashlib.sha256(output.read_bytes()).hexdigest()}
     output.with_suffix('.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    for key in ('action','outcome','failure_note','next_step'):
+        value=getattr(args,key,None)
+        if value:report[key]=value
+    output.with_suffix('.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    append_markdown(root,report)
+    if args.show_output:
+        print(output.read_text(errors='replace')[-12000:])
     print(json.dumps(report, ensure_ascii=False))
     sys.exit(result.returncode)
 

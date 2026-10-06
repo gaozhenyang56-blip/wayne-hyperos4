@@ -1,0 +1,14 @@
+{
+  "label": "inspect-policy-results-and-publish-input-sizes",
+  "started_utc": "2026-10-06T10:21:02.554099+00:00",
+  "finished_utc": "2026-10-06T10:21:02.569013+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat research/wayne-os4-policy/policy-check.json; cat research/wayne-os4-policy/runtime/policy-check.json; cat tools/check_policy.py; git diff; git ls-files --others --exclude-standard | wc -l; du -sh logs research/wayne-os4-policy; rg --files docs"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102102554099Z-inspect-policy-results-and-publish-input-sizes.log",
+  "output_sha256": "e95f663f2c18db43c36f6bb64ed3810836ecc528ce13940034d3a00d4543f7c1"
+}

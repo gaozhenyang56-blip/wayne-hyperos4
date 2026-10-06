@@ -1,0 +1,133 @@
+dsp -> /vendor/dsp
+mnt 
+bootstrap-apex 
+oem 
+etc -> /system/etc
+cache 
+opconfig 
+bin -> /system/bin
+init -> /system/bin/init
+odm 
+data 
+bugreports -> /data/user_de/0/com.android.shell/files/bugreports
+lost+found 
+system 
+storage 
+linkerconfig 
+apex 
+vendor_dlkm 
+odm_dlkm 
+d -> /sys/kernel/debug
+metadata 
+data_mirror 
+config 
+mi_ext 
+dev 
+tmp 
+mi_product 
+system_ext 
+firmware -> /vendor/firmware_mnt
+product 
+opcust 
+adb_keys -> /product/etc/security/adb_keys
+sys 
+debug_ramdisk 
+second_stage_resources 
+proc 
+persist -> /mnt/vendor/persist
+postinstall 
+init.environ.rc 
+cust 
+sdcard -> /storage/self/primary
+system_dlkm 
+vendor 
+{
+  "system/build.prop": {
+    "ro.product.system.brand": "Android",
+    "ro.product.system.device": "generic",
+    "ro.product.system.manufacturer": "Xiaomi",
+    "ro.product.system.model": "Generic System",
+    "ro.product.system.name": "generic_system",
+    "ro.system.build.date": "Sun Aug  9 19:51:17 CST 2026",
+    "ro.system.build.date.utc": "1786276277",
+    "ro.system.build.fingerprint": "Android/generic_system/generic:17/CP2A.260605.016/17OS4.0.260809.194304611.QCPECN.S:user/release-keys",
+    "ro.system.build.id": "CP2A.260605.016",
+    "ro.system.build.uuid": "D_WTbmFE1VxQ83Uqy-GvESVH3RW8h6dSW5iiPwR8HsE",
+    "ro.system.build.tags": "release-keys",
+    "ro.system.build.type": "user",
+    "ro.system.build.version.incremental": "17OS4.0.260809.194304611.QCPECN.S",
+    "ro.system.build.version.release": "17",
+    "ro.system.build.version.release_or_codename": "17",
+    "ro.system.build.version.sdk": "37",
+    "ro.system.build.version.sdk_full": "37.0",
+    "ro.build.id": "CP2A.260605.016",
+    "ro.build.uuid": "D_WTbmFE1VxQ83Uqy-GvESVH3RW8h6dSW5iiPwR8HsE",
+    "ro.build.display.id": "CP2A.260605.016",
+    "ro.build.version.incremental": "17OS4.0.260809.194304611.QCPECN.S",
+    "ro.build.version.sdk": "37",
+    "ro.build.version.sdk_full": "37.0",
+    "ro.build.version.preview_sdk": "0",
+    "ro.build.version.preview_sdk_fingerprint": "REL",
+    "ro.build.version.codename": "REL",
+    "ro.build.version.all_codenames": "REL",
+    "ro.build.version.known_codenames": "Base,Base11,Cupcake,Donut,Eclair,Eclair01,EclairMr1,Froyo,Gingerbread,GingerbreadMr1,Honeycomb,HoneycombMr1,HoneycombMr2,IceCreamSandwich,IceCreamSandwichMr1,JellyBean,JellyBeanMr1,JellyBeanMr2,Kitkat,KitkatWatch,Lollipop,LollipopMr1,M,N,NMr1,O,OMr1,P,Q,R,S,Sv2,Tiramisu,UpsideDownCake,VanillaIceCream,Baklava,CANARY,CinnamonBun",
+    "ro.build.version.release": "17",
+    "ro.build.version.release_or_codename": "17",
+    "ro.build.version.release_or_preview_display": "17",
+    "ro.build.version.security_patch": "2026-08-01",
+    "ro.build.version.min_supported_target_sdk": "28",
+    "ro.build.date": "Sun Aug  9 19:51:17 CST 2026",
+    "ro.build.date.utc": "1786276277",
+    "ro.build.type": "user",
+    "ro.build.user": "builder",
+    "ro.build.host": "pangu-build-component-system-1243491-jpdr7-35whp-gh121",
+    "ro.build.tags": "release-keys",
+    "ro.build.flavor": "generic_system-user",
+    "ro.product.cpu.abi": "arm64-v8a",
+    "ro.build.description": "generic_system-user 17 CP2A.260605.016 17OS4.0.260809.194304611.QCPECN.S release-keys",
+    "ro.build.backported_fixes.alias_bitset.long_list": "114"
+  },
+  "mi_ext/etc/build.prop": {
+    "ro.mi.os.custfeatureresolve": "true",
+    "ro.build.version.incremental": "OS4.0.0.16.XPCCNXM",
+    "ro.mi.os.version.publish": "false",
+    "ro.mi.os.version.beta": "true",
+    "ro.mi.os.version.code": "4",
+    "ro.mi.os.version.name": "OS4.0",
+    "ro.mi.os.version.incremental": "OS4.0.0.16.XPCCNXM"
+  },
+  "mi_ext/etc/private/build.prop": {},
+  "mi_product/etc/build.prop": {},
+  "system_ext/etc/build.prop": {
+    "ro.mi.os.soc.vendor": "qcom"
+  },
+  "product/etc/build.prop": {
+    "ro.build.id": "CP2A.260605.016",
+    "ro.build.uuid": "r5wvjpXqz_NoCcfQ-JhBvZ3HrElCRgc9bi_gvp9VbUk",
+    "ro.build.display.id": "CP2A.260605.016",
+    "ro.build.version.incremental": "OS4.0.0.16.XPCCNXM",
+    "ro.build.version.sdk": "37",
+    "ro.build.version.sdk_full": "37.0",
+    "ro.build.version.preview_sdk": "0",
+    "ro.build.version.preview_sdk_fingerprint": "REL",
+    "ro.build.version.codename": "REL",
+    "ro.build.version.all_codenames": "REL",
+    "ro.build.version.known_codenames": "Base,Base11,Cupcake,Donut,Eclair,Eclair01,EclairMr1,Froyo,Gingerbread,GingerbreadMr1,Honeycomb,HoneycombMr1,HoneycombMr2,IceCreamSandwich,IceCreamSandwichMr1,JellyBean,JellyBeanMr1,JellyBeanMr2,Kitkat,KitkatWatch,Lollipop,LollipopMr1,M,N,NMr1,O,OMr1,P,Q,R,S,Sv2,Tiramisu,UpsideDownCake,VanillaIceCream,Baklava,CANARY,CinnamonBun",
+    "ro.build.version.release": "17",
+    "ro.build.version.release_or_codename": "17",
+    "ro.build.version.release_or_preview_display": "17",
+    "ro.build.version.security_patch": "2026-08-01",
+    "ro.build.version.min_supported_target_sdk": "28",
+    "ro.build.date": "Sun Aug  9 19:52:12 CST 2026",
+    "ro.build.date.utc": "1786276332",
+    "ro.build.type": "user",
+    "ro.build.user": "builder",
+    "ro.build.host": "pangu-build-component-system-1243492-q4p99-3rjrp-p3s62",
+    "ro.build.tags": "release-keys",
+    "ro.build.flavor": "miproduct_pudding-user",
+    "ro.product.cpu.abi": "arm64-v8a",
+    "ro.build.description": "pudding-user 17 CP2A.260605.016 OS4.0.0.16.XPCCNXM release-keys",
+    "ro.build.characteristics": "nosdcard",
+    "ro.product.cpu.pagesize.max": "16384"
+  }
+}

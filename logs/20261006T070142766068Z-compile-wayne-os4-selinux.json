@@ -1,0 +1,16 @@
+{
+  "label": "compile-wayne-os4-selinux",
+  "started_utc": "2026-10-06T07:01:42.766068+00:00",
+  "finished_utc": "2026-10-06T07:01:43.161306+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/check_policy.py",
+    "research/candidates/mi8937-os4/system",
+    "research/base-miku-a15/vendor",
+    "research/wayne-os4-policy"
+  ],
+  "exit_code": 255,
+  "output": "logs/20261006T070142766068Z-compile-wayne-os4-selinux.log",
+  "output_sha256": "828f67663443d7e30593c6b3b2eba55e289f28f7bbbd87ef8eef9351ed92fa22"
+}

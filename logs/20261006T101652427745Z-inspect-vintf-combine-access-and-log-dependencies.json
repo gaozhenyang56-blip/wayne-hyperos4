@@ -1,0 +1,14 @@
+{
+  "label": "inspect-vintf-combine-access-and-log-dependencies",
+  "started_utc": "2026-10-06T10:16:52.427745+00:00",
+  "finished_utc": "2026-10-06T10:16:52.443109+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "sed -n \"90,160p\" sources/libvintf/include/vintf/CompatibilityMatrix.h; rg -n \"friend|combine\" sources/libvintf/include/vintf/CompatibilityMatrix.h; head -70 sources/system-core/libutils/include/utils/ThreadDefs.h; rg -n \"android_lookupEventTag|eventTag\" sources/logging/liblog/logprint.cpp; cat .gitignore; cat research/wayne-system-metadata-check.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101652427745Z-inspect-vintf-combine-access-and-log-dependencies.log",
+  "output_sha256": "0c9e91923f64d2d34b6681ae41e32613e55ce050a1c4c72117bc592be543cdc2"
+}

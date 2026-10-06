@@ -1,0 +1,14 @@
+{
+  "markdown_progress": {
+    "language": "Chinese",
+    "fields": [
+      "做了什么",
+      "发生了什么",
+      "下一步"
+    ],
+    "timestamps": true,
+    "upload_after_each_edit": true,
+    "raw_commands_and_output": "logs only"
+  },
+  "final_rom": "Publish to gaozhenyang56-blip/wayne-hyperos4 Releases with hashes and honest no-device-test status"
+}

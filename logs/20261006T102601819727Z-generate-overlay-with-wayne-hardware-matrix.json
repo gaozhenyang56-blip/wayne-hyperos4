@@ -1,0 +1,18 @@
+{
+  "label": "generate-overlay-with-wayne-hardware-matrix",
+  "started_utc": "2026-10-06T10:26:01.819727+00:00",
+  "finished_utc": "2026-10-06T10:26:01.852295+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_system_overlay.py",
+    "research/candidates/mi8937-os4/system",
+    "config/compatibility_matrix.5.xml",
+    "artifacts/experimental/overlay.tar",
+    "--device-matrix",
+    "config/compatibility_matrix.device.wayne.xml"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102601819727Z-generate-overlay-with-wayne-hardware-matrix.log",
+  "output_sha256": "86aca24a28dc6620add7bd4439fde5c00dbf51f646090787ec04c33d0396370c"
+}

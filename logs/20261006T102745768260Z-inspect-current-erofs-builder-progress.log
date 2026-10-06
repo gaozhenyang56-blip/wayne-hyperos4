@@ -1,0 +1,18 @@
+  11313       00:00 60.0 Ss   do_wait                  python3 tools/record_step.py --show-output inspect-current-erofs-builder-progress -- bash -c ps -eo pid,etime,pcpu,stat,wchan:24,args | rg "mkfs.erofs|repack_system_metadata"; tail -c 700 logs/*rebuild-system-with-verified-wayne-device-matrix.log; df -h .
+  11316       00:00  0.0 S    do_wait                  bash -c ps -eo pid,etime,pcpu,stat,wchan:24,args | rg "mkfs.erofs|repack_system_metadata"; tail -c 700 logs/*rebuild-system-with-verified-wayne-device-matrix.log; df -h .
+  11318       00:00  0.0 S    anon_pipe_read           rg mkfs.erofs|repack_system_metadata
+sing system_ext/usr/keylayout/Vendor_2717_Product_50f1.kl ...
+Processing system_ext/xbin/miuibooster ...
+Processing system_ext/xbin/system_perf_init ...
+Processing vendor_dlkm/etc ...
+Build completed.
+
+------
+Filesystem UUID: 36b70828-7600-5b69-9c83-f2d6d7f8ae01
+Filesystem total blocks: 717940 (of 4096-byte blocks)
+Filesystem total inodes: 9135
+Filesystem total metadata blocks: 1525
+Filesystem total deduplicated bytes (of source files): 0
+{"paths": 9135, "patched_files": ["product/etc/build.prop", "system/build.prop", "system/etc/vintf/compatibility_matrix.5.xml", "system/etc/vintf/compatibility_matrix.device.xml", "system_ext/etc/build.prop"], "output": "artifacts/experimental/system.img"}
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          32G   21G  9.3G  69% /

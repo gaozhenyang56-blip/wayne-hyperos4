@@ -1,0 +1,315 @@
+# 项目约束与记录要求
+
+目标：小米 6X（wayne），用户指定 Linux 4.19；没有真机测试。
+
+- 每一阶段的检索、下载、失败、修改和检查都写入 docs/worklog.md，附上证据位置。
+- 后续执行命令优先通过 tools/record_step.py 运行，保留 UTC 时间、参数、输出与退出码。
+- 用户明确要求：每一次操作写入 Markdown 并加时间戳。所有后续命令必须通过 record_step.py 自动写入 docs/operations/YYYY-MM-DD.md；时间用 America/Los_Angeles 的 ISO 8601，另附 UTC 审计时间。
+- 文件修改、工具 API、仓库同步等非命令操作，也必须在相同 MD 中逐次记入时间、动作、结果。失败照样记录。不得以 JSON 或工具对话输出替代 MD。
+- 每个有意义的修改单独提交并推送到公开仓库，不伪造过去的提交时间或不存在的操作。
+- 前期历史只能按已有证据追记，标注追记；精确原始命令缺失时不要猜测。
+- 原始镜像不进入 Git；大小、来源和哈希进入 artifacts，最终成品上传 Releases 或分卷资产。
+- 缺少真机测试必须明确写在成品状态中，静态检查不能称为启动成功。
+- 不执行供体刷机脚本，不将供体 firmware、bootloader、modem 或 vendor 当作 wayne 硬件支持。
+
+- 用户要求 MD 实时上传：每次 MD 修改后立即同步到 GitHub，成功后才继续下一步。逐次日志须按操作更新并逐次提交；不将整个阶段的 MD 修改积攒到最后。同步自身的读取和记账属于该次操作，不递归生成无限日志。
+ M .gitignore
+ M AGENTS.md
+ M research/base-miku-a15/inspection.json
+ M tools/record_step.py
+?? artifacts/experimental/
+?? config/
+?? docs/operations/
+?? logs/20261006T065740455232Z-inspect-mi8937-block-layout.json
+?? logs/20261006T065740455232Z-inspect-mi8937-block-layout.log
+?? logs/20261006T065824909854Z-reconstruct-mi8937-system.json
+?? logs/20261006T065824909854Z-reconstruct-mi8937-system.log
+?? logs/20261006T065853934806Z-extract-mi8937-system-erofs.json
+?? logs/20261006T065853934806Z-extract-mi8937-system-erofs.log
+?? logs/20261006T065925216461Z-audit-mi8937-properties.json
+?? logs/20261006T065925216461Z-audit-mi8937-properties.log
+?? logs/20261006T065939572819Z-reconstruct-mi8937-vendor-reference.json
+?? logs/20261006T065939572819Z-reconstruct-mi8937-vendor-reference.log
+?? logs/20261006T070003802784Z-extract-mi8937-vendor-reference.json
+?? logs/20261006T070003802784Z-extract-mi8937-vendor-reference.log
+?? logs/20261006T070036679407Z-inspect-runtime-compatibility.json
+?? logs/20261006T070036679407Z-inspect-runtime-compatibility.log
+?? logs/20261006T070036742463Z-fetch-secilc-package-index.json
+?? logs/20261006T070036742463Z-fetch-secilc-package-index.log
+?? logs/20261006T070044021937Z-fetch-secilc-index.json
+?? logs/20261006T070044021937Z-fetch-secilc-index.log
+?? logs/20261006T070044269436Z-inspect-erofs-pack-options.json
+?? logs/20261006T070044269436Z-inspect-erofs-pack-options.log
+?? logs/20261006T070102686996Z-fetch-secilc-tool.json
+?? logs/20261006T070102686996Z-fetch-secilc-tool.log
+?? logs/20261006T070102777215Z-unpack-secilc-tool.json
+?? logs/20261006T070102777215Z-unpack-secilc-tool.log
+?? logs/20261006T070102816192Z-secilc-version-options.json
+?? logs/20261006T070102816192Z-secilc-version-options.log
+?? logs/20261006T070102849643Z-fetch-fcm5-source.json
+?? logs/20261006T070102849643Z-fetch-fcm5-source.log
+?? logs/20261006T070142766068Z-compile-wayne-os4-selinux.json
+?? logs/20261006T070142766068Z-compile-wayne-os4-selinux.log
+?? logs/20261006T070159892921Z-fetch-modern-secilc.json
+?? logs/20261006T070159892921Z-fetch-modern-secilc.log
+?? logs/20261006T070200089302Z-fetch-modern-libsepol.json
+?? logs/20261006T070200089302Z-fetch-modern-libsepol.log
+?? logs/20261006T070200178773Z-unpack-modern-secilc.json
+?? logs/20261006T070200178773Z-unpack-modern-secilc.log
+?? logs/20261006T070200213347Z-unpack-modern-libsepol.json
+?? logs/20261006T070200213347Z-unpack-modern-libsepol.log
+?? logs/20261006T070200256984Z-compile-wayne-os4-selinux-modern.json
+?? logs/20261006T070200256984Z-compile-wayne-os4-selinux-modern.log
+?? logs/20261006T070327341733Z-audit-wayne-os4-native-hal.json
+?? logs/20261006T070327341733Z-audit-wayne-os4-native-hal.log
+?? logs/20261006T070327379336Z-compile-wayne-os4-selinux-runtime-mode.json
+?? logs/20261006T070327379336Z-compile-wayne-os4-selinux-runtime-mode.log
+?? logs/20261006T094527889227Z-audit-native-ifunc-fix.json
+?? logs/20261006T094527889227Z-audit-native-ifunc-fix.log
+?? logs/20261006T094658648056Z-fetch-wayne-base-system-entry.json
+?? logs/20261006T094658648056Z-fetch-wayne-base-system-entry.log
+?? logs/20261006T094756306404Z-build-wayne-os4-boot-candidate.json
+?? logs/20261006T094756306404Z-build-wayne-os4-boot-candidate.log
+?? logs/20261006T094757110358Z-inspect-built-wayne-boot.json
+?? logs/20261006T094757110358Z-inspect-built-wayne-boot.log
+?? logs/20261006T094818536230Z-rebuild-wayne-boot-after-cpio-check-fix.json
+?? logs/20261006T094818536230Z-rebuild-wayne-boot-after-cpio-check-fix.log
+?? logs/20261006T094857211809Z-fetch-wayne-system-transfer-list.json
+?? logs/20261006T094857211809Z-fetch-wayne-system-transfer-list.log
+?? logs/20261006T094901411120Z-reconstruct-wayne-base-system.json
+?? logs/20261006T094901411120Z-reconstruct-wayne-base-system.log
+?? logs/20261006T094935899789Z-reconstruct-wayne-system-exact-size.json
+?? logs/20261006T094935899789Z-reconstruct-wayne-system-exact-size.log
+?? logs/20261006T095002406887Z-locate-host-checkvintf.json
+?? logs/20261006T095002406887Z-locate-host-checkvintf.log
+?? logs/20261006T095008402129Z-extract-wayne-base-system.json
+?? logs/20261006T095008402129Z-extract-wayne-base-system.log
+?? logs/20261006T095130077053Z-restore-wayne-fcm5-compiled-reference.json
+?? logs/20261006T095130077053Z-restore-wayne-fcm5-compiled-reference.log
+?? logs/20261006T095130141753Z-inspect-required-framework-hals.json
+?? logs/20261006T095130141753Z-inspect-required-framework-hals.log
+?? logs/20261006T095150568266Z-fetch-current-libvintf-source.json
+?? logs/20261006T095150568266Z-fetch-current-libvintf-source.log
+?? logs/20261006T095342991579Z-prepare-wayne-system-overlay.json
+?? logs/20261006T095342991579Z-prepare-wayne-system-overlay.log
+?? logs/20261006T095343058405Z-pack-wayne-overlay-erofs.json
+?? logs/20261006T095343058405Z-pack-wayne-overlay-erofs.log
+?? logs/20261006T095343096744Z-rebuild-wayne-merged-system.json
+?? logs/20261006T095343096744Z-rebuild-wayne-merged-system.log
+?? logs/20261006T095358913772Z-fetch-new-erofs-package-index.json
+?? logs/20261006T095358913772Z-fetch-new-erofs-package-index.log
+?? logs/20261006T095623948067Z-inventory-donor-inode-metadata.json
+?? logs/20261006T095623948067Z-inventory-donor-inode-metadata.log
+?? logs/20261006T095642015643Z-validate-donor-metadata-samples.json
+?? logs/20261006T095642015643Z-validate-donor-metadata-samples.log
+?? logs/20261006T095642081995Z-repack-wayne-system-with-inode-metadata.json
+?? logs/20261006T095642081995Z-repack-wayne-system-with-inode-metadata.log
+?? logs/20261006T095657168673Z-repack-system-tar-stdin-fix.json
+?? logs/20261006T095657168673Z-repack-system-tar-stdin-fix.log
+?? logs/20261006T095739387515Z-fetch-host-android-library-index.json
+?? logs/20261006T095739387515Z-fetch-host-android-library-index.log
+?? logs/20261006T095808955260Z-verify-repacked-erofs-files.json
+?? logs/20261006T095808955260Z-verify-repacked-erofs-files.log
+?? logs/20261006T095808963473Z-inventory-repacked-inode-metadata.json
+?? logs/20261006T095808963473Z-inventory-repacked-inode-metadata.log
+?? logs/20261006T095808976022Z-fetch-host-libbase-source.json
+?? logs/20261006T095808976022Z-fetch-host-libbase-source.log
+?? logs/20261006T095809691736Z-fetch-host-tinyxml-source.json
+?? logs/20261006T095809691736Z-fetch-host-tinyxml-source.log
+?? logs/20261006T095829104812Z-compare-system-metadata-roundtrip.json
+?? logs/20261006T095829104812Z-compare-system-metadata-roundtrip.log
+?? logs/20261006T095915785762Z-validate-binary-xattr-tar-format.json
+?? logs/20261006T095915785762Z-validate-binary-xattr-tar-format.log
+?? logs/20261006T095916416514Z-repack-system-with-raw-pax-xattrs.json
+?? logs/20261006T095916416514Z-repack-system-with-raw-pax-xattrs.log
+?? logs/20261006T095947354182Z-fetch-host-fmt-source.json
+?? logs/20261006T095947354182Z-fetch-host-fmt-source.log
+?? logs/20261006T095947481912Z-fetch-host-android-log-source.json
+?? logs/20261006T095947481912Z-fetch-host-android-log-source.log
+?? logs/20261006T095947596453Z-fetch-host-utils-errors-header.json
+?? logs/20261006T095947596453Z-fetch-host-utils-errors-header.log
+?? logs/20261006T100131559597Z-backfill-existing-json-to-timestamped-markdown.json
+?? logs/20261006T100131559597Z-backfill-existing-json-to-timestamped-markdown.log
+?? logs/20261006T100218305161Z-inspect-repack-process-and-disk.json
+?? logs/20261006T100218305161Z-inspect-repack-process-and-disk.log
+?? logs/20261006T100259299854Z-record-output-display-and-dedup-change.json
+?? logs/20261006T100259299854Z-record-output-display-and-dedup-change.log
+?? logs/20261006T100333001326Z-diagnose-stalled-erofs-build.json
+?? logs/20261006T100333001326Z-diagnose-stalled-erofs-build.log
+?? logs/20261006T100344678328Z-stop-stalled-erofs-worker.json
+?? logs/20261006T100344678328Z-stop-stalled-erofs-worker.log
+?? logs/20261006T100345261132Z-discard-invalid-generated-system-and-part.json
+?? logs/20261006T100345261132Z-discard-invalid-generated-system-and-part.log
+?? logs/20261006T100345928013Z-repack-system-after-freeing-required-workspace.json
+?? logs/20261006T100345928013Z-repack-system-after-freeing-required-workspace.log
+?? logs/20261006T100359435099Z-retry-host-utils-errors-header-after-space-recovery.json
+?? logs/20261006T100359435099Z-retry-host-utils-errors-header-after-space-recovery.log
+?? logs/20261006T100359451175Z-retry-host-log-source-after-space-recovery.json
+?? logs/20261006T100359451175Z-retry-host-log-source-after-space-recovery.log
+?? logs/20261006T100359459260Z-retry-host-fmt-source-after-space-recovery.json
+?? logs/20261006T100359459260Z-retry-host-fmt-source-after-space-recovery.log
+?? logs/20261006T100420697139Z-locate-utils-status-header.json
+?? logs/20261006T100420697139Z-locate-utils-status-header.log
+?? logs/20261006T100421238064Z-inspect-host-build-source-lists.json
+?? logs/20261006T100421238064Z-inspect-host-build-source-lists.log
+?? logs/20261006T100438706973Z-fetch-host-system-core-headers.json
+?? logs/20261006T100438706973Z-fetch-host-system-core-headers.log
+?? logs/20261006T100441727233Z-checkout-required-host-core-headers.json
+?? logs/20261006T100441727233Z-checkout-required-host-core-headers.log
+?? logs/20261006T100442813737Z-locate-core-errors-header.json
+?? logs/20261006T100442813737Z-locate-core-errors-header.log
+?? logs/20261006T100511564630Z-recheck-final-system-inode-metadata.json
+?? logs/20261006T100511564630Z-recheck-final-system-inode-metadata.log
+?? logs/20261006T100512646894Z-compare-corrected-system-metadata.json
+?? logs/20261006T100512646894Z-compare-corrected-system-metadata.log
+?? logs/20261006T100642352942Z-inspect-source-parser-semantics-and-pinned-build-inputs.json
+?? logs/20261006T100642352942Z-inspect-source-parser-semantics-and-pinned-build-inputs.log
+?? logs/20261006T100654680239Z-inspect-current-vintf-compatibility-algorithm.json
+?? logs/20261006T100654680239Z-inspect-current-vintf-compatibility-algorithm.log
+?? logs/20261006T100836366400Z-record-focused-vintf-checker-source-change.json
+?? logs/20261006T100836366400Z-record-focused-vintf-checker-source-change.log
+?? logs/20261006T100836407675Z-build-aosp-vintf-focused-checker.json
+?? logs/20261006T100836407675Z-build-aosp-vintf-focused-checker.log
+?? logs/20261006T100908124677Z-record-realtime-md-sync-requirement.json
+?? logs/20261006T100908124677Z-record-realtime-md-sync-requirement.log
+?? logs/20261006T101026663082Z-inspect-focused-checker-build-failures.json
+?? logs/20261006T101026663082Z-inspect-focused-checker-build-failures.log
+?? logs/20261006T101144589742Z-fetch-hidl-metadata-headers.json
+?? logs/20261006T101144589742Z-fetch-hidl-metadata-headers.log
+?? logs/20261006T101145510056Z-locate-hidl-metadata-header.json
+?? logs/20261006T101145510056Z-locate-hidl-metadata-header.log
+?? logs/20261006T101213060027Z-fetch-hidl-generator-metadata-source.json
+?? logs/20261006T101213060027Z-fetch-hidl-generator-metadata-source.log
+?? logs/20261006T101224523078Z-locate-generated-hidl-metadata-build-header.json
+?? logs/20261006T101224523078Z-locate-generated-hidl-metadata-build-header.log
+?? logs/20261006T101255679016Z-record-host-vintf-build-portability-fixes.json
+?? logs/20261006T101255679016Z-record-host-vintf-build-portability-fixes.log
+?? logs/20261006T101608541768Z-resume-inspect-workspace.log
+?? logs/emergency-cleanup.json
+?? research/base-miku-a15/system.img.json
+?? research/base-miku-a15/system.new.dat.br.json
+?? research/base-miku-a15/system.transfer.list
+?? research/candidates/mi8937-os4/framework-required-hals.json
+?? research/candidates/mi8937-os4/inode-metadata.json
+?? research/candidates/mi8937-os4/properties.json
+?? research/candidates/mi8937-os4/runtime-layout.json
+?? research/candidates/mi8937-os4/system.img.json
+?? research/candidates/mi8937-os4/system.transfer.list
+?? research/candidates/mi8937-os4/vendor.img.json
+?? research/candidates/mi8937-os4/vendor.transfer.list
+?? research/wayne-os4-boot/
+?? research/wayne-os4-native.json
+?? research/wayne-os4-policy/
+?? research/wayne-os4-system-metadata.json
+?? research/wayne-system-metadata-check.json
+?? tools/audit_native_pair.py
+?? tools/build_system_overlay.py
+?? tools/build_vintf_checker.py
+?? tools/build_wayne_boot.py
+?? tools/check_policy.py
+?? tools/erofs_metadata.py
+?? tools/extract_zip_entry_stream.py
+?? tools/rebuild_zip_block.py
+?? tools/repack_system_metadata.py
+?? tools/vintf_pair_check.cpp
+ .gitignore                             |  2 ++
+ AGENTS.md                              |  3 +++
+ research/base-miku-a15/inspection.json | 17 +++++------------
+ tools/record_step.py                   | 26 ++++++++++++++++++++++++++
+ 4 files changed, 36 insertions(+), 12 deletions(-)
+0fba5fa docs: record successful public synchronization and history verification
+15dc175 research: publish donor evidence, tools, operation logs and complete local Git history
+dc69c7a docs: initialize wayne HyperOS 4 repository
+
+输出 SHA-256：`e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855`。
+
+## 2026-10-06T03:12:13.060027-07:00 — fetch-hidl-generator-metadata-source
+
+UTC 起始：2026-10-06T10:12:13.060027+00:00；结束：2026-10-06T10:12:13.661314+00:00。
+
+```text
+git clone --depth 1 https://android.googlesource.com/platform/system/tools/hidl sources/hidl-tools
+```
+
+退出码：`0`。
+
+输出：[logs/20261006T101213060027Z-fetch-hidl-generator-metadata-source.log](../../logs/20261006T101213060027Z-fetch-hidl-generator-metadata-source.log)。
+
+输出 SHA-256：`f677c922dbbd8c472c9324972c5928ec7e9dec0e399ae27d9a43a6154560fc15`。
+
+## 2026-10-06T03:12:24.523078-07:00 — locate-generated-hidl-metadata-build-header
+
+UTC 起始：2026-10-06T10:12:24.523078+00:00；结束：2026-10-06T10:12:24.533043+00:00。
+
+```text
+bash -c 'rg --files sources/hidl-tools | rg "metadata|Metadata" | head -15; rg -n "libhidlmetadata_headers" sources/hidl-tools/Android.bp'
+```
+
+退出码：`1`。
+
+输出：[logs/20261006T101224523078Z-locate-generated-hidl-metadata-build-header.log](../../logs/20261006T101224523078Z-locate-generated-hidl-metadata-build-header.log)。
+
+输出 SHA-256：`b271bd930db93454df8465aa61341273e7b6db89b5cc2d02e1d2a8bee4afafbe`。
+
+## 2026-10-06T03:12:55.679016-07:00 — record-host-vintf-build-portability-fixes
+
+UTC 起始：2026-10-06T10:12:55.679016+00:00；结束：2026-10-06T10:12:55.691235+00:00。
+
+```text
+python3 -c 'print("Modified tools/build_vintf_checker.py: real HIDL metadata include, GNU C++23 atomics, standard algorithm include, POSIX strerror feature flag, host-only logging availability macro; AOSP VINTF implementation unchanged.")'
+```
+
+退出码：`0`。
+
+输出：[logs/20261006T101255679016Z-record-host-vintf-build-portability-fixes.log](../../logs/20261006T101255679016Z-record-host-vintf-build-portability-fixes.log)。
+
+输出 SHA-256：`cedb083f6c2b846bfa6d6f8fc3f2a6d04ee7a94412186860a6670e6211a1363c`。
+
+#!/usr/bin/env python3
+"""Build a focused compatibility checker from pinned AOSP sources."""
+import concurrent.futures
+import pathlib
+import subprocess
+
+
+def main():
+    root=pathlib.Path(__file__).resolve().parent.parent
+    output=root/'tools/local/vintf-build';output.mkdir(parents=True,exist_ok=True)
+    vintf=['parse_string','parse_xml','CompatibilityMatrix','FQName','FqInstance','HalManifest',
+           'HalInterface','KernelConfigTypedValue','KernelInfo','ManifestHal','ManifestInstance',
+           'MatrixHal','MatrixInstance','MatrixKernel','Regex','SystemSdk','TransportArch','XmlFile','utils',
+           'KernelConfigParser','KernelConfigs']
+    base=['strings','stringprintf','logging','threads','file','errors_unix','posix_strerror_r','result']
+    log=['log_event_list','log_event_write','logger_name','logger_read','logger_write','logprint','properties','event_tag_map']
+    sources=[root/'sources/libvintf'/(x+'.cpp') for x in vintf]
+    sources += [root/'sources/libbase'/(x+'.cpp') for x in base]
+    sources += [root/'sources/logging/liblog'/(x+'.cpp') for x in log]
+    sources += [root/'sources/tinyxml2/tinyxml2.cpp',root/'tools/vintf_pair_check.cpp']
+    includes=['sources/libvintf/include','sources/libvintf/include/vintf','sources/libvintf',
+              'sources/libbase/include','sources/logging/liblog/include','sources/logging/liblog',
+              'sources/system-core/libutils/binder/include','sources/system-core/libcutils/include',
+              'sources/system-core/libutils/include','sources/hidl-tools/metadata/include',
+              'sources/tinyxml2','sources/fmt/include']
+    # Availability gates concern Android's log API; all compiled host log functions exist.
+    flags=['-std=gnu++23','-O1','-ffunction-sections','-fdata-sections','-DFMT_HEADER_ONLY',
+           '-D_GNU_SOURCE','-D__builtin_available(...)=true']
+    flags += ['-I'+str(root/p) for p in includes]
+    def compile_one(pair):
+        index,source=pair;obj=output/(str(index)+'.o')
+        extra=['-D_POSIX_C_SOURCE=200809L'] if source.name=='posix_strerror_r.cpp' else ['-include','algorithm']
+        result=subprocess.run(['g++',*flags,*extra,'-c',str(source),'-o',str(obj)],capture_output=True,text=True)
+        (output/(str(index)+'.log')).write_text(result.stdout+result.stderr)
+        if result.returncode: print(str(source)+'\n'+result.stderr[-5000:],flush=True)
+        return result.returncode,obj
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+        results=list(pool.map(compile_one,enumerate(sources)))
+    if any(code for code,_ in results):raise SystemExit(1)
+    command=['g++','-Wl,--gc-sections',*[str(obj) for _,obj in results],'-pthread','-lz',
+             '-o',str(root/'tools/local/vintf_pair_check')]
+    subprocess.run(command,check=True)
+    print('Built tools/local/vintf_pair_check')
+
+
+if __name__=='__main__':main()
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          32G   21G  9.3G  69% /

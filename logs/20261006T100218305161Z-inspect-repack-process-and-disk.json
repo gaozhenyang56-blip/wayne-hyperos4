@@ -1,0 +1,14 @@
+{
+  "label": "inspect-repack-process-and-disk",
+  "started_utc": "2026-10-06T10:02:18.305161+00:00",
+  "finished_utc": "2026-10-06T10:02:18.319123+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "df -h .; du -h artifacts/experimental/system.img*; tail -5 logs/*repack-system-with-raw-pax-xattrs.log; ps -eo pid,etime,stat,comm | rg \"mkfs.erofs|python3\" | tail -10; git status --short | tail -12"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100218305161Z-inspect-repack-process-and-disk.log",
+  "output_sha256": "fb6858b716459dac20e95455d4030a8522adbf6f3a0e12481c3b4a9e4dca8d68"
+}

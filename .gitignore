@@ -12,9 +12,13 @@ __pycache__/
 *.zip
 *.part
 *.bundle
+*.tar
+research/**/file_contexts.generated
 research/**/system/
 research/**/system_ext/
 research/**/vendor/
 research/**/ramdisk/
 research/**/*.html
 research/**/*.js
+research/**/inode-metadata.json
+research/wayne-os4-system-metadata.json

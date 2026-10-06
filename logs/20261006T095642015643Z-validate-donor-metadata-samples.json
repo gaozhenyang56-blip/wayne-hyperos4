@@ -1,0 +1,14 @@
+{
+  "label": "validate-donor-metadata-samples",
+  "started_utc": "2026-10-06T09:56:42.015643+00:00",
+  "finished_utc": "2026-10-06T09:56:42.047988+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,base64; d=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\"))[\"paths\"]; assert d[\"system/bin\"][\"uid\"]==0 and d[\"system/bin\"][\"gid\"]==2000 and d[\"system/bin\"][\"mode\"]&4095==489; assert d[\"system/build.prop\"][\"mode\"]&4095==384; caps=[(p,x[\"xattrs_base64\"][\"security.capability\"]) for p,x in d.items() if \"security.capability\" in x[\"xattrs_base64\"]]; print(\"paths\",len(d),\"capabilities\",caps)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095642015643Z-validate-donor-metadata-samples.log",
+  "output_sha256": "54064dfe5dae8f7a246055ada19548241b4cbbfef948a3be72439289f7ff8551"
+}

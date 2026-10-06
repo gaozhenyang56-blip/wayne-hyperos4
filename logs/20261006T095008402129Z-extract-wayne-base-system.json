@@ -1,0 +1,17 @@
+{
+  "label": "extract-wayne-base-system",
+  "started_utc": "2026-10-06T09:50:08.402129+00:00",
+  "finished_utc": "2026-10-06T09:50:08.990063+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/fsck.erofs",
+    "--extract=research/base-miku-a15/system",
+    "--no-preserve-owner",
+    "--preserve-perms",
+    "--xattrs",
+    "research/base-miku-a15/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095008402129Z-extract-wayne-base-system.log",
+  "output_sha256": "e3fbc8f41d67aa26b8852598c30a2d8f5ed249556875a92add0f34d591708701"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "repack-system-tar-stdin-fix",
+  "started_utc": "2026-10-06T09:56:57.168673+00:00",
+  "finished_utc": "2026-10-06T09:57:49.094400+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/repack_system_metadata.py",
+    "research/candidates/mi8937-os4/system",
+    "research/candidates/mi8937-os4/inode-metadata.json",
+    "artifacts/experimental/overlay.tar",
+    "artifacts/experimental/system.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095657168673Z-repack-system-tar-stdin-fix.log",
+  "output_sha256": "abc989a899341a292ed5b056f76c9b1ed04452a877c4a30d00e516196887adda"
+}

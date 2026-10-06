@@ -1,0 +1,14 @@
+{
+  "label": "record-complete-hal-declaration-check-after-negative-control",
+  "started_utc": "2026-10-06T10:24:26.415483+00:00",
+  "finished_utc": "2026-10-06T10:24:26.427200+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Corrected VINTF checker after meaningful negative control: current AOSP checkCompatibility does not match HAL versions; now also call unmodified checkUnusedHals through existing test friend. No generated HIDL inheritance metadata available, so unmatched results require review. Earlier pass alone was insufficient.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102426415483Z-record-complete-hal-declaration-check-after-negative-control.log",
+  "output_sha256": "66786dc08be7563265cad1b5eb4ee93fc74552e9aadb66d4d51de25bfd95a557"
+}

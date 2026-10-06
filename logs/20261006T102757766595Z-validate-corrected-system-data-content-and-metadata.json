@@ -1,0 +1,14 @@
+{
+  "label": "validate-corrected-system-data-content-and-metadata",
+  "started_utc": "2026-10-06T10:27:57.766595+00:00",
+  "finished_utc": "2026-10-06T10:28:08.445210+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,json,pathlib; subprocess.run([\"tools/local/usr/bin/fsck.erofs\",\"--extract=downloads/verified-wayne-system\",\"--no-preserve-owner\",\"artifacts/experimental/system.img\"],check=True); subprocess.run([\"python3\",\"tools/verify_system_contents.py\",\"research/candidates/mi8937-os4/system\",\"downloads/verified-wayne-system\",\"research/candidates/mi8937-os4/inode-metadata.json\",\"artifacts/experimental/overlay.tar\",\"research/wayne-system-content-check.json\"],check=True); import sys; sys.path.insert(0,\"tools\"); from erofs_metadata import inventory; new=inventory(pathlib.Path(\"artifacts/experimental/system.img\"),\"tools/local/usr/bin/dump.erofs\"); pathlib.Path(\"research/wayne-os4-system-metadata.json\").write_text(json.dumps(new,indent=2)+\"\\n\"); old=json.load(open(\"research/candidates/mi8937-os4/inode-metadata.json\")); differences=[p for p,r in old[\"paths\"].items() if any(r[k]!=new[\"paths\"].get(p,{}).get(k) for k in [\"uid\",\"gid\",\"mode\",\"xattrs_base64\"])]; report={\"original_paths\":len(old[\"paths\"]),\"rebuilt_paths\":len(new[\"paths\"]),\"differences\":differences,\"new_paths\":sorted(set(new[\"paths\"])-set(old[\"paths\"])),\"success\":not differences}; pathlib.Path(\"research/wayne-system-metadata-check.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps(report,indent=2)); assert report[\"success\"]"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102757766595Z-validate-corrected-system-data-content-and-metadata.log",
+  "output_sha256": "27d7849666024085aa857f8cc08f3c2cb782970f9c18346e15e3258ce716b50f"
+}

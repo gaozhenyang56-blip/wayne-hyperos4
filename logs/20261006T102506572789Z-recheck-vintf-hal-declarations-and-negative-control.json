@@ -1,0 +1,14 @@
+{
+  "label": "recheck-vintf-hal-declarations-and-negative-control",
+  "started_utc": "2026-10-06T10:25:06.572789+00:00",
+  "finished_utc": "2026-10-06T10:25:06.639416+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,subprocess,json; b=pathlib.Path(\"research/base-miku-a15/vendor/etc/vintf\"); d=pathlib.Path(\"research/candidates/mi8937-os4/system/system/etc/vintf\"); args=[\"tools/local/vintf_pair_check\",str(b/\"manifest.xml\")]+[str(p) for p in sorted((b/\"manifest\").glob(\"*.xml\"))]+[\"config/compatibility_matrix.5.xml\"]+[str(p) for p in sorted(d.glob(\"compatibility_matrix*.xml\"))]; r=subprocess.run(args,capture_output=True,text=True); bad=pathlib.Path(\"/tmp/wayne-invalid-manifest.xml\"); args[1]=str(bad); n=subprocess.run(args,capture_output=True,text=True); report={\"aosp_commit\":\"9a095008eaf2b4ac7cb6e9d2da6aeca596f04062\",\"manifest_fragments\":len(list((b/\"manifest\").glob(\"*.xml\"))),\"manifest_matrix_metadata_exit_code\":0,\"hal_declaration_check\":{\"exit_code\":r.returncode,\"output\":r.stdout+r.stderr},\"negative_control\":{\"mutation\":\"composer 2.1 to 99.0\",\"exit_code\":n.returncode,\"output\":n.stdout+n.stderr},\"hidl_inheritance_metadata_provided\":False,\"not_covered\":[\"runtime kernel\",\"APEX manifests\",\"linker namespaces\",\"HAL runtime functionality\"]}; pathlib.Path(\"research/wayne-vintf-check.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps(report,indent=2)); assert n.returncode==1,\"Negative control should be rejected\""
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102506572789Z-recheck-vintf-hal-declarations-and-negative-control.log",
+  "output_sha256": "45237319f73543db798bcacd71b922d8f88b89db11a8ed6995c00b7671c5b35e"
+}

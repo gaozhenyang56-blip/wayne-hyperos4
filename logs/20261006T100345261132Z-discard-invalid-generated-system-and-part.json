@@ -1,0 +1,14 @@
+{
+  "label": "discard-invalid-generated-system-and-part",
+  "started_utc": "2026-10-06T10:03:45.261132+00:00",
+  "finished_utc": "2026-10-06T10:03:45.392317+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,shutil; files=[\"artifacts/experimental/system.img\",\"artifacts/experimental/system.img.part\"];\nfor f in files:\n p=pathlib.Path(f)\n if p.exists():p.unlink();print(\"Removed failed derived image\",f)\nprint(\"free_bytes\",shutil.disk_usage(\".\").free)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T100345261132Z-discard-invalid-generated-system-and-part.log",
+  "output_sha256": "04976c938d3e23966cfa2ef810ae647a080c8ca8ee8513f574e1e6ed50fd8cf2"
+}

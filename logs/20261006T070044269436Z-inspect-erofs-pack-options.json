@@ -1,0 +1,13 @@
+{
+  "label": "inspect-erofs-pack-options",
+  "started_utc": "2026-10-06T07:00:44.269436+00:00",
+  "finished_utc": "2026-10-06T07:00:44.271941+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/mkfs.erofs",
+    "--help"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T070044269436Z-inspect-erofs-pack-options.log",
+  "output_sha256": "f019cb39c696c6a58fa16898355a75631391b8aad4d8d0dabbf82a7ca0a429f5"
+}

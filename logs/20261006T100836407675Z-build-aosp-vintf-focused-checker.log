@@ -1,0 +1,247 @@
+/workspace/wayne-hyperos4/sources/libvintf/parse_xml.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_xml.h:21,
+                 from /workspace/wayne-hyperos4/sources/libvintf/parse_xml.cpp:22:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/CompatibilityMatrix.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/CompatibilityMatrix.cpp:25:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/parse_string.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/parse_string.cpp:19:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/HalManifest.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/HalManifest.cpp:20:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/KernelConfigTypedValue.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/KernelConfigTypedValue.cpp:19:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/KernelInfo.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/KernelInfo.cpp:18:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/ManifestHal.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/ManifestHal.cpp:23:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/MatrixHal.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_xml.h:21,
+                 from /workspace/wayne-hyperos4/sources/libvintf/utils.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/MatrixHal.cpp:23:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/ManifestInstance.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/ManifestInstance.cpp:28:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/FQName.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/FQName.cpp:19:
+/workspace/wayne-hyperos4/sources/libbase/include/android-base/logging.h:500:81: warning: ‘diagnose_if’ attribute directive ignored [-Wattributes]
+  500 | std::ostream& operator<<(std::ostream& stream, const std::string* string_pointer) {
+      |                                                                                 ^
+In file included from /workspace/wayne-hyperos4/sources/libvintf/constants-private.h:17,
+                 from /workspace/wayne-hyperos4/sources/libvintf/FQName.cpp:22:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h: In function ‘bool android::vintf::IsValid(Level)’:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h:79:21: error: no matching function for call to ‘find(std::array<android::vintf::Level, 13>::const_iterator, std::array<android::vintf::Level, 13>::const_iterator, android::vintf::Level&)’
+   79 |     return std::find(kValidLevels.begin(), kValidLevels.end(), level) != kValidLevels.end();
+      |            ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/14/bits/locale_facets.h:48,
+                 from /usr/include/c++/14/bits/basic_ios.h:37,
+                 from /usr/include/c++/14/ios:46,
+                 from /usr/include/c++/14/ostream:40,
+                 from /usr/include/c++/14/bits/unique_ptr.h:43,
+                 from /usr/include/c++/14/memory:78,
+                 from /workspace/wayne-hyperos4/sources/libbase/include/android-base/logging.h:66:
+/usr/include/c++/14/bits/streambuf_iterator.h:435:5: note: candidate: ‘template<class _CharT2> typename __gnu_cxx::__enable_if<std::__is_char<_CharT2>::__value, std::istreambuf_iterator<_CharT> >::__type std::find(istreambuf_iterator<_CharT>, istreambuf_iterator<_CharT>, const _CharT2&)’
+  435 |     find(istreambuf_iterator<_CharT> __first,
+      |     ^~~~
+/usr/include/c++/14/bits/streambuf_iterator.h:435:5: note:   template argument deduction/substitution failed:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h:79:21: note:   mismatched types ‘std::istreambuf_iterator<_CharT>’ and ‘const std::array<android::vintf::Level, 13>::value_type*’ {aka ‘const android::vintf::Level*’}
+   79 |     return std::find(kValidLevels.begin(), kValidLevels.end(), level) != kValidLevels.end();
+      |            ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /workspace/wayne-hyperos4/sources/libvintf/FQName.cpp:20:
+/workspace/wayne-hyperos4/sources/libbase/include/android-base/parseint.h: At global scope:
+/workspace/wayne-hyperos4/sources/libbase/include/android-base/parseint.h:37:28: warning: ‘always_inline’ function might not be inlinable unless also declared ‘inline’ [-Wattributes]
+   37 | LIBBASE_ALWAYS_INLINE bool ParseUint(const char* s, T* out, T max = std::numeric_limits<T>::max(),
+      |                            ^~~~~~~~~
+/workspace/wayne-hyperos4/sources/libbase/include/android-base/parseint.h:82:28: warning: ‘always_inline’ function might not be inlinable unless also declared ‘inline’ [-Wattributes]
+   82 | LIBBASE_ALWAYS_INLINE bool ParseUint(const std::string& s, T* out,
+      |                            ^~~~~~~~~
+
+/workspace/wayne-hyperos4/sources/libvintf/MatrixInstance.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/MatrixInstance.cpp:22:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/MatrixKernel.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/MatrixKernel.h:25,
+                 from /workspace/wayne-hyperos4/sources/libvintf/MatrixKernel.cpp:17:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h: In function ‘bool android::vintf::IsValid(Level)’:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/Level.h:79:17: error: ‘find’ is not a member of ‘std’; did you mean ‘std::ranges::find’?
+   79 |     return std::find(kValidLevels.begin(), kValidLevels.end(), level) != kValidLevels.end();
+      |                 ^~~~
+In file included from /usr/include/c++/14/tuple:44,
+                 from /usr/include/c++/14/bits/uses_allocator_args.h:39,
+                 from /usr/include/c++/14/bits/memory_resource.h:41,
+                 from /usr/include/c++/14/string:68,
+                 from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/MatrixKernel.h:20:
+/usr/include/c++/14/bits/ranges_util.h:518:30: note: ‘std::ranges::find’ declared here
+  518 |   inline constexpr __find_fn find{};
+      |                              ^~~~
+
+/workspace/wayne-hyperos4/sources/libvintf/TransportArch.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_string.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/TransportArch.cpp:20:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libvintf/utils.cpp
+In file included from /workspace/wayne-hyperos4/sources/libvintf/include/vintf/parse_xml.h:21,
+                 from /workspace/wayne-hyperos4/sources/libvintf/utils.h:27,
+                 from /workspace/wayne-hyperos4/sources/libvintf/utils.cpp:16:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp
+eros4/sources/libbase/logging.cpp:512:37: error: expected primary-expression before numeric constant
+  512 |     if (__builtin_available(android 30, *)) {
+      |                                     ^~
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:512:42: error: expected primary-expression before ‘)’ token
+  512 |     if (__builtin_available(android 30, *)) {
+      |                                          ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:512:9: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+  512 |     if (__builtin_available(android 30, *)) {
+      |         ^~~~~~~~~~~~~~~~~~~
+      |         __builtin_scalbln
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In static member function ‘static void android::base::LogMessage::LogLine(const char*, unsigned int, android::base::LogSeverity, const char*, const char*)’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:35: error: expected primary-expression before numeric constant
+  527 |   if (__builtin_available(android 30, *)) {
+      |                                   ^~
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:40: error: expected primary-expression before ‘)’ token
+  527 |   if (__builtin_available(android 30, *)) {
+      |                                        ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:527:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+  527 |   if (__builtin_available(android 30, *)) {
+      |       ^~~~~~~~~~~~~~~~~~~
+      |       __builtin_scalbln
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘android::base::LogSeverity android::base::GetMinimumLogSeverity()’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:35: error: expected primary-expression before numeric constant
+  546 |   if (__builtin_available(android 30, *)) {
+      |                                   ^~
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:40: error: expected primary-expression before ‘)’ token
+  546 |   if (__builtin_available(android 30, *)) {
+      |                                        ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:546:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+  546 |   if (__builtin_available(android 30, *)) {
+      |       ^~~~~~~~~~~~~~~~~~~
+      |       __builtin_scalbln
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘bool android::base::ShouldLog(LogSeverity, const char*)’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:557:35: error: expected primary-expression before numeric constant
+  557 |   if (__builtin_available(android 30, *)) {
+      |                                   ^~
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:557:40: error: expected primary-expression before ‘)’ token
+  557 |   if (__builtin_available(android 30, *)) {
+      |                                        ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:557:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+  557 |   if (__builtin_available(android 30, *)) {
+      |       ^~~~~~~~~~~~~~~~~~~
+      |       __builtin_scalbln
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘android::base::LogSeverity android::base::SetMinimumLogSeverity(LogSeverity)’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:566:35: error: expected primary-expression before numeric constant
+  566 |   if (__builtin_available(android 30, *)) {
+      |                                   ^~
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:566:40: error: expected primary-expression before ‘)’ token
+  566 |   if (__builtin_available(android 30, *)) {
+      |                                        ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:566:7: error: ‘__builtin_available’ was not declared in this scope; did you mean ‘__builtin_scalbln’?
+  566 |   if (__builtin_available(android 30, *)) {
+      |       ^~~~~~~~~~~~~~~~~~~
+      |       __builtin_scalbln
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘android::base::LogSeverity android::base::GetMinimumLogSeverity()’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:551:1: warning: control reaches end of non-void function [-Wreturn-type]
+  551 | }
+      | ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘bool android::base::ShouldLog(LogSeverity, const char*)’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:563:1: warning: control reaches end of non-void function [-Wreturn-type]
+  563 | }
+      | ^
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp: In function ‘android::base::LogSeverity android::base::SetMinimumLogSeverity(LogSeverity)’:
+/workspace/wayne-hyperos4/sources/libbase/logging.cpp:574:1: warning: control reaches end of non-void function [-Wreturn-type]
+  574 | }
+      | ^
+
+/workspace/wayne-hyperos4/sources/libbase/posix_strerror_r.cpp
+/workspace/wayne-hyperos4/sources/libbase/posix_strerror_r.cpp: In function ‘int android::base::posix_strerror_r(int, char*, size_t)’:
+/workspace/wayne-hyperos4/sources/libbase/posix_strerror_r.cpp:29:10: error: ‘strerror_r’ was not declared in this scope; did you mean ‘strerror’?
+   29 |   return strerror_r(errnum, buf, buflen);
+      |          ^~~~~~~~~~
+      |          strerror
+
+/workspace/wayne-hyperos4/sources/logging/liblog/logger_read.cpp
+In file included from /workspace/wayne-hyperos4/sources/logging/liblog/logger_read.cpp:32:
+/workspace/wayne-hyperos4/sources/logging/liblog/logger.h:29:3: error: ‘atomic_int’ does not name a type
+   29 |   atomic_int fd;
+      |   ^~~~~~~~~~
+
+/workspace/wayne-hyperos4/sources/logging/liblog/logger_write.cpp
+In file included from /workspace/wayne-hyperos4/sources/logging/liblog/logger_write.cpp:41:
+/workspace/wayne-hyperos4/sources/logging/liblog/logger.h:29:3: error: ‘atomic_int’ does not name a type
+   29 |   atomic_int fd;
+      |   ^~~~~~~~~~
+
+/workspace/wayne-hyperos4/sources/logging/liblog/event_tag_map.cpp
+/workspace/wayne-hyperos4/sources/logging/liblog/event_tag_map.cpp:35:10: fatal error: utils/FastStrcmp.h: No such file or directory
+   35 | #include <utils/FastStrcmp.h>
+      |          ^~~~~~~~~~~~~~~~~~~~
+compilation terminated.
+
+/workspace/wayne-hyperos4/tools/vintf_pair_check.cpp
+In file included from /workspace/wayne-hyperos4/tools/vintf_pair_check.cpp:5:
+/workspace/wayne-hyperos4/sources/libvintf/include/vintf/HalManifest.h:27:10: fatal error: hidl/metadata.h: No such file or directory
+   27 | #include <hidl/metadata.h>
+      |          ^~~~~~~~~~~~~~~~~
+compilation terminated.
+

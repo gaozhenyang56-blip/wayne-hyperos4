@@ -1,0 +1,17 @@
+{
+  "label": "fetch-host-tinyxml-source",
+  "started_utc": "2026-10-06T09:58:09.691736+00:00",
+  "finished_utc": "2026-10-06T09:58:10.638620+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/leethomason/tinyxml2.git",
+    "sources/tinyxml2"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095809691736Z-fetch-host-tinyxml-source.log",
+  "output_sha256": "d94d99d87ec3d7fb60c79d2f42a56133890d4b683ec1ff6c712c244a3f017d5f"
+}

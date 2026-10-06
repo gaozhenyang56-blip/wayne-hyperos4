@@ -1,0 +1,14 @@
+{
+  "label": "inspect-project-rules-and-vintf-inputs",
+  "started_utc": "2026-10-06T10:16:35.653885+00:00",
+  "finished_utc": "2026-10-06T10:16:35.687225+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat AGENTS.md; cat tools/vintf_pair_check.cpp; cat tools/repack_system_metadata.py; cat sources.lock.json; rg --files research/base-miku-a15/vendor/etc/vintf research/candidates/mi8937-os4/system/system/etc/vintf"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T101635653885Z-inspect-project-rules-and-vintf-inputs.log",
+  "output_sha256": "64814206069f5e36f03515483d286f58c4ab73e0ff1ff8e80fb84cab9b1dcc72"
+}

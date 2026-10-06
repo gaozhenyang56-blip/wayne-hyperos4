@@ -1,0 +1,122 @@
+72:    bool add(ManifestHal&& hal, std::string* error = nullptr);
+74:    bool addAllHals(HalManifest* other, std::string* error = nullptr);
+157:    [[nodiscard]] bool addAll(HalManifest* other, std::string* error = nullptr);
+160:    // Check before add()
+<!--
+    Input:
+        device/xiaomi/wayne/configs/vintf/manifest.xml
+-->
+<manifest version="8.0" type="device" target-level="5">
+    <hal format="hidl">
+        <name>android.hardware.audio</name>
+        <transport>hwbinder</transport>
+        <fqname>@6.0::IDevicesFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.audio.effect</name>
+        <transport>hwbinder</transport>
+        <fqname>@6.0::IEffectsFactory/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.bluetooth</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IBluetoothHci/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.camera.provider</name>
+        <transport>hwbinder</transport>
+        <fqname>@2.4::ICameraProvider/legacy/0</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.gatekeeper</name>
+        <transport>hwbinder</transport>
+        <fqname>@1.0::IGatekeeper/default</fqname>
+    </hal>
+    <hal format="hidl">
+        <name>android.hardware.graphics.composer</name>
+        <transport>hwbinder</transport>
+        <fqname>@2.1::IComposer/default</fqname>
+    </hal>
+<!--
+    Input:
+        device/xiaomi/wayne/power-libperfmgr/android.hardware.power-service.wayne.xml
+-->
+<manifest version="8.0" type="device">
+    <hal format="aidl">
+        <name>android.hardware.power</name>
+        <version>5</version>
+        <fqname>IPower/default</fqname>
+    </hal>
+</manifest>
+1f8b0800000000000203ecbd0b7c14d5
+        });
+        auto& existingManifestInstances = existingHal.mManifestInstances;
+        removeIf(existingManifestInstances, [majorVer](const auto& existingManifestInstance) {
+            return existingManifestInstance.version().majorVer == majorVer;
+        });
+        return existingVersions.empty() && existingManifestInstances.empty();
+    });
+}
+
+bool HalManifest::add(ManifestHal&& halToAdd, std::string* error) {
+    if (halToAdd.isOverride()) {
+        if (halToAdd.isDisabledHal()) {
+            // Special syntax when there are no instances at all. Remove all existing HALs
+            // with the given name.
+            mHals.erase(halToAdd.name);
+        }
+        // If there are <version> tags, remove all existing major versions that causes a conflict.
+        for (const Version& versionToAdd : halToAdd.versions) {
+            removeHals(halToAdd.name, versionToAdd.majorVer);
+        }
+        // If there are <fqname> tags, remove all existing major versions that causes a conflict.
+        halToAdd.forEachInstance([this, &halToAdd](const auto& manifestInstanceToAdd) {
+            removeHals(halToAdd.name, manifestInstanceToAdd.version().majorVer);
+            return true;  // continue
+        });
+    }
+
+    if (!shouldAdd(halToAdd, error)) {
+        return false;
+    }
+
+    CHECK(addInternal(std::move(halToAdd)) != nullptr);
+    return true;
+}
+
+bool HalManifest::addAllHals(HalManifest* other, std::string* error) {
+    for (auto& pair : other->mHals) {
+        if (!add(std::move(pair.second), error)) {
+            if (error) {
+                error->insert(0, "HAL \"" + pair.first + "\" has a conflict: ");
+            }
+            return false;
+        }
+    }
+    other->mHals.clear();
+    return true;
+}
+
+bool HalManifest::shouldAddXmlFile(const ManifestXmlFile& xmlFile) const {
+    auto existingXmlFiles = getXmlFiles(xmlFile.name());
+    for (auto it = existingXmlFiles.first; it != existingXmlFiles.second; ++it) {
+        if (xmlFile.version() == it->second.version()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+std::set<std::string> HalManifest::getHalNames() const {
+    std::set<std::string> names{};
+    for (const auto &hal : mHals) {
+        names.insert(hal.first);
+    }
+    return names;
+}
+
+std::set<std::string> HalManifest::getHalNamesAndVersions() const {
+    std::set<std::string> names{};
+    forEachInstance([&names](const ManifestInstance& e) {
+        names.insert(e.nameWithVersion());
+        return true;

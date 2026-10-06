@@ -1,0 +1,12 @@
+{
+  "research/candidates/mi8937-os4/inode-metadata.json": {
+    "size": 2187648,
+    "sha256": "13c99af4dd13cbb0d0a969106a41dc1363b7ce6e5821e7b5c11d240d425553d6",
+    "reproducible_with": "tools/erofs_metadata.py"
+  },
+  "research/wayne-os4-system-metadata.json": {
+    "size": 2187873,
+    "sha256": "e765f1df354558544818132a13725964378bd0fbc642bce9231b3a076992d3bf",
+    "reproducible_with": "tools/erofs_metadata.py"
+  }
+}

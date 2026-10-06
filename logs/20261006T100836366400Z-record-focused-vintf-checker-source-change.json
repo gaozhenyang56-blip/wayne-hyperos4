@@ -1,0 +1,16 @@
+{
+  "label": "record-focused-vintf-checker-source-change",
+  "started_utc": "2026-10-06T10:08:36.366400+00:00",
+  "finished_utc": "2026-10-06T10:08:36.369261+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--no-index",
+    "/dev/null",
+    "tools/vintf_pair_check.cpp"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T100836366400Z-record-focused-vintf-checker-source-change.log",
+  "output_sha256": "e50aef909c7e564f07e9650f1d8842681d520e7fcb86944258496d0d3256c091"
+}

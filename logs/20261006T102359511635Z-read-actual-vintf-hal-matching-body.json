@@ -1,0 +1,14 @@
+{
+  "label": "read-actual-vintf-hal-matching-body",
+  "started_utc": "2026-10-06T10:23:59.511635+00:00",
+  "finished_utc": "2026-10-06T10:23:59.519796+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "sed -n \"350,432p\" sources/libvintf/HalManifest.cpp; sed -n \"453,540p\" sources/libvintf/HalManifest.cpp; rg -n \"check.*Hal|check.*compat|matchInstance\" sources/libvintf/include/vintf/HalManifest.h sources/libvintf/CompatibilityMatrix.cpp"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102359511635Z-read-actual-vintf-hal-matching-body.log",
+  "output_sha256": "863054c3c783abad6debd18547e86a04cbade924b1366a87ccdc3b3704c3d989"
+}

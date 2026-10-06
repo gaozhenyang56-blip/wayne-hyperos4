@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+AssertionError: Negative control was not rejected
+HAL manifest/framework matrix compatibility passed.
+Runtime kernel, APEX manifests and linker namespaces are not covered.
+

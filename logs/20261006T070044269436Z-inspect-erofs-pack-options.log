@@ -1,0 +1,71 @@
+Usage: tools/local/usr/bin/mkfs.erofs [OPTIONS] FILE SOURCE(s)
+Generate EROFS image (FILE) from SOURCE(s).
+
+General options:
+ -V, --version         print the version number of mkfs.erofs and exit
+ -h, --help            display this help and exit
+
+ -b#                   set block size to # (# = page size by default)
+ -d<0-9>               set output verbosity; 0=quiet, 9=verbose (default=2)
+ -x#                   set xattr tolerance to # (< 0, disable xattrs; default 2)
+ -zX[,level=Y]         X=compressor (Y=compression level, Z=dictionary size, optional)
+    [,dictsize=Z]      alternative compressors can be separated by colons(:)
+    [:...]             supported compressors and their option ranges are:
+                         lz4
+                         lz4hc
+                           [,level=<0-12>]		(default=9)
+                         lzma
+                           [,level=<0-9,100-109>]	0-9=normal, 100-109=extreme (default=6)
+                           [,dictsize=<dictsize>]	(default=<auto>, max=8388608)
+                         deflate
+                           [,level=<0-9>]		(default=1)
+                           [,dictsize=<dictsize>]	(default=32768, max=32768)
+                         libdeflate
+                           [,level=<0-12>]		(default=1)
+                         zstd
+                           [,level=<0-22>]		(default=3)
+                           [,dictsize=<dictsize>]	(default=<auto>, max=1048576)
+ -C#                   specify the size of compress physical cluster in bytes
+ -EX[,...]             X=extended options
+ -L volume-label       set the volume label (maximum 15 bytes)
+ -T#                   specify a fixed UNIX timestamp # as build time
+    --all-time         the timestamp is also applied to all files (default)
+    --mkfs-time        the timestamp is applied as build time only
+ -UX                   use a given filesystem UUID
+ --all-root            make all files owned by root
+ --blobdev=X           specify an extra device X to store chunked data
+ --chunksize=#         generate chunk-based files with #-byte chunks
+ --clean=X             run full clean build (default) or:
+ --incremental=X       run incremental build
+                       (X = data|rvsp; data=full data, rvsp=space is allocated
+                                       and filled with zeroes)
+ --compress-hints=X    specify a file to configure per-file compression strategy
+ --dsunit=#            align all data block addresses to multiples of #
+ --exclude-path=X      avoid including file X (X = exact literal path)
+ --exclude-regex=X     avoid including files that match X (X = regular expression)
+ --file-contexts=X     specify a file contexts file to setup selinux labels
+ --force-uid=#         set all file uids to # (# = UID)
+ --force-gid=#         set all file gids to # (# = GID)
+ --uid-offset=#        add offset # to all file uids (# = id offset)
+ --gid-offset=#        add offset # to all file gids (# = id offset)
+ --hard-dereference    dereference hardlinks, add links as separate inodes
+ --ignore-mtime        use build time instead of strict per-file modification time
+ --max-extent-bytes=#  set maximum decompressed extent size # in bytes
+ --mount-point=X       X=prefix of target fs path (default: /)
+ --preserve-mtime      keep per-file modification time strictly
+ --offset=#            skip # bytes at the beginning of IMAGE.
+ --root-xattr-isize=#  ensure the inline xattr size of the root directory is # bytes at least
+ --aufs                replace aufs special files with overlayfs metadata
+ --sort=<path,none>    data sorting order for tarballs as input (default: path)
+ --tar=X               generate a full or index-only image from a tarball(-ish) source
+                       (X = f|i|headerball; f=full mode, i=index mode,
+                                            headerball=file data is omited in the source stream)
+ --ovlfs-strip=<0,1>   strip overlayfs metadata in the target image (e.g. whiteouts)
+ --quiet               quiet execution (do not write anything to standard output.)
+ --ungzip[=X]          try to filter the tarball stream through gzip
+                       (and optionally dump the raw stream to X together)
+ --unxz[=X]            try to filter the tarball stream through xz/lzma/lzip
+                       (and optionally dump the raw stream to X together)
+ --workers=#           set the number of worker threads to # (default: 3)
+ --xattr-prefix=X      X=extra xattr name prefix
+ --zfeature-bits=#     toggle filesystem compression features according to given bits #

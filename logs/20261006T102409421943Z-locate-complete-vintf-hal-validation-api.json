@@ -1,0 +1,14 @@
+{
+  "label": "locate-complete-vintf-hal-validation-api",
+  "started_utc": "2026-10-06T10:24:09.421943+00:00",
+  "finished_utc": "2026-10-06T10:24:09.430089+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "sed -n \"60,106p\" sources/libvintf/include/vintf/HalManifest.h; sed -n \"140,207p\" sources/libvintf/include/vintf/HalManifest.h; sed -n \"288,350p\" sources/libvintf/HalManifest.cpp; cat sources/libvintf/include/vintf/CheckFlags.h; rg -n \"checkUnusedHals|checkIncompatibleHals\" sources/libvintf/VintfObject.cpp"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T102409421943Z-locate-complete-vintf-hal-validation-api.log",
+  "output_sha256": "ae7038b6e84ee5b74195ddb378936498e929d7e6aa1fb863f1f063e8de15479f"
+}

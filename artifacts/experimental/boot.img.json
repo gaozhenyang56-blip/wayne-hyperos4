@@ -1,0 +1,26 @@
+{
+  "output": "artifacts/experimental/boot.img",
+  "size": 18755584,
+  "sha256": "4802fbbde81560a234ecca1766e0e27ad4770c5bc1af1927cb6519d9038c24f8",
+  "base": "research/base-miku-a15/boot.img",
+  "base_sha256": "c428340018fedf8f92ffc38802bf79d41e058102781723b8eaaac70294017e75",
+  "kernel_and_appended_dtb_sha256": "9aae8717994722a6b71bb2e3b481714ebc1a70e9663dd3b871fad82cfcd826f9",
+  "kernel_dtb_cmdline_preserved": true,
+  "cpio_metadata_roundtrip_verified": true,
+  "ramdisk_changes": {
+    "fstab.qcom": {
+      "before": "996b26bcf040a7bad1dba483b7c211a674866f84ce85a9e89563d5c0f1dbfa93",
+      "after": "c0c640fd5dbcfeced4193ecc3c10d2b736db2387712f7e7b3bca70b4f34a1f7c"
+    },
+    "init": {
+      "before": "f2485380a2dbb1d2101271f4bc31bd1247be3d1514dd968384215d5cfd8753a6",
+      "after": "b2cbef515c938aa130f7a69689b6279f71edff07e22c172bc5355e17b0042c59"
+    },
+    "system/etc/ramdisk/build.prop": {
+      "before": "a9c555109a919dc1f6e0504d4a2a32768d6b4d61c5cbf205138cc3ba862e8841",
+      "after": "0246436847fe41500579755efee2eac5b23eef941afd5865ca01dc901e371fc9"
+    }
+  },
+  "layout": "wayne retrofit dynamic; merged system; separate wayne vendor",
+  "status": "UNTESTED_BOOT_CANDIDATE_NOT_A_COMPLETE_ROM"
+}

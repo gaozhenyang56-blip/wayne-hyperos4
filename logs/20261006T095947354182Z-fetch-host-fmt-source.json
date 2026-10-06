@@ -1,0 +1,17 @@
+{
+  "label": "fetch-host-fmt-source",
+  "started_utc": "2026-10-06T09:59:47.354182+00:00",
+  "finished_utc": "2026-10-06T09:59:47.361627+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "clone",
+    "--depth",
+    "1",
+    "https://github.com/fmtlib/fmt.git",
+    "sources/fmt"
+  ],
+  "exit_code": 128,
+  "output": "logs/20261006T095947354182Z-fetch-host-fmt-source.log",
+  "output_sha256": "0402d0d38936851944dd72eabeb23e3e240a98a6978fa0f15c16777bb371607b"
+}

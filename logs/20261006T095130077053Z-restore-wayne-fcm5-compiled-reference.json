@@ -1,0 +1,14 @@
+{
+  "label": "restore-wayne-fcm5-compiled-reference",
+  "started_utc": "2026-10-06T09:51:30.077053+00:00",
+  "finished_utc": "2026-10-06T09:51:30.106689+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,hashlib,json,xml.etree.ElementTree as E; p=pathlib.Path(\"research/base-miku-a15/system/system/etc/vintf/compatibility_matrix.5.xml\");out=pathlib.Path(\"config/compatibility_matrix.5.xml\");out.write_bytes(p.read_bytes());d={\"source\":str(p),\"sha256\":hashlib.sha256(p.read_bytes()).hexdigest(),\"kernel_requirements\":[x.attrib for x in E.parse(p).getroot().findall(\"kernel\")]};pathlib.Path(\"config/fcm5-source.json\").write_text(json.dumps(d,indent=2));print(json.dumps(d))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T095130077053Z-restore-wayne-fcm5-compiled-reference.log",
+  "output_sha256": "c3ec69660efb2045c5cf288fe47f962c0312c91fbcb1c9c0748abfc28c5dad39"
+}
