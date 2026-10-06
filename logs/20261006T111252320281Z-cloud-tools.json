@@ -1,0 +1,19 @@
+{
+  "label": "cloud-tools",
+  "started_utc": "2026-10-06T11:12:52.320281+00:00",
+  "finished_utc": "2026-10-06T11:13:07.825482+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.16/x64/bin/python",
+    "tools/ci_build_candidate.py",
+    "--stage",
+    "tools"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111252320281Z-cloud-tools.log",
+  "output_sha256": "1e584fe0200daf7415684a63c608d2a949065640c5619725aa3fff00391664d3",
+  "action": "编译固定版本的镜像工具。",
+  "outcome": "镜像工具准备完成。",
+  "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。",
+  "next_step": "取得并校验社区供体和 wayne 原包材料"
+}
