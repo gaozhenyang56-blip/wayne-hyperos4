@@ -1,4 +1,5 @@
 name: Build and publish offline experimental wayne package
+# Source download: direct publisher endpoint with SHA-256 verification.
 on:
   workflow_dispatch:
   push:
