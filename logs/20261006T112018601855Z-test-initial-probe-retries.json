@@ -1,0 +1,16 @@
+{
+  "label": "test-initial-probe-retries",
+  "started_utc": "2026-10-06T11:20:18.601855+00:00",
+  "finished_utc": "2026-10-06T11:20:18.712649+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112018601855Z-test-initial-probe-retries.log",
+  "output_sha256": "c9446007d83bce58a00e628c0bd71340f574ae30020bb7b68d4e2adbb96df55c",
+  "action": "验证初始探测重试能恢复临时失败，并拒绝持续失败。",
+  "outcome": "临时初始探测错误恢复成功；持续错误在 5 次后停止，异常未被吞掉。",
+  "next_step": "提交已测试的入口重试代码，并保留网络失败证据。"
+}

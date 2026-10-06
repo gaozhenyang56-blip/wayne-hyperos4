@@ -1,0 +1,7 @@
+{"retry": "fixture", "attempt": 1, "error": "temporary non-range response"}
+{"retry": "fixture", "attempt": 2, "error": "temporary non-range response"}
+{"retry": "fixture", "attempt": 1, "error": "persistent failure"}
+{"retry": "fixture", "attempt": 2, "error": "persistent failure"}
+{"retry": "fixture", "attempt": 3, "error": "persistent failure"}
+{"retry": "fixture", "attempt": 4, "error": "persistent failure"}
+PASS initial probe transient recovery and bounded permanent failure

@@ -1,0 +1,17 @@
+{
+  "label": "diagnose-release-curl-transport",
+  "started_utc": "2026-10-06T11:19:36.780617+00:00",
+  "finished_utc": "2026-10-06T11:19:36.979788+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 22,
+  "output": "logs/20261006T111936780617Z-diagnose-release-curl-transport.log",
+  "output_sha256": "d7292e260f046f2a17a6c1b7910d582203ef7b54934508b435377784f5af79fb",
+  "action": "用 HTTP/1.1 客户端独立复查 Release 小附件上传故障。",
+  "outcome": "HTTP/1.1 上传成功，接下来核验资产并传输分卷。",
+  "failure_note": "HTTP/1.1 传输仍失败，Release 上传通道故障未解决。",
+  "next_step": "若仍失败，记录真实阻塞并保留本地校验成品及云端复现流程。"
+}

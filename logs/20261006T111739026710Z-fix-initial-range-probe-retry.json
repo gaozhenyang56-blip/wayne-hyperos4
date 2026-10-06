@@ -1,0 +1,16 @@
+{
+  "label": "fix-initial-range-probe-retry",
+  "started_utc": "2026-10-06T11:17:39.026710+00:00",
+  "finished_utc": "2026-10-06T11:17:39.048079+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111739026710Z-fix-initial-range-probe-retry.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "把有限重试覆盖到入口预检和初始范围探测。",
+  "outcome": "最新任务在下载器启动前的范围预检失败；预检及首个请求现在也最多尝试 5 次，持续失败仍停止。",
+  "next_step": "验证预检语法和本地正确响应，再提交一次有针对性的修复。"
+}

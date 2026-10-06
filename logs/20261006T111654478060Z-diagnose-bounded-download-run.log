@@ -1,0 +1,37 @@
+build	Preflight original source and publish result	﻿2026-10-06T11:16:14.4056612Z ##[group]Run git config user.name github-actions[bot]
+build	Preflight original source and publish result	2026-10-06T11:16:14.4057547Z [36;1mgit config user.name github-actions[bot][0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4058416Z [36;1mgit config user.email 41898282+github-actions[bot]@users.noreply.github.com[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4059205Z [36;1mset +e[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4061074Z [36;1mpython tools/record_step.py --action '检查供体原包分段入口。' --outcome '云端取得正确 ZIP 头和完整文件大小。' --failure-note '云端供体入口不可用，构建停止。' --next '预检成功后继续下载；失败时寻找可核验的原包镜像。' cloud-source-preflight -- python tools/preflight_source.py[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4062442Z [36;1mresult=$?[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4062938Z [36;1mgit add "$WAYNE_PROGRESS_FILE" logs[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4063621Z [36;1mgit commit -m 'docs: record cloud source preflight'[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4064312Z [36;1mgit fetch origin main[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4064855Z [36;1mgit rebase --autostash origin/main[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4065430Z [36;1mgit push origin HEAD:main[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4065960Z [36;1mexit "$result"[0m
+build	Preflight original source and publish result	2026-10-06T11:16:14.4425857Z shell: /usr/bin/bash -e {0}
+build	Preflight original source and publish result	2026-10-06T11:16:14.4426497Z env:
+build	Preflight original source and publish result	2026-10-06T11:16:14.4430952Z   GH_TOKEN: ***
+build	Preflight original source and publish result	2026-10-06T11:16:14.4431575Z   WAYNE_PROGRESS_FILE: docs/operations/github-build-37455268942.md
+build	Preflight original source and publish result	2026-10-06T11:16:14.4432377Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.16/x64
+build	Preflight original source and publish result	2026-10-06T11:16:14.4433194Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib/pkgconfig
+build	Preflight original source and publish result	2026-10-06T11:16:14.4434030Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+build	Preflight original source and publish result	2026-10-06T11:16:14.4434776Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+build	Preflight original source and publish result	2026-10-06T11:16:14.4435528Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.16/x64
+build	Preflight original source and publish result	2026-10-06T11:16:14.4436286Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.16/x64/lib
+build	Preflight original source and publish result	2026-10-06T11:16:14.4436961Z ##[endgroup]
+build	Preflight original source and publish result	2026-10-06T11:16:16.3406401Z {"label": "cloud-source-preflight", "started_utc": "2026-10-06T11:16:15.191358+00:00", "finished_utc": "2026-10-06T11:16:16.338907+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["python", "tools/preflight_source.py"], "exit_code": 1, "output": "logs/20261006T111615191358Z-cloud-source-preflight.log", "output_sha256": "31ea4350d258e339e8ec27e709f165b97845c7d0692dca71eee099827edbc478", "action": "检查供体原包分段入口。", "outcome": "云端取得正确 ZIP 头和完整文件大小。", "failure_note": "云端供体入口不可用，构建停止。", "next_step": "预检成功后继续下载；失败时寻找可核验的原包镜像。"}
+build	Preflight original source and publish result	2026-10-06T11:16:16.3769064Z [main af18dd7] docs: record cloud source preflight
+build	Preflight original source and publish result	2026-10-06T11:16:16.3769972Z  3 files changed, 42 insertions(+)
+build	Preflight original source and publish result	2026-10-06T11:16:16.3770760Z  create mode 100644 docs/operations/github-build-37455268942.md
+build	Preflight original source and publish result	2026-10-06T11:16:16.3771329Z  create mode 100644 logs/20261006T111615191358Z-cloud-source-preflight.json
+build	Preflight original source and publish result	2026-10-06T11:16:16.3772341Z  create mode 100644 logs/20261006T111615191358Z-cloud-source-preflight.log
+build	Preflight original source and publish result	2026-10-06T11:16:16.6546841Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Preflight original source and publish result	2026-10-06T11:16:16.6549513Z  * branch            main       -> FETCH_HEAD
+build	Preflight original source and publish result	2026-10-06T11:16:16.6550653Z    30fc65f..4617c3d  main       -> origin/main
+build	Preflight original source and publish result	2026-10-06T11:16:16.7191144Z Rebasing (1/1)
+build	Preflight original source and publish result	2026-10-06T11:16:16.7192023Z Successfully rebased and updated refs/heads/main.
+build	Preflight original source and publish result	2026-10-06T11:16:17.9046300Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Preflight original source and publish result	2026-10-06T11:16:17.9047209Z    4617c3d..16e3e55  HEAD -> main
+build	Preflight original source and publish result	2026-10-06T11:16:17.9098004Z ##[error]Process completed with exit code 1.

@@ -1,0 +1,24 @@
+{"retry": "initial range probe", "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 2, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 3, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 4, "error": "Server must honor Range; refusing whole-file fallback"}
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/preflight_source.py", line 4, in <module>
+    r=bounded(lambda:RemoteFile('https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t'),'initial range probe')
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/wayne-hyperos4/tools/download_verified.py", line 15, in bounded
+    return operation()
+           ^^^^^^^^^^^
+  File "/workspace/wayne-hyperos4/tools/preflight_source.py", line 4, in <lambda>
+    r=bounded(lambda:RemoteFile('https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t'),'initial range probe')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/wayne-hyperos4/tools/inspect_ota.py", line 20, in __init__
+    self.range(0, 1)
+  File "/workspace/wayne-hyperos4/tools/inspect_ota.py", line 34, in range
+    raise ValueError('Server must honor Range; refusing whole-file fallback')
+ValueError: Server must honor Range; refusing whole-file fallback
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['python3', 'tools/preflight_source.py']' returned non-zero exit status 1.

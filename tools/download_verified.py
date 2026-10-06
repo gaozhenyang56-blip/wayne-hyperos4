@@ -9,21 +9,25 @@ import time
 from inspect_ota import RemoteFile
 
 
+def bounded(operation, label):
+    for attempt in range(5):
+        try:
+            return operation()
+        except (OSError, ValueError) as error:
+            if attempt == 4:
+                raise
+            print(json.dumps({'retry':label,'attempt':attempt+1,'error':str(error)}),flush=True)
+            time.sleep(min(2 ** attempt, 8))
+
+
 def download(url, target, expected_hash):
-    remote = RemoteFile(url)
+    remote = bounded(lambda: RemoteFile(url), 'initial range probe')
     temporary = target.with_suffix(target.suffix + '.part')
     target.parent.mkdir(parents=True, exist_ok=True)
     step = 1024 * 1024
-    def fetch(span):
-        for attempt in range(5):
-            try:
-                return remote.range(*span)
-            except (OSError, ValueError) as error:
-                if attempt == 4:
-                    raise
-                print(json.dumps({'retry_start':span[0],'attempt':attempt+1,'error':str(error)}),flush=True)
-                time.sleep(min(2 ** attempt, 8))
     count = (remote.size + step - 1) // step
+    def fetch(span):
+        return bounded(lambda: remote.range(*span), str(span[0]))
     with temporary.open('w+b') as output, concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         output.truncate(remote.size)
         for index in range(0, count, 16):

@@ -1,0 +1,17 @@
+{
+  "label": "publish-bounded-range-download",
+  "started_utc": "2026-10-06T11:16:07.020070+00:00",
+  "finished_utc": "2026-10-06T11:16:07.032406+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Download fix and diagnostics published\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111607020070Z-publish-bounded-range-download.log",
+  "output_sha256": "4b4a2013b06642243f4d407d547afc0829cc50e1c2105a23a551c99e33ded439",
+  "action": "提交低并发下载修复与续作期间的原始诊断日志。",
+  "outcome": "修复和日志已进入仓库；工作流变更将启动新构建，完整原包仍须重新校验。",
+  "next_step": "跟踪低并发下载是否能取得完整原包。"
+}
