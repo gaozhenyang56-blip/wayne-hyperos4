@@ -41,8 +41,9 @@ def stage(name):
         run('make','-j4',cwd=folder);run('make','install',cwd=folder)
     elif name=='download':
         path=ROOT/'downloads/mi8937-hyperos4.zip';path.parent.mkdir(exist_ok=True)
-        run('curl','--fail','--location','--retry','3','--connect-timeout','30','--output',path,
-            'https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t')
+        from download_verified import download
+        download('https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t',
+                 path,'1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39')
         if sha(path)!='1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39':
             raise ValueError('Community source ZIP hash mismatch')
         from inspect_ota import inspect
