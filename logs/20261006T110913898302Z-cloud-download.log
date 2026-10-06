@@ -1,0 +1,13 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2009  100  2009    0     0   2315      0 --:--:-- --:--:-- --:--:--  2314100  2009  100  2009    0     0   2314      0 --:--:-- --:--:-- --:--:--  2314
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 196, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 181, in main
+    if args.stage:stage(args.stage);return
+                  ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 47, in stage
+    raise ValueError('Community source ZIP hash mismatch')
+ValueError: Community source ZIP hash mismatch
