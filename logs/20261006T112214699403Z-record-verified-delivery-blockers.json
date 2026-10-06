@@ -1,0 +1,16 @@
+{
+  "label": "record-verified-delivery-blockers",
+  "started_utc": "2026-10-06T11:22:14.699403+00:00",
+  "finished_utc": "2026-10-06T11:22:17.085497+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112214699403Z-record-verified-delivery-blockers.log",
+  "output_sha256": "92a72a4a25699c3dc65b3f8a7e27b3d50ebffadee6a423bcd5397197cbf48449",
+  "action": "保存最新云端预检的失败证据，并记录实际上传阻塞。",
+  "outcome": "云端入口探测重试 5 次仍失败；Release 附件为零且保持草稿，本地已校验实验包保留。",
+  "next_step": "原包入口恢复后重跑现有流程；上传通道恢复后核验附件再公开 Release。"
+}

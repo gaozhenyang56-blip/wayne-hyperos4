@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-10-06T11:22:17.079463+00:00",
+  "status": "blocked-upload-unpublished",
+  "source_candidate": "Mi8937 community HyperOS 4 experiment",
+  "hardware_tested": false,
+  "strict_neverallow_passed": false,
+  "local_archive_verified": true,
+  "public_release_assets": 0,
+  "release_is_draft": true,
+  "source_blocker": "Google Drive initial range probe failed after five attempts on GitHub Actions",
+  "upload_blocker": "GitHub Releases upload returns HTTP 400 Bad Content-Length with gh, urllib and curl HTTP/1.1",
+  "last_workflow_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37455741606",
+  "next": "Restore source download or Release binary transport; run existing workflow; verify remote digests before publishing"
+}

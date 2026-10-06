@@ -1,0 +1,17 @@
+{
+  "label": "publish-initial-probe-retries",
+  "started_utc": "2026-10-06T11:20:25.345446+00:00",
+  "finished_utc": "2026-10-06T11:20:25.357394+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Initial probe retry fix published\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112025345446Z-publish-initial-probe-retries.log",
+  "output_sha256": "6268355549fdd05b9f1cb423bd41c1ea22a7a92935a89c34db6b7b53e67893d2",
+  "action": "发布入口重试修复和已确认的网络失败证据。",
+  "outcome": "修复已入库；工作流将先进行有限重试预检，持续失败则停止。",
+  "next_step": "确认新预检结果，更新仓库中的实际交付状态。"
+}

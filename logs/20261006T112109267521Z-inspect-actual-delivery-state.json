@@ -1,0 +1,16 @@
+{
+  "label": "inspect-actual-delivery-state",
+  "started_utc": "2026-10-06T11:21:09.267521+00:00",
+  "finished_utc": "2026-10-06T11:21:09.989037+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112109267521Z-inspect-actual-delivery-state.log",
+  "output_sha256": "bf83f59c9d9256fa56db85ed9ae866a59d855b7c5fe1705e1b26fd11e95f9b85",
+  "action": "核查 Release 的实际附件状态和已保留的本地实验分卷。",
+  "outcome": "已读取真实 Release 状态及本地包清单，尚未把未上传的成品记为公开下载。",
+  "next_step": "确认最后一轮预检，再把实际交付限制写入 README。"
+}

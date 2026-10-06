@@ -1,0 +1,34 @@
+{"retry": "initial range probe", "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 2, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 3, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry": "initial range probe", "attempt": 4, "error": "Server must honor Range; refusing whole-file fallback"}
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/preflight_source.py", line 4, in <module>
+    r=bounded(lambda:RemoteFile('https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t'),'initial range probe')
+      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/download_verified.py", line 15, in bounded
+    return operation()
+           ^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/preflight_source.py", line 4, in <lambda>
+    r=bounded(lambda:RemoteFile('https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t'),'initial range probe')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/inspect_ota.py", line 20, in __init__
+    self.range(0, 1)
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/inspect_ota.py", line 34, in range
+    raise ValueError('Server must honor Range; refusing whole-file fallback')
+ValueError: Server must honor Range; refusing whole-file fallback
+
+{
+  "checked_utc": "2026-10-06T11:22:17.079463+00:00",
+  "status": "blocked-upload-unpublished",
+  "source_candidate": "Mi8937 community HyperOS 4 experiment",
+  "hardware_tested": false,
+  "strict_neverallow_passed": false,
+  "local_archive_verified": true,
+  "public_release_assets": 0,
+  "release_is_draft": true,
+  "source_blocker": "Google Drive initial range probe failed after five attempts on GitHub Actions",
+  "upload_blocker": "GitHub Releases upload returns HTTP 400 Bad Content-Length with gh, urllib and curl HTTP/1.1",
+  "last_workflow_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37455741606",
+  "next": "Restore source download or Release binary transport; run existing workflow; verify remote digests before publishing"
+}

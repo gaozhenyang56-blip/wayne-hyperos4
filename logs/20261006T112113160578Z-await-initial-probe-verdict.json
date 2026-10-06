@@ -1,0 +1,17 @@
+{
+  "label": "await-initial-probe-verdict",
+  "started_utc": "2026-10-06T11:21:13.160578+00:00",
+  "finished_utc": "2026-10-06T11:21:39.089039+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import time,subprocess;time.sleep(25);subprocess.run([\"gh\",\"run\",\"view\",\"37455741606\",\"--repo\",\"gaozhenyang56-blip/wayne-hyperos4\",\"--json\",\"status,conclusion,jobs,url\"],check=True)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112113160578Z-await-initial-probe-verdict.log",
+  "output_sha256": "98a1a973904c8555dbb627805cbf83ba023d7ef8fdeb43274b1dee395d144ef1",
+  "action": "等待有限重试预检完成，读取最终任务状态。",
+  "outcome": "最新任务状态已经保存；下步按真实预检结论处理。",
+  "next_step": "失败时记录外部阻塞，成功时继续完整构建。"
+}

@@ -1,0 +1,25 @@
+{
+  "label": "inspect-final-probe-run",
+  "started_utc": "2026-10-06T11:20:37.836554+00:00",
+  "finished_utc": "2026-10-06T11:20:38.414616+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "run",
+    "list",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--workflow",
+    "build-experimental.yml",
+    "--limit",
+    "1",
+    "--json",
+    "databaseId,status,conclusion,url,headSha"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112037836554Z-inspect-final-probe-run.log",
+  "output_sha256": "133004f29f760e0d72ddf37547b56562d570ae7be6d6c0fa6a0aee47a9f903c0",
+  "action": "确认入口重试修复后的实际云端任务状态。",
+  "outcome": "已取得最新构建任务和状态，接下来读取预检最终结果。",
+  "next_step": "预检持续失败时明确记录外部下载和上传阻塞。"
+}
