@@ -66,3 +66,14 @@
 - 从远程提交读回历史 bundle，`cmp` 与原始 bundle 一致，`git bundle verify` 通过并确认完整历史。
 - 本地原始历史保留在 local-history 分支；工作 main 已与远程 main 对齐，后续使用公开历史继续记录变化。
 - 本节作为独立同步完成记录提交。原始镜像留在工作区，当前没有最终 ROM，也没有 Releases 刷机包。
+
+## 2026-10-06T10:22:27.864852+00:00：离线构建与实时 Markdown 同步
+
+- 每项操作写入带时间戳 Markdown，修改后立即通过 GitHub 插件单独提交。规则已写入 AGENTS.md。
+- 当前使用已核验的 Mi8937 Android 17 / OS4 框架，保留 wayne 4.19.315 内核、DTB、vendor；已生成实验 boot/system。
+- 修复 EROFS 二进制 xattr 保存和构建空间问题。完整解码、9,134 条原始路径元数据以及全部文件内容/软链接比较通过；只改三份身份属性，新增实际底包 FCM 5。
+- 固定 AOSP 提交的主机 libvintf 检查器合并 wayne HAL 碎片后通过框架矩阵检查；不覆盖 APEX、实际内核或 linker namespace。现代 optional 属性不能用来认定必需服务，早期报告已纠正。
+- IKCONFIG 实际来自硬编码旧 defconfig；源码规则及字节匹配已证明，不作为真实编译配置。内核二进制存在 EROFS 实现痕迹。
+- SELinux 严格 neverallow 检查失败；运行时 -N 编译通过不是严格检查通过。没有真机启动结果，没有发布刷机成品。
+
+精确命令、时间、失败和证据见当日逐次操作记录。
