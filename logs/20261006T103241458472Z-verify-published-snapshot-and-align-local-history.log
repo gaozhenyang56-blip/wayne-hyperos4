@@ -1,0 +1,6 @@
+From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+ * branch            main       -> FETCH_HEAD
+   8b26851..41e6da9  main       -> origin/main
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+AssertionError: ['logs/20261006T100438706973Z-fetch-host-system-core-headers.log', 'logs/20261006T103109485666Z-prepare-current-plugin-publish-payload.log']

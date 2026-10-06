@@ -1,0 +1,17 @@
+{
+  "label": "record-split-candidate-packager",
+  "started_utc": "2026-10-06T10:36:17.758904+00:00",
+  "finished_utc": "2026-10-06T10:36:17.769584+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added reproducible split-ZIP packager and excluded release binary outputs from Git.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103617758904Z-record-split-candidate-packager.log",
+  "output_sha256": "7be128b17d98784eff78e7c6d16d24e77e168fe3473f635e09bb0da74e29979b",
+  "action": "增加实验刷机包的分卷打包工具，附带安装说明、镜像哈希和检查报告。",
+  "outcome": "每个分卷限制在 GitHub 单资产大小以内；清单明确标注未真机测试、严格 SELinux 检查仍失败及其他未验证项，不将实验包称为稳定成品。",
+  "next_step": "检查分卷 ZIP 能完整读回，生成包后尝试上传到同一仓库的 Releases。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "probe-spes-download-and-public-post",
+  "started_utc": "2026-10-06T10:40:14.654496+00:00",
+  "finished_utc": "2026-10-06T10:40:15.940036+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,urllib.error,concurrent.futures,json,pathlib,re,html; jobs=[(\"download\",\"https://pixeldrain.com/api/file/kmZT7B8z\"),(\"post\",\"https://t.me/s/RedmiNote11Mods?before=1676\"),(\"publisher\",\"https://t.me/s/jesuspes_port\")];\ndef check(job):\n label,url=job; headers={\"User-Agent\":\"Mozilla/5.0\"};\n if label==\"download\":headers[\"Range\"]=\"bytes=0-1023\"\n try:\n  with urllib.request.urlopen(urllib.request.Request(url,headers=headers),timeout=25) as r:data=r.read(524288 if label!=\"download\" else 1024); result={\"label\":label,\"url\":url,\"status\":r.status,\"content_range\":r.headers.get(\"Content-Range\"),\"zip_magic\":data[:4].hex() if label==\"download\" else None}\n  if label!=\"download\":result[\"links\"]=[html.unescape(x) for x in re.findall(r\"href=\\\"([^\\\"]+)\\\"\",data.decode(errors=\"replace\")) if any(v in x for v in [\"pixeldrain\",\"drive.google\",\"sourceforge\",\"mediafire\",\"HyperOS\",\"hos4\"])]; result[\"hyperos4_mentions\"]=data.lower().count(b\"hyperos 4\")+data.lower().count(b\"hyperos4\")\n  return result\n except urllib.error.HTTPError as e:return {\"label\":label,\"url\":url,\"status\":e.code,\"error\":e.read(800).decode(errors=\"replace\")}\n except Exception as e:return {\"label\":label,\"url\":url,\"error\":str(e)}\nwith concurrent.futures.ThreadPoolExecutor(max_workers=3) as p:results=list(p.map(check,jobs))\npathlib.Path(\"research/candidates/spes-live-probe.json\").write_text(json.dumps(results,indent=2)+\"\\n\"); print(json.dumps(results,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104014654496Z-probe-spes-download-and-public-post.log",
+  "output_sha256": "e01b8400f0c1c1f5068d5ac04a90017f5ead1e68cdc2587625368cd81e899898",
+  "action": "检查 spes 原始下载链接目前是否可用，并读取发布者页面中的候选镜像链接。",
+  "outcome": "已保存当前 HTTP 响应和发布页面链接，尚未把发布声明当作系统版本验证结果。",
+  "next_step": "若原包可下载，使用单次连续下载并校验完整哈希；否则继续寻找发布者授权的镜像。"
+}

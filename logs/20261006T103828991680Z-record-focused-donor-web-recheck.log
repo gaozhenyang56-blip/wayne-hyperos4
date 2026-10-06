@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-06T10:38:29.012417+00:00",
+  "queries": [
+    "lavender HyperOS 4 ROM",
+    "spes HyperOS 4 Android 17",
+    "Snapdragon 660 HyperOS 4"
+  ],
+  "findings": {
+    "lavender": "No independently verifiable full HyperOS 4 package located in this recheck",
+    "spes": "Community port posts found; actual framework not yet verified",
+    "generic_catalog_warning": "A site/channel title mentioning HyperOS 4 does not prove the linked device ROM version"
+  },
+  "primary_followups": [
+    "https://t.me/s/RN11UpdatesLATAM?q=%23spes",
+    "https://t.me/s/jesuspes_port",
+    "https://t.me/RedmiNote11Mods/1675"
+  ]
+}

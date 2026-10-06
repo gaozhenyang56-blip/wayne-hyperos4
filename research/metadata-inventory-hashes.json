@@ -6,7 +6,7 @@
   },
   "research/wayne-os4-system-metadata.json": {
     "size": 2187873,
-    "sha256": "e765f1df354558544818132a13725964378bd0fbc642bce9231b3a076992d3bf",
+    "sha256": "68247c55a81f38f69bc3a08615d2c79a8f7cabe8ebae5a15a7e82a631a03f082",
     "reproducible_with": "tools/erofs_metadata.py"
   }
 }

@@ -1,0 +1,18 @@
+{
+  "label": "fix-log-byte-roundtrip-and-align-history",
+  "started_utc": "2026-10-06T10:33:17.815549+00:00",
+  "finished_utc": "2026-10-06T10:33:19.051950+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,json,pathlib; subprocess.run([\"git\",\"fetch\",\"origin\",\"main\"],check=True); entries=json.loads(pathlib.Path(\"/tmp/wayne-publish-payload.json\").read_text()); mismatches=[];\nfor entry in entries:\n remote=subprocess.check_output([\"git\",\"show\",\"origin/main:\"+entry[\"path\"]]); local=pathlib.Path(entry[\"path\"]).read_bytes()\n if remote!=local:mismatches.append(entry[\"path\"])\nassert not mismatches,mismatches; subprocess.run([\"git\",\"reset\",\"--mixed\",\"origin/main\"],check=True); print(json.dumps({\"verified_files\":len(entries),\"mismatches\":mismatches}))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103317815549Z-fix-log-byte-roundtrip-and-align-history.log",
+  "output_sha256": "ce26f26b2697c232b2f97103f387f9a93b20e6e907b7840756bd07ec6b9232eb",
+  "action": "修正远程校验发现的两份原始日志差异，并重新逐项核对上传文件。",
+  "outcome": "两处差异来自日志换行转换和上传时日志仍在写入；已上传完整原始字节。所有工程文件读回一致，本地分支已对齐远程公开历史。",
+  "failure_note": "仍存在远程文件差异，暂不对齐分支，继续定位差异来源。",
+  "next_step": "继续制作实验刷机包，随后验证其文件哈希和设备检查逻辑。"
+}

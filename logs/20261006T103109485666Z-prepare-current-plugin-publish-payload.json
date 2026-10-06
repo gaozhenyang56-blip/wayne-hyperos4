@@ -1,0 +1,17 @@
+{
+  "label": "prepare-current-plugin-publish-payload",
+  "started_utc": "2026-10-06T10:31:09.485666+00:00",
+  "finished_utc": "2026-10-06T10:31:09.551796+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,subprocess,json; names=set(subprocess.check_output([\"git\",\"ls-files\",\"--others\",\"--exclude-standard\"],text=True).splitlines()+subprocess.check_output([\"git\",\"diff\",\"--name-only\"],text=True).splitlines()); entries=[];\nfor n in sorted(names):\n p=pathlib.Path(n)\n if n.startswith(\"downloads/\") or n.endswith(\".md\") or not p.is_file():continue\n entries.append({\"path\":n,\"mode\":\"100755\" if p.stat().st_mode&0o111 else \"100644\",\"type\":\"blob\",\"content\":p.read_text()})\nraw=json.dumps(entries,ensure_ascii=False); pathlib.Path(\"/tmp/wayne-publish-payload.json\").write_text(raw); print(json.dumps({\"files\":len(entries),\"serialized_characters\":len(raw),\"chunks\":(len(raw)+79999)//80000}))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103109485666Z-prepare-current-plugin-publish-payload.log",
+  "output_sha256": "63874ed67121065805585df723a47e01bfd01e32575d22276620a43e3e55b739",
+  "action": "整理本轮新增的构建工具、兼容性报告和原始日志，准备上传到公开仓库。",
+  "outcome": "已生成上传清单；大型镜像和可重复生成的完整 inode 清单不进入 Git，保留来源及哈希。MD 使用刚清空后的新内容。",
+  "next_step": "通过 GitHub 插件上传工程文件，读回核对，再准备 Releases 刷机包。"
+}

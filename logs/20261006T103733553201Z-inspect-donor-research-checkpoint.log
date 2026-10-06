@@ -1,0 +1,127 @@
+{
+  "url": "https://pixeldrain.com/api/file/kmZT7B8z",
+  "zip_size": 4813008353,
+  "status": "inspection_only",
+  "boot_tested": false,
+  "entries": [
+    {
+      "name": "Linux clean flash.sh",
+      "size": 3226,
+      "compressed_size": 836,
+      "compression": 8
+    },
+    {
+      "name": "Linux dirty flash.sh",
+      "size": 2918,
+      "compressed_size": 704,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/",
+      "size": 0,
+      "compressed_size": 0,
+      "compression": 0
+    },
+    {
+      "name": "META-INF/com/",
+      "size": 0,
+      "compressed_size": 0,
+      "compression": 0
+    },
+    {
+      "name": "META-INF/com/android/",
+      "size": 0,
+      "compressed_size": 0,
+      "compression": 0
+    },
+    {
+      "name": "META-INF/com/android/metadata",
+      "size": 678,
+      "compressed_size": 316,
+      "compression": 8
+    },
+    {
+      "name": "META-INF/com/android/metadata.pb",
+      "size": 991,
+{"success":true,"id":"kmZT7B8z","name":"hos4.0.0.17.wpacnxm_a17_spes.zip","size":4813008353,"views":221,"bandwidth_used":470733340654,"bandwidth_used_paid":0,"downloads":188,"date_upload":"2026-09-06T03:22:27.024Z","date_last_view":"2026-10-05T17:20:29.71Z","mime_type":"application/zip","thumbnail_href":"/file/kmZT7B8z/thumbnail","hash_sha256":"cec53dad779dc1e4c4477f24da00408a209a1d1d70fcbae25f1639b8f7e907c2","delete_after_date":"0001-01-01T00:00:00Z","delete_after_downloads":0,"availability":"","availability_message":"","abuse_type":"","abuse_reporter_name":"","can_edit":false,"can_download":true,"show_ads":true,"allow_video_player":true,"download_speed_limit":0}
+#!/usr/bin/env python3
+"""Bounded HTTP range download with complete-file SHA256 verification."""
+import argparse
+import concurrent.futures
+import hashlib
+import json
+import pathlib
+from inspect_ota import RemoteFile
+
+
+def download(url, target, expected_hash):
+    remote = RemoteFile(url)
+    temporary = target.with_suffix(target.suffix + '.part')
+    target.parent.mkdir(parents=True, exist_ok=True)
+    step = 4 * 1024 * 1024
+    count = (remote.size + step - 1) // step
+    with temporary.open('w+b') as output, concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+        output.truncate(remote.size)
+        for index in range(0, count, 16):
+            spans = [(i * step, min(step, remote.size - i * step)) for i in range(index, min(count, index + 16))]
+            blocks = pool.map(lambda span: remote.range(*span), spans)
+            for span, block in zip(spans, blocks):
+                output.seek(span[0])
+                output.write(block)
+            written = min(remote.size, (index + len(spans)) * step)
+            print(json.dumps({'downloaded': written, 'total': remote.size, 'percent': round(written / remote.size * 100, 1)}), flush=True)
+        output.seek(0)
+        actual_hash = hashlib.file_digest(output, 'sha256').hexdigest()
+        if actual_hash.lower() != expected_hash.lower():
+            raise ValueError('Complete ZIP SHA256 mismatch; keeping .part for investigation')
+    temporary.replace(target)
+    record = {'url': url, 'size': remote.size, 'sha256': actual_hash, 'complete_file_sha256_verified': True,
+              'signature_verified': False, 'hash_source': 'user-supplied expected hash / public download-provider metadata'}
+    target.with_suffix(target.suffix + '.json').write_text(json.dumps(record, indent=2))
+    print(json.dumps(record), flush=True)
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('url')
+    parser.add_argument('output', type=pathlib.Path)
+    parser.add_argument('sha256')
+    args = parser.parse_args()
+    download(args.url, args.output, args.sha256)
+research/candidates/RolexIndonesiaChannel-HyperOS.json
+research/candidates/tapas.json
+research/candidates/lavender-q-oss-Makefile
+research/candidates/redminote7updates-HyperOS4.json
+research/candidates/kernel-versions.json
+research/candidates/sapphiren.json
+research/candidates/mi8937-inspect.log
+research/candidates/redminote7updates-HyperOS3.json
+research/candidates/mi8937-os4-release.json
+research/candidates/mi8937-probe.json
+research/candidates/catuiteam-HyperOS.json
+research/candidates/selection.json
+research/candidates/ginkgo-q-oss-Makefile
+research/candidates/ginkgo-p-oss-Makefile
+research/candidates/redminote11mods-OS4.json
+research/candidates/topaz.json
+research/candidates/mi8937-os4/local-zip-check.json
+research/candidates/mi8937-os4/framework-required-hals.json
+research/candidates/mi8937-os4/vendor.transfer.list
+research/candidates/mi8937-os4/vendor.img.json
+research/candidates/mi8937-os4/properties.json
+research/candidates/mi8937-os4/runtime-layout.json
+research/candidates/mi8937-os4/kernel-version.txt
+research/candidates/mi8937-os4/system.transfer.list
+research/candidates/mi8937-os4/system.img.json
+research/candidates/mi8937-os4/META-INF_com_android_metadata
+research/candidates/mi8937-os4/META-INF_com_google_android_updater-script
+research/candidates/mi8937-os4/boot-inspection.json
+research/candidates/mi8937-os4/inspection.json
+research/candidates/lavender-p-oss-Makefile
+research/candidates/spes-r-oss-Makefile
+research/candidates/xun.json
+research/candidates/ginkgoupdates-HyperOS.json
+research/candidates/redminote7updates-HyperOS.json
+research/candidates/rn124gtapas-HyperOS.json
+Filesystem      Size  Used Avail Use% Mounted on
+overlay          32G   25G  5.1G  84% /

@@ -1,0 +1,18 @@
+{
+  "label": "verify-published-snapshot-and-align-local-history",
+  "started_utc": "2026-10-06T10:32:41.458472+00:00",
+  "finished_utc": "2026-10-06T10:32:42.729614+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,json,pathlib; subprocess.run([\"git\",\"fetch\",\"origin\",\"main\"],check=True); entries=json.loads(pathlib.Path(\"/tmp/wayne-publish-payload.json\").read_text()); mismatches=[];\nfor entry in entries:\n remote=subprocess.check_output([\"git\",\"show\",\"origin/main:\"+entry[\"path\"]]); local=pathlib.Path(entry[\"path\"]).read_bytes()\n if remote!=local:mismatches.append(entry[\"path\"])\nassert not mismatches,mismatches; subprocess.run([\"git\",\"reset\",\"--mixed\",\"origin/main\"],check=True); print(json.dumps({\"verified_files\":len(entries),\"mismatches\":mismatches}))"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T103241458472Z-verify-published-snapshot-and-align-local-history.log",
+  "output_sha256": "a7474447d16dd76a8b216f2143773a92ad0371805111782dcd48c9400495456b",
+  "action": "从 GitHub 读回本轮上传的工程文件，与本地逐项比较。",
+  "outcome": "远程工程与本地上传清单逐项一致；本地分支已对齐公开历史，工作文件未被覆盖。",
+  "failure_note": "远程比对或分支对齐未完成，先保留现场并核对差异。",
+  "next_step": "生成镜像哈希清单和仅面向 wayne 动态分区底包的实验安装工具。"
+}

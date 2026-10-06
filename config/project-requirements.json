@@ -10,5 +10,10 @@
     "upload_after_each_edit": true,
     "raw_commands_and_output": "logs only"
   },
-  "final_rom": "Publish to gaozhenyang56-blip/wayne-hyperos4 Releases with hashes and honest no-device-test status"
+  "final_rom": "Publish to gaozhenyang56-blip/wayne-hyperos4 Releases with hashes and honest no-device-test status",
+  "donor_selection": {
+    "prefer": "Near Snapdragon 660 hardware and Linux 4.19",
+    "mi8937": "User explicitly permits trying the Mi8937 community port as an experimental candidate; platform name is not an OS version",
+    "release_gate": "Verify actual framework/APEX version and trustworthy provenance, not just build properties"
+  }
 }

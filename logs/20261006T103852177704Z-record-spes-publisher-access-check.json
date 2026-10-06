@@ -1,0 +1,17 @@
+{
+  "label": "record-spes-publisher-access-check",
+  "started_utc": "2026-10-06T10:38:52.177704+00:00",
+  "finished_utc": "2026-10-06T10:38:52.186475+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat research/candidates/redminote11mods-OS4.json | head -70; rg -n -C 3 \"403|Forbidden|error|limit|denied\" research/candidates/spes-download.log logs/*spes* 2>/dev/null | head -65; sed -n \"1,145p\" tools/inspect_ota.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103852177704Z-record-spes-publisher-access-check.log",
+  "output_sha256": "5b9aca56bf543e846a860f8bb46a3809638eb3d3fc08ff5d50d2b8fb4c67b55d",
+  "action": "核对 spes 发布原帖的可访问性，并检查已有下载失败原因。",
+  "outcome": "浏览工具未能打开两个发布者页面；可打开的转载页停留在较早更新，不能证明当前包版本。继续使用已有原帖证据和实际下载响应核验。",
+  "next_step": "读取已有发布链接及下载错误，检查是否存在发布者提供的可用镜像。"
+}

@@ -1,0 +1,375 @@
+{
+  "official_control": "dada official OS4.0.0.8.XOCCNXM payload",
+  "community_candidate": "Mi8937 claimed OS4.0.0.16.XPCCNXM",
+  "scope": "Exact bytes of common framework and APEX files only; not an official support or complete provenance claim",
+  "compared": 61,
+  "identical": 47,
+  "files": [
+    {
+      "path": "apex/com.android.i18n.apex",
+      "official_sha256": "d57e8fde6ff250c640509bec2e1fafbde7f01f5d69e42294204874c39c9b65ec",
+      "community_sha256": "d57e8fde6ff250c640509bec2e1fafbde7f01f5d69e42294204874c39c9b65ec",
+      "identical": true
+    },
+    {
+      "path": "apex/com.android.bt.apex",
+      "official_sha256": "c14098100aac744310b390c449f9f35520f6ed5bb5a8644ce102d3bb62d13a0d",
+      "community_sha256": "56ad044e1a3eef4fe05cc8590bd2145b7d2d3196ebaa60cbeb8a242a5ee619c8",
+      "identical": false
+    },
+    {
+      "path": "apex/com.android.rkpd.apex",
+      "official_sha256": "1aa2f82ec9945c4c74b413b382f95c7ddeed8bb4e8b598124e349d51f8cb67da",
+      "community_sha256": "1aa2f82ec9945c4c74b413b382f95c7ddeed8bb4e8b598124e349d51f8cb67da",
+      "identical": true
+    },
+    {
+      "path": "apex/com.android.os.statsd.apex",
+      "official_sha256": "0719065b64a8a5f21abe8bfb9323af4c72cef23188abd25e10af373422cf27b4",
+      "community_sha256": "6cc613ea12797822ff1b62fb0ddac626b5100e9eb986807902ed00a72a3f899f",
+      "identical": false
+    },
+    {
+      "path": "apex/com.android.virt.apex",
+      "official_sha256": "f85f78243006020e50e223d7f3e302a34df24aa41900ed957e261cbfae65b117",
+      "community_sha256": "9eee64565e85f5bffe104ab75ebfbf73dcb87351631d460d6e6556f7dc2b94d7",
+      "identical": false
+    },
+    {
+      "path": "apex/com.android.tzdata.apex",
+      "official_sha256": "b01a08097a77e44a89302e09dc84d7a7c9a612fd148f1118e67fa551f2765f1c",
+      "community_sha256": "b01a08097a77e44a89302e09dc84d7a7c9a612fd148f1118e67fa551f2765f1c",
+      "identical": true
+    },
+    {
+      "path": "apex/com.android.healthfitness.apex",
+      "official_sha256": "f6cde35784425dfc4ccfa73b07246233a8cfa7de7448477710de695ded1a28d3",
+      "community_sha256": "d0250016aeb3d204de64c62e1456cb4e1c50a6382067a53d40b1d6cd09b8768b",
+      "identical": false
+    },
+    {
+      "path": "apex/com.android.sdkext.apex",
+      "official_sha256": "ead816fb73302b73bc0f39a71e62bd3b22fded5123df4f16855dc1e0404dac56",
+      "community_sha256": "ead816fb73302b73bc0f39a71e62bd3b22fded5123df4f16855dc1e0404dac56",
+      "identical": true
+    },
+    {
+      "path": "apex/com.android.runtime.apex",
+      "official_sha256": "45a073dd1ed7f8447c99e3360d989489aaa3a3573bf2913c284bc9c83d36e595",
+      "community_sha256": "c1b933f35ce402da591c156e4c888a23c888d72f8329b8a702768c5104eed311",
+      "identical": false
+    },
+    {
+      "path": "apex/com.android.apex.cts.shim.apex",
+      "official_sha256": "18451d0ac06a9532a0c75f2f89544a096ebb8b2a1b4ee7357b5747d972e60a42",
+      "community_sha256": "18451d0ac06a9532a0c75f2f89544a096ebb8b2a1b4ee7357b5747d972e60a42",
+      "identical": true
+    },
+    {
+      "path": "apex/com.android.devicelock.apex",
+      "official_sha256": "fccc16c2264a592ecd16f2b0c7ae42ad785d1c125ed3288a3787e95f82c404ed",
+      "community_sha256": "fccc16c2264a592ecd16f2b0c7ae42ad785d1c125ed3288a3787e95f82c404ed",
+      "identical": true
+    },
+    {
+      "path": "framework/ext.jar",
+      "official_sha256": "9d94edd6b6a5f1fffc6ba4f6fa3c4ded5316c7c4b7057dcab4134e44dc809bf6",
+      "community_sha256": "311006a6deb1b40733c25780f42ba277ab6e3839886110d9ee45a775af9a0709",
+      "identical": false
+    },
+    {
+      "path": "framework/framework-telecom.jar",
+      "official_sha256": "30f58d09bff0bcd4439af2e725c70c7dd74e64412691d7921e6731ecf9eac019",
+      "community_sha256": "387e7fa54e40cd991f6922e226da9f186bd5fb0babb3c8e1a9fad3abd9790c99",
+      "identical": false
+    },
+    {
+      "path": "framework/com.android.nfc_extras.jar",
+      "official_sha256": "1066abdfb18f64dfa63ed6f59ed524a9baa3777d6f6ca42f079019169da7ab69",
+      "community_sha256": "1066abdfb18f64dfa63ed6f59ed524a9baa3777d6f6ca42f079019169da7ab69",
+      "identical": true
+    },
+    {
+      "path": "framework/framework.jar",
+      "official_sha256": "4f24636042ed6661e62660f0724f5c3a22b7e5f2fe73750593f2dcfc77fba613",
+      "community_sha256": "17576299a3d5d9458ecbf3f2766d0db077f21bb8f0a34775d2fec675ee93b375",
+      "identical": false
+    },
+    {
+      "path": "framework/UxPerformance.jar",
+      "official_sha256": "7d9d8c0653ce4e0e419ff99ac8657041fb83d75e65f6fcf600494b73744d426c",
+      "community_sha256": "7d9d8c0653ce4e0e419ff99ac8657041fb83d75e65f6fcf600494b73744d426c",
+      "identical": true
+    },
+    {
+      "path": "framework/bmgr.jar",
+      "official_sha256": "dd6268876b20e409c7581fa6c07625df8278828a9ce5b9572368c874ad6b366f",
+      "community_sha256": "dd6268876b20e409c7581fa6c07625df8278828a9ce5b9572368c874ad6b366f",
+      "identical": true
+    },
+    {
+      "path": "framework/uiautomator.jar",
+      "official_sha256": "7e35b4f6d866c6cbeec7802c6360f1775f081d1a2393e6047acb271d032476b3",
+      "community_sha256": "7e35b4f6d866c6cbeec7802c6360f1775f081d1a2393e6047acb271d032476b3",
+      "identical": true
+    },
+    {
+      "path": "framework/telephony-common.jar",
+      "official_sha256": "73010b783ccfa5c6894608d32f4f7eb882784f893900384e407413cb12a4239d",
+      "community_sha256": "3b223ec4f93f586f57bb2df4de1979e590efb80e856e12a7aa2ac5616e167303",
+      "identical": false
+    },
+    {
+      "path": "framework/tradeinmode.jar",
+      "official_sha256": "6ebb258ed22de9ad27f57470b351f85470bd0ae45d17369679c8119b7db023b2",
+      "community_sha256": "6ebb258ed22de9ad27f57470b351f85470bd0ae45d17369679c8119b7db023b2",
+      "identical": true
+    },
+    {
+      "path": "framework/tcmiface.jar",
+      "official_sha256": "3cc877d38ee90804570a0714c3d9f5877529e7f8a873e7d8338f7939c8a0be2d",
+      "community_sha256": "3cc877d38ee90804570a0714c3d9f5877529e7f8a873e7d8338f7939c8a0be2d",
+      "identical": true
+    },
+    {
+      "path": "framework/content.jar",
+      "official_sha256": "59051e457fa21c74960b8ec85f22cc8ac3a74b9edbc7d78b3094b29a98d7e305",
+      "community_sha256": "59051e457fa21c74960b8ec85f22cc8ac3a74b9edbc7d78b3094b29a98d7e305",
+      "identical": true
+    },
+    {
+      "path": "framework/framework-res.apk",
+      "official_sha256": "511e2dcbfe7a171e27cf7cf906f834cd55cecf28e07241011f9bb15f852e6abf",
+      "community_sha256": "f008694e732e4891c7f7ab4063306a374cea7f46f703925a6f523caa5acaa71b",
+      "identical": false
+    },
+    {
+      "path": "framework/WfdCommon.jar",
+      "official_sha256": "cfbeb5ed77ebc7c8c59a3279aa29d22426db6da26a916e61ca90195423ea886f",
+      "community_sha256": "08197dc61b1f14874fbfeff935fafe376dae5c3ef493649e0aa6e75f74f3c428",
+      "identical": false
+    },
+    {
+      "path": "framework/android.hidl.base-V1.0-java.jar",
+      "official_sha256": "a11fb9861a569eebbdf9c143f97cdbef17e025b40f6d20c266925f6e3dbd9d1a",
+      "community_sha256": "a11fb9861a569eebbdf9c143f97cdbef17e025b40f6d20c266925f6e3dbd9d1a",
+      "identical": true
+    },
+    {
+      "path": "framework/bu.jar",
+      "official_sha256": "d15856ffc18247e66009c11130d8861090358be2e9ef46489810820d696c1eb1",
+      "community_sha256": "d15856ffc18247e66009c11130d8861090358be2e9ef46489810820d696c1eb1",
+      "identical": true
+    },
+    {
+      "path": "framework/com.android.media.remotedisplay.jar",
+      "official_sha256": "2f1ec2513d5628f02cf2a81c5ea3d08e62f1b96f02289a8dbd6b31daff0d3f30",
+      "community_sha256": "2f1ec2513d5628f02cf2a81c5ea3d08e62f1b96f02289a8dbd6b31daff0d3f30",
+      "identical": true
+    },
+    {
+      "path": "framework/sm.jar",
+      "official_sha256": "255219e827eb8861b5e89e4ac9d65228addd70d93ad05f8bc8acdcc2e25c7da3",
+      "community_sha256": "255219e827eb8861b5e89e4ac9d65228addd70d93ad05f8bc8acdcc2e25c7da3",
+      "identical": true
+    },
+    {
+      "path": "framework/incident-helper-cmd.jar",
+      "official_sha256": "f76fdd15cf60d9ffbcfe37c200988e35e78036f373c0f8871f7a1d49faf0622a",
+      "community_sha256": "f76fdd15cf60d9ffbcfe37c200988e35e78036f373c0f8871f7a1d49faf0622a",
+      "identical": true
+    },
+    {
+      "path": "framework/android.test.runner.jar",
+      "official_sha256": "b5813e64f5f95abb29f61d2cdf434da3b6759c4c1fe65dc0662cb66ec7c02d42",
+      "community_sha256": "b5813e64f5f95abb29f61d2cdf434da3b6759c4c1fe65dc0662cb66ec7c02d42",
+      "identical": true
+    },
+    {
+      "path": "framework/requestsync.jar",
+      "official_sha256": "58ef498439499dac268dfc8fd70d56d341419e6c4dd59140f56de7e56d6f87f9",
+      "community_sha256": "58ef498439499dac268dfc8fd70d56d341419e6c4dd59140f56de7e56d6f87f9",
+      "identical": true
+    },
+    {
+      "path": "framework/javax.obex.jar",
+      "official_sha256": "2a3e6fa84450f7243b1b1864df8025134af9f7f2306fef6440f6653742360271",
+      "community_sha256": "2a3e6fa84450f7243b1b1864df8025134af9f7f2306fef6440f6653742360271",
+      "identical": true
+    },
+    {
+      "path": "framework/ims-common.jar",
+      "official_sha256": "975f35550cb4976d499979c4b044a54ccf6eaf6a7dd3b775c5e7efad488b556f",
+      "community_sha256": "bed53e2fd1e2558c5a169cc352248b814f2842f185743fa07ac5a1abf1478aa4",
+      "identical": false
+    },
+    {
+      "path": "framework/am.jar",
+      "official_sha256": "425230d4b61b56fa9ce27fc5883be295e109b30e616c5975c42d0e5338e7982d",
+      "community_sha256": "425230d4b61b56fa9ce27fc5883be295e109b30e616c5975c42d0e5338e7982d",
+      "identical": true
+    },
+    {
+      "path": "framework/abx.jar",
+      "official_sha256": "afec72f44effc980a3cb04519576c515f5a8f37e9c458e9352fdc87ba483fda7",
+      "community_sha256": "afec72f44effc980a3cb04519576c515f5a8f37e9c458e9352fdc87ba483fda7",
+      "identical": true
+    },
+    {
+      "path": "framework/android.test.base.jar",
+      "official_sha256": "a31fbbc82db44e3bf9ca7e542c3aca7327ee571150b095c7b084782276a62649",
+      "community_sha256": "a31fbbc82db44e3bf9ca7e542c3aca7327ee571150b095c7b084782276a62649",
+      "identical": true
+    },
+    {
+      "path": "framework/tcmclient.jar",
+      "official_sha256": "60b95dd59e317c51c3121b3fd2713a0294693a8b154803fd010af546fe6e2704",
+      "community_sha256": "60b95dd59e317c51c3121b3fd2713a0294693a8b154803fd010af546fe6e2704",
+      "identical": true
+    },
+    {
+      "path": "framework/voip-common.jar",
+      "official_sha256": "204e888e4d2c5ac3e25b21b910dcd7cdc378fb36aa89e1256e80007656d15606",
+      "community_sha256": "204e888e4d2c5ac3e25b21b910dcd7cdc378fb36aa89e1256e80007656d15606",
+      "identical": true
+    },
+    {
+      "path": "framework/framework-graphics.jar",
+      "official_sha256": "105edae40d7c7860367fe88476b6874d1ad0225c440f3e386dd7e1b9bdfbd486",
+      "community_sha256": "105edae40d7c7860367fe88476b6874d1ad0225c440f3e386dd7e1b9bdfbd486",
+      "identical": true
+    },
+    {
+      "path": "framework/com.android.mediadrm.signer.jar",
+      "official_sha256": "b7dbe0d6363ad5de269b3cf58b98f564e8953a1a315a9409111651f2defc08d7",
+      "community_sha256": "b7dbe0d6363ad5de269b3cf58b98f564e8953a1a315a9409111651f2defc08d7",
+      "identical": true
+    },
+    {
+      "path": "framework/QXPerformance.jar",
+      "official_sha256": "94994ba97225549c53c31f4c23a5e013394c9827d9f5a6a7f4499a18a3d68ddb",
+      "community_sha256": "94994ba97225549c53c31f4c23a5e013394c9827d9f5a6a7f4499a18a3d68ddb",
+      "identical": true
+    },
+    {
+      "path": "framework/framework-nfc.jar",
+      "official_sha256": "ea5a4fc4a46bbff16e30b002adf30c2d7a51eba4cc42254d31b330a1a572377b",
+      "community_sha256": "ea5a4fc4a46bbff16e30b002adf30c2d7a51eba4cc42254d31b330a1a572377b",
+      "identical": true
+    },
+    {
+      "path": "framework/com.android.future.usb.accessory.jar",
+      "official_sha256": "7208c9155c751b8a247ec54cb6ca74987350f79e8adb2b0bb3c6e9ce554675f9",
+      "community_sha256": "7208c9155c751b8a247ec54cb6ca74987350f79e8adb2b0bb3c6e9ce554675f9",
+      "identical": true
+    },
+    {
+      "path": "framework/telephony-ext.jar",
+      "official_sha256": "394ab5f79721436d9e2996f8aeb26dc9fe582737861c86e6de76c1b0ef3fff7b",
+      "community_sha256": "394ab5f79721436d9e2996f8aeb26dc9fe582737861c86e6de76c1b0ef3fff7b",
+      "identical": true
+    },
+    {
+      "path": "framework/com.android.location.provider.jar",
+      "official_sha256": "9d69d65fb929d0d3d24842dcfc89968043b406b417adc596ccacc8dd466e267d",
+      "community_sha256": "9d69d65fb929d0d3d24842dcfc89968043b406b417adc596ccacc8dd466e267d",
+      "identical": true
+    },
+    {
+      "path": "framework/vr.jar",
+      "official_sha256": "06fc59713d42d8c588cc08756410acc8a297bd2b6e1e47b590c1ab8dcfb69e43",
+      "community_sha256": "06fc59713d42d8c588cc08756410acc8a297bd2b6e1e47b590c1ab8dcfb69e43",
+      "identical": true
+    },
+    {
+      "path": "framework/svc.jar",
+      "official_sha256": "00302abf4d8e28cac693afda62e8b071a553cafc7c20da398c197005166d7e7c",
+      "community_sha256": "00302abf4d8e28cac693afda62e8b071a553cafc7c20da398c197005166d7e7c",
+      "identical": true
+    },
+    {
+      "path": "framework/monkey.jar",
+      "official_sha256": "2e6b7ca506df25687cf816b8c62f2cdd85082cdadf4df7e5721dfeeb9d4c309c",
+      "community_sha256": "2e6b7ca506df25687cf816b8c62f2cdd85082cdadf4df7e5721dfeeb9d4c309c",
+      "identical": true
+    },
+    {
+      "path": "framework/framework-ondeviceintelligence-platform.jar",
+      "official_sha256": "6c8173fa2cf56585cb3faba9a8e6826c81dce86ccd0ce86a87f07e8f17a3de76",
+      "community_sha256": "6c8173fa2cf56585cb3faba9a8e6826c81dce86ccd0ce86a87f07e8f17a3de76",
+      "identical": true
+    },
+    {
+      "path": "framework/vendor.qti.hardware.data.connectionaidl-V1-java.jar",
+      "official_sha256": "97a69130df98095b541de24e7e1f0eaeacbe2064892be329360607c3204b0898",
+      "community_sha256": "97a69130df98095b541de24e7e1f0eaeacbe2064892be329360607c3204b0898",
+      "identical": true
+    },
+    {
+      "path": "framework/framework-location.jar",
+      "official_sha256": "9ff125c070302b6d71f646b822f4ceb871b95be5047eafb3fd49c28ee043f3b2",
+      "community_sha256": "9ff125c070302b6d71f646b822f4ceb871b95be5047eafb3fd49c28ee043f3b2",
+      "identical": true
+    },
+    {
+      "path": "framework/android.hidl.manager-V1.0-java.jar",
+      "official_sha256": "745b96537ec24cb82f456603227ba0a65fd05987ad0abebf2e45b1a26d0bc802",
+      "community_sha256": "745b96537ec24cb82f456603227ba0a65fd05987ad0abebf2e45b1a26d0bc802",
+      "identical": true
+    },
+    {
+      "path": "framework/uinput.jar",
+      "official_sha256": "cd69caef02c897c5c1f07098558dffdec54df877d022ab691c508bd295b7840b",
+      "community_sha256": "cd69caef02c897c5c1f07098558dffdec54df877d022ab691c508bd295b7840b",
+      "identical": true
+    },
+    {
+      "path": "framework/services.jar",
+      "official_sha256": "8940bc77c8d50f8a5e8106e7a0b3d63c6562505831e875c2ae2c8ec892b0aca1",
+      "community_sha256": "ea2ed11f8fa18df9d980c8fce61a54b03f3e57d63edd855bbf16acdb77d81f25",
+      "identical": false
+    },
+    {
+      "path": "framework/org.apache.http.legacy.jar",
+      "official_sha256": "113b4ee690dc1cf465fc4a39c405c2b2f3781b1226a7a70e0cbb9b93e3804cd2",
+      "community_sha256": "113b4ee690dc1cf465fc4a39c405c2b2f3781b1226a7a70e0cbb9b93e3804cd2",
+      "identical": true
+    },
+    {
+      "path": "framework/telecom.jar",
+      "official_sha256": "f5d0775a0dd7bab61326cd837d5964d1290efc18147e64336eadab00ab32fd12",
+      "community_sha256": "f5d0775a0dd7bab61326cd837d5964d1290efc18147e64336eadab00ab32fd12",
+      "identical": true
+    },
+    {
+      "path": "framework/hid.jar",
+      "official_sha256": "93e1166cdaa974e4d56181834810c577937e418a332a85821f5247366e47c06e",
+      "community_sha256": "93e1166cdaa974e4d56181834810c577937e418a332a85821f5247366e47c06e",
+      "identical": true
+    },
+    {
+      "path": "framework/wapicertstore.jar",
+      "official_sha256": "ea729259e19c87c124141fab46f83d9c53751fea112d66eafea3022ee0836810",
+      "community_sha256": "ea729259e19c87c124141fab46f83d9c53751fea112d66eafea3022ee0836810",
+      "identical": true
+    },
+    {
+      "path": "framework/QPerformance.jar",
+      "official_sha256": "9d5fc16a600a6201c276879f512a8c66dc24ec6cdbe55062835482338cf65394",
+      "community_sha256": "8b9d1ad6345437c2df585b4e4bf9d925398deb306132ee92e41112074ca9743c",
+      "identical": false
+    },
+    {
+      "path": "framework/appwidget.jar",
+      "official_sha256": "e348bca26668a3fe94e147b8b9a0ee6d1322c0eff929829a64411988f43bd1b4",
+      "community_sha256": "e348bca26668a3fe94e147b8b9a0ee6d1322c0eff929829a64411988f43bd1b4",
+      "identical": true
+    },
+    {
+      "path": "framework/android.test.mock.jar",
+      "official_sha256": "0b222fbae2d9499a883bdff8568e91bfb8abeaa0fc80e3e7891b14e29017dab3",
+      "community_sha256": "0b222fbae2d9499a883bdff8568e91bfb8abeaa0fc80e3e7891b14e29017dab3",
+      "identical": true
+    }
+  ]
+}

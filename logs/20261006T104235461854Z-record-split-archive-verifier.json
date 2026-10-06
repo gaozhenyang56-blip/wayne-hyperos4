@@ -1,0 +1,17 @@
+{
+  "label": "record-split-archive-verifier",
+  "started_utc": "2026-10-06T10:42:35.461854+00:00",
+  "finished_utc": "2026-10-06T10:42:35.473584+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added cross-part ZIP CRC and manifest image-hash verifier.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104235461854Z-record-split-archive-verifier.log",
+  "output_sha256": "2c31b297b184c8bca5cb30bbdf0791020c8fc4ea56eb9e1adb16dcb2cc04ce9f",
+  "action": "增加分卷刷机包的完整读回检查，验证组合后的 ZIP 和镜像哈希。",
+  "outcome": "检查器可直接跨分卷读取，不需要再复制一份大型 ZIP；会校验所有文件的 CRC，并核对三份镜像是否与清单一致。",
+  "next_step": "更新候选说明、上传新增工具，然后生成并验证实验刷机包。"
+}

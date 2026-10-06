@@ -1,0 +1,73 @@
+{
+  "compared": 61,
+  "identical": 47,
+  "identical_paths": [
+    "apex/com.android.i18n.apex",
+    "apex/com.android.rkpd.apex",
+    "apex/com.android.tzdata.apex",
+    "apex/com.android.sdkext.apex",
+    "apex/com.android.apex.cts.shim.apex",
+    "apex/com.android.devicelock.apex",
+    "framework/com.android.nfc_extras.jar",
+    "framework/UxPerformance.jar",
+    "framework/bmgr.jar",
+    "framework/uiautomator.jar",
+    "framework/tradeinmode.jar",
+    "framework/tcmiface.jar",
+    "framework/content.jar",
+    "framework/android.hidl.base-V1.0-java.jar",
+    "framework/bu.jar",
+    "framework/com.android.media.remotedisplay.jar",
+    "framework/sm.jar",
+    "framework/incident-helper-cmd.jar",
+    "framework/android.test.runner.jar",
+    "framework/requestsync.jar",
+    "framework/javax.obex.jar",
+    "framework/am.jar",
+    "framework/abx.jar",
+    "framework/android.test.base.jar",
+    "framework/tcmclient.jar",
+    "framework/voip-common.jar",
+    "framework/framework-graphics.jar",
+    "framework/com.android.mediadrm.signer.jar",
+    "framework/QXPerformance.jar",
+    "framework/framework-nfc.jar",
+    "framework/com.android.future.usb.accessory.jar",
+    "framework/telephony-ext.jar",
+    "framework/com.android.location.provider.jar",
+    "framework/vr.jar",
+    "framework/svc.jar",
+    "framework/monkey.jar",
+    "framework/framework-ondeviceintelligence-platform.jar",
+    "framework/vendor.qti.hardware.data.connectionaidl-V1-java.jar",
+    "framework/framework-location.jar",
+    "framework/android.hidl.manager-V1.0-java.jar",
+    "framework/uinput.jar",
+    "framework/org.apache.http.legacy.jar",
+    "framework/telecom.jar",
+    "framework/hid.jar",
+    "framework/wapicertstore.jar",
+    "framework/appwidget.jar",
+    "framework/android.test.mock.jar"
+  ],
+  "framework_samples": [
+    {
+      "path": "framework/framework.jar",
+      "official_sha256": "4f24636042ed6661e62660f0724f5c3a22b7e5f2fe73750593f2dcfc77fba613",
+      "community_sha256": "17576299a3d5d9458ecbf3f2766d0db077f21bb8f0a34775d2fec675ee93b375",
+      "identical": false
+    },
+    {
+      "path": "framework/framework-res.apk",
+      "official_sha256": "511e2dcbfe7a171e27cf7cf906f834cd55cecf28e07241011f9bb15f852e6abf",
+      "community_sha256": "f008694e732e4891c7f7ab4063306a374cea7f46f703925a6f523caa5acaa71b",
+      "identical": false
+    },
+    {
+      "path": "framework/services.jar",
+      "official_sha256": "8940bc77c8d50f8a5e8106e7a0b3d63c6562505831e875c2ae2c8ec892b0aca1",
+      "community_sha256": "ea2ed11f8fa18df9d980c8fce61a54b03f3e57d63edd855bbf16acdb77d81f25",
+      "identical": false
+    }
+  ]
+}

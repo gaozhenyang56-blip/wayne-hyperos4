@@ -1,0 +1,17 @@
+{
+  "label": "update-permitted-candidate-documentation",
+  "started_utc": "2026-10-06T10:43:18.538516+00:00",
+  "finished_utc": "2026-10-06T10:43:18.568735+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,json,hashlib\np=pathlib.Path('README.md'); s=p.read_text().replace('Mi8937 已降为适配参考，基于它的最终包制作与发布已暂停。尚未确认最终供体，也没有发布刷机成品。','用户允许尝试 Mi8937 社区包，现继续实验候选路线，尚未发布刷机成品。').replace('不作为最终供体','继续作为实验候选，不能视为官方机型支持').replace('现暂停这条成品路线，继续检查配置更接近的候选。','现继续实验路线：与官方对照包比较的 61 个框架/APEX 文件中有 47 个完全一致，核心框架文件仍有差异，补丁来源未完全核验。spes 保留为备选。').replace('实际改动为三份设备身份属性及新增 FCM 5 矩阵。','实际改动为三份设备身份属性、新增 FCM 5 矩阵，以及换回 wayne 自身的设备 HAL 矩阵。'); p.write_text(s)\np=pathlib.Path('research/metadata-inventory-hashes.json'); records=json.loads(p.read_text())\nfor name,record in records.items():\n file=pathlib.Path(name); record['size']=file.stat().st_size; record['sha256']=hashlib.sha256(file.read_bytes()).hexdigest()\np.write_text(json.dumps(records,indent=2)+'\\n')\nprint('Updated README to explicitly permitted experimental route, five overlay files and partial framework evidence; refreshed metadata hashes.')"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104318538516Z-update-permitted-candidate-documentation.log",
+  "output_sha256": "250904773574002b257bd6d0e6fe29357f3a03dc064a5a3703811184b9aafdca",
+  "action": "更新候选状态和打包清单，明确 Mi8937 只是被允许尝试的社区实验供体。",
+  "outcome": "61 个框架/APEX 文件中 47 个与官方对照完全一致，核心框架仍有差异；这项证据和未核验范围会一并放入包内。README 已保留并更新为当前状态。",
+  "next_step": "上传新增安装与打包工具，生成分卷包并做完整读回验证。"
+}

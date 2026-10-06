@@ -1,0 +1,17 @@
+{
+  "label": "inspect-donor-research-checkpoint",
+  "started_utc": "2026-10-06T10:37:33.553201+00:00",
+  "finished_utc": "2026-10-06T10:37:33.565134+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat research/candidates/spes-os4/inspection.json | head -45; cat research/candidates/spes-clean-info.json 2>/dev/null | head -40; cat tools/download_verified.py; head -75 tools/remote_zip.py 2>/dev/null; rg --files research/candidates | head -35; df -h ."
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103733553201Z-inspect-donor-research-checkpoint.log",
+  "output_sha256": "15f0210a8d56ec213f7a0e80ef8ca93057be151f69afb1d2e391ab69cd27bdaa",
+  "action": "复查已获取候选的来源和下载状态，确定下一轮供体核验从哪里继续。",
+  "outcome": "本次只读取既有证据，不重复下载已取得的材料；Mi8937 仍只作研究参考。",
+  "next_step": "查询同 SoC 的 lavender 及 4.19 中端平台的真实 HyperOS 4 发布，优先验证实际框架来源。"
+}

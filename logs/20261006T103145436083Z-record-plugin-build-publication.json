@@ -1,0 +1,17 @@
+{
+  "label": "record-plugin-build-publication",
+  "started_utc": "2026-10-06T10:31:45.436083+00:00",
+  "finished_utc": "2026-10-06T10:31:45.446305+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Published build snapshot 518583ba9c0d2e7f475d8916e27ab30cd9db5d0c via GitHub plugin tree/commit/ref APIs.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103145436083Z-record-plugin-build-publication.log",
+  "output_sha256": "5e15be213cf8d5c97e15cab8cc28f4256726acd5673cd5df4fb60540c0d7b592",
+  "action": "通过 GitHub 插件上传本轮构建工具、目标 HAL 矩阵修复、检查报告和原始日志。",
+  "outcome": "312 个工程文件已上传，main 已推进到 518583ba9c0d2e7f475d8916e27ab30cd9db5d0c；没有覆盖已有远程历史。读取提交元数据时发现 requests 未安装，改用现有 GitHub CLI 完成读取。",
+  "next_step": "读回远程文件验证上传一致性，然后制作带校验清单的实验刷机包，并检查 Releases 上传是否可用。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "record-focused-donor-web-recheck",
+  "started_utc": "2026-10-06T10:38:28.991680+00:00",
+  "finished_utc": "2026-10-06T10:38:29.016045+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,json,datetime; d={\"checked_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"queries\":[\"lavender HyperOS 4 ROM\",\"spes HyperOS 4 Android 17\",\"Snapdragon 660 HyperOS 4\"],\"findings\":{\"lavender\":\"No independently verifiable full HyperOS 4 package located in this recheck\",\"spes\":\"Community port posts found; actual framework not yet verified\",\"generic_catalog_warning\":\"A site/channel title mentioning HyperOS 4 does not prove the linked device ROM version\"},\"primary_followups\":[\"https://t.me/s/RN11UpdatesLATAM?q=%23spes\",\"https://t.me/s/jesuspes_port\",\"https://t.me/RedmiNote11Mods/1675\"]}; pathlib.Path(\"research/candidates/20261006-donor-recheck.json\").write_text(json.dumps(d,indent=2)+\"\\n\"); print(json.dumps(d,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103828991680Z-record-focused-donor-web-recheck.log",
+  "output_sha256": "f4fa401ab9dde7c9c0cca908bb492cb25d2bc5c683f42081c3aafa94656fda9b",
+  "action": "重新搜索同款 SD660 平台及 spes 的 HyperOS 4 发布信息，避免把老机型代号当成系统版本。",
+  "outcome": "仍未找到可核验的 lavender HyperOS 4 完整包；spes 有社区移植发布线索。部分网站只是在通用页面使用 HyperOS 4 标题，不能视作机型已获得该系统的证据。",
+  "next_step": "追溯 spes 发布者原帖和下载镜像，取得实际系统内容后核对框架来源。"
+}

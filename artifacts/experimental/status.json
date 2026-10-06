@@ -1,0 +1,7 @@
+{
+  "updated_utc": "2026-10-06T10:40:53.079558+00:00",
+  "status": "experimental-candidate-unbooted",
+  "reason": "User permits trying Mi8937; verify actual framework independently and do not claim official device support",
+  "publication_paused": false,
+  "next_candidate": "Continue existing Mi8937 experiment; spes remains alternative"
+}

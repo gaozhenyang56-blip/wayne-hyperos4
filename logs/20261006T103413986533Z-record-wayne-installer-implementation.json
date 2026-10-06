@@ -1,0 +1,17 @@
+{
+  "label": "record-wayne-installer-implementation",
+  "started_utc": "2026-10-06T10:34:13.986533+00:00",
+  "finished_utc": "2026-10-06T10:34:13.998632+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added tools/install_wayne.py with image integrity checks and target-layout preflight.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103413986533Z-record-wayne-installer-implementation.log",
+  "output_sha256": "99e1fdd587d2ca2e8e847ac1d94d081b64bdda49321c90e68fec97a51e9f5ce1",
+  "action": "编写实验刷机包的安装工具，限定目标为 wayne 的 Miku retrofit 动态分区布局。",
+  "outcome": "工具先核对全部镜像的大小和哈希，再检查设备及分区；默认只验证，只有明确使用安装选项才写入 system、vendor、boot。分区检查失败时不会开始写入。",
+  "next_step": "用离线模拟验证错误设备和空间不足时会拒绝安装，再生成刷机包。"
+}

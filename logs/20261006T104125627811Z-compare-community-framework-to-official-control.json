@@ -1,0 +1,17 @@
+{
+  "label": "compare-community-framework-to-official-control",
+  "started_utc": "2026-10-06T10:41:25.627811+00:00",
+  "finished_utc": "2026-10-06T10:41:25.988713+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,hashlib,json,concurrent.futures; a=pathlib.Path(\"research/donor-dada-os4/system/system\"); b=pathlib.Path(\"research/candidates/mi8937-os4/system/system\"); names=[p.relative_to(a).as_posix() for folder in [a/\"apex\",a/\"framework\"] if folder.exists() for p in folder.rglob(\"*\") if p.is_file() and (b/p.relative_to(a)).is_file() and (p.suffix in [\".jar\",\".apk\",\".apex\",\".capex\"])];\ndef digest(p):\n with p.open(\"rb\") as f:return hashlib.file_digest(f,\"sha256\").hexdigest()\ndef compare(name):\n x=digest(a/name); y=digest(b/name); return {\"path\":name,\"official_sha256\":x,\"community_sha256\":y,\"identical\":x==y}\nwith concurrent.futures.ThreadPoolExecutor(max_workers=4) as p:rows=list(p.map(compare,names))\nreport={\"official_control\":\"dada official OS4.0.0.8.XOCCNXM payload\",\"community_candidate\":\"Mi8937 claimed OS4.0.0.16.XPCCNXM\",\"scope\":\"Exact bytes of common framework and APEX files only; not an official support or complete provenance claim\",\"compared\":len(rows),\"identical\":sum(r[\"identical\"] for r in rows),\"files\":rows}; pathlib.Path(\"research/community-framework-origin-check.json\").write_text(json.dumps(report,indent=2)+\"\\n\"); print(json.dumps({\"compared\":report[\"compared\"],\"identical\":report[\"identical\"],\"identical_paths\":[r[\"path\"] for r in rows if r[\"identical\"]],\"framework_samples\":[r for r in rows if pathlib.PurePosixPath(r[\"path\"]).name in [\"framework.jar\",\"framework-res.apk\",\"services.jar\"]]},indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104125627811Z-compare-community-framework-to-official-control.log",
+  "output_sha256": "bd256a8243bb024b3ff6aa6a8f0a702f915fb040c63969ab53326eb6861cc9df",
+  "action": "比较 Mi8937 社区包与已取得的官方对照包中的实际框架和 APEX 文件，而不只看版本属性。",
+  "outcome": "已生成逐文件内容比较报告；相同文件可作为框架来源证据，不同文件仍需结合补丁和构建差异分析。",
+  "next_step": "根据比较结果修正候选说明，然后继续现有实验包的打包与上传。"
+}

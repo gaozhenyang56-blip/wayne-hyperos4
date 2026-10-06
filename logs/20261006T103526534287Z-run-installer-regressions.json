@@ -1,0 +1,18 @@
+{
+  "label": "run-installer-regressions",
+  "started_utc": "2026-10-06T10:35:26.534287+00:00",
+  "finished_utc": "2026-10-06T10:35:26.665148+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "python3 tools/test_installer_offline.py && python3 -m compileall -q tools"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103526534287Z-run-installer-regressions.log",
+  "output_sha256": "74c03fc16fde9a2dfeff03db0ec8f472a5a8dfed04e9e982a912b4b7f64faee3",
+  "action": "运行安装工具的离线回归检查，并检查新增 Python 工具是否存在语法错误。",
+  "outcome": "7 项离线回归检查通过；错误设备、非目标布局、空间不足和损坏镜像都会被拒绝。新增工具语法检查通过。",
+  "failure_note": "离线检查未全部通过，先修复失败项，不进行发布。",
+  "next_step": "生成包含 boot、system、wayne vendor、安装工具和验证说明的实验刷机包。"
+}

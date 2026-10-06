@@ -1,0 +1,17 @@
+{
+  "label": "record-installer-offline-regressions",
+  "started_utc": "2026-10-06T10:35:00.848161+00:00",
+  "finished_utc": "2026-10-06T10:35:00.858771+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added device-independent installer safety regressions.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T103500848161Z-record-installer-offline-regressions.log",
+  "output_sha256": "89d2bb577f55b60eee2a6aa5252ed5c61f5429fd4bbf54832f00e509f8795081",
+  "action": "增加安装工具的离线回归检查，覆盖错误设备、错误启动模式、非目标布局、分区空间不足及镜像损坏。",
+  "outcome": "测试只使用模拟设备数据和临时文件，不连接真机，也不会执行刷机。",
+  "next_step": "运行这些检查，修复发现的问题后再生成成品分卷。"
+}
