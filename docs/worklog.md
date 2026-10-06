@@ -57,3 +57,12 @@
 - 后续通过插件的 Git tree/commit/ref 接口上传完整工程快照，保留远程初始化提交作为父提交。
 - 原本的本地提交不会因快照同步而拥有相同的远程 SHA；将其完整历史保存为 `artifacts/project-history.bundle` 随工程上传，可用 `git clone project-history.bundle restored-history` 恢复。
 - 本记录写入时快照正在准备；远程发布结果以 main 分支实际文件和提交为准。没有发布最终 ROM。
+
+## 2026-10-06：工程首次公开同步完成
+
+- 插件建立工程 tree、commit，并成功将 main 从初始化提交推进到 `15dc1759224dbfe4c1b57ab7ef87e525c07236b3`，未强制覆盖历史。
+- 136 个文本文件上传完成，另保存 `artifacts/project-history.bundle`；本地原始历史截至 `2d573772de4e8f69af7654a22a514eef57f8e55f`。
+- 通过 `git fetch origin main` 获取实际远程内容；`git diff --exit-code HEAD origin/main -- . ':!artifacts/project-history.bundle'` 返回 0，确认全部原有受控文件一致。
+- 从远程提交读回历史 bundle，`cmp` 与原始 bundle 一致，`git bundle verify` 通过并确认完整历史。
+- 本地原始历史保留在 local-history 分支；工作 main 已与远程 main 对齐，后续使用公开历史继续记录变化。
+- 本节作为独立同步完成记录提交。原始镜像留在工作区，当前没有最终 ROM，也没有 Releases 刷机包。

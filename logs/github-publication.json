@@ -1,0 +1,19 @@
+{
+  "date_utc": "2026-10-06",
+  "repository": "https://github.com/gaozhenyang56-blip/wayne-hyperos4",
+  "visibility": "public",
+  "method": "GitHub plugin Git tree, commit and ref APIs",
+  "published_snapshot_commit": "15dc1759224dbfe4c1b57ab7ef87e525c07236b3",
+  "published_snapshot_tree": "c31e66f152265da7a822848ad218c4dab95e007a",
+  "text_files": 136,
+  "local_history_tip": "2d573772de4e8f69af7654a22a514eef57f8e55f",
+  "history_bundle_blob": "e4b560bb7253932efb8bc701f6400f910722dcad",
+  "checks": {
+    "remote_fetch": "passed",
+    "all_original_tracked_files_diff": "identical",
+    "history_bundle_byte_comparison": "identical",
+    "git_bundle_verify": "passed; complete history"
+  },
+  "final_rom_produced": false,
+  "hardware_test_performed": false
+}

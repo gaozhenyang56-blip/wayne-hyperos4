@@ -6,3 +6,4 @@
 
 来源与分区校验见 `research/**/inspection.json`、`*.img.json`、`sources.lock.json`。第三方来源哈希与本地计算哈希应分别说明。
 
+`project-history.bundle` 已公开保存，包含 API 同步前的四次本地提交历史；不包含大型 ROM 镜像。可用 `git clone project-history.bundle restored-history` 恢复。后续变化记录在本仓库 main 的提交历史中。
