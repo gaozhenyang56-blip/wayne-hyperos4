@@ -1,0 +1,113 @@
+                remaining = (end-start)*4096
+                while remaining:
+                    length = min(remaining, 1024*1024)
+                    block = source.read(length) if op == 'new' else bytes(length)
+                    if len(block) != length:
+                        raise ValueError('Truncated data member')
+                    target.write(block)
+                    remaining -= length
+            if source.read(1):
+                raise ValueError('Unconsumed data')
+            target.seek(0)
+            digest = hashlib.file_digest(target, 'sha256').hexdigest()
+        part.replace(output)
+        (output.parent / (output.stem + '.transfer.list')).write_text(text)
+        report = {'archive': str(archive_path), 'data_member': data_name,
+                  'transfer_member': transfer_name, 'size': size, 'sha256': digest,
+                  'zip_member_crc_verified': True, 'original_image_hash_verified': False,
+                  'usage': 'offline_analysis'}
+        output.with_suffix('.img.json').write_text(json.dumps(report, indent=2)+'\n')
+        print(json.dumps(report, indent=2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('archive', type=pathlib.Path)
+    parser.add_argument('data_member')
+    parser.add_argument('transfer_member')
+    parser.add_argument('output', type=pathlib.Path)
+    args = parser.parse_args()
+    rebuild(args.archive, args.data_member, args.transfer_member, args.output)
+                length = (end - start) * 4096
+                out.seek(start * 4096)
+                if command == 'new':
+                    block = data[offset:offset + length]
+                    if len(block) != length:
+                        raise ValueError('Truncated block data')
+                    out.write(block)
+                    offset += length
+                else:
+                    out.write(bytes(length))
+        if offset != len(data):
+            raise ValueError('Unconsumed block data')
+        out.seek(0)
+        sha256 = hashlib.file_digest(out, 'sha256').hexdigest()
+    temporary.replace(target)
+    record = {'size': size, 'sha256': sha256, 'source': str(data_file),
+              'original_image_sha256_verified': False,
+              'purpose': 'analysis_only'}
+    target.with_suffix(target.suffix + '.json').write_text(json.dumps(record, indent=2))
+    print(json.dumps(record, indent=2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('data', type=pathlib.Path)
+    parser.add_argument('transfer', type=pathlib.Path)
+    parser.add_argument('size', type=int)
+    parser.add_argument('output', type=pathlib.Path)
+    args = parser.parse_args()
+    convert(args.data, args.transfer, args.size, args.output)
+        name = archive[offset:offset + name_size - 1].decode()
+        offset = (offset + name_size + 3) & ~3
+        content = archive[offset:offset + size]
+        offset = (offset + size + 3) & ~3
+        if name == 'TRAILER!!!':
+            break
+        if len(content) != size:
+            raise ValueError('Truncated CPIO file')
+        if name.startswith('/') or '..' in pathlib.PurePosixPath(name).parts:
+            raise ValueError('Unsafe CPIO path')
+        report['entries'].append({'name': name, 'mode': oct(mode), 'size': size})
+        if mode & 0o170000 == 0o100000:
+            target = output / 'ramdisk' / name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(content)
+    (output / 'boot-inspection.json').write_text(json.dumps(report, ensure_ascii=False, indent=2))
+    print(json.dumps({key: value for key, value in report.items() if key != 'entries'}, ensure_ascii=False, indent=2))
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('image', type=pathlib.Path)
+    parser.add_argument('output', type=pathlib.Path)
+    args = parser.parse_args()
+    unpack(args.image, args.output)
+            for dependency in info['needed']:
+                candidates=libraries.get((info['class'],dependency),[])
+                if not candidates:
+                    missing.append({'consumer':str(p),'library':dependency})
+                else:
+                    if len(candidates)>1:
+                        ambiguous[dependency]=[str(x) for x in candidates]
+                    queue.append(candidates[0])
+        unresolved=sorted(initial['undefined']-exports)
+        results.append({'target':name,'elf_class':initial['class'],
+                        'missing_dependency_files':missing,
+                        'unresolved_target_symbols_under_inventory':unresolved,
+                        'ambiguous_providers':ambiguous,
+                        'selected_dependency_closure':[str(p) for p in sorted(visited)]})
+    report={'method':'filename and ELF class inventory, first provider selected',
+            'limitations':['Android linker namespaces not evaluated','APEX internal libraries not extracted',
+                           'Symbol versions not evaluated','Transitive undefined symbols not exhaustively checked',
+                           'Vendor provider preference may differ from runtime'],
+            'results':results,'runtime_compatibility_proven':False}
+    args.output.write_text(json.dumps(report,indent=2)+'\n')
+    print(json.dumps([{'target':r['target'],'missing':len(r.get('missing_dependency_files',[])),
+                      'unresolved':len(r.get('unresolved_target_symbols_under_inventory',[]))} for r in results]))
+
+
+if __name__=='__main__':main()
+brotli==1.2.0
+lz4==4.4.5
+e625150a387e8a5eb2faae649d6454fbe597d404	refs/tags/v1.8.6

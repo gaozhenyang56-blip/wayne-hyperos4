@@ -1,0 +1,18 @@
+{
+  "label": "validate-ci-entry-and-metadata-label-equivalence",
+  "started_utc": "2026-10-06T10:57:21.536326+00:00",
+  "finished_utc": "2026-10-06T10:57:21.820225+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,pathlib,hashlib; subprocess.run([\"python3\",\"-m\",\"compileall\",\"-q\",\"tools\"],check=True); subprocess.run([\"python3\",\"tools/build_system_overlay.py\",\"research/candidates/mi8937-os4/system\",\"config/compatibility_matrix.5.xml\",\"/tmp/wayne-ci-overlay.tar\",\"--device-matrix\",\"config/compatibility_matrix.device.wayne.xml\",\"--metadata\",\"research/candidates/mi8937-os4/inode-metadata.json\"],check=True); a=pathlib.Path(\"/tmp/wayne-ci-overlay.tar\").read_bytes(); b=pathlib.Path(\"artifacts/experimental/overlay.tar\").read_bytes(); assert a==b,\"Metadata label mode changed overlay\"; subprocess.run([\"python3\",\"tools/test_installer_offline.py\"],check=True); print(\"CI entry compiles; overlay byte-equivalence verified.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T105721536326Z-validate-ci-entry-and-metadata-label-equivalence.log",
+  "output_sha256": "1a423a63492009dea9c2c413ffb680719338c0b59f9e2a1c2238f708ddf6cd23",
+  "action": "检查云端构建入口语法，并验证从 inode 清单读取标签不会改变现有适配内容。",
+  "outcome": "构建入口语法检查通过；新方式生成的 overlay 与既有 overlay 完全相同，原安装工具的 7 项离线回归仍通过。",
+  "failure_note": "云端入口或标签等价性检查失败，先修复后再启动。",
+  "next_step": "上传云端工作流并启动实际构建，跟踪每阶段进展和发布结果。"
+}

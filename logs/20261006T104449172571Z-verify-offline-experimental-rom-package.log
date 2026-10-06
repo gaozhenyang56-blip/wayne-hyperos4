@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "parts": [
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.001",
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.002"
+  ],
+  "archive_entries": [
+    "wayne-hyperos4-offline-20261006/INSTALL.txt",
+    "wayne-hyperos4-offline-20261006/boot.img",
+    "wayne-hyperos4-offline-20261006/install.py",
+    "wayne-hyperos4-offline-20261006/manifest.json",
+    "wayne-hyperos4-offline-20261006/reports/framework-origin.json",
+    "wayne-hyperos4-offline-20261006/reports/runtime-policy.json",
+    "wayne-hyperos4-offline-20261006/reports/strict-policy.json",
+    "wayne-hyperos4-offline-20261006/reports/wayne-boot-check.json",
+    "wayne-hyperos4-offline-20261006/reports/wayne-system-content-check.json",
+    "wayne-hyperos4-offline-20261006/reports/wayne-system-metadata-check.json",
+    "wayne-hyperos4-offline-20261006/reports/wayne-vintf-check.json",
+    "wayne-hyperos4-offline-20261006/system.img",
+    "wayne-hyperos4-offline-20261006/vendor.img"
+  ],
+  "image_hashes_match_manifest": true,
+  "hardware_tested": false
+}

@@ -1,0 +1,17 @@
+{
+  "label": "record-runtime-upload-diagnostics",
+  "started_utc": "2026-10-06T10:46:51.849325+00:00",
+  "finished_utc": "2026-10-06T10:46:51.859639+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Read managed environment runtime status for release upload diagnostics; no secret values exposed.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104651849325Z-record-runtime-upload-diagnostics.log",
+  "output_sha256": "316e9f9d710b0448fb01984e5be905e96064ffb9588985a8a1bcc16898437c59",
+  "action": "核对当前环境的 GitHub 连接和网络就绪状态，区分权限与传输问题。",
+  "outcome": "已读取运行环境状态；实际创建 Releases 已成功，小文件上传仍返回请求长度错误，继续检查上传端的请求格式。",
+  "next_step": "用标准 Python HTTP 请求明确指定文件长度，先测试校验文件。"
+}

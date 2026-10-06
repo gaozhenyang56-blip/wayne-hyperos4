@@ -1,0 +1,5 @@
+{"assets":[],"id":"RE_kwDOU9qPvM4YHaMT","isDraft":true}
+gh version 2.46.0 (2025-01-13 Debian 2.46.0-3)
+https://github.com/cli/cli/releases/tag/v2.46.0
+Proxy environment names: ['no_proxy', 'https_proxy', 'CODEX_PROXY_CERT', 'NO_PROXY', 'HTTPS_PROXY', 'HTTP_PROXY', 'http_proxy', 'CODEX_EXEC_SERVER_PROXY_PRIVATE_IPS_VIA_UPSTREAM']
+Credential environment names: ['GH_TOKEN']

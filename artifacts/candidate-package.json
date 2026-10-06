@@ -1,0 +1,62 @@
+{
+  "manifest": {
+    "device": "wayne",
+    "layout": "miku-wayne-retrofit-dynamic",
+    "android_sdk": 37,
+    "declared_hyperos": "4.0.0.16.XPCCNXM",
+    "kernel": "4.19.315-Miku-Vampire_v2-g3a74d7",
+    "build_commit": "c7926a98cc1493f8dac48a0acde3068ee7f3d6ef",
+    "created_utc": "2026-10-06T10:44:31.407399+00:00",
+    "status": "offline-experimental-unbooted",
+    "hardware_tested": false,
+    "strict_neverallow_passed": false,
+    "runtime_mode_policy_compiled": true,
+    "unresolved": [
+      "Strict SELinux neverallow conflicts",
+      "Runtime linker/APEX compatibility",
+      "Core framework changes relative to official control not fully audited",
+      "Actual kernel build config is not embedded correctly",
+      "Boot and hardware behavior"
+    ],
+    "group_limit": 6241120256,
+    "images": {
+      "boot.img": {
+        "size": 18755584,
+        "sha256": "4802fbbde81560a234ecca1766e0e27ad4770c5bc1af1927cb6519d9038c24f8"
+      },
+      "system.img": {
+        "size": 2940682240,
+        "sha256": "d0b983ddd9a1aed8d17d84bfa2ac298debabb6b61cb36596a7168e80ab72ae8f"
+      },
+      "vendor.img": {
+        "size": 209600512,
+        "sha256": "2680ee25e0b7b65c8f43924cd8fe8709fff5cbe1f946dd2ad0f6fba8b5808e26"
+      }
+    }
+  },
+  "parts": {
+    "wayne-hyperos4-offline-20261006.zip.001": {
+      "size": 1900000000,
+      "sha256": "5275c1e7e4486957517f9ba30c6bb8b753f29af87938c81158485f34dbe5597c"
+    },
+    "wayne-hyperos4-offline-20261006.zip.002": {
+      "size": 1269073508,
+      "sha256": "bdda0cd2bb8828c53fd93c645ca9f38d00f3ae138e05f4b992149daf05af4058"
+    }
+  },
+  "archive_entries": [
+    "INSTALL.txt",
+    "boot.img",
+    "install.py",
+    "manifest.json",
+    "reports/framework-origin.json",
+    "reports/runtime-policy.json",
+    "reports/strict-policy.json",
+    "reports/wayne-boot-check.json",
+    "reports/wayne-system-content-check.json",
+    "reports/wayne-system-metadata-check.json",
+    "reports/wayne-vintf-check.json",
+    "system.img",
+    "vendor.img"
+  ]
+}

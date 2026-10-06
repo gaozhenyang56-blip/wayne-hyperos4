@@ -1,0 +1,17 @@
+{
+  "label": "record-reproducible-github-build-workflow",
+  "started_utc": "2026-10-06T10:56:05.244939+00:00",
+  "finished_utc": "2026-10-06T10:56:05.268996+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added GitHub runner rebuild/publication workflow with timestamped narrative progress.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T105605244939Z-record-reproducible-github-build-workflow.log",
+  "output_sha256": "e90b75d581248bef2bb6273aa29b238b0098078fb6621aab6f51c2322ba79bbc",
+  "action": "建立 GitHub 官方运行器的可复现构建与发布流程，作为当前上传链路故障的替代。",
+  "outcome": "流程固定供体完整哈希、目标底包条目和 AOSP/EROFS 源码版本；每阶段中文进展写入独立 MD 并提交，只有资产哈希核对后才公开实验预发布。",
+  "next_step": "本地检查工作流和构建入口，上传后启动并跟踪真实执行结果。"
+}

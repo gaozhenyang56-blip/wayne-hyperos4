@@ -1,0 +1,29 @@
+{
+  "label": "create-experimental-release-draft",
+  "started_utc": "2026-10-06T10:45:37.484579+00:00",
+  "finished_utc": "2026-10-06T10:45:38.171938+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "create",
+    "offline-20261006",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--draft",
+    "--prerelease",
+    "--target",
+    "c7926a98cc1493f8dac48a0acde3068ee7f3d6ef",
+    "--title",
+    "wayne HyperOS 4 离线实验包（未真机验证）",
+    "--notes-file",
+    "artifacts/releases/RELEASE.txt"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104537484579Z-create-experimental-release-draft.log",
+  "output_sha256": "d6155149e35e8dccc8a348e984e4b3b212d5cc979ffa30a9c2aad9ccc64b6b51",
+  "action": "在同一 GitHub 仓库创建实验刷机包的 Releases 草稿，准备承载大型分卷文件。",
+  "outcome": "Releases 草稿已创建，标注为未真机验证的实验预发布；尚未公开为稳定成品。",
+  "failure_note": "GitHub 拒绝创建 Releases 草稿；包文件已保留，需核实返回的权限原因并寻找可用的已授权上传方式。",
+  "next_step": "草稿创建成功后上传分卷和校验文件；若失败则先处理上传渠道。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "record-ci-rootless-label-and-progress-support",
+  "started_utc": "2026-10-06T10:53:43.885349+00:00",
+  "finished_utc": "2026-10-06T10:53:43.900554+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Added source-inventory label support and independent CI progress path.\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T105343885349Z-record-ci-rootless-label-and-progress-support.log",
+  "output_sha256": "4cf76a09b78dd1b9797dc35620703bc0723772f1ef1b58fc4425d31c96dcd0f0",
+  "action": "为 GitHub 官方运行器补充无特权构建支持，并给云端进展记录设置独立文件。",
+  "outcome": "系统标签可直接从原始镜像的 inode 清单读取，不依赖运行器写入安全扩展属性；云端进展文件与当前本地记录分开，避免并发修改冲突。",
+  "next_step": "验证标签读取产生相同 overlay，然后建立并启动云端构建发布工作流。"
+}

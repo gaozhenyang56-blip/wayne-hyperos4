@@ -1,0 +1,17 @@
+{
+  "label": "inspect-failed-release-upload",
+  "started_utc": "2026-10-06T10:46:14.343323+00:00",
+  "finished_utc": "2026-10-06T10:46:15.130560+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "gh release view offline-20261006 --repo gaozhenyang56-blip/wayne-hyperos4 --json id,assets,isDraft; gh version; python3 -c 'import os; print(\"Proxy environment names:\",[k for k in os.environ if \"proxy\" in k.lower()]); print(\"Credential environment names:\",[k for k in os.environ if k in [\"GH_TOKEN\",\"GITHUB_TOKEN\"]])'"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104614343323Z-inspect-failed-release-upload.log",
+  "output_sha256": "29a24b72a602bca67e280a495a8b63f345a1f0c73d8991e5eb7979495bc3ee9e",
+  "action": "检查 Releases 草稿中的实际资产，确认上传失败发生在哪些文件。",
+  "outcome": "已读取草稿资产列表和当前网络工具信息，尚未公开不完整成品。",
+  "next_step": "区分 GitHub 权限问题与大型请求传输问题，选择可用的上传方式继续完成。"
+}

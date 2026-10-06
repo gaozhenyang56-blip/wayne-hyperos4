@@ -1,0 +1,17 @@
+{
+  "label": "diagnose-upload-length-through-proxy",
+  "started_utc": "2026-10-06T10:47:48.793357+00:00",
+  "finished_utc": "2026-10-06T10:47:49.338485+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,json,urllib.request,urllib.error; r=json.loads(subprocess.check_output([\"gh\",\"api\",\"repos/gaozhenyang56-blip/wayne-hyperos4/releases/404595475\"],text=True)); print(json.dumps({k:r.get(k) for k in [\"upload_url\",\"id\",\"tag_name\",\"draft\"]})); data=b\"nonsecret-length-probe\"; request=urllib.request.Request(\"https://httpbin.org/post\",data=data,method=\"POST\",headers={\"Content-Type\":\"application/octet-stream\",\"Content-Length\":str(len(data))});\ntry:\n with urllib.request.urlopen(request,timeout=20) as response:d=json.load(response); print(json.dumps({\"sent_bytes\":len(data),\"received_bytes\":len(d.get(\"data\",\"\").encode()),\"observed_content_length\":d.get(\"headers\",{}).get(\"Content-Length\")}))\nexcept Exception as e: print(type(e).__name__,str(e))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104748793357Z-diagnose-upload-length-through-proxy.log",
+  "output_sha256": "e5f3d44587516e591548ab25be8df237b7256174e0f4700f66838b560c6e80d8",
+  "action": "检查 Releases 实际提供的上传地址，并用无凭据的测试数据核对 HTTP 长度传输。",
+  "outcome": "已记录上传地址与传输诊断结果，不向测试服务发送任何 GitHub 凭据或 ROM 内容。",
+  "next_step": "确认是否是上传代理改变了请求长度；若是环境限制，就保留已验证成品并给出明确的上传阻塞原因。"
+}

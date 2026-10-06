@@ -1,0 +1,35 @@
+name: Build and publish offline experimental wayne package
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/build-experimental.yml]
+permissions:
+  contents: write
+concurrency:
+  group: wayne-experimental-release
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      GH_TOKEN: ${{ github.token }}
+      WAYNE_PROGRESS_FILE: docs/operations/github-build-${{ github.run_id }}.md
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Prepare ephemeral runner
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool pkg-config liblz4-dev liblzma-dev libzstd-dev uuid-dev zlib1g-dev g++
+          python -m pip install -r requirements.txt gdown==5.2.0
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Build, record progress and publish verified experimental assets
+        run: python tools/ci_build_candidate.py

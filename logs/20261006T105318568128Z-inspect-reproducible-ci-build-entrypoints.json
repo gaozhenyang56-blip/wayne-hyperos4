@@ -1,0 +1,17 @@
+{
+  "label": "inspect-reproducible-ci-build-entrypoints",
+  "started_utc": "2026-10-06T10:53:18.568128+00:00",
+  "finished_utc": "2026-10-06T10:53:18.930689+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "tail -30 tools/rebuild_zip_block.py; tail -30 tools/convert_block_ota.py; tail -25 tools/unpack_boot.py; tail -25 tools/audit_native_pair.py; cat requirements.txt; git ls-remote https://github.com/erofs/erofs-utils.git refs/tags/v1.8.6"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T105318568128Z-inspect-reproducible-ci-build-entrypoints.log",
+  "output_sha256": "7e4446aab4ac31e7924a05fc3ff59d3f860ba9efd34d8dcde97ef6913b7ecec9",
+  "action": "检查可复现构建入口，准备改由 GitHub Actions 构建并上传资产。",
+  "outcome": "本环境创建 Releases 和修改仓库都成功，但上传端连小文件也返回长度错误。将使用 GitHub 官方运行器绕开当前传输兼容故障，保留现有成品。",
+  "next_step": "建立从已固定原包重新构建、核验并发布实验包的工作流；运行进展也实时写入仓库 MD。"
+}

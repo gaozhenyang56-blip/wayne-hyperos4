@@ -1,0 +1,18 @@
+{
+  "label": "test-release-upload-via-api-host",
+  "started_utc": "2026-10-06T10:48:27.568166+00:00",
+  "finished_utc": "2026-10-06T10:48:27.762981+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,urllib.request,urllib.error,os,json; data=pathlib.Path(\"artifacts/releases/SHA256SUMS\").read_bytes(); request=urllib.request.Request(\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/releases/404595475/assets?name=SHA256SUMS\",data=data,method=\"POST\",headers={\"Authorization\":\"Bearer \"+os.environ[\"GH_TOKEN\"],\"Content-Type\":\"application/octet-stream\",\"Content-Length\":str(len(data)),\"Accept\":\"application/vnd.github+json\",\"X-GitHub-Api-Version\":\"2022-11-28\",\"User-Agent\":\"wayne-offline-build\"});\ntry:\n with urllib.request.urlopen(request,timeout=20) as response:r=json.load(response); print(json.dumps({k:r.get(k) for k in [\"id\",\"name\",\"size\",\"digest\",\"state\"]})); pathlib.Path(\"research/release-upload-probe.json\").write_text(json.dumps({k:r.get(k) for k in [\"id\",\"name\",\"size\",\"digest\",\"state\"]},indent=2)+\"\\n\")\nexcept urllib.error.HTTPError as e:print(json.dumps({\"status\":e.code,\"body\":e.read(800).decode(errors=\"replace\")}));raise SystemExit(1)"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T104827568166Z-test-release-upload-via-api-host.log",
+  "output_sha256": "0242303a7969ee26efe9aa57d5ff8ad38ff97e0f290078dae966c51b0c1969a2",
+  "action": "通过 GitHub API 主域验证校验文件上传，检查上传子域是否存在单独的传输兼容问题。",
+  "outcome": "已完成替代官方 API 地址的上传测试，按响应判断是否可继续传输成品。",
+  "failure_note": "此官方 API 地址也未完成资产上传，保留本地包与草稿，继续检查支持的上传途径。",
+  "next_step": "若上传成功，核对资产哈希并传输分卷；否则记录具体限制。"
+}

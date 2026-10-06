@@ -1,0 +1,17 @@
+{
+  "label": "prepare-experimental-release-notes",
+  "started_utc": "2026-10-06T10:45:26.776098+00:00",
+  "finished_utc": "2026-10-06T10:45:26.797599+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib; pathlib.Path('artifacts/releases/RELEASE.txt').write_text(\"小米 6X（wayne）离线实验刷机包。构建提交：c7926a98cc1493f8dac48a0acde3068ee7f3d6ef\\n\\n使用 Mi8937 社区标称 HyperOS 4 的系统框架，保留 wayne Miku 底包的 4.19.315 内核、DTB 与 vendor。Mi8937 是老平台代号，不是系统版本；社区包不是官方 wayne 支持。\\n\\n已通过：镜像完整解码、文件内容及元数据比较、目标 HAL 声明匹配、boot 结构检查、安装工具离线回归和分卷 ZIP/镜像哈希检查。\\n\\n没有真机测试，未证明能启动或硬件可用。严格 SELinux neverallow 检查仍失败；运行时 linker/APEX 及核心框架改动未完全核验。本条目为实验预发布，不能称为稳定 ROM。\\n\\n仅适用于已经采用 Miku wayne retrofit 动态分区布局的设备，不转换原厂布局。下载两个分卷和 SHA256SUMS，按编号合并为 ZIP 后解压；安装前阅读 INSTALL.txt，并先运行包内安装工具的仅验证模式。安装会写入 system/vendor/boot。\\n\"); print('Prepared honest experimental release notes.')"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104526776098Z-prepare-experimental-release-notes.log",
+  "output_sha256": "643bdb693674597dc3a92bab490706c3490af79e97ba011b47304f5c41512379",
+  "action": "准备实验版本的发布说明，明确支持布局、已通过检查和未验证的问题。",
+  "outcome": "发布说明已写入本地文件；没有把离线检查称为真机启动成功或稳定成品。",
+  "next_step": "尝试创建 Releases 草稿并上传分卷；若上传受限，记录实际原因并保留成品。"
+}

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Create a small EROFS overlay; original image metadata is kept by rebuild mode."""
 import argparse
+import base64
 import hashlib
 import io
 import json
@@ -16,7 +17,17 @@ def main():
     parser.add_argument('output',type=pathlib.Path)
     parser.add_argument('--device-matrix',type=pathlib.Path,required=True,
                         help='Use the target wayne device matrix, not the donor hardware matrix')
+    parser.add_argument('--metadata',type=pathlib.Path,
+                        help='Read source labels from the original inode inventory for rootless builds')
     args=parser.parse_args();files={};changes={}
+    metadata=json.loads(args.metadata.read_text())['paths'] if args.metadata else None
+    def context_for(name):
+        if metadata is not None:
+            record=metadata.get(name)
+            if record is None:return 'u:object_r:system_file:s0'
+            return base64.b64decode(record['xattrs_base64']['security.selinux']).decode()
+        source=args.system_root/name
+        return os.getxattr(source,'security.selinux').decode() if source.exists() else 'u:object_r:system_file:s0'
     for partition,path in [('system','system/build.prop'),('system_ext','system_ext/etc/build.prop'),
                            ('product','product/etc/build.prop')]:
         original=(args.system_root/path).read_bytes()
@@ -43,15 +54,13 @@ def main():
         for name in ['.']+sorted(directories,key=lambda x:(x.count('/'),x)):
             entry=tarfile.TarInfo(name);entry.type=tarfile.DIRTYPE;entry.mode=0o755
             entry.uid=0;entry.gid=0;entry.mtime=1230768000
-            source=args.system_root/name
-            context=os.getxattr(source,'security.selinux').decode()
+            context=context_for(name)
             entry.pax_headers={'SCHILY.xattr.security.selinux':context}
             archive.addfile(entry)
         for name,content in sorted(files.items()):
             entry=tarfile.TarInfo(name);entry.size=len(content);entry.uid=0;entry.gid=0
             entry.mode=0o600 if name.endswith('build.prop') else 0o644;entry.mtime=1230768000
-            source=args.system_root/name
-            context=os.getxattr(source,'security.selinux').decode() if source.exists() else 'u:object_r:system_file:s0'
+            context=context_for(name)
             entry.pax_headers={'SCHILY.xattr.security.selinux':context}
             archive.addfile(entry,io.BytesIO(content))
     args.output.with_suffix('.json').write_text(json.dumps({'changes':changes,

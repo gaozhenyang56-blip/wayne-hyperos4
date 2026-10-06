@@ -1,0 +1,18 @@
+{
+  "label": "test-explicit-content-length-release-upload",
+  "started_utc": "2026-10-06T10:47:16.000866+00:00",
+  "finished_utc": "2026-10-06T10:47:16.228114+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,urllib.request,urllib.error,os,json; p=pathlib.Path(\"artifacts/releases/SHA256SUMS\"); data=p.read_bytes(); request=urllib.request.Request(\"https://uploads.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/releases/404595475/assets?name=SHA256SUMS\",data=data,method=\"POST\",headers={\"Authorization\":\"Bearer \"+os.environ[\"GH_TOKEN\"],\"Content-Type\":\"application/octet-stream\",\"Content-Length\":str(len(data)),\"Accept\":\"application/vnd.github+json\",\"User-Agent\":\"wayne-offline-build\"});\ntry:\n with urllib.request.urlopen(request,timeout=30) as response:r=json.load(response); print(json.dumps({k:r.get(k) for k in [\"id\",\"name\",\"size\",\"digest\",\"state\"]})); pathlib.Path(\"research/release-upload-probe.json\").write_text(json.dumps({k:r.get(k) for k in [\"id\",\"name\",\"size\",\"digest\",\"state\"]},indent=2)+\"\\n\")\nexcept urllib.error.HTTPError as e:\n print(json.dumps({\"status\":e.code,\"body\":e.read(1200).decode(errors=\"replace\")})); raise SystemExit(1)"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T104716000866Z-test-explicit-content-length-release-upload.log",
+  "output_sha256": "9030f858da35d2d374f1a02e4b9578eaaf07feb26bd6c1452bf5d3f41ed639a6",
+  "action": "使用明确文件长度的标准 HTTP 请求测试 Releases 校验文件上传，排除 CLI 请求格式问题。",
+  "outcome": "校验文件上传成功，下一步可以按同样方式上传分卷。",
+  "failure_note": "标准 HTTP 请求仍未完成上传；继续依据实际响应核对上传端支持的请求形式。",
+  "next_step": "若测试成功则上传分卷，否则保留草稿并定位协议限制。"
+}

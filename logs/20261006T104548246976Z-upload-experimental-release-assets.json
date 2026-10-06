@@ -1,0 +1,26 @@
+{
+  "label": "upload-experimental-release-assets",
+  "started_utc": "2026-10-06T10:45:48.246976+00:00",
+  "finished_utc": "2026-10-06T10:45:49.137435+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "upload",
+    "offline-20261006",
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.001",
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.002",
+    "artifacts/releases/SHA256SUMS",
+    "artifacts/releases/stage/INSTALL.txt",
+    "artifacts/releases/stage/manifest.json",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T104548246976Z-upload-experimental-release-assets.log",
+  "output_sha256": "c0ad37d6d782e38fe4b51d1a412b21adc3719d563554c6105a1a65b933fda518",
+  "action": "把实验刷机包的两个分卷、SHA-256 校验清单、安装说明和镜像清单上传到 Releases 草稿。",
+  "outcome": "所有成品资产上传完成；发布前还要核对 GitHub 记录的大小和哈希。",
+  "failure_note": "成品资产上传未完成；草稿和本地文件保留，先检查失败项并继续上传。",
+  "next_step": "核对远端资产后，将草稿公开为实验预发布，并在仓库记录下载地址。"
+}

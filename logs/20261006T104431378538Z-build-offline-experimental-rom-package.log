@@ -1,0 +1,14 @@
+{
+  "parts": {
+    "wayne-hyperos4-offline-20261006.zip.001": {
+      "size": 1900000000,
+      "sha256": "5275c1e7e4486957517f9ba30c6bb8b753f29af87938c81158485f34dbe5597c"
+    },
+    "wayne-hyperos4-offline-20261006.zip.002": {
+      "size": 1269073508,
+      "sha256": "bdda0cd2bb8828c53fd93c645ca9f38d00f3ae138e05f4b992149daf05af4058"
+    }
+  },
+  "hardware_tested": false,
+  "strict_neverallow_passed": false
+}

@@ -1,0 +1,22 @@
+{
+  "label": "isolate-small-release-upload",
+  "started_utc": "2026-10-06T10:46:28.371695+00:00",
+  "finished_utc": "2026-10-06T10:46:29.279365+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "upload",
+    "offline-20261006",
+    "artifacts/releases/SHA256SUMS",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T104628371695Z-isolate-small-release-upload.log",
+  "output_sha256": "380bc45aff15d43b5747b43fed273d42b4a77e0451089a436cc878060fddb175",
+  "action": "单独上传小型校验文件，判断失败是否只与大型分卷有关。",
+  "outcome": "小型校验文件上传成功，可继续针对大型分卷调整传输方式。",
+  "failure_note": "连小型校验文件也无法上传，说明问题不限于分卷大小，需要检查上传端请求格式。",
+  "next_step": "检查失败响应并修复请求格式，避免反复上传大型文件。"
+}

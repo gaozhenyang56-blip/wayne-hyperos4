@@ -1,0 +1,7 @@
+{"payload_files": 5, "tar": "/tmp/wayne-ci-overlay.tar"}
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.003s
+
+OK
+CI entry compiles; overlay byte-equivalence verified.

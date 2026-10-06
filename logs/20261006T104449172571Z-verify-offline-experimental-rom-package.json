@@ -1,0 +1,21 @@
+{
+  "label": "verify-offline-experimental-rom-package",
+  "started_utc": "2026-10-06T10:44:49.172571+00:00",
+  "finished_utc": "2026-10-06T10:44:52.571094+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_split_zip.py",
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.001",
+    "artifacts/releases/wayne-hyperos4-offline-20261006.zip.002",
+    "--report",
+    "research/candidate-archive-check.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T104449172571Z-verify-offline-experimental-rom-package.log",
+  "output_sha256": "e4447c7b10cc99180d41fd11bd46dece2bb1f5c29730e1a769c7026f5cb6591b",
+  "action": "完整读回两个分卷，检查 ZIP 文件和三份镜像是否与包内清单一致。",
+  "outcome": "全部文件的 ZIP CRC 检查通过，boot、system、vendor 的大小及 SHA-256 与清单一致；分卷可以正确组合读取。",
+  "failure_note": "分卷读回检查失败，先修复包文件，不上传成品。",
+  "next_step": "创建明确标注为实验版本的 Releases 条目并上传两个分卷、校验文件和安装说明。"
+}
