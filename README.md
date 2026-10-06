@@ -2,7 +2,7 @@
 
 更新：2026-10-06（逐项精确时间见[操作记录](docs/operations/2026-10-06.md)）。
 
-目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。目前已生成研究用 boot/system 镜像；用户允许尝试 Mi8937 社区包，现继续实验候选路线，尚未发布刷机成品。
+目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线生成实验 boot/system 及约 3.17 GB 的分卷刷机包，完整归档和镜像哈希校验通过。未真机验证，尚未上传公开成品附件。
 
 ## 当前采用的材料
 
@@ -13,7 +13,7 @@
 | 配置较接近的候选 | Redmi Note 11 spes，SD680 / 4.19 | boot 已核验；完整下载受阻，系统内部版本未确认，暂未用于构建 |
 | 官方框架对照 | 小米 15 dada 官方 OS4 | 用于对照，不使用其硬件支持或启动镜像 |
 
-Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线实验，是因为包内声明 Android 17 / OS4，且发布者声称有 4.19 旧平台适配。属性核对不足以验证实际框架版本，现继续实验路线：与官方对照包比较的 61 个框架/APEX 文件中有 47 个完全一致，核心框架文件仍有差异，补丁来源未完全核验。spes 保留为备选。更接近候选的证据和取舍见[供体记录](docs/donors.md)。
+Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线实验，是因为包内声明 Android 17 / OS4，且发布者声称有 4.19 旧平台适配。属性核对不足以验证实际框架版本，现继续实验路线：与官方对照包比较的 61 个框架/APEX 文件中有 47 个完全一致，核心框架文件仍有差异，补丁来源未完全核验。spes 保留为备选。更接近候选的证据见[材料选择记录](research/candidates/selection.json)。
 
 ## 当前检查结果
 
@@ -31,9 +31,15 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 每次操作通过 tools/record_step.py 在 Markdown 记录时间、做了什么、发生了什么和下一步；命令、输出及哈希保存在原始日志；每次 Markdown 修改后立即通过 GitHub 插件提交。同步失败时先处理失败，不积攒到阶段末尾。
 
 - [逐次操作日志](docs/operations/2026-10-06.md)
-- [阶段工作记录](docs/worklog.md)
+- [云端复现流程](.github/workflows/build-experimental.yml)
+- [实际交付状态](artifacts/delivery-status.json)
+- [实验分卷与镜像哈希](artifacts/candidate-package.json)
 - sources.lock.json：固定上游源码提交。
 - tools/：下载、镜像转换、元数据保留重打包和离线兼容性检查工具。
 - research/：来源、哈希及检查结果。
 
-大型原包、镜像和解包目录不进入 Git。最终成品应通过 Releases 或分卷资产发布，并标明构建提交、哈希和验证范围；本地实验分卷包已生成并通过完整归档校验，目前正在[GitHub Actions](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37453715238) 重建并尝试上传；尚未公开下载附件，也未真机验证。
+大型原包、镜像和解包目录不进入 Git。实验成品使用 Releases 分卷资产，并标明构建提交、哈希和验证范围。
+
+本地分卷为 `wayne-hyperos4-offline-20261006.zip.001`（1,900,000,000 字节）及 `.zip.002`（1,269,073,508 字节），所有 ZIP 条目 CRC 和镜像哈希校验通过。仅支持已采用 Miku wayne retrofit 动态分区布局的设备；安装器验证设备、分区布局、空间和镜像哈希后写入 system/vendor/boot。
+
+当前上传受阻：GitHub Releases 附件接口对校验清单也返回 HTTP 400 `Bad Content-Length`；云端重建在 Google Drive 供体入口探测连续五次失败后停止。参见[最近一次云端任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37455741606)。Release 保持空草稿，尚无公开下载附件。现有原包、已校验分卷和所有研究文件保留；入口恢复后可重跑仓库工作流，远端资产大小与哈希核验通过后再公开。
