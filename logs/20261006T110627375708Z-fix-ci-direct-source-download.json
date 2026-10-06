@@ -1,0 +1,17 @@
+{
+  "label": "fix-ci-direct-source-download",
+  "started_utc": "2026-10-06T11:06:27.375708+00:00",
+  "finished_utc": "2026-10-06T11:06:27.396654+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path;p=Path(\"tools/ci_build_candidate.py\");s=p.read_text().replace(\"        import gdown\\n\", \"\");s=s.replace(\"        gdown.download(id=\\x271_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX\\x27,output=str(path),quiet=False)\", \"        run(\\x27curl\\x27,\\x27--fail\\x27,\\x27--location\\x27,\\x27--retry\\x27,\\x273\\x27,\\x27--connect-timeout\\x27,\\x2730\\x27,\\x27--output\\x27,path,\\n            \\x27https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t\\x27)\");p.write_text(s);p=Path(\".github/workflows/build-experimental.yml\");s=p.read_text().replace(\"name: Build and publish offline experimental wayne package\", \"name: Build and publish offline experimental wayne package\\n# Source download: direct publisher endpoint with SHA-256 verification.\");p.write_text(s)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110627375708Z-fix-ci-direct-source-download.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将云端供体下载改为此前成功的直接入口，并保持完整原包哈希校验。",
+  "outcome": "直接入口在当前环境返回正确 ZIP 和完整大小；云端脚本改用 curl 重试下载，失败仍中止构建。",
+  "next_step": "发布修复并通过工作流文件变化触发第二轮构建。"
+}

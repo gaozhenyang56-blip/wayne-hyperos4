@@ -1,0 +1,140 @@
+#!/usr/bin/env python3
+"""Package validated offline images into a split ZIP, with honest test status."""
+import argparse
+import datetime
+import hashlib
+import io
+import json
+import pathlib
+import shutil
+import subprocess
+import zipfile
+
+
+class SplitWriter(io.RawIOBase):
+    def __init__(self, prefix, limit=1900000000):
+        self.prefix=prefix;self.limit=limit;self.stream=None;self.size=0;self.paths=[]
+
+    def writable(self):
+        return True
+
+    def write(self, data):
+        total=len(data)
+        while data:
+            if self.stream is None or self.size==self.limit:
+                if self.stream:self.stream.close()
+                path=self.prefix.with_name(self.prefix.name+f'.{len(self.paths)+1:03}')
+                self.paths.append(path);self.stream=path.open('wb');self.size=0
+            chunk=data[:self.limit-self.size]
+            self.stream.write(chunk);self.size+=len(chunk);data=data[len(chunk):]
+        return total
+
+    def flush(self):
+        if self.stream:self.stream.flush()
+
+    def close(self):
+        if self.stream:self.stream.close();self.stream=None
+        super().close()
+
+
+def hash_file(path):
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream,'sha256').hexdigest()
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--build-commit',required=True)
+    args=parser.parse_args()
+    root=pathlib.Path(__file__).resolve().parent.parent
+    output=root/'artifacts/releases';output.mkdir(parents=True,exist_ok=True)
+    stage=output/'stage';stage.mkdir(exist_ok=True)
+    reports={name:json.loads((root/'research'/name).read_text()) for name in
+             ['wayne-system-content-check.json','wayne-system-metadata-check.json',
+              'wayne-boot-check.json','wayne-vintf-check.json']}
+    for name in ['wayne-system-content-check.json','wayne-system-metadata-check.json','wayne-boot-check.json']:
+        if not reports[name]['success']:raise ValueError('Failed prerequisite: '+name)
+    if reports['wayne-vintf-check.json']['check']['exit_code']!=0:
+        raise ValueError('Target HAL declaration check failed')
+    strict=json.loads((root/'research/wayne-os4-policy/policy-check.json').read_text())
+    runtime=json.loads((root/'research/wayne-os4-policy/runtime/policy-check.json').read_text())
+    if not runtime['success']:raise ValueError('Runtime-mode policy compilation failed')
+    paths={'boot.img':root/'artifacts/experimental/boot.img',
+           'system.img':root/'artifacts/experimental/system.img',
+           'vendor.img':root/'research/base-miku-a15/vendor.img'}
+    manifest={'device':'wayne','layout':'miku-wayne-retrofit-dynamic','android_sdk':37,
+              'declared_hyperos':'4.0.0.16.XPCCNXM','kernel':'4.19.315-Miku-Vampire_v2-g3a74d7',
+              'build_commit':args.build_commit,'created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'status':'offline-experimental-unbooted','hardware_tested':False,
+              'strict_neverallow_passed':strict['success'],
+              'runtime_mode_policy_compiled':runtime['success'],
+              'unresolved':['Strict SELinux neverallow conflicts','Runtime linker/APEX compatibility',
+                            'Core framework changes relative to official control not fully audited',
+                            'Actual kernel build config is not embedded correctly','Boot and hardware behavior'],
+              'group_limit':6241120256,
+              'images':{name:{'size':path.stat().st_size,'sha256':hash_file(path)} for name,path in paths.items()}}
+    if manifest['images']['system.img']['size']+manifest['images']['vendor.img']['size']>manifest['group_limit']:
+        raise ValueError('Image allocation exceeds reference group')
+    if manifest['images']['boot.img']['size']>67108864:raise ValueError('Boot exceeds reference partition')
+    (stage/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    shutil.copyfile(root/'tools/install_wayne.py',stage/'install.py')
+    instructions='''Xiaomi 6X (wayne) HyperOS 4 - OFFLINE EXPERIMENTAL PACKAGE
+
+No physical device was available. Boot, encryption, radio, camera, fingerprint
+and other hardware behavior have not been tested. Strict SELinux neverallow
+checking still fails. This is not a verified stable release.
+
+Supported prerequisite: wayne already using the Miku Android 15 retrofit
+dynamic partition layout with metadata on system and system/vendor/cust backing
+devices. This package does not convert a stock or other partition layout.
+
+Download all ZIP parts and compare them to SHA256SUMS. Concatenate parts in
+numeric order into one ZIP, then extract. Windows: use copy /b; Linux/macOS:
+use cat. Do not extract or flash a single part on its own.
+
+Python 3.11+ is required. Run python install.py --verify-only to check all
+images without a device. The JSON manifest lists exact image hashes and status.
+
+Installing writes system, vendor and boot. Back up your data and the original
+images first. Enter a compatible fastbootd on an unlocked wayne and use current
+Android platform-tools. Run python install.py --flash --serial DEVICE_SERIAL.
+The script rejects a different device, unsupported layout and insufficient
+space. It preserves existing product/system_ext allocations, writes no firmware,
+does not erase userdata and does not reboot automatically. A data reset may be
+necessary across Android versions, but is not performed by this package.
+
+Static reports are in reports/. Their scope is limited: HAL declarations are
+not proof that the services run; entry-point ELF symbol checks do not resolve
+all linker namespaces or APEX behavior. Runtime SELinux compilation with -N
+does not mean strict neverallow checking passed.
+'''
+    (stage/'INSTALL.txt').write_text(instructions)
+    prefix=output/'wayne-hyperos4-offline-20261006.zip'
+    if list(output.glob(prefix.name+'.*')):raise ValueError('Existing parts: refusing to overwrite')
+    writer=SplitWriter(prefix);base='wayne-hyperos4-offline-20261006/'
+    files={**paths,'manifest.json':stage/'manifest.json','install.py':stage/'install.py',
+           'INSTALL.txt':stage/'INSTALL.txt'}
+    files.update({'reports/'+name:root/'research'/name for name in reports})
+    files['reports/strict-policy.json']=root/'research/wayne-os4-policy/policy-check.json'
+    files['reports/runtime-policy.json']=root/'research/wayne-os4-policy/runtime/policy-check.json'
+    files['reports/framework-origin.json']=root/'research/community-framework-origin-check.json'
+    try:
+        with zipfile.ZipFile(writer,'w',compression=zipfile.ZIP_STORED,allowZip64=True) as archive:
+            for name,path in sorted(files.items()):
+                info=zipfile.ZipInfo(base+name,(2009,1,1,0,0,0))
+                info.external_attr=(0o100755 if name=='install.py' else 0o100644)<<16
+                with path.open('rb') as source,archive.open(info,'w',force_zip64=True) as target:
+                    shutil.copyfileobj(source,target,8*1024*1024)
+    finally:
+        writer.close()
+    sums={path.name:{'size':path.stat().st_size,'sha256':hash_file(path)} for path in writer.paths}
+    (output/'SHA256SUMS').write_text(''.join(record['sha256']+'  '+name+'\n' for name,record in sums.items()))
+    result={'manifest':manifest,'parts':sums,'archive_entries':sorted(files)}
+    (root/'artifacts/candidate-package.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({'parts':sums,'hardware_tested':False,'strict_neverallow_passed':strict['success']},indent=2))
+
+
+if __name__=='__main__':
+    main()
+
+dict_keys(['vendor_policy_version', 'policy_binary_version', 'command', 'exit_code', 'neverallow_check_disabled', 'inputs', 'success'])

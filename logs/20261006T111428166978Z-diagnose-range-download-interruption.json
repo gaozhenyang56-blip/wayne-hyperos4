@@ -1,0 +1,17 @@
+{
+  "label": "diagnose-range-download-interruption",
+  "started_utc": "2026-10-06T11:14:28.166978+00:00",
+  "finished_utc": "2026-10-06T11:14:28.439505+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request;print(urllib.request.urlopen(\"https://raw.githubusercontent.com/gaozhenyang56-blip/wayne-hyperos4/7c5d9f7/logs/20261006T111310287405Z-cloud-download.log\").read().decode())"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111428166978Z-diagnose-range-download-interruption.log",
+  "output_sha256": "ab497a67418fff6b117909a4cad374e92b0d6a0b84a1e70458a4c453a3b3f80e",
+  "action": "定位分段下载中断的具体范围或网络错误。",
+  "outcome": "范围预检已通过，但完整下载阶段中断；已读取失败日志，不把预检等同于完整下载通过。",
+  "next_step": "根据实际错误增加必要重试或修复响应校验。"
+}

@@ -1,0 +1,28 @@
+{
+  "label": "inspect-donor-download-history",
+  "started_utc": "2026-10-06T11:05:47.591772+00:00",
+  "finished_utc": "2026-10-06T11:05:47.610215+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "rg",
+    "-n",
+    "driveusercontent|confirm=|1_Tu-Hc|mi8937-hyperos4.zip|Google Drive",
+    "tools",
+    "research/candidates",
+    "logs",
+    "--glob",
+    "*.py",
+    "--glob",
+    "*.json",
+    "--glob",
+    "*.log",
+    "--max-count",
+    "3"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110547591772Z-inspect-donor-download-history.log",
+  "output_sha256": "67c573fbdfb85c1059303cf6a6ae23384fb18801eeef82380fae8bfac6b3fb40",
+  "action": "检查已成功下载的 Mi8937 原包来源记录及下载工具。",
+  "outcome": "现有原包仍保留；已检索下载入口和发布者资料，用于选择可校验的替代下载路径。",
+  "next_step": "测试已有直接下载入口，严格保留原包哈希检查。"
+}

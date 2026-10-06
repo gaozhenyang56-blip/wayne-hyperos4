@@ -1,0 +1,17 @@
+{
+  "label": "fix-download-range-retries",
+  "started_utc": "2026-10-06T11:15:05.408868+00:00",
+  "finished_utc": "2026-10-06T11:15:05.429721+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path;p=Path(\"tools/download_verified.py\");s=p.read_text().replace(\"import pathlib\\n\",\"import pathlib\\nimport time\\n\");s=s.replace(\"    step = 4 * 1024 * 1024\", \"    step = 1024 * 1024\\n    def fetch(span):\\n        for attempt in range(5):\\n            try:\\n                return remote.range(*span)\\n            except (OSError, ValueError) as error:\\n                if attempt == 4:\\n                    raise\\n                print(json.dumps({\\x27retry_start\\x27:span[0],\\x27attempt\\x27:attempt+1,\\x27error\\x27:str(error)}),flush=True)\\n                time.sleep(min(2 ** attempt, 8))\");s=s.replace(\"max_workers=8\", \"max_workers=4\").replace(\"pool.map(lambda span: remote.range(*span), spans)\", \"pool.map(fetch, spans)\");p.write_text(s);p=Path(\".github/workflows/build-experimental.yml\");s=p.read_text().replace(\"# Source download: range preflight and complete SHA-256 verification.\",\"# Source download: bounded retries, four range requests, complete SHA-256 verification.\");p.write_text(s)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111505408868Z-fix-download-range-retries.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "降低原包下载并发，并对中断分段加入有限重试。",
+  "outcome": "下载改为 1 MiB 分段、4 个并发请求；失败分段最多尝试 5 次，最终 SHA-256 和严格范围校验保持启用。",
+  "next_step": "用本地故障响应验证重试及错误拒绝，再发布修复。"
+}

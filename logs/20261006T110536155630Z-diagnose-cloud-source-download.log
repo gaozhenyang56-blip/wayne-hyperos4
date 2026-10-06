@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/gdown/download.py", line 267, in download
+    url = get_url_from_gdrive_confirmation(res.text)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/gdown/download.py", line 53, in get_url_from_gdrive_confirmation
+    raise FileURLRetrievalError(error)
+gdown.exceptions.FileURLRetrievalError: Too many users have viewed or downloaded this file recently. Please try accessing the file again later. If the file you are trying to access is particularly large or is shared with many people, it may take up to 24 hours to be able to view or download the file. If you still can't access a file after 24 hours, contact your domain administrator.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 196, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 181, in main
+    if args.stage:stage(args.stage);return
+                  ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 45, in stage
+    gdown.download(id='1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX',output=str(path),quiet=False)
+  File "/opt/hostedtoolcache/Python/3.11.16/x64/lib/python3.11/site-packages/gdown/download.py", line 278, in download
+    raise FileURLRetrievalError(message)
+gdown.exceptions.FileURLRetrievalError: Failed to retrieve file url:
+
+	Too many users have viewed or downloaded this file recently. Please
+	try accessing the file again later. If the file you are trying to
+	access is particularly large or is shared with many people, it may
+	take up to 24 hours to be able to view or download the file. If you
+	still can't access a file after 24 hours, contact your domain
+	administrator.
+
+You may still be able to access the file from the browser:
+
+	https://drive.google.com/uc?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX
+
+but Gdown can't. Please check connections and permissions.
+

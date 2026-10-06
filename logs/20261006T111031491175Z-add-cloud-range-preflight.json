@@ -1,0 +1,17 @@
+{
+  "label": "add-cloud-range-preflight",
+  "started_utc": "2026-10-06T11:10:31.491175+00:00",
+  "finished_utc": "2026-10-06T11:10:31.515117+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path;p=Path(\"tools/ci_build_candidate.py\");s=p.read_text();a=s.index(\"        run(\\x27curl\\x27\");b=s.index(\"        if sha(path)\",a);s=s[:a]+\"        from download_verified import download\\n        download(\\x27https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t\\x27,\\n                 path,\\x271a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39\\x27)\\n\"+s[b:];p.write_text(s);p=Path(\".github/workflows/build-experimental.yml\");s=p.read_text().replace(\"# Source download: direct publisher endpoint with SHA-256 verification.\",\"# Source download: range preflight and complete SHA-256 verification.\");needle=\"      - name: Prepare ephemeral runner\\n\";addition=\"      - name: Preflight original source and publish result\\n        run: |\\n          git config user.name github-actions[bot]\\n          git config user.email 41898282+github-actions[bot]@users.noreply.github.com\\n          set +e\\n          python tools/record_step.py --action \\x27检查供体原包分段入口。\\x27 --outcome \\x27云端取得正确 ZIP 头和完整文件大小。\\x27 --failure-note \\x27云端供体入口不可用，构建停止。\\x27 --next \\x27预检成功后继续下载；失败时寻找可核验的原包镜像。\\x27 cloud-source-preflight -- python tools/preflight_source.py\\n          result=$?\\n          git add \\\"$WAYNE_PROGRESS_FILE\\\" logs\\n          git commit -m \\x27docs: record cloud source preflight\\x27\\n          git fetch origin main\\n          git rebase --autostash origin/main\\n          git push origin HEAD:main\\n          exit \\\"$result\\\"\\n\";s=s.replace(needle,addition+needle);p.write_text(s);Path(\"tools/preflight_source.py\").write_text(\"#!/usr/bin/env python3\\nimport sys\\nfrom inspect_ota import RemoteFile\\nr=RemoteFile(\\x27https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t\\x27)\\nif r.size!=2683141762 or r.range(0,4)!=b\\x27PK\\\\x03\\\\x04\\x27:\\n    raise ValueError(\\x27Unexpected original source size or ZIP header\\x27)\\nprint(\\x27Original ZIP range preflight passed\\x27,r.size)\\n\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111031491175Z-add-cloud-range-preflight.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "为云端加入原包范围预检，并使用已经成功取包的分段校验下载器。",
+  "outcome": "云端会在耗时环境准备前验证 ZIP 头和完整大小，预检失败直接停止；完整下载仍校验同一 SHA-256。",
+  "next_step": "发布预检及分段下载修复，读取实际预检结果。"
+}

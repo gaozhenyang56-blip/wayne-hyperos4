@@ -1,0 +1,17 @@
+{
+  "label": "monitor-cloud-stage-progress",
+  "started_utc": "2026-10-06T11:03:41.475777+00:00",
+  "finished_utc": "2026-10-06T11:04:21.930242+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import time,json,urllib.request;time.sleep(40);d=json.load(urllib.request.urlopen(\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37453715238/jobs\"));print(json.dumps([{k:j.get(k) for k in (\"id\",\"status\",\"conclusion\",\"steps\")} for j in d[\"jobs\"]]))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110341475777Z-monitor-cloud-stage-progress.log",
+  "output_sha256": "0e26a4369dd93df03d9a8cc34e2d9a9546971e87dc2a1448d4797d811ce38915",
+  "action": "持续跟踪云端依赖准备及镜像构建阶段。",
+  "outcome": "本次查询的真实 job 状态和阶段信息已保存在原始日志。",
+  "next_step": "依赖完成后检查首个构建阶段及原包下载。"
+}

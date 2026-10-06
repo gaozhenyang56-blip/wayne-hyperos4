@@ -1,0 +1,17 @@
+{
+  "label": "update-cloud-build-readme",
+  "started_utc": "2026-10-06T11:03:30.785544+00:00",
+  "finished_utc": "2026-10-06T11:03:30.809219+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "from pathlib import Path;p=Path(\"README.md\");s=p.read_text().replace(\"仅作旧平台适配参考 | Mi8937\", \"实验系统供体 | Mi8937\").replace(\"每次操作通过 tools/record_step.py 记录时间、命令、结果和输出哈希\", \"每次操作通过 tools/record_step.py 在 Markdown 记录时间、做了什么、发生了什么和下一步；命令、输出及哈希保存在原始日志\");s=s.replace(\"当前还没有最终成品。\", \"本地实验分卷包已生成并通过完整归档校验，目前正在[GitHub Actions](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37453715238) 重建并尝试上传；尚未公开下载附件，也未真机验证。\");p.write_text(s)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110330785544Z-update-cloud-build-readme.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "更新 README 中的实验供体和云端构建入口。",
+  "outcome": "README 说明 Mi8937 是社区实验系统供体，并给出正在运行的构建链接；没有宣称附件已上传。",
+  "next_step": "继续跟踪云端构建和实际发布结果。"
+}

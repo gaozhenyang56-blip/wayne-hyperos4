@@ -1,0 +1,17 @@
+{
+  "label": "resume-publish-auth-check",
+  "started_utc": "2026-10-06T11:01:13.492707+00:00",
+  "finished_utc": "2026-10-06T11:01:13.510523+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "raise SystemExit(1)"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T110113492707Z-resume-publish-auth-check.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查续作工作区、差异和云端发布断点。",
+  "failure_note": "工作区保留实验包及云端流程；当前命令行 GitHub 凭据返回 401，尚未执行上传或触发构建。",
+  "next_step": "检查 GitHub 插件连接是否仍可用，恢复仓库发布路径。"
+}

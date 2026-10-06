@@ -1,0 +1,7 @@
+github.com
+  ✓ Logged in to github.com account gaozhenyang56-blip (GH_TOKEN)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: ghu_************************
+[{"id": 37454725634, "status": "in_progress", "conclusion": null, "head_sha": "6d31fc31158f80a94b3e8898e9db9503dbc4e979"}]
+Configured GitHub credential variable names: ['GH_TOKEN']

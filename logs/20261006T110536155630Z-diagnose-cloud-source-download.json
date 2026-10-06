@@ -1,0 +1,17 @@
+{
+  "label": "diagnose-cloud-source-download",
+  "started_utc": "2026-10-06T11:05:36.155630+00:00",
+  "finished_utc": "2026-10-06T11:05:36.466447+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request;print(urllib.request.urlopen(\"https://raw.githubusercontent.com/gaozhenyang56-blip/wayne-hyperos4/main/logs/20261006T110432274379Z-cloud-download.log\").read().decode())"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110536155630Z-diagnose-cloud-source-download.log",
+  "output_sha256": "028107a9f662f730dc488828f19b95fc4c0b2b1b19a6672654c18775c1fd5da2",
+  "action": "定位首轮云端失败的具体原因。",
+  "outcome": "镜像工具编译成功；原包下载阶段失败，失败日志已读取。",
+  "next_step": "按下载错误修复入口，再启动新的构建。"
+}

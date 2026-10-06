@@ -1,0 +1,19 @@
+{
+  "label": "validate-range-preflight",
+  "started_utc": "2026-10-06T11:10:34.326922+00:00",
+  "finished_utc": "2026-10-06T11:10:34.355420+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/preflight_source.py",
+    "tools/ci_build_candidate.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111034326922Z-validate-range-preflight.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查新预检和分段下载脚本语法。",
+  "outcome": "Python 语法检查通过。",
+  "next_step": "通过插件提交修复并跟踪快速预检。"
+}

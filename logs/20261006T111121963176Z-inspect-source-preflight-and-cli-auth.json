@@ -1,0 +1,17 @@
+{
+  "label": "inspect-source-preflight-and-cli-auth",
+  "started_utc": "2026-10-06T11:11:21.963176+00:00",
+  "finished_utc": "2026-10-06T11:11:22.903514+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json,time,os,subprocess;d=json.load(urllib.request.urlopen(\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/actions/runs?per_page=1&t=\"+str(time.time())));print(json.dumps([{k:r.get(k) for k in (\"id\",\"status\",\"conclusion\",\"head_sha\")} for r in d[\"workflow_runs\"]]));print(\"Configured GitHub credential variable names:\",[k for k in os.environ if k in (\"GH_TOKEN\",\"GITHUB_TOKEN\",\"GH_HOST\")]);subprocess.run([\"gh\",\"auth\",\"status\"])"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111121963176Z-inspect-source-preflight-and-cli-auth.log",
+  "output_sha256": "3b4f4eeb167f689c19eea82c4b57033c2a3e004d0213e63a9ee898ff85c14b5f",
+  "action": "检查快速原包预检任务及可用的命令行认证状态。",
+  "outcome": "已读取最新 Actions 状态；同时检查是否存在可直接用于正常 GitHub CLI 的已配置凭据。",
+  "next_step": "根据真实预检和认证结果选择后续上传路径。"
+}

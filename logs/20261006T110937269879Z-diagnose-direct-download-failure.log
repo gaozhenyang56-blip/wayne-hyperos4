@@ -1,3 +1,17 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  2009  100  2009    0     0   2315      0 --:--:-- --:--:-- --:--:--  2314100  2009  100  2009    0     0   2314      0 --:--:-- --:--:-- --:--:--  2314
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 196, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 181, in main
+    if args.stage:stage(args.stage);return
+                  ^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 47, in stage
+    raise ValueError('Community source ZIP hash mismatch')
+ValueError: Community source ZIP hash mismatch
+
 #!/usr/bin/env python3
 """Bounded HTTP range download with complete-file SHA256 verification."""
 import argparse
@@ -5,7 +19,6 @@ import concurrent.futures
 import hashlib
 import json
 import pathlib
-import time
 from inspect_ota import RemoteFile
 
 
@@ -13,22 +26,13 @@ def download(url, target, expected_hash):
     remote = RemoteFile(url)
     temporary = target.with_suffix(target.suffix + '.part')
     target.parent.mkdir(parents=True, exist_ok=True)
-    step = 1024 * 1024
-    def fetch(span):
-        for attempt in range(5):
-            try:
-                return remote.range(*span)
-            except (OSError, ValueError) as error:
-                if attempt == 4:
-                    raise
-                print(json.dumps({'retry_start':span[0],'attempt':attempt+1,'error':str(error)}),flush=True)
-                time.sleep(min(2 ** attempt, 8))
+    step = 4 * 1024 * 1024
     count = (remote.size + step - 1) // step
-    with temporary.open('w+b') as output, concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+    with temporary.open('w+b') as output, concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
         output.truncate(remote.size)
         for index in range(0, count, 16):
             spans = [(i * step, min(step, remote.size - i * step)) for i in range(index, min(count, index + 16))]
-            blocks = pool.map(fetch, spans)
+            blocks = pool.map(lambda span: remote.range(*span), spans)
             for span, block in zip(spans, blocks):
                 output.seek(span[0])
                 output.write(block)
@@ -52,3 +56,4 @@ if __name__ == '__main__':
     parser.add_argument('sha256')
     args = parser.parse_args()
     download(args.url, args.output, args.sha256)
+

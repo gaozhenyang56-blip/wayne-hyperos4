@@ -1,0 +1,17 @@
+{
+  "label": "test-range-download-faults",
+  "started_utc": "2026-10-06T11:15:39.437121+00:00",
+  "finished_utc": "2026-10-06T11:15:40.101007+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111539437121Z-test-range-download-faults.log",
+  "output_sha256": "47fc79a99b2b378f53b3ce861e54c995d28cdea42a9da93aba3b4d71bb6af262",
+  "action": "用本地 HTTP 故障响应验证分段重试和哈希拒绝。",
+  "outcome": "临时非分段响应重试成功；持续错误与错误文件哈希均被拒绝，未产生成功目标文件。",
+  "failure_note": "下载回归检查失败，尚未发布这次修复。",
+  "next_step": "发布通过检查的低并发下载器，再跟踪云端完整原包。"
+}

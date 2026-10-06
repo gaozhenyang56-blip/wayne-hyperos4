@@ -1,5 +1,5 @@
 name: Build and publish offline experimental wayne package
-# Source download: range preflight and complete SHA-256 verification.
+# Source download: bounded retries, four range requests, complete SHA-256 verification.
 on:
   workflow_dispatch:
   push:

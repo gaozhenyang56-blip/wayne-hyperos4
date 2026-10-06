@@ -1,0 +1,17 @@
+{
+  "label": "probe-direct-donor-source",
+  "started_utc": "2026-10-06T11:05:59.360065+00:00",
+  "finished_utc": "2026-10-06T11:06:01.368603+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json;u=\"https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t\";r=urllib.request.urlopen(urllib.request.Request(u,headers={\"Range\":\"bytes=0-1023\"}),timeout=40);print(json.dumps({\"status\":r.status,\"range\":r.headers.get(\"Content-Range\"),\"type\":r.headers.get(\"Content-Type\"),\"first16\":r.read(16).hex()}))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110559360065Z-probe-direct-donor-source.log",
+  "output_sha256": "805f81ef62597516056bfc019f854e38d747adae7a2ba76c95f924eb09d84cfa",
+  "action": "测试此前实际成功的 Google Drive 直接下载入口。",
+  "outcome": "读取了直接入口的 HTTP 状态、响应类型与 ZIP 头，结果决定是否用于云端重试。",
+  "next_step": "若入口可用，改用可续传且强制哈希校验的直接下载。"
+}

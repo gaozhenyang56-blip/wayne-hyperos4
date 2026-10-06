@@ -1,0 +1,17 @@
+{
+  "label": "publish-direct-download-fix",
+  "started_utc": "2026-10-06T11:06:50.369892+00:00",
+  "finished_utc": "2026-10-06T11:06:50.380389+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Published source fix\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110650369892Z-publish-direct-download-fix.log",
+  "output_sha256": "21b6b447378c08de03a3893478f01ff951d5afc4590e2c909c76fb8c193b7e91",
+  "action": "发布云端直接下载修复并触发新构建。",
+  "outcome": "修复已提交 main；新一轮仍需以实际下载和校验结果判断成功。",
+  "next_step": "等待新任务启动，检查 Google Drive 直接入口在云端的响应。"
+}

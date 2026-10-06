@@ -1,0 +1,17 @@
+{
+  "label": "inspect-cloud-build-run",
+  "started_utc": "2026-10-06T11:02:08.805068+00:00",
+  "finished_utc": "2026-10-06T11:02:09.191485+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json;d=json.load(urllib.request.urlopen(\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/actions/runs?per_page=3\"));print(json.dumps([{k:r.get(k) for k in (\"id\",\"status\",\"conclusion\",\"html_url\",\"head_sha\")} for r in d[\"workflow_runs\"]]))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110208805068Z-inspect-cloud-build-run.log",
+  "output_sha256": "aa51067da72df7364db08a5c7c66eb1ac3a9178967b19f6ca5245665191cf284",
+  "action": "检查刚发布工作流的真实运行状态。",
+  "outcome": "已取得 GitHub Actions 运行列表，接下来以实际 job 结果判断构建是否启动。",
+  "next_step": "跟踪本次提交的构建任务和第一处失败。"
+}

@@ -1,0 +1,23 @@
+{
+  "label": "retry-release-checksum-upload",
+  "started_utc": "2026-10-06T11:11:34.885612+00:00",
+  "finished_utc": "2026-10-06T11:11:35.625755+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "upload",
+    "offline-20261006",
+    "artifacts/releases/SHA256SUMS",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--clobber"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261006T111134885612Z-retry-release-checksum-upload.log",
+  "output_sha256": "380bc45aff15d43b5747b43fed273d42b4a77e0451089a436cc878060fddb175",
+  "action": "在命令行认证恢复后重新测试 Release 小附件上传。",
+  "outcome": "校验清单上传请求成功，接下来检查远端资产状态。",
+  "failure_note": "认证虽已恢复，但附件上传仍失败；继续通过云端路径处理。",
+  "next_step": "小附件成功时上传实验分卷；失败时继续检查云端来源预检。"
+}

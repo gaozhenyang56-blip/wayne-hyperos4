@@ -1,0 +1,17 @@
+{
+  "label": "publish-cloud-range-preflight",
+  "started_utc": "2026-10-06T11:11:11.068433+00:00",
+  "finished_utc": "2026-10-06T11:11:11.078798+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Preflight workflow published\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111111068433Z-publish-cloud-range-preflight.log",
+  "output_sha256": "a8cd1f62c61b5f72ec53c12ba018d312696452c056046b2cdf50e96785b09cb1",
+  "action": "提交云端原包范围预检与分段下载流程。",
+  "outcome": "修复已发布，新的 workflow 变更将触发快速原包预检。",
+  "next_step": "确认预检是否取得真实 ZIP，失败时不重复完整构建。"
+}

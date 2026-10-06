@@ -1,0 +1,17 @@
+{
+  "label": "track-second-source-download",
+  "started_utc": "2026-10-06T11:08:40.042758+00:00",
+  "finished_utc": "2026-10-06T11:09:26.036679+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import time,json,urllib.request;time.sleep(45);base=\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37454249517\";d=json.load(urllib.request.urlopen(base+\"?t=\"+str(time.time())));print({k:d.get(k) for k in (\"status\",\"conclusion\")});j=json.load(urllib.request.urlopen(base+\"/jobs?t=\"+str(time.time())));print([(x[\"id\"],[(s[\"name\"],s[\"status\"],s[\"conclusion\"]) for s in x[\"steps\"] if s[\"number\"] in (4,5)]) for x in j[\"jobs\"]]);u=\"https://raw.githubusercontent.com/gaozhenyang56-blip/wayne-hyperos4/main/docs/operations/github-build-37454249517.md?t=\"+str(time.time());r=urllib.request.urlopen(u) if d[\"status\"]==\"completed\" else None;print(r.read().decode()[-2500:] if r else \"Build in progress\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T110840042758Z-track-second-source-download.log",
+  "output_sha256": "ae66ccfa3d7937ead77ee0ebf25f10a12501c4e5701971cd2899588d2aa094fc",
+  "action": "等待第二轮构建进入下载，并读取最新实际状态。",
+  "outcome": "本次实际任务状态已记录；供体成功与否仍以完整下载校验为准。",
+  "next_step": "直接下载若失败，读取其具体响应并寻找同源替代入口。"
+}

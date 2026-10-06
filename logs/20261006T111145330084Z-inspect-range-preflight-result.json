@@ -1,0 +1,17 @@
+{
+  "label": "inspect-range-preflight-result",
+  "started_utc": "2026-10-06T11:11:45.330084+00:00",
+  "finished_utc": "2026-10-06T11:11:45.701054+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import urllib.request,json,time;d=json.load(urllib.request.urlopen(\"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37454725634/jobs?t=\"+str(time.time())));print(json.dumps([{ \"id\":j[\"id\"],\"status\":j[\"status\"],\"conclusion\":j[\"conclusion\"],\"steps\":[(s[\"name\"],s[\"status\"],s[\"conclusion\"]) for s in j[\"steps\"]]} for j in d[\"jobs\"]]))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T111145330084Z-inspect-range-preflight-result.log",
+  "output_sha256": "e633c99894a6bb2ca81a39b2fcee052c65debe499b2793d2cea9df41510aac2c",
+  "action": "读取云端原包分段预检的实际结果。",
+  "outcome": "实际预检状态已读取，只有 ZIP 范围校验通过才继续云端构建。",
+  "next_step": "预检失败时核查最新发布者镜像，保留现有已校验实验成品。"
+}

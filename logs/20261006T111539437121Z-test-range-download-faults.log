@@ -1,0 +1,19 @@
+{"retry_start": 0, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 2097152, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 1048576, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"downloaded": 2240000, "total": 2240000, "percent": 100.0}
+{"url": "http://127.0.0.1:46409/source.zip", "size": 2240000, "sha256": "31d9931320580ddb9ded9bfaff06f10b4354208c12f3c5f951cf18d9ba5208cd", "complete_file_sha256_verified": true, "signature_verified": false, "hash_source": "user-supplied expected hash / public download-provider metadata"}
+{"retry_start": 0, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 1048576, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 2097152, "attempt": 1, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 0, "attempt": 2, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 2097152, "attempt": 2, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 0, "attempt": 3, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 1048576, "attempt": 2, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 2097152, "attempt": 3, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 0, "attempt": 4, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 1048576, "attempt": 3, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 2097152, "attempt": 4, "error": "Server must honor Range; refusing whole-file fallback"}
+{"retry_start": 1048576, "attempt": 4, "error": "Server must honor Range; refusing whole-file fallback"}
+{"downloaded": 2240000, "total": 2240000, "percent": 100.0}
+PASS: transient response retry, permanent response rejection, corrupt hash rejection

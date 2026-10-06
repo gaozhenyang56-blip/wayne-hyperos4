@@ -1,0 +1,17 @@
+{
+  "label": "prepare-cloud-workflow-publication",
+  "started_utc": "2026-10-06T10:57:53.974120+00:00",
+  "finished_utc": "2026-10-06T10:57:54.017129+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,pathlib,json; names=set(subprocess.check_output([\"git\",\"ls-files\",\"--others\",\"--exclude-standard\"],text=True).splitlines()+subprocess.check_output([\"git\",\"diff\",\"--name-only\"],text=True).splitlines()); entries=[];\nfor name in sorted(names):\n p=pathlib.Path(name)\n if name.endswith(\".md\") or name.startswith(\"downloads/\") or \"prepare-cloud-workflow-publication\" in name or not p.is_file():continue\n entries.append({\"path\":name,\"mode\":\"100755\" if p.stat().st_mode&0o111 else \"100644\",\"type\":\"blob\",\"content\":p.read_bytes().decode()})\npathlib.Path(\"/tmp/wayne-cloud-payload.json\").write_text(json.dumps(entries,ensure_ascii=False)); print(json.dumps({\"files\":len(entries),\"bytes\":sum(len(x[\"content\"]) for x in entries)}))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T105753974120Z-prepare-cloud-workflow-publication.log",
+  "output_sha256": "a7dec6f445535a5101796123a5b6ed425c3e7fbb1ec101f8481614faca746dbd",
+  "action": "整理云端构建工作流和最新打包验证记录，准备上传并触发构建。",
+  "outcome": "云端构建所需工具、配置与本地成品验证报告已列入发布清单；大型分卷仍通过 Releases 承载。",
+  "next_step": "上传工作流并启动 GitHub Actions，按真实运行结果继续修复。"
+}

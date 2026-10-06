@@ -1,0 +1,30 @@
+research/candidates/RolexIndonesiaChannel-HyperOS.json:166:    "text": "#hyperos4 #mi8937 #android17\nHyperOS 4 - 4.0.0.16 Beta\nAndroid 17 | K4.19 (NON-RDP)\n\nPorted by: @alpha269\nDevices: (Mi8937)\n- Redmi 3S / 3X (land)\n- Redmi 4 / 4X (santoni)\n- Redmi Note 5A / Y1 Prime (ugg)\nand other Mi8937 devices\n\n🖼️ Screenshots\n\nChangelog:\n- Initial Port from Xiaomi 17 OS4 Beta\n- Update kernel to latest sources and OC Gpu to 598MHz\n- Fixed a scenario where WiFi won't connect in Russian and Indonesian languages\n- Fixed Fingerprint\n- Fixed some rendering issues\n\nNotes:\n- Installation guide: https://t.me/santonibackup/62\n- Selinux Enforcing \n- Includes GApps\n- Not recommended for 2/16 & Mi8917\n- Set wallpaper from settings app or lockscreen editor\n\nWarning: \n- Do not change the kernel, or you will get a bootloop\n- Experimental ROM; Not for daily usage\n\nCredits:\n- @juezhi6668 for the surfaceflinger patch\n- @Venusidk & @wannqn for helping\n- @me_cafebabe for the resources \n\nDownloads:\n- ROM: Google Drive | Telegram\n- Recommended Recovery: OrangeFox 4.19\n- KSU Next Manager: v3.3.0",
+tools/ci_build_candidate.py:44:        path=ROOT/'downloads/mi8937-hyperos4.zip';path.parent.mkdir(exist_ok=True)
+tools/ci_build_candidate.py:45:        gdown.download(id='1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX',output=str(path),quiet=False)
+tools/ci_build_candidate.py:52:        archive=ROOT/'downloads/mi8937-hyperos4.zip'
+logs/20261006T065939572819Z-reconstruct-mi8937-vendor-reference.log:2:  "archive": "downloads/mi8937-hyperos4.zip",
+logs/20261006T065824909854Z-reconstruct-mi8937-system.log:2:  "archive": "downloads/mi8937-hyperos4.zip",
+research/candidates/mi8937-os4-release.json:18:      "label": "Google Drive",
+research/candidates/mi8937-os4-release.json:19:      "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
+research/candidates/mi8937-probe.json:2:  "url": "https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t",
+logs/20261006T065939572819Z-reconstruct-mi8937-vendor-reference.json:9:    "downloads/mi8937-hyperos4.zip",
+research/candidates/catuiteam-HyperOS.json:20:    "text": "#Stuff #C #Mondrian \nHyperOS 4.0.0.10 CN for Poco F5 pro\nReleased: 16/08/2026\nMaintainer: @AgentSheld\n\n•Download (RomX) (Google Drive) (PixelDrain)\n•Screenshots\n•Flashing Guide \n•Channel\n•Support\n\nNotes:\nUse GrayRavens Zenithed V14.0 Yukari kernel for boot\nOr CatUI Coo Enginereed Kernel GKI\n\nBugs:\nSim Fix\nScreen Recorder \nVibration\n\nCredits:\nThanks @ameerchik6 for fixes\nThanks @OlegVapnik for test and some fixes",
+logs/20261006T065824909854Z-reconstruct-mi8937-system.json:9:    "downloads/mi8937-hyperos4.zip",
+research/candidates/selection.json:56:        "label": "Google Drive",
+research/candidates/selection.json:57:        "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
+logs/20261006T063845146901Z-validate-mi8937-download.json:9:    "downloads/mi8937-hyperos4.zip.part",
+research/candidates/mi8937-os4/local-zip-check.json:2:  "file": "downloads/mi8937-hyperos4.zip.part",
+research/candidates/mi8937-os4/vendor.img.json:2:  "archive": "downloads/mi8937-hyperos4.zip",
+research/candidates/mi8937-os4/system.img.json:2:  "archive": "downloads/mi8937-hyperos4.zip",
+logs/20261006T063944075633Z-finalize-mi8937-download-name.json:8:    "downloads/mi8937-hyperos4.zip.part",
+logs/20261006T063944075633Z-finalize-mi8937-download-name.json:9:    "downloads/mi8937-hyperos4.zip"
+research/candidates/mi8937-os4/inspection.json:2:  "url": "https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t",
+logs/20261006T063845146901Z-validate-mi8937-download.log:1:{"file": "downloads/mi8937-hyperos4.zip.part", "size": 2683141762, "sha256": "1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39", "all_entries_crc_verified": true, "publisher_hash_verified": false, "signature_verified": false, "entries": 17}
+logs/20261006T065740455232Z-inspect-mi8937-block-layout.json:9:    "import zipfile,json; z=zipfile.ZipFile(\"downloads/mi8937-hyperos4.zip\"); out={};\nfor n in [\"system.transfer.list\",\"vendor.transfer.list\"]:\n s=z.read(n).decode(); rows=s.splitlines(); blocks=0; end=0\n for r in rows[4:]:\n  a=r.split(); v=list(map(int,a[1].split(\",\")))[1:]; end=max(end,max(v))\n  if a[0]==\"new\": blocks+=sum(b-a for a,b in zip(v[::2],v[1::2]))\n out[n]={\"header\":rows[:4],\"new_bytes\":blocks*4096,\"image_size\":end*4096,\"commands\":len(rows)-4}; print(n,s[:200])\nprint(json.dumps(out,indent=2))"
+logs/20261006T102116581125Z-inspect-documentation-before-status-update.log:149:- [原包链接](https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view)
+logs/20261006T110536155630Z-diagnose-cloud-source-download.log:19:    gdown.download(id='1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX',output=str(path),quiet=False)
+logs/20261006T110536155630Z-diagnose-cloud-source-download.log:33:	https://drive.google.com/uc?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX
+research/candidates/alpha-data.json:111:     "label": "Google Drive",
+research/candidates/alpha-data.json:112:     "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
+research/candidates/alpha-data.json:179:     "label": "Google Drive",
+logs/20261006T102647464638Z-inspect-existing-build-and-download-tools-for-artifact-publication.log:21:research/candidates/mi8937-os4-release.json:19:      "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
