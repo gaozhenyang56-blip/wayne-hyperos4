@@ -2,7 +2,7 @@
 
 检索日期：2026-10-06。目标为 Snapdragon 660 的 wayne，用户提供当前内核系列 4.19。
 
-## 首选：Redmi Note 11（spes/spesn）
+## 配置较接近的候选：Redmi Note 11（spes/spesn）
 
 - Snapdragon 680，不是与 660 相同的 SoC，但仍是高通中低端平台。
 - [官方规格](https://www.mi.com/global/product/redmi-note-11/specs/)
@@ -16,7 +16,7 @@
 
 证据：`research/candidates/spes-os4/`、`spes-clean-info.json`、`spes-download.log`。
 
-## 备选及补丁参考：Mi8937
+## 当前离线构建的框架供体：Mi8937
 
 - 支持 santoni、ugg、land；属于比 660 更老的高通平台，不是同 SoC。
 - [发布者页面](https://alphas-trashdump.github.io/#/r/Mi8937/hyperos-4.0.0.16-beta)
@@ -35,3 +35,7 @@ Redmi Note 12 4G tapas/topaz 使用 Snapdragon 685，已找到 OS4 社区包，�
 Redmi Note 7 lavender 使用同款 Snapdragon 660；本次找到 HyperOS 1/2 的社区记录，未找到可核验的 HyperOS 4 下载包。这个结论仅限本次检索，不代表不存在。
 
 小米 15 的官方 OS4 用于框架对照。其启动布局、内核要求与 wayne 差异较大，因此不继续把它作为优先供体。
+
+## 2026-10-06T10:22:27.864752+00:00：当前构建选择
+
+Mi8937 内部已确认 Android 17 / SDK 37、HyperOS 4.0.0.16.XPCCNXM。包内 system/vendor transfer list 名称对调，已依据安装脚本及数据长度正确重建。当前使用其合并 system 框架及 first-stage init；硬件 vendor、内核、DTB 使用 wayne 底包。spes 完整下载受阻且系统未经核验，因此当前可复现构建先使用 Mi8937，不宣称与 SD660 相同。
