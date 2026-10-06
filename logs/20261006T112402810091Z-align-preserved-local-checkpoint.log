@@ -1,0 +1,8 @@
+From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+ * branch            main       -> FETCH_HEAD
+   bdb5eec..ac86410  main       -> origin/main
+?? docs/operations/2026-10-05.md
+?? logs/20261006T112332396014Z-publish-delivery-checkpoint.json
+?? logs/20261006T112332396014Z-publish-delivery-checkpoint.log
+?? logs/20261006T112402810091Z-align-preserved-local-checkpoint.log
+Missing remote files added without overwriting existing content: 23

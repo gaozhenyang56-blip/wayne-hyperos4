@@ -1,0 +1,17 @@
+{
+  "label": "align-preserved-local-checkpoint",
+  "started_utc": "2026-10-06T11:24:02.810091+00:00",
+  "finished_utc": "2026-10-06T11:24:03.543242+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261006T112402810091Z-align-preserved-local-checkpoint.log",
+  "output_sha256": "98b231b047f5159a7ae623de4e7bdc32863c0d0e9e71706536875967fb36b989",
+  "action": "对齐本地 Git 历史，并补齐云端独立日志；保留现有工作文件和实验分卷。",
+  "outcome": "仅补齐本地缺少的仓库文件并移动索引基线，没有覆盖现有内容；最新真实差异已读取。",
+  "failure_note": "本地 Git 断点校准失败，现有文件保留。",
+  "next_step": "同步最后的记录，后续从传输阻塞断点继续。"
+}
