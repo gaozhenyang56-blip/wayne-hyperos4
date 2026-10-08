@@ -1,0 +1,17 @@
+{
+  "label": "await-source-completion",
+  "started_utc": "2026-10-08T16:02:27.569063+00:00",
+  "finished_utc": "2026-10-08T16:03:15.628110+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160227569063Z-await-source-completion.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "持续核查修复构建原包下载阶段的实际完成结果。",
+  "outcome": "当前任务状态和最新阶段记录已保存。",
+  "next_step": "完成后读取完整哈希证据并继续镜像验证。"
+}

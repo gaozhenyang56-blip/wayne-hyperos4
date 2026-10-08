@@ -1,0 +1,16 @@
+{
+  "label": "prepare-race-fix-evidence",
+  "started_utc": "2026-10-08T15:47:22.487918+00:00",
+  "finished_utc": "2026-10-08T15:47:22.701585+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154722487918Z-prepare-race-fix-evidence.log",
+  "output_sha256": "d02a930568e25750a39f42bc4c6d18492dd875682468edbf14344c84e498806a",
+  "action": "整理同步竞态诊断、修复和回归测试的增量证据，补齐仓库日志链接。",
+  "outcome": "增量证据已整理，只包含完成操作的日志文件，不包含旧产物报告。",
+  "next_step": "上传这些证据后继续跟踪修复构建。"
+}

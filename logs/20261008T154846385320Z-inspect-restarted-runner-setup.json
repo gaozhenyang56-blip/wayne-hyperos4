@@ -1,0 +1,22 @@
+{
+  "label": "inspect-restarted-runner-setup",
+  "started_utc": "2026-10-08T15:48:46.385320+00:00",
+  "finished_utc": "2026-10-08T15:48:47.499533+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "37803213948",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--json",
+    "status,conclusion,jobs"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154846385320Z-inspect-restarted-runner-setup.log",
+  "output_sha256": "ea3e08d9ffd04de4c2ac4cf863d226e4a16147cb74ebd29f1ea8c3ecd815370e",
+  "action": "检查新任务停留在环境准备阶段的具体步骤状态。",
+  "outcome": "已读取任务步骤状态，按实际结果区分准备阶段与构建阶段。",
+  "next_step": "环境准备结束后继续核验完整原包和镜像。"
+}

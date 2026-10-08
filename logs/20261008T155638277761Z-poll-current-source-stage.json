@@ -1,0 +1,17 @@
+{
+  "label": "poll-current-source-stage",
+  "started_utc": "2026-10-08T15:56:38.277761+00:00",
+  "finished_utc": "2026-10-08T15:57:21.687540+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155638277761Z-poll-current-source-stage.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "继续核查修复构建的完整下载退出结果。",
+  "outcome": "最新运行状态和下载阶段记录已保存。",
+  "next_step": "下载校验结束后检查提取和重建阶段。"
+}

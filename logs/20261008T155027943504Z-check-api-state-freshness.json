@@ -1,0 +1,16 @@
+{
+  "label": "check-api-state-freshness",
+  "started_utc": "2026-10-08T15:50:27.943504+00:00",
+  "finished_utc": "2026-10-08T15:50:30.454980+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155027943504Z-check-api-state-freshness.log",
+  "output_sha256": "4e30fcecbfe5620fd5ab5c5123556a6e1c06182b7c1c2e928cde520b22866cd2",
+  "action": "核对任务状态 API 与分支引用是否存在缓存滞后，并为后续检查增加新鲜度查询参数。",
+  "outcome": "已保存带新鲜度参数的任务状态和实际 main 引用，后续按不可变提交读取阶段日志。",
+  "next_step": "根据实际最新阶段继续检查下载、验证或发布结果。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "monitor-source-phase-exit",
+  "started_utc": "2026-10-08T15:59:06.520339+00:00",
+  "finished_utc": "2026-10-08T15:59:48.381154+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155906520339Z-monitor-source-phase-exit.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "检查完整原包取得阶段是否完成或失败。",
+  "outcome": "当前运行状态及最新阶段记录已保存。",
+  "next_step": "按实际阶段结果继续核查镜像与归档。"
+}

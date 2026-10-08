@@ -1,0 +1,17 @@
+{
+  "label": "watch-restarted-source-result",
+  "started_utc": "2026-10-08T15:53:42.369119+00:00",
+  "finished_utc": "2026-10-08T15:54:24.271510+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155342369119Z-watch-restarted-source-result.log",
+  "output_sha256": "b7ccf939229679e9d4b9f9fbe41937b738c2015e69c61d39c0d2e3d4a02d9028",
+  "action": "检查修复构建的完整下载是否出现阶段结果。",
+  "outcome": "本轮状态和下载阶段记录已获取。",
+  "next_step": "完整哈希通过后检查镜像提取，失败时定位分段错误。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "recover-monitor-transport",
+  "started_utc": "2026-10-08T15:55:14.093236+00:00",
+  "finished_utc": "2026-10-08T15:55:58.061430+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155514093236Z-recover-monitor-transport.log",
+  "output_sha256": "b7ccf939229679e9d4b9f9fbe41937b738c2015e69c61d39c0d2e3d4a02d9028",
+  "action": "本地执行通道短暂断开后已恢复，继续检查云端完整下载状态。",
+  "outcome": "本地通道恢复，云端最新阶段记录已读取。",
+  "next_step": "原包完成后核查镜像提取和验证阶段。"
+}

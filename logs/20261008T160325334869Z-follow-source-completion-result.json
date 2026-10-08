@@ -1,0 +1,17 @@
+{
+  "label": "follow-source-completion-result",
+  "started_utc": "2026-10-08T16:03:25.334869+00:00",
+  "finished_utc": "2026-10-08T16:04:07.423993+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160325334869Z-follow-source-completion-result.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "继续检查原包取得是否结束，并保留本轮状态证据。",
+  "outcome": "本轮云端状态和当前阶段已读取。",
+  "next_step": "取得结束结果后核查镜像阶段和测试结论。"
+}

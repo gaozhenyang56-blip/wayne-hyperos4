@@ -1,0 +1,17 @@
+{
+  "label": "observe-source-checkpoint",
+  "started_utc": "2026-10-08T15:58:01.372523+00:00",
+  "finished_utc": "2026-10-08T15:58:43.509252+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T155801372523Z-observe-source-checkpoint.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "继续检查修复任务的供体完整下载状态。",
+  "outcome": "当前阶段和运行状态已读取，尚未据运行时间推断下载完成。",
+  "next_step": "等待本轮哈希结论，再核查镜像验证。"
+}

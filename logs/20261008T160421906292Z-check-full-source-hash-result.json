@@ -1,0 +1,17 @@
+{
+  "label": "check-full-source-hash-result",
+  "started_utc": "2026-10-08T16:04:21.906292+00:00",
+  "finished_utc": "2026-10-08T16:05:05.150622+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160421906292Z-check-full-source-hash-result.log",
+  "output_sha256": "3f6607e3bef81865f5ce48c08f2821eab6fd19c028dc57be8ca8195b7f342db1",
+  "action": "核查本轮完整下载阶段是否已经给出哈希结果。",
+  "outcome": "最新任务状态和阶段结果已读取。",
+  "next_step": "完整原包通过后读取镜像提取和重建结果。"
+}
