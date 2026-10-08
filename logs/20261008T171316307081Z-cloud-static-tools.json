@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-tools",
+  "started_utc": "2026-10-08T17:13:16.307081+00:00",
+  "finished_utc": "2026-10-08T17:13:28.316434+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "tools"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171316307081Z-cloud-static-tools.log",
+  "output_sha256": "eafd39f40258d1c4e9b3804c3a8a783052bc5d20b1df50bd43d77ec90b3c255c",
+  "action": "编译固定版本镜像工具。",
+  "outcome": "镜像工具准备完成。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "下载并校验供体和 wayne 参考材料"
+}
