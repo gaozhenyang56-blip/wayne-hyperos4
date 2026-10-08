@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-download",
+  "started_utc": "2026-10-08T17:35:44.476206+00:00",
+  "finished_utc": "2026-10-08T17:48:58.263134+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "download"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173544476206Z-cloud-static-download.log",
+  "output_sha256": "fe65ba7855021fa07aff65fb091b9890fb1ad58c3b43a522dfdc632a91c69a00",
+  "action": "下载并校验供体和 wayne 参考材料。",
+  "outcome": "供体完整哈希和目标材料条目校验通过。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "重建原始镜像并记录权限标签"
+}
