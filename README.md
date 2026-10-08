@@ -1,8 +1,8 @@
 # 小米 6X / wayne HyperOS 4 移植工程
 
-更新：2026-10-08（北京时间；[本轮操作记录](docs/operations/2026-10-08.md)，[前轮记录](docs/operations/2026-10-07.md)）。
+更新：2026-10-09（北京时间；[本轮操作记录](docs/operations/2026-10-09.md)，[连接恢复与修复记录](docs/operations/2026-10-08.md)）。
 
-目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线生成实验 boot/system 及约 3.17 GB 的分卷刷机包，完整归档和镜像哈希校验通过。未真机验证，尚未上传公开成品附件。
+目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线完成云端构建，并发布约 3.17 GB 的分卷实验刷机包。完整归档读回、镜像哈希和公开资产大小/摘要核验通过。[下载实验包](https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006)。尚未验证启动或硬件功能。
 
 ## 当前采用的材料
 
@@ -31,7 +31,9 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 
 每次操作记录时间、做了什么、发生了什么和下一步；原始命令与输出另存日志。2026-10-08 GitHub 连接恢复，此前未同步的原生库审计代码、报告和 MD 已补传，恢复每次 MD 修改后立即上传。
 
-- [逐次操作日志](docs/operations/2026-10-06.md)
+- [当前逐次操作日志](docs/operations/2026-10-09.md)
+- [2026-10-08 操作记录](docs/operations/2026-10-08.md)
+- [云端构建完整阶段记录](docs/operations/github-build-37803213948.md)
 - [云端复现流程](.github/workflows/build-experimental.yml)
 - [实际交付状态](artifacts/delivery-status.json)
 - [实验分卷与镜像哈希](artifacts/candidate-package.json)
@@ -41,6 +43,14 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 
 大型原包、镜像和解包目录不进入 Git。实验成品使用 Releases 分卷资产，并标明构建提交、哈希和验证范围。
 
-本地分卷为 `wayne-hyperos4-offline-20261006.zip.001`（1,900,000,000 字节）及 `.zip.002`（1,269,073,508 字节），所有 ZIP 条目 CRC 和镜像哈希校验通过。仅支持已采用 Miku wayne retrofit 动态分区布局的设备；安装器验证设备、分区布局、空间和镜像哈希后写入 system/vendor/boot。
+## 成品下载与适用范围
 
-最新进展（2026-10-08）：上一轮完整原包哈希、目标条目 CRC、镜像提取和镜像生成通过；其后进度推送与实时 MD 更新发生竞态，任务在验证开始前停止。有限次数 fetch/rebase/push 修复已通过实际 Git 双克隆回归测试。包含实际 runtime APEX 与版本符号检查的[新云端构建](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37803213948)正在执行。本机 Release 附件接口仍返回 401，成品上传与远端哈希校验尚未完成；没有真机启动结论。
+公开预发布：[https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006](https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006)。
+
+下载 `.zip.001`、`.zip.002`、`SHA256SUMS`、`INSTALL.txt` 和 `manifest.json`。两份分卷大小分别为 1,900,000,000 与 1,268,883,752 字节；按编号合并为 ZIP 后解压，不能单独刷入某个分卷。详细安装步骤见 Release 的 `INSTALL.txt`。构建提交为 `73526dd35460dc6c65465333b6b01d2851e95649`；Release 标签与该提交一致。[分卷及镜像摘要](artifacts/candidate-package.json)、[发布核验报告](artifacts/release-publication.json)。
+
+仅适用于已经采用 Miku wayne retrofit 动态分区布局的设备。安装器要求 Python 3.11+，默认仅校验镜像；显式刷写时验证设备、分区布局、空间和镜像哈希，再写入 system/vendor/boot。此包不转换原厂或其他分区布局。
+
+[成功云端任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37803213948)完成原包哈希、镜像内容与元数据、boot、原生库版本符号、进度推送竞态回归、HAL 声明、ZIP 完整读回和远端资产摘要检查。公开的安装说明、清单与校验文件也已独立下载核验。本次为未真机验证的实验预发布；严格 SELinux neverallow 仍失败，运行时 linker/APEX、启动、加密和硬件行为尚未验证。
+
+此前本地分卷保留为旧检查点，与此次云端成品哈希不同；旧报告保存在本地 `artifacts/releases/local-checkpoint-c7926a9/`。安装与校验请使用同一 Release 的完整附件。
