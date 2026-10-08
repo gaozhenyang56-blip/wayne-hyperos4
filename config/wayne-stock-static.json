@@ -1,0 +1,20 @@
+{
+  "device": "wayne",
+  "layout": "stock-size-static",
+  "partition_sizes": {
+    "system": 3221225472,
+    "vendor": 2147483648,
+    "boot": 67108864
+  },
+  "source_evidence": "research/static-wayne/sources.json",
+  "capacity_evidence": "LineageOS wayne-common and sdm660-common fixed device configuration; physical GPT not yet obtained",
+  "preserve_partition_table": true,
+  "flash_targets": [
+    "system",
+    "vendor",
+    "boot"
+  ],
+  "rawdump_repurpose_allowed": false,
+  "dynamic_partition_conversion_allowed": false,
+  "hardware_tested": false
+}
