@@ -33,9 +33,17 @@ jobs:
           exit "$result"
       - name: Prepare ephemeral runner
         run: |
-          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
-          sudo apt-get update
-          sudo apt-get install -y autoconf automake libtool pkg-config liblz4-dev liblzma-dev libzstd-dev uuid-dev zlib1g-dev g++
-          python -m pip install -r requirements.txt
+          set +e
+          python tools/record_step.py --action '准备临时云端空间和镜像构建依赖。' --outcome '临时环境与固定 Python 依赖准备完成。' --failure-note '环境准备失败，构建停止。' --next '编译固定镜像工具并下载供体。' cloud-static-prepare -- bash -ec '
+            sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+            sudo apt-get update
+            sudo apt-get install -y autoconf automake libtool pkg-config liblz4-dev liblzma-dev libzstd-dev uuid-dev zlib1g-dev g++
+            python -m pip install -r requirements.txt
+          '
+          result=$?
+          python -c 'import sys; sys.path.insert(0,"tools"); import ci_build_candidate as ci; ci.sync_progress()'
+          sync_result=$?
+          if [ "$sync_result" -ne 0 ]; then exit "$sync_result"; fi
+          exit "$result"
       - name: Build, verify and publish static experimental assets
         run: python tools/ci_build_static.py
