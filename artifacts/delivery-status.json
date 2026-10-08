@@ -1,15 +1,15 @@
 {
-  "updated_utc": "2026-10-08T17:35:13.583271+00:00",
-  "status": "previous-release-incompatible-with-user-static-layout",
+  "updated_utc": "2026-10-08T18:05:04.592365+00:00",
+  "status": "offline-static-experimental-delivered",
   "source_candidate": "Mi8937 community HyperOS 4 experiment",
-  "release_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006",
-  "release_tag": "offline-20261006",
+  "release_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-static-20261009",
+  "release_tag": "offline-static-20261009",
   "release_is_draft": false,
   "release_is_prerelease": true,
   "public_release_assets": 5,
-  "build_commit": "73526dd35460dc6c65465333b6b01d2851e95649",
-  "workflow_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37803213948",
-  "workflow_conclusion": "success",
+  "build_commit": "fa5177b919cac461ef19c1f3483b50b0f2203f16",
+  "workflow_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37817225905",
+  "workflow_conclusion": "failure",
   "complete_source_sha256_verified_in_cloud": true,
   "archive_readback_verified": true,
   "image_hashes_verified": true,
@@ -20,15 +20,15 @@
   "hardware_tested": false,
   "strict_neverallow_passed": false,
   "native_namespace_and_hardware_verified": false,
-  "supported_layout": "existing Miku wayne retrofit dynamic layout",
+  "supported_layout": "stock-size-static",
   "parts": {
-    "wayne-hyperos4-offline-20261006.zip.001": {
+    "wayne-hyperos4-static-20261009.zip.001": {
       "size": 1900000000,
-      "sha256": "2e4c708f78e86c3624582ccc2e7d8cda09f52ce7fe23b2cff5183bf2a700d445"
+      "sha256": "3d13c180baac74d65d24a01cc98d8629908f2024c7e9cbc26a494da7c349793e"
     },
-    "wayne-hyperos4-offline-20261006.zip.002": {
-      "size": 1268883752,
-      "sha256": "a89ca0100733763ecade4b5147e9a50115a608d2f0066454afbc7f6fd01d4094"
+    "wayne-hyperos4-static-20261009.zip.002": {
+      "size": 1275223037,
+      "sha256": "9ef668595fac323b6db83171b3072eeb7b795439b586fb7088a3900dbb1a8ec8"
     }
   },
   "github_plugin_installed": true,
@@ -36,19 +36,31 @@
   "local_old_archive_preserved": true,
   "old_local_report_backup": "artifacts/releases/local-checkpoint-c7926a9",
   "local_binary_upload_auth_failure": "historical local HTTP 401; delivery completed through GitHub Actions",
-  "next": "Verify original static partition capacities and compatible 4.19 boot/vendor before building a new static package.",
+  "next": "Offline experimental delivery completed. Boot, encryption, linker/APEX and hardware testing remain unavailable; strict neverallow conflicts are unresolved.",
   "target_layout": "stock-size static wayne",
-  "user_device_compatible_release_delivered": false,
+  "user_device_compatible_release_delivered": null,
   "previous_release_retained_for_research": true,
   "current_static_workflow": {
     "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37817225905",
-    "status": "in_progress",
-    "static_release_delivered": false
+    "status": "completed",
+    "static_release_delivered": true,
+    "conclusion": "failure",
+    "publication_recovered": true
   },
   "previous_static_attempt": {
     "run_id": 37814471259,
     "source_full_sha256_passed": true,
     "failure": "SourceForge range connection reset while reading wayne reference",
     "source_range_retries_added": true
-  }
+  },
+  "publication_recovered": true,
+  "publication_method": "recover-verified-existing-assets",
+  "requires_miku_installed": false,
+  "preserve_partition_table": true,
+  "rawdump_repurposed": false,
+  "user_requested_layout_experimental_release_delivered": true,
+  "hardware_compatibility_verified": false,
+  "capacity_bytes_verified_on_user_device": false,
+  "previous_release_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006",
+  "compatibility_note": "Static target artifact delivered; actual device boot and hardware compatibility remain unverified."
 }
