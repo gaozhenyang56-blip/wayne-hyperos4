@@ -1,0 +1,120 @@
+ed": 1979711488, "total": 2683141762, "percent": 73.8}
+{"downloaded": 1996488704, "total": 2683141762, "percent": 74.4}
+{"downloaded": 2013265920, "total": 2683141762, "percent": 75.0}
+{"retry": "2017460224", "attempt": 1, "error": "HTTP Error 500: Internal Server Error"}
+{"downloaded": 2030043136, "total": 2683141762, "percent": 75.7}
+{"downloaded": 2046820352, "total": 2683141762, "percent": 76.3}
+{"downloaded": 2063597568, "total": 2683141762, "percent": 76.9}
+{"downloaded": 2080374784, "total": 2683141762, "percent": 77.5}
+{"downloaded": 2097152000, "total": 2683141762, "percent": 78.2}
+{"downloaded": 2113929216, "total": 2683141762, "percent": 78.8}
+{"downloaded": 2130706432, "total": 2683141762, "percent": 79.4}
+{"downloaded": 2147483648, "total": 2683141762, "percent": 80.0}
+{"retry": "2159017984", "attempt": 1, "error": "HTTP Error 500: Internal Server Error"}
+{"downloaded": 2164260864, "total": 2683141762, "percent": 80.7}
+{"downloaded": 2181038080, "total": 2683141762, "percent": 81.3}
+{"downloaded": 2197815296, "total": 2683141762, "percent": 81.9}
+{"downloaded": 2214592512, "total": 2683141762, "percent": 82.5}
+{"downloaded": 2231369728, "total": 2683141762, "percent": 83.2}
+{"downloaded": 2248146944, "total": 2683141762, "percent": 83.8}
+{"downloaded": 2264924160, "total": 2683141762, "percent": 84.4}
+{"downloaded": 2281701376, "total": 2683141762, "percent": 85.0}
+{"downloaded": 2298478592, "total": 2683141762, "percent": 85.7}
+{"downloaded": 2315255808, "total": 2683141762, "percent": 86.3}
+{"downloaded": 2332033024, "total": 2683141762, "percent": 86.9}
+{"downloaded": 2348810240, "total": 2683141762, "percent": 87.5}
+{"downloaded": 2365587456, "total": 2683141762, "percent": 88.2}
+{"downloaded": 2382364672, "total": 2683141762, "percent": 88.8}
+{"downloaded": 2399141888, "total": 2683141762, "percent": 89.4}
+{"downloaded": 2415919104, "total": 2683141762, "percent": 90.0}
+{"downloaded": 2432696320, "total": 2683141762, "percent": 90.7}
+{"downloaded": 2449473536, "total": 2683141762, "percent": 91.3}
+{"downloaded": 2466250752, "total": 2683141762, "percent": 91.9}
+{"downloaded": 2483027968, "total": 2683141762, "percent": 92.5}
+{"downloaded": 2499805184, "total": 2683141762, "percent": 93.2}
+{"downloaded": 2516582400, "total": 2683141762, "percent": 93.8}
+{"downloaded": 2533359616, "total": 2683141762, "percent": 94.4}
+{"downloaded": 2550136832, "total": 2683141762, "percent": 95.0}
+{"downloaded": 2566914048, "total": 2683141762, "percent": 95.7}
+{"downloaded": 2583691264, "total": 2683141762, "percent": 96.3}
+{"downloaded": 2600468480, "total": 2683141762, "percent": 96.9}
+{"downloaded": 2617245696, "total": 2683141762, "percent": 97.5}
+{"downloaded": 2634022912, "total": 2683141762, "percent": 98.2}
+{"downloaded": 2650800128, "total": 2683141762, "percent": 98.8}
+{"downloaded": 2667577344, "total": 2683141762, "percent": 99.4}
+{"downloaded": 2683141762, "total": 2683141762, "percent": 100.0}
+{"url": "https://drive.usercontent.google.com/download?id=1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX&export=download&confirm=t", "size": 2683141762, "sha256": "1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39", "complete_file_sha256_verified": true, "signature_verified": false, "hash_source": "user-supplied expected hash / public download-provider metadata"}
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 1361, in do_open
+    h.request(req.get_method(), req.selector, req.data, headers,
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1351, in request
+    self._send_request(method, url, body, headers, encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1397, in _send_request
+    self.endheaders(body, encode_chunked=encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1346, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1106, in _send_output
+    self.send(msg)
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1044, in send
+    self.connect()
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/http/client.py", line 1523, in connect
+    self.sock = self._context.wrap_socket(self.sock,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/ssl.py", line 517, in wrap_socket
+    return self.sslsocket_class._create(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/ssl.py", line 1117, in _create
+    self.do_handshake()
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/ssl.py", line 1395, in do_handshake
+    self._sslobj.do_handshake()
+ConnectionResetError: [Errno 104] Connection reset by peer
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 108, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 95, in main
+    if a.stage:stage(a.stage);return
+               ^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 28, in stage
+    ci.stage(name)
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 59, in stage
+    inspect('https://downloads.sourceforge.net/project/divarelease/wayne_Vampire_v0.6.0/MikuUI-Vampire_v2-wayne-25020901-OFFICIAL.zip',BASE,
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/inspect_ota.py", line 133, in inspect
+    data = archive.read(name)
+           ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/zipfile.py", line 1566, in read
+    with self.open(name, "r", pwd) as fp:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/zipfile.py", line 1628, in open
+    zef_file.read(fheader[_FH_EXTRA_FIELD_LENGTH])
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/zipfile.py", line 811, in read
+    data = self._file.read(n)
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/inspect_ota.py", line 70, in read
+    data = self.range(self.pos, length)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/inspect_ota.py", line 32, in range
+    with urllib.request.urlopen(req, timeout=60) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 216, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 519, in open
+    response = self._open(req, data)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 536, in _open
+    result = self._call_chain(self.handle_open, protocol, protocol +
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 496, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 1404, in https_open
+    return self.do_open(http.client.HTTPSConnection, req,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/urllib/request.py", line 1364, in do_open
+    raise URLError(err)
+urllib.error.URLError: <urlopen error [Errno 104] Connection reset by peer>
+

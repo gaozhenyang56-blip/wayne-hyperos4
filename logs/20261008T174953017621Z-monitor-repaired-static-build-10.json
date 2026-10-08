@@ -1,0 +1,17 @@
+{
+  "label": "monitor-repaired-static-build-10",
+  "started_utc": "2026-10-08T17:49:53.017621+00:00",
+  "finished_utc": "2026-10-08T17:49:53.109841+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"{\\\"status\\\": \\\"in_progress\\\", \\\"conclusion\\\": \\\"\\\", \\\"latest_operation\\\": \\\"开始生成保持原版容量的静态 boot/system/vendor。\\\", \\\"latest_record\\\": \\\"boot/system/vendor。\\\\n\\\\n## 2026-10-09T01:49:01.269330+08:00 — cloud-static-extract\\\\n\\\\nUTC 起始：2026-10-08T17:49:01.269330+00:00；结束：2026-10-08T17:49:32.969709+00:00。\\\\n\\\\n做了什么：重建原始镜像并记录权限标签。\\\\n\\\\n发生了什么：原始镜像、inode 元数据和 runtime APEX 已提取。\\\\n\\\\n下一步：生成保持原版容量的静态 boot/system/vendor\\\\n\\\\n证据：[原始日志](../../logs/20261008T174901269330Z-cloud-static-extract.log)。\\\\n\\\\n## 2026-10-08T17:49:35.421264+00:00\\\\n\\\\n做了什么：开始生成保持原版容量的静态 boot/system/vendor。\\\\n\\\\n发生了什么：云端进入本阶段。\\\\n\\\\n下一步：完整核对静态镜像内容、元数据与安装拒绝条件。\\\\n\\\\n\\\"}\\n\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T174953017621Z-monitor-repaired-static-build-10.log",
+  "output_sha256": "81b60ab65d7f4026641e284fb98134ac4b9281b8cce768e8c8edf651fc154e36",
+  "action": "核验静态任务最新阶段和真实运行结论。",
+  "outcome": "云端任务仍在运行；最新操作：开始生成保持原版容量的静态 boot/system/vendor。 没有真机测试结论。",
+  "next_step": "按实际阶段继续核验；失败则定位并修复，发布后独立检查公开成品。"
+}

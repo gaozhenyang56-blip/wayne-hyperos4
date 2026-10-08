@@ -1,0 +1,17 @@
+{
+  "label": "verify-static-cloud-reports",
+  "started_utc": "2026-10-08T17:53:01.233263+00:00",
+  "finished_utc": "2026-10-08T17:53:04.882950+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175301233263Z-verify-static-cloud-reports.log",
+  "output_sha256": "9835344f63a7238bd8e5d72848335c2776aea67f530663178ca29b6752e250ed",
+  "action": "独立读取云端静态镜像和安装回归的实际报告。",
+  "outcome": "完整 system/vendor 核验、boot 结构、四项原生库依赖库存和 VINTF 报告通过；硬件未测试。",
+  "failure_note": "读取或核验云端报告失败，需定位报告差异。",
+  "next_step": "等待发布完成后独立下载公开附件并核对标签和哈希。"
+}

@@ -1,0 +1,50 @@
+{
+  "proof_commit": "a953b117744ae6cb2b7b21c7dc90f0b93af89fed",
+  "build_input": {
+    "source_commit": "fa5177b919cac461ef19c1f3483b50b0f2203f16",
+    "workflow_commit": "fb5bd69061758b4b14691c9d74a6837526b95d7d",
+    "images": {
+      "system.img": "f60f97f6dcf6ad5646ec0f419a30c560c36ace709fa1302b1cb2386dc3ce5ddc",
+      "vendor.img": "496a6dd892a34b3178fe25f9ac6a61c6c4816afdb1c6ed2922d308ed1906cf6b",
+      "boot.img": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd"
+    }
+  },
+  "image": {
+    "success": true,
+    "layout": "stock-size-static",
+    "hardware_tested": false,
+    "system_full_recheck_performed": true,
+    "preserve_partition_table": true,
+    "rawdump_repurposed": false,
+    "partition_sizes": {
+      "system": 3221225472,
+      "vendor": 2147483648,
+      "boot": 67108864
+    }
+  },
+  "boot": {
+    "success": true,
+    "kernel_and_appended_dtb_preserved": true,
+    "cmdline_changed_for_static_layout": true,
+    "boot_id_verified": true,
+    "fstab_uses_physical_nodes": true,
+    "rawdump_repurposed": false,
+    "hardware_tested": false,
+    "size": 18755584,
+    "sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd"
+  },
+  "system_metadata": {
+    "original_paths": 9134,
+    "rebuilt_paths": 9135,
+    "differences": [],
+    "success": true
+  },
+  "vendor_metadata": {
+    "original_paths": 2296,
+    "rebuilt_paths": 2296,
+    "differences": [],
+    "success": true
+  },
+  "native_targets": 4,
+  "hardware_tested": false
+}

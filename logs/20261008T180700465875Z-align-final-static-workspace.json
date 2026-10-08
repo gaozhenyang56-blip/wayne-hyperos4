@@ -1,0 +1,16 @@
+{
+  "label": "align-final-static-workspace",
+  "started_utc": "2026-10-08T18:07:00.465875+00:00",
+  "finished_utc": "2026-10-08T18:07:00.765102+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T180700465875Z-align-final-static-workspace.log",
+  "output_sha256": "a05ffd6e4db28aac2ea3462861e8e6fadef4910c927ddf948fdee42cd5ed30f2",
+  "action": "保存本地静态检查点并恢复云端最终报告到工作区。",
+  "outcome": "本地旧静态报告已备份，git 断点对齐最新远端；缺失云端日志和完整报告已恢复，不改大镜像。",
+  "next_step": "补传剩余原始日志，检查最后的 Git 状态和公开交付记录。"
+}

@@ -1,0 +1,17 @@
+{
+  "label": "prepare-static-log-snapshot",
+  "started_utc": "2026-10-08T17:19:37.140071+00:00",
+  "finished_utc": "2026-10-08T17:19:50.828630+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "git fetch origin main && python3 - <<\"PY\"\nimport pathlib,subprocess,json\nentries=[]\nfor p in sorted(pathlib.Path(\"logs\").glob(\"*\")):\n    path=str(p); sha=subprocess.check_output([\"git\",\"hash-object\",path],text=True).strip()\n    old=subprocess.run([\"git\",\"rev-parse\",\"origin/main:\"+path],capture_output=True,text=True)\n    if old.returncode==0 and old.stdout.strip()==sha:continue\n    entries.append({\"path\":path,\"mode\":\"100644\",\"type\":\"blob\",\"content\":p.read_text()})\npathlib.Path(\"/tmp/static-log-upload.json\").write_text(json.dumps(entries,ensure_ascii=False));print(len(entries))\nPY"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171937140071Z-prepare-static-log-snapshot.log",
+  "output_sha256": "7668f59ece36502d31fef1a9ceadd49c9ad74d5e0edc750a34563182827d30fb",
+  "action": "检查仓库最新提交并准备补传本轮原始审计日志。",
+  "outcome": "已获取最新 main，日志差异清单已生成；不重复提交已同步且未变化的源码。",
+  "next_step": "补传新增日志，继续等待云端镜像阶段。"
+}

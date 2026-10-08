@@ -1,0 +1,16 @@
+{
+  "label": "monitor-repaired-static-build-5",
+  "started_utc": "2026-10-08T17:39:44.432169+00:00",
+  "finished_utc": "2026-10-08T17:39:46.743015+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/monitor-static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173944432169Z-monitor-repaired-static-build-5.log",
+  "output_sha256": "ca8f2c6432f103d6818831b5048f32eaad9eb9b53f54ec9341e23af8c1e16acf",
+  "action": "继续跟踪修复后的供体完整下载。",
+  "outcome": "最新任务状态和阶段已核对并保存。",
+  "next_step": "材料校验完成后核验静态镜像内容、标签和容量。"
+}

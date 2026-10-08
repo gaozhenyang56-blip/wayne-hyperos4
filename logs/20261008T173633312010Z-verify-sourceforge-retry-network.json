@@ -1,0 +1,17 @@
+{
+  "label": "verify-sourceforge-retry-network",
+  "started_utc": "2026-10-08T17:36:33.312010+00:00",
+  "finished_utc": "2026-10-08T17:36:47.757111+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173633312010Z-verify-sourceforge-retry-network.log",
+  "output_sha256": "6b0ae49b32bc1b6e74166bcd50437113d17031891a9ff08468d6fa1e540ed1b6",
+  "action": "用真实 SourceForge boot 条目验证新的分段重试读取。",
+  "outcome": "真实 boot 条目 CRC 和参考 SHA256 一致，分段重试读取路径可用。",
+  "failure_note": "真实 SourceForge 探测未通过，需继续修复入口；不影响已记录的完整供体哈希。",
+  "next_step": "继续跟踪云端供体与参考材料下载，完成后核验镜像。"
+}

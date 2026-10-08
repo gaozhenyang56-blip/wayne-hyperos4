@@ -1,0 +1,18 @@
+{
+  "label": "fix-static-draft-release-lookup",
+  "started_utc": "2026-10-08T17:56:45.160098+00:00",
+  "finished_utc": "2026-10-08T17:56:45.231708+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_build_static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175645160098Z-fix-static-draft-release-lookup.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "恢复环境迁移后丢失的实时上传辅助函数，并修复草稿查询。",
+  "outcome": "实时 MD 同步已恢复；草稿按列表中 tag_name 查找，公开后再按正式标签读取，保留摘要核验门槛。",
+  "next_step": "只恢复已上传成品的发布阶段，避免重复构建。"
+}

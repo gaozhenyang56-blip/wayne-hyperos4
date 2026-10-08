@@ -1,0 +1,18 @@
+{
+  "label": "diagnose-static-cloud-failure",
+  "started_utc": "2026-10-08T17:28:54.631160+00:00",
+  "finished_utc": "2026-10-08T17:28:56.834840+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "gh run view 37814471259 --repo gaozhenyang56-blip/wayne-hyperos4 --log-failed > /tmp/static-run-failure.log && tail -85 /tmp/static-run-failure.log"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T172854631160Z-diagnose-static-cloud-failure.log",
+  "output_sha256": "164606a38acc834d4b3fabe4eccb1c62641788a3a1dcc31cc6631495d2af5ada",
+  "action": "读取失败任务日志，定位静态构建中断原因。",
+  "outcome": "失败日志已取得，依据实际错误修复。",
+  "failure_note": "读取失败日志未成功，需使用 GitHub 接口重试。",
+  "next_step": "修复中断原因后重跑静态构建。"
+}

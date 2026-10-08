@@ -29,8 +29,7 @@ Progress push raced with another update; refetching without force.
 From /tmp/wayne-progress-race-ljoc3mb2/origin
  * branch            main       -> FETCH_HEAD
    28ab28e..3f434c0  main       -> origin/main
-Rebasing (1/1)
-Successfully rebased and updated refs/heads/main.
+Rebasing (1/1)Successfully rebased and updated refs/heads/main.
 To /tmp/wayne-progress-race-ljoc3mb2/origin.git
    3f434c0..6d4e005  HEAD -> main
 

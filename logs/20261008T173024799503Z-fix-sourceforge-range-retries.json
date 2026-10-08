@@ -1,0 +1,19 @@
+{
+  "label": "fix-sourceforge-range-retries",
+  "started_utc": "2026-10-08T17:30:24.799503+00:00",
+  "finished_utc": "2026-10-08T17:30:24.909222+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/inspect_ota.py",
+    "tools/download_verified.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173024799503Z-fix-sourceforge-range-retries.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "修复参考包分段读取的临时连接错误，并为已核验供体加入缓存复用。",
+  "outcome": "参考包每个分段最多重试五次；供体缓存先完整 SHA256 核验，后续失败也保存已完成供体，避免再次下载。",
+  "next_step": "测试重试边界和缓存拒绝条件后重跑新工作流。"
+}

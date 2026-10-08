@@ -1,0 +1,16 @@
+{
+  "label": "recover-static-publication-race",
+  "started_utc": "2026-10-08T17:35:51.028990+00:00",
+  "finished_utc": "2026-10-08T17:35:53.328393+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/monitor-static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173551028990Z-recover-static-publication-race.log",
+  "output_sha256": "ac59a78799221069923c817447380cb12f59bf53f4086e56cc761361a2c7f2ca",
+  "action": "恢复 GitHub 实时同步时与云端提交发生的分支竞态。",
+  "outcome": "云端刚推进 main 导致一次 409；重新读取最新状态后交付说明上传成功，上传器已加入有限重试。",
+  "next_step": "继续跟踪当前静态任务，保持 MD 修改后实时同步。"
+}

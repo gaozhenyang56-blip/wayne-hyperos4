@@ -1,0 +1,18 @@
+{
+  "label": "publish-existing-static-release",
+  "started_utc": "2026-10-08T18:03:06.101151+00:00",
+  "finished_utc": "2026-10-08T18:03:15.841595+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/publish_static_existing.py",
+    "--publish"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T180306101151Z-publish-existing-static-release.log",
+  "output_sha256": "081cff5dd40afaac32877d0c6cd6cbfc980bc7bcce9b3dbffc481ab1279a93e0",
+  "action": "从发布断点公开已核验的原版容量静态实验包。",
+  "outcome": "同一份已上传成品已公开，五项资产摘要再次核验，正式标签与实际构建源码一致。",
+  "failure_note": "公开发布未完成，不视为成品已交付；继续定位发布接口。",
+  "next_step": "独立匿名下载小附件，更新 README 和最终交付状态。"
+}

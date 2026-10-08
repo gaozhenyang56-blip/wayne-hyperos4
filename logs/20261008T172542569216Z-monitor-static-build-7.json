@@ -1,0 +1,16 @@
+{
+  "label": "monitor-static-build-7",
+  "started_utc": "2026-10-08T17:25:42.569216+00:00",
+  "finished_utc": "2026-10-08T17:25:44.485212+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/monitor-static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T172542569216Z-monitor-static-build-7.log",
+  "output_sha256": "add7200117583fcb40510ae13d16338533d4ed349e0b10cbdb2839f8cedf6f28",
+  "action": "检查静态云端任务的下载完成与失败状态。",
+  "outcome": "最新阶段和任务结论已保存。",
+  "next_step": "供体通过完整哈希校验后继续静态镜像重建。"
+}

@@ -1,0 +1,23 @@
+{
+  "label": "dispatch-repaired-static-build",
+  "started_utc": "2026-10-08T17:31:26.485439+00:00",
+  "finished_utc": "2026-10-08T17:31:28.413125+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "build-static-experimental.yml",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--ref",
+    "main"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173126485439Z-dispatch-repaired-static-build.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "启动包含 SourceForge 分段重试和供体缓存的新静态构建。",
+  "outcome": "新版工作流已触发；前次临时 runner 已销毁，本次必须重新取得供体，后续将保存已核验缓存。",
+  "failure_note": "新任务触发失败，继续修复工作流入口。",
+  "next_step": "跟踪新任务直至镜像、归档及发布核验完成。"
+}

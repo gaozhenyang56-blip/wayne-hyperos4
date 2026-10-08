@@ -1,0 +1,16 @@
+{
+  "label": "exclude-static-derived-workspace",
+  "started_utc": "2026-10-08T17:51:38.747375+00:00",
+  "finished_utc": "2026-10-08T17:51:38.833577+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175138747375Z-exclude-static-derived-workspace.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将静态构建的派生镜像目录排除出源码 Git，保留报告和最终 Release。",
+  "outcome": "派生 inode 清单与大镜像不进入源码提交；research 报告及最终分卷仍保留公开。",
+  "next_step": "核验云端报告并发布静态实验成品。"
+}

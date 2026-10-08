@@ -1,0 +1,18 @@
+{
+  "label": "require-source-recovery-regression",
+  "started_utc": "2026-10-08T17:32:47.077883+00:00",
+  "finished_utc": "2026-10-08T17:32:47.351202+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_build_static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173247077883Z-require-source-recovery-regression.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将下载恢复回归纳入静态云端必跑检查。",
+  "outcome": "重试边界和缓存哈希测试会与镜像、安装、分卷和并发进度测试一起执行。",
+  "next_step": "等待新任务完成下载，再检查全部报告。"
+}

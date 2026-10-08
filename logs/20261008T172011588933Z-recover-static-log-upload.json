@@ -1,0 +1,16 @@
+{
+  "label": "recover-static-log-upload",
+  "started_utc": "2026-10-08T17:20:11.588933+00:00",
+  "finished_utc": "2026-10-08T17:20:13.896813+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/monitor-static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T172011588933Z-recover-static-log-upload.log",
+  "output_sha256": "add7200117583fcb40510ae13d16338533d4ed349e0b10cbdb2839f8cedf6f28",
+  "action": "补传新增原始日志并恢复上传清单读取。",
+  "outcome": "前次上传清单读取发生时 git fetch 尚未结束；等待完成后重试成功，32 项日志已补传。",
+  "next_step": "继续跟踪云端下载，完成后核验全部镜像和公开资产。"
+}

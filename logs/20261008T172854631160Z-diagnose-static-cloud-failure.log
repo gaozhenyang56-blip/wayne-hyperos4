@@ -1,0 +1,56 @@
+build	Build, verify and publish static experimental assets	﻿2026-10-08T17:13:14.4639374Z ##[group]Run python tools/ci_build_static.py
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4639718Z [36;1mpython tools/ci_build_static.py[0m
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4672639Z shell: /usr/bin/bash -e {0}
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4672935Z env:
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4674870Z   GH_TOKEN: ***
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4675211Z   WAYNE_PROGRESS_FILE: docs/operations/github-static-build-37814471259.md
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4675581Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4676098Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4676574Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4676913Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4677270Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4677597Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.4677868Z ##[endgroup]
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.5205282Z [main ae511e3] docs: update timestamped cloud build progress
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.5206093Z  1 file changed, 8 insertions(+)
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.9053441Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.9053992Z  * branch            main       -> FETCH_HEAD
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.9054423Z    2f83164..6e9cc9e  main       -> origin/main
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.9221330Z Rebasing (1/1)
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:14.9221757Z Successfully rebased and updated refs/heads/main.
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:16.2821769Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:16.2822355Z    6e9cc9e..7b7e345  HEAD -> main
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:16.2822798Z 
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.3181029Z {"label": "cloud-static-tools", "started_utc": "2026-10-08T17:13:16.307081+00:00", "finished_utc": "2026-10-08T17:13:28.316434+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_static.py", "--stage", "tools"], "exit_code": 0, "output": "logs/20261008T171316307081Z-cloud-static-tools.log", "output_sha256": "eafd39f40258d1c4e9b3804c3a8a783052bc5d20b1df50bd43d77ec90b3c255c", "action": "编译固定版本镜像工具。", "outcome": "镜像工具准备完成。", "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。", "next_step": "下载并校验供体和 wayne 参考材料"}
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.3453602Z [main 2f7e892] docs: update timestamped cloud build progress
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.3454226Z  3 files changed, 491 insertions(+)
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.3454771Z  create mode 100644 logs/20261008T171316307081Z-cloud-static-tools.json
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.3455296Z  create mode 100644 logs/20261008T171316307081Z-cloud-static-tools.log
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.6205376Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.6205932Z  * branch            main       -> FETCH_HEAD
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:28.6277052Z Current branch main is up to date.
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:29.8462133Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:29.8462856Z    7b7e345..2f7e892  HEAD -> main
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:29.8463061Z 
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:29.8734138Z [main 2cd8be5] docs: update timestamped cloud build progress
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:29.8734732Z  1 file changed, 8 insertions(+)
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:30.1405639Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:30.1406363Z  * branch            main       -> FETCH_HEAD
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:30.1473806Z Current branch main is up to date.
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:31.3971645Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:31.3972241Z    2f7e892..2cd8be5  HEAD -> main
+build	Build, verify and publish static experimental assets	2026-10-08T17:13:31.3972482Z 
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.0210242Z {"label": "cloud-static-download", "started_utc": "2026-10-08T17:13:31.425339+00:00", "finished_utc": "2026-10-08T17:27:33.019889+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_static.py", "--stage", "download"], "exit_code": 1, "output": "logs/20261008T171331425339Z-cloud-static-download.log", "output_sha256": "4d9f81f57af4f86ccd8eaa7fc8ed0b6f29ae9bf837b3f3a6f666022523e33d3e", "action": "下载并校验供体和 wayne 参考材料。", "outcome": "供体完整哈希和目标材料条目校验通过。", "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。", "next_step": "重建原始镜像并记录权限标签"}
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.0498457Z [main 2095cba] docs: update timestamped cloud build progress
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.0499079Z  3 files changed, 267 insertions(+)
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.0499726Z  create mode 100644 logs/20261008T171331425339Z-cloud-static-download.json
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.0500187Z  create mode 100644 logs/20261008T171331425339Z-cloud-static-download.log
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.7365516Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.7366063Z  * branch            main       -> FETCH_HEAD
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.7366698Z    2cd8be5..917b696  main       -> origin/main
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.7589920Z Rebasing (1/1)
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:33.7590383Z Successfully rebased and updated refs/heads/main.
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:34.8702812Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:34.8704070Z    917b696..ce92ebd  HEAD -> main
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:34.8704566Z 
+build	Build, verify and publish static experimental assets	2026-10-08T17:27:34.8783177Z ##[error]Process completed with exit code 1.

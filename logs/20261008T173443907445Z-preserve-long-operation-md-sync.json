@@ -1,0 +1,17 @@
+{
+  "label": "preserve-long-operation-md-sync",
+  "started_utc": "2026-10-08T17:34:43.907445+00:00",
+  "finished_utc": "2026-10-08T17:34:43.940874+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173443907445Z-preserve-long-operation-md-sync.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将实时上传改为分段读取长 MD，并跳过远端内容完全相同的文件。",
+  "outcome": "上传逻辑按完整文件内容同步，避免长记录被工具输出截断；未修改内容不再产生重复提交。",
+  "next_step": "继续实时同步最新操作，跟踪修复后的云端构建。"
+}

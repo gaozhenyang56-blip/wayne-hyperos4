@@ -1,0 +1,17 @@
+{
+  "label": "verify-public-static-delivery",
+  "started_utc": "2026-10-08T18:03:30.235491+00:00",
+  "finished_utc": "2026-10-08T18:03:34.886272+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_static_release.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T180330235491Z-verify-public-static-delivery.log",
+  "output_sha256": "f5402acb176dc421060b3cf76f567806d9de09cb0de11d216e045a525d925846",
+  "action": "独立检查正式静态 Release，匿名下载三个小附件并核对仓库证据。",
+  "outcome": "正式静态 Release 的标签、完整 manifest、五项摘要及三个小附件匿名下载全部核验通过。",
+  "failure_note": "公开附件独立核验失败，继续修复交付差异。",
+  "next_step": "更新最终 README、交付状态并同步完整操作记录。"
+}

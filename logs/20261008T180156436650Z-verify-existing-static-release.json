@@ -1,0 +1,17 @@
+{
+  "label": "verify-existing-static-release",
+  "started_utc": "2026-10-08T18:01:56.436650+00:00",
+  "finished_utc": "2026-10-08T18:02:01.677916+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/publish_static_existing.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T180156436650Z-verify-existing-static-release.log",
+  "output_sha256": "bf8fda89bcfcae2ca2505be9080c8fb5fd5f16d3861e53b1df6342cce9139249",
+  "action": "核验既有静态 Release 资产和完整构建证据，为从发布断点恢复作准备。",
+  "outcome": "五项已上传资产与构建报告一致，完整镜像及归档检查通过，可以从发布阶段恢复。",
+  "failure_note": "既有资产或证据核验失败，不发布，先定位差异。",
+  "next_step": "同步恢复脚本后公开同一静态成品，随后独立下载附件核验。"
+}

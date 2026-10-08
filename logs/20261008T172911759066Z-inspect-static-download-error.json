@@ -1,0 +1,17 @@
+{
+  "label": "inspect-static-download-error",
+  "started_utc": "2026-10-08T17:29:11.759066+00:00",
+  "finished_utc": "2026-10-08T17:29:12.862155+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,urllib.request; sha=subprocess.check_output([\"gh\",\"api\",\"repos/gaozhenyang56-blip/wayne-hyperos4/commits/main\",\"--jq\",\".sha\"],text=True).strip(); u=\"https://raw.githubusercontent.com/gaozhenyang56-blip/wayne-hyperos4/\"+sha+\"/logs/20261008T171331425339Z-cloud-static-download.log\"; print(urllib.request.urlopen(u).read().decode()[-8000:])"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T172911759066Z-inspect-static-download-error.log",
+  "output_sha256": "78391264e85296fc960944e8103cce0bea06167af4276c6f008be94c1c323f39",
+  "action": "读取下载阶段原始错误，区分供体校验和参考底包入口问题。",
+  "outcome": "下载阶段原始日志已取得，可据实际错误修复入口。",
+  "next_step": "保留已核验材料来源，修复失败入口后重跑。"
+}

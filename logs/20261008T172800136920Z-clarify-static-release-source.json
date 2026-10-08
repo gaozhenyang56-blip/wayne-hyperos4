@@ -1,0 +1,18 @@
+{
+  "label": "clarify-static-release-source",
+  "started_utc": "2026-10-08T17:28:00.136920+00:00",
+  "finished_utc": "2026-10-08T17:28:00.285757+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_build_static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T172800136920Z-clarify-static-release-source.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "在静态 Release 说明中明确社区供体来源和非官方身份。",
+  "outcome": "发布说明明确 Mi8937 社区标称版本，不将包属性当作官方 6X HyperOS 4 支持。",
+  "next_step": "继续等待下载和全量构建，成功后核验公开附件。"
+}

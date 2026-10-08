@@ -1,0 +1,13 @@
+.{"range_retry": 0, "attempt": 1, "error": "reset"}
+{"range_retry": 0, "attempt": 2, "error": "short"}
+{"range_retry": 0, "attempt": 1, "error": "reset"}
+{"range_retry": 0, "attempt": 2, "error": "reset"}
+.{"cached_source_verified": "/tmp/tmp1efaa_pl/source.zip", "sha256": "1796fe8864a113421f06f97b2bce632239ce79798b333ba03ccfeaef7a30a403"}
+{"cached_source_rejected": "/tmp/tmp1efaa_pl/source.zip", "reason": "SHA256 mismatch"}
+{"downloaded": 12, "total": 12, "percent": 100.0}
+{"url": "https://fixture.invalid", "size": 12, "sha256": "1796fe8864a113421f06f97b2bce632239ce79798b333ba03ccfeaef7a30a403", "complete_file_sha256_verified": true, "signature_verified": false, "hash_source": "user-supplied expected hash / public download-provider metadata"}
+.
+----------------------------------------------------------------------
+Ran 3 tests in 0.024s
+
+OK
