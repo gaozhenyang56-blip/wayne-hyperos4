@@ -9,7 +9,7 @@
 
 静态适配使用物理 system/vendor 节点，移除 logical、super 参数以及 rawdump/metadata 挂载。参考容量是 system 3 GiB、vendor 2 GiB、boot 64 MiB，来自固定提交的 LineageOS 设备配置，尚未读取用户设备的 GPT；安装器会先在 root ADB Recovery 核对真实物理节点、文件系统头和精确容量，再进入 bootloader 检查产品与解锁状态。容量或布局不符即拒绝刷写，不转换分区，不格式化 userdata。
 
-[静态构建任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37814471259)、[实时云端记录](docs/operations/github-static-build-37814471259.md)、[静态工作流](.github/workflows/build-static-experimental.yml)、[容量来源](research/static-wayne/sources.json)。
+[静态构建任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37817225905)、[实时云端记录](docs/operations/github-static-build-37817225905.md)、[静态工作流](.github/workflows/build-static-experimental.yml)、[容量来源](research/static-wayne/sources.json)。
 
 ## 当前采用的材料
 
