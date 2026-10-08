@@ -1,0 +1,19 @@
+{
+  "label": "cloud-vintf",
+  "started_utc": "2026-10-08T16:08:33.148805+00:00",
+  "finished_utc": "2026-10-08T16:09:03.752873+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_candidate.py",
+    "--stage",
+    "vintf"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160833148805Z-cloud-vintf.log",
+  "output_sha256": "c3a475434399570faeba69739db4db3241d020d27fcecad22950098f56874ad0",
+  "action": "使用固定 AOSP 代码检查目标 HAL 声明。",
+  "outcome": "HAL 声明匹配通过，不代表运行时功能通过。",
+  "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。",
+  "next_step": "生成并完整读回分卷实验刷机包"
+}
