@@ -1,18 +1,22 @@
 # 小米 6X / wayne HyperOS 4 移植工程
 
-**当前目标已更正：用户设备为非动态分区，分区大小与原版一致，也不是 Miku UI。现有 `offline-20261006` 仅为 Miku RDP 布局研究产物，不适用于该设备，不能直接刷入。此前交付不满足当前设备要求。静态分区版本尚未生成；继续查证原厂分区容量与兼容的 4.19 启动/硬件底包，保留原分区表。**
+**当前目标已更正：用户设备为非动态分区，分区大小与原版一致，也不是 Miku UI。现有 `offline-20261006` 仅为 Miku RDP 布局研究产物，不适用于该设备，不能直接刷入。此前交付不满足当前设备要求。静态版 boot/vendor 已完成本地离线核验，全量云端构建正在进行，尚未发布静态成品。保留原分区表，不要求预装 Miku UI。**
 
 
 更新：2026-10-09（北京时间；[本轮操作记录](docs/operations/2026-10-09.md)，[连接恢复与修复记录](docs/operations/2026-10-08.md)）。
 
-目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线完成云端构建，并发布约 3.17 GB 的分卷实验刷机包。完整归档读回、镜像哈希和公开资产大小/摘要核验通过。[下载实验包](https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006)。尚未验证启动或硬件功能。
+目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。当前采用用户允许的 Mi8937 社区供体路线，正在生成原版容量的静态实验包；旧 RDP 包只保留为研究证据，不能用于当前设备。
+
+静态适配使用物理 system/vendor 节点，移除 logical、super 参数以及 rawdump/metadata 挂载。参考容量是 system 3 GiB、vendor 2 GiB、boot 64 MiB，来自固定提交的 LineageOS 设备配置，尚未读取用户设备的 GPT；安装器会先在 root ADB Recovery 核对真实物理节点、文件系统头和精确容量，再进入 bootloader 检查产品与解锁状态。容量或布局不符即拒绝刷写，不转换分区，不格式化 userdata。
+
+[静态构建任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37814471259)、[实时云端记录](docs/operations/github-static-build-37814471259.md)、[静态工作流](.github/workflows/build-static-experimental.yml)、[容量来源](research/static-wayne/sources.json)。
 
 ## 当前采用的材料
 
 | 用途 | 已验证的材料 | 状态 |
 | --- | --- | --- |
 | 实验系统供体 | Mi8937 社区标称 HyperOS 4.0.0.16 Beta 的包 | SD430/435 老平台；版本属性与 CRC 已检查，但不能据此证明框架真实性或官方 HyperOS 4 身份；继续作为实验候选，不能视为官方机型支持 |
-| 目标硬件支持 | Miku UI wayne Android 15 | 保留 wayne vendor、4.19.315 内核、DTB、cmdline 和数据加密挂载参数 |
+| 目标硬件支持 | Miku UI wayne Android 15 | 借用 wayne vendor、4.19.315 内核和 DTB；改为静态挂载及 cmdline，保留参考数据加密参数；不要求当前系统为 Miku UI |
 | 配置较接近的候选 | Redmi Note 11 spes，SD680 / 4.19 | boot 已核验；完整下载受阻，系统内部版本未确认，暂未用于构建 |
 | 官方框架对照 | 小米 15 dada 官方 OS4 | 用于对照，不使用其硬件支持或启动镜像 |
 
