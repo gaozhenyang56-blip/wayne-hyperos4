@@ -1,0 +1,7 @@
+?? docs/operations/2026-10-05.md
+?? logs/20261006T122316883870Z-inspect-current-project-status.log
+[{"conclusion":"failure","databaseId":37455741606,"status":"completed","url":"https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37455741606"}]
+
+{"assets":[],"isDraft":true,"url":"https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/untagged-c75899258190dd966141"}
+
+{"local_parts": [{"name": "wayne-hyperos4-offline-20261006.zip.001", "exists": true, "size": 1900000000}, {"name": "wayne-hyperos4-offline-20261006.zip.002", "exists": true, "size": 1269073508}], "hardware_tested": false, "strict_neverallow_passed": false}

@@ -1,0 +1,19 @@
+{
+  "label": "extract-runtime-apex-for-audit",
+  "started_utc": "2026-10-07T01:37:58.036007+00:00",
+  "finished_utc": "2026-10-07T01:37:58.098210+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "tools/local/usr/bin/fsck.erofs",
+    "--extract=downloads/native-apex-audit/runtime",
+    "--no-preserve-owner",
+    "downloads/native-apex-audit/runtime.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013758036007Z-extract-runtime-apex-for-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "提取 runtime APEX 中的实际 libc/linker，保留现有系统镜像不变。",
+  "outcome": "runtime APEX 内容已解出到临时审计目录，可用于实际提供者符号核对。",
+  "failure_note": "APEX 提取失败，原因保存在日志中。",
+  "next_step": "比较 APEX libc 与 bootstrap libc，并审计全部传递依赖的版本符号。"
+}

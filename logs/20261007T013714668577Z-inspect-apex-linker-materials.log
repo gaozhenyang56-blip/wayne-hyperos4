@@ -1,0 +1,67 @@
+s/zhukong_main.spv
+research/candidates/mi8937-os4/system/product/etc/alr_shaders/starrail/cs/jizuo_main.spv
+research/candidates/mi8937-os4/system/product/etc/alr_shaders/starrail/cs/zhukong_begin.spv
+
+research/candidates/mi8937-os4/system/product/etc/linker.config.pb 0
+research/candidates/mi8937-os4/system/system/apex/com.android.adbd.apex 12316672
+research/candidates/mi8937-os4/system/system/apex/com.android.adservices.apex 16621568
+research/candidates/mi8937-os4/system/system/apex/com.android.apex.cts.shim.apex 360448
+research/candidates/mi8937-os4/system/system/apex/com.android.appsearch.apex 4669440
+research/candidates/mi8937-os4/system/system/apex/com.android.art.apex 47476736
+research/candidates/mi8937-os4/system/system/apex/com.android.bt.apex 27893558
+research/candidates/mi8937-os4/system/system/apex/com.android.configinfrastructure.apex 6025216
+research/candidates/mi8937-os4/system/system/apex/com.android.conscrypt.apex 8646656
+research/candidates/mi8937-os4/system/system/apex/com.android.crashrecovery.apex 516096
+research/candidates/mi8937-os4/system/system/apex/com.android.devicelock.apex 5607424
+research/candidates/mi8937-os4/system/system/apex/com.android.extservices.apex 18849792
+research/candidates/mi8937-os4/system/system/apex/com.android.healthfitness.apex 9928704
+research/candidates/mi8937-os4/system/system/apex/com.android.i18n.apex 43061248
+research/candidates/mi8937-os4/system/system/apex/com.android.ipsec.apex 1036288
+research/candidates/mi8937-os4/system/system/apex/com.android.media.apex 8110080
+research/candidates/mi8937-os4/system/system/apex/com.android.media.swcodec.apex 48222208
+research/candidates/mi8937-os4/system/system/apex/com.android.mediaprovider.apex 46333952
+research/candidates/mi8937-os4/system/system/apex/com.android.neuralnetworks.apex 8175616
+research/candidates/mi8937-os4/system/system/apex/com.android.npumanager.apex 10747904
+research/candidates/mi8937-os4/system/system/apex/com.android.ondevicepersonalization.apex 15130624
+research/candidates/mi8937-os4/system/system/apex/com.android.os.statsd.apex 4030464
+research/candidates/mi8937-os4/system/system/apex/com.android.permission.apex 23207936
+research/candidates/mi8937-os4/system/system/apex/com.android.profiling.apex 2678784
+research/candidates/mi8937-os4/system/system/apex/com.android.resolv.apex 380928
+research/candidates/mi8937-os4/system/system/apex/com.android.rkpd.apex 1552384
+research/candidates/mi8937-os4/system/system/apex/com.android.runtime.apex 12996608
+research/candidates/mi8937-os4/system/system/apex/com.android.scheduling.apex 409600
+research/candidates/mi8937-os4/system/system/apex/com.android.sdkext.apex 1388544
+research/candidates/mi8937-os4/system/system/apex/com.android.telephonycore.apex 851968
+research/candidates/mi8937-os4/system/system/apex/com.android.tethering.apex 36696064
+research/candidates/mi8937-os4/system/system/apex/com.android.tzdata.apex 983040
+research/candidates/mi8937-os4/system/system/apex/com.android.uprobestats.apex 4390912
+research/candidates/mi8937-os4/system/system/apex/com.android.uwb.apex 7159808
+research/candidates/mi8937-os4/system/system/apex/com.android.virt.apex 93179904
+research/candidates/mi8937-os4/system/system/apex/com.android.webapp.apex 6201344
+research/candidates/mi8937-os4/system/system/apex/com.android.wifi.apex 18046976
+research/candidates/mi8937-os4/system/system/etc/linker.config.pb 1240
+research/candidates/mi8937-os4/system/system/lib/libcodec2_vndk.so 578332
+research/candidates/mi8937-os4/system/system/lib/libvndksupport.so 4528
+research/candidates/mi8937-os4/system/system/lib64/libcodec2_vndk.so 857352
+research/candidates/mi8937-os4/system/system/lib64/libvndksupport.so 51504
+research/candidates/mi8937-os4/system/system_ext/apex/com.android.compos.apex 4952064
+research/candidates/mi8937-os4/system/system_ext/apex/com.android.hardware.biometrics.fingerprint.virtual.apex 917504
+research/base-miku-a15/vendor/build.prop
+ro.vendor.build.version.sdk=35
+ro.product.first_api_level=27
+ro.board.api_level=202404
+research/candidates/mi8937-os4/system/system/build.prop
+ro.system.build.version.sdk=37
+ro.build.version.sdk=37
+ro.build.version.preview_sdk=0
+ro.build.version.min_supported_target_sdk=28
+ro.treble.enabled=true
+ro.llndk.api_level=202604
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['sh', '-c', 'command -v debugfs; command -v readelf; command -v protoc']' returned non-zero exit status 127.

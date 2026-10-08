@@ -1,0 +1,52 @@
+ M README.md
+ M artifacts/delivery-status.json
+ M docs/operations/2026-10-06.md
+ M tools/ci_build_candidate.py
+ M tools/package_candidate.py
+ M tools/record_step.py
+?? docs/operations/2026-10-05.md
+?? docs/operations/2026-10-07.md
+?? logs/20261006T122316883870Z-inspect-current-project-status.json
+?? logs/20261006T122316883870Z-inspect-current-project-status.log
+?? logs/20261007T013618457514Z-resume-connection-and-timezone.json
+?? logs/20261007T013618457514Z-resume-connection-and-timezone.log
+?? logs/20261007T013645618549Z-probe-current-public-sources.json
+?? logs/20261007T013645618549Z-probe-current-public-sources.log
+?? logs/20261007T013703984929Z-inspect-native-audit-gaps.json
+?? logs/20261007T013703984929Z-inspect-native-audit-gaps.log
+?? logs/20261007T013714668577Z-inspect-apex-linker-materials.json
+?? logs/20261007T013714668577Z-inspect-apex-linker-materials.log
+?? logs/20261007T013743183470Z-inspect-runtime-provider-selection.json
+?? logs/20261007T013743183470Z-inspect-runtime-provider-selection.log
+?? logs/20261007T013758036007Z-extract-runtime-apex-for-audit.json
+?? logs/20261007T013758036007Z-extract-runtime-apex-for-audit.log
+?? logs/20261007T013758525584Z-inspect-apex-symbol-versions.json
+?? logs/20261007T013758525584Z-inspect-apex-symbol-versions.log
+?? logs/20261007T013911753823Z-implement-native-version-audit.json
+?? logs/20261007T013911753823Z-implement-native-version-audit.log
+?? logs/20261007T013912188499Z-audit-transitive-native-versions.json
+?? logs/20261007T013912188499Z-audit-transitive-native-versions.log
+?? logs/20261007T013928289862Z-investigate-native-version-findings.json
+?? logs/20261007T013928289862Z-investigate-native-version-findings.log
+?? logs/20261007T013953379776Z-inspect-bionic-version-lookup-rules.json
+?? logs/20261007T013953379776Z-inspect-bionic-version-lookup-rules.log
+?? logs/20261007T014047849472Z-refine-native-audit-provider-rules.json
+?? logs/20261007T014047849472Z-refine-native-audit-provider-rules.log
+?? logs/20261007T014048293882Z-rerun-corrected-native-version-audit.json
+?? logs/20261007T014048293882Z-rerun-corrected-native-version-audit.log
+?? logs/20261007T014132120965Z-test-native-version-audit.json
+?? logs/20261007T014132120965Z-test-native-version-audit.log
+?? logs/20261007T014223064102Z-integrate-native-version-gates.json
+?? logs/20261007T014223064102Z-integrate-native-version-gates.log
+?? logs/20261007T014223503540Z-validate-native-gate-and-installer.json
+?? logs/20261007T014223503540Z-validate-native-gate-and-installer.log
+?? logs/20261007T014316514596Z-test-native-package-gates.json
+?? logs/20261007T014316514596Z-test-native-package-gates.log
+?? logs/20261007T014351558415Z-record-current-offline-checkpoint.json
+?? logs/20261007T014351558415Z-record-current-offline-checkpoint.log
+?? logs/20261007T014351990321Z-inspect-pending-native-audit-checkpoint.log
+?? research/linker-version-reference.json
+?? research/wayne-os4-native-versions-initial.json
+?? research/wayne-os4-native-versions.json
+?? tools/audit_native_versions.py
+?? tools/test_native_versions.py

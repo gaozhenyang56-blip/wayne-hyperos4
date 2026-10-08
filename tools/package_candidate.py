@@ -51,11 +51,20 @@ def main():
     stage=output/'stage';stage.mkdir(exist_ok=True)
     reports={name:json.loads((root/'research'/name).read_text()) for name in
              ['wayne-system-content-check.json','wayne-system-metadata-check.json',
-              'wayne-boot-check.json','wayne-vintf-check.json']}
+              'wayne-boot-check.json','wayne-vintf-check.json','wayne-os4-native-versions.json']}
     for name in ['wayne-system-content-check.json','wayne-system-metadata-check.json','wayne-boot-check.json']:
         if not reports[name]['success']:raise ValueError('Failed prerequisite: '+name)
     if reports['wayne-vintf-check.json']['check']['exit_code']!=0:
         raise ValueError('Target HAL declaration check failed')
+    native=reports['wayne-os4-native-versions.json']['results']
+    expected_native_targets={'lib/hw/camera.sdm660.so',
+                             'lib/hw/android.hardware.camera.provider@2.4-impl.so',
+                             'bin/hw/android.hardware.camera.provider@2.4-service',
+                             'bin/hw/android.hardware.graphics.composer@2.1-service'}
+    if len(native)!=4 or {r['target'] for r in native}!=expected_native_targets or any(
+            r['inspected_libraries']<=0 or r['missing_dependency_files'] or
+            r['unresolved_required_symbols_in_selected_scope'] for r in native):
+        raise ValueError('Native version-symbol inventory is incomplete or unresolved')
     strict=json.loads((root/'research/wayne-os4-policy/policy-check.json').read_text())
     runtime=json.loads((root/'research/wayne-os4-policy/runtime/policy-check.json').read_text())
     if not runtime['success']:raise ValueError('Runtime-mode policy compilation failed')
@@ -68,6 +77,8 @@ def main():
               'status':'offline-experimental-unbooted','hardware_tested':False,
               'strict_neverallow_passed':strict['success'],
               'runtime_mode_policy_compiled':runtime['success'],
+              'native_symbol_version_inventory_checked':True,
+              'linker_namespaces_verified':False,
               'unresolved':['Strict SELinux neverallow conflicts','Runtime linker/APEX compatibility',
                             'Core framework changes relative to official control not fully audited',
                             'Actual kernel build config is not embedded correctly','Boot and hardware behavior'],

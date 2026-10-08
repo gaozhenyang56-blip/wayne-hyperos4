@@ -1,0 +1,21 @@
+{
+  "label": "integrate-native-version-gates",
+  "started_utc": "2026-10-07T01:42:23.064102+00:00",
+  "finished_utc": "2026-10-07T01:42:23.093051+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_build_candidate.py",
+    "tools/package_candidate.py",
+    "tools/test_native_versions.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014223064102Z-integrate-native-version-gates.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将新增 APEX/传递版本符号检查接入云端复现和未来打包前置条件。",
+  "outcome": "未来云端构建会提取 runtime APEX、运行正反例与原生审计，并将报告随包保存；检查缺失或未解析会阻止打包。已有分卷未重写。",
+  "failure_note": "流程语法检查失败，需要修正再使用。",
+  "next_step": "检查衔接及现有安装器回归，准备可审阅的待同步变更。"
+}

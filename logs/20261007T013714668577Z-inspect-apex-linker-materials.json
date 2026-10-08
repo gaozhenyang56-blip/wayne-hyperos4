@@ -1,0 +1,16 @@
+{
+  "label": "inspect-apex-linker-materials",
+  "started_utc": "2026-10-07T01:37:14.668577+00:00",
+  "finished_utc": "2026-10-07T01:37:14.861552+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261007T013714668577Z-inspect-apex-linker-materials.log",
+  "output_sha256": "55be579706fbf1b52e94b8f6dc8f0b9cfd2adfc8cf4b5fcf3d1fe26d20dd023e",
+  "action": "核查实际 linker 配置文件、APEX 容器和目标 vendor 的版本声明。",
+  "outcome": "已读取文件清单与属性；上一项没有找到文本版 linker 配置，本轮核查二进制配置及 APEX。",
+  "next_step": "提取与原生库依赖有关的 APEX 内容，补做版本符号核对。"
+}

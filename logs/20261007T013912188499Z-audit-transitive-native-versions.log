@@ -1,0 +1,30 @@
+[
+  {
+    "target": "lib/hw/camera.sdm660.so",
+    "libraries": 44,
+    "missing": 0,
+    "unresolved": 16,
+    "version_conflicts": 2
+  },
+  {
+    "target": "lib/hw/android.hardware.camera.provider@2.4-impl.so",
+    "libraries": 61,
+    "missing": 0,
+    "unresolved": 17,
+    "version_conflicts": 3
+  },
+  {
+    "target": "bin/hw/android.hardware.camera.provider@2.4-service",
+    "libraries": 32,
+    "missing": 0,
+    "unresolved": 1,
+    "version_conflicts": 0
+  },
+  {
+    "target": "bin/hw/android.hardware.graphics.composer@2.1-service",
+    "libraries": 38,
+    "missing": 0,
+    "unresolved": 17,
+    "version_conflicts": 3
+  }
+]

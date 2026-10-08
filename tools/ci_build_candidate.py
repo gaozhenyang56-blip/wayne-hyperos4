@@ -60,6 +60,11 @@ def stage(name):
         run(sys.executable,ROOT/'tools/unpack_boot.py',DONOR/'boot.img',DONOR)
         run(BIN/'fsck.erofs','--extract='+str(DONOR/'system'),'--no-preserve-owner',DONOR/'system.img')
         run(BIN/'fsck.erofs','--extract='+str(BASE/'vendor'),'--no-preserve-owner',BASE/'vendor.img')
+        runtime=ROOT/'downloads/native-apex-audit'
+        runtime.mkdir(exist_ok=True)
+        with zipfile.ZipFile(DONOR/'system/system/apex/com.android.runtime.apex') as apex:
+            (runtime/'runtime.img').write_bytes(apex.read('apex_payload.img'))
+        run(BIN/'fsck.erofs','--extract='+str(runtime/'runtime'),'--no-preserve-owner',runtime/'runtime.img')
         from erofs_metadata import inventory
         (DONOR/'inode-metadata.json').write_text(json.dumps(inventory(DONOR/'system.img',str(BIN/'dump.erofs')),indent=2)+'\n')
     elif name=='build':
@@ -108,6 +113,9 @@ def stage(name):
             if sha(DONOR/'system/system'/entry['path'])!=entry['community_sha256']:raise ValueError('Framework input mismatch')
         shutil.rmtree(verified)
         run(sys.executable,ROOT/'tools/test_installer_offline.py')
+        run(sys.executable,ROOT/'tools/test_native_versions.py')
+        run(sys.executable,ROOT/'tools/audit_native_versions.py',DONOR/'system',BASE/'vendor',
+            ROOT/'downloads/native-apex-audit/runtime',ROOT/'research/wayne-os4-native-versions.json')
     elif name=='vintf':
         pins=json.loads((ROOT/'sources.lock.json').read_text())
         for name in ('libvintf','libbase','logging','fmt','tinyxml2','system-core','hidl-tools'):
@@ -168,7 +176,7 @@ def sync_progress():
     for name in ['artifacts/candidate-package.json','artifacts/release-publication.json',
                  'research/candidate-archive-check.json','research/wayne-boot-check.json',
                  'research/wayne-system-content-check.json','research/wayne-system-metadata-check.json',
-                 'research/wayne-vintf-check.json']:
+                 'research/wayne-vintf-check.json','research/wayne-os4-native-versions.json']:
         if (ROOT/name).exists():run('git','add',name)
     if subprocess.run(['git','diff','--cached','--quiet']).returncode==0:return
     run('git','commit','-m','docs: update timestamped cloud build progress')

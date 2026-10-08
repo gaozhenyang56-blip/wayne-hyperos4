@@ -1,0 +1,16 @@
+{
+  "label": "refine-native-audit-provider-rules",
+  "started_utc": "2026-10-07T01:40:47.849472+00:00",
+  "finished_utc": "2026-10-07T01:40:47.884469+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014047849472Z-refine-native-audit-provider-rules.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "按 AOSP 规则修正版本回退，并让系统消费者优先使用系统库。",
+  "outcome": "修正审计假设，保留首轮报告与关键参考源码哈希；未改写镜像或二进制。",
+  "next_step": "运行修正后的审计，用真实编译库验证错版本与缺符号会被检出。"
+}

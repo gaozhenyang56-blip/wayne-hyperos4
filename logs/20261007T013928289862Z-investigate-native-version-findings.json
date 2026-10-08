@@ -1,0 +1,16 @@
+{
+  "label": "investigate-native-version-findings",
+  "started_utc": "2026-10-07T01:39:28.289862+00:00",
+  "finished_utc": "2026-10-07T01:39:28.325101+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013928289862Z-investigate-native-version-findings.log",
+  "output_sha256": "6af3b320d0032bcfa413199e6f5d45c374c289defd4dcfd15dd501dee74f6c3c",
+  "action": "核实新增审计中的版本冲突与未解析符号，区分实际缺口和作用域建模不足。",
+  "outcome": "已归并四个目标的重复发现，并读取冲突库的实际版本定义。",
+  "next_step": "用编译的正反例验证审计器，随后确认是否需要修改镜像。"
+}

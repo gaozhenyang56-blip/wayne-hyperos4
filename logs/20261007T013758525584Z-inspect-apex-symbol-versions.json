@@ -1,0 +1,16 @@
+{
+  "label": "inspect-apex-symbol-versions",
+  "started_utc": "2026-10-07T01:37:58.525584+00:00",
+  "finished_utc": "2026-10-07T01:37:58.606096+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013758525584Z-inspect-apex-symbol-versions.log",
+  "output_sha256": "4d74191a661de304aae296996047eff3b05db4bc05e4f0a47c7a28c6b6c1d0e6",
+  "action": "确认实际 libc 提供者与版本符号格式，为新增审计选择正确输入。",
+  "outcome": "已列出 runtime APEX 库并读取目标 ELF 的版本需求，后续审计采用实际 APEX bionic。",
+  "next_step": "实现只读传递符号审计，并标明命名空间及运行时验证仍未覆盖。"
+}

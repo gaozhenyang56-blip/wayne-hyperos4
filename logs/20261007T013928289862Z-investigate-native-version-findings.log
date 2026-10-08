@@ -1,0 +1,252 @@
+VERSION FINDINGS [
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/hw/camera.sdm660.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/libui.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/camera.device@3.4-external-impl.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/camera.device@3.6-external-impl.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/bin/hw/android.hardware.graphics.composer@2.1-service",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib64/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libhwc2onfbadapter.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib64/libsync.so"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libui.so",
+    "dependency": "libsync.so",
+    "required_version": "LIBSYNC",
+    "selected_provider": "research/candidates/mi8937-os4/system/system/lib64/libsync.so"
+  }
+]
+SYMBOL FINDINGS [
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/hw/camera.sdm660.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/libui.so",
+    "symbol": "sync_file_info",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/libui.so",
+    "symbol": "sync_file_info_free",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/libui.so",
+    "symbol": "sync_merge",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/libui.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android16delegateAccessorERKNS_8String16ERKNS_2spINS_7IBinderEEEPS5_",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android19addAccessorProviderEONSt3__13setINS0_12basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEENS0_4lessIS7_EENS5_IS7_EEEEONS0_8functionIFNS_2spINS_7IBinderEEERKNS_8String16EEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android2os17PersistableBundle13putByteVectorERKNS_8String16ERKNSt3__16vectorIhNS5_9allocatorIhEEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android6binder2os22get_trace_enabled_tagsEv",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android7BBinder21setTransactionCodeMapEPKNS_19TransactionCodeDataE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android7IBinder16setMinRpcThreadsEt",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android8internal9Stability14isSystemStableERKNS_2spINS_7IBinderEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZN7android8internal9Stability14isVendorStableERKNS_2spINS_7IBinderEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZNK7android2os17PersistableBundle13getByteVectorERKNS_8String16EPNSt3__16vectorIhNS5_9allocatorIhEEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/libbinder_ndk.so",
+    "symbol": "_ZNK7android2os17PersistableBundle17getByteVectorKeysEv",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib/liblog.so",
+    "symbol": "_ZNSt3__113__hash_memoryEPKvj",
+    "version": null
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/camera.device@3.4-external-impl.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib/camera.device@3.6-external-impl.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/bin/hw/android.hardware.graphics.composer@2.1-service",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libhwc2onfbadapter.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libui.so",
+    "symbol": "sync_file_info",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libui.so",
+    "symbol": "sync_file_info_free",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libui.so",
+    "symbol": "sync_merge",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/base-miku-a15/vendor/lib64/libui.so",
+    "symbol": "sync_wait",
+    "version": "LIBSYNC"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android16delegateAccessorERKNS_8String16ERKNS_2spINS_7IBinderEEEPS5_",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android19addAccessorProviderEONSt3__13setINS0_12basic_stringIcNS0_11char_traitsIcEENS0_9allocatorIcEEEENS0_4lessIS7_EENS5_IS7_EEEEONS0_8functionIFNS_2spINS_7IBinderEEERKNS_8String16EEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android2os17PersistableBundle13putByteVectorERKNS_8String16ERKNSt3__16vectorIhNS5_9allocatorIhEEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android6binder2os22get_trace_enabled_tagsEv",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android7BBinder21setTransactionCodeMapEPKNS_19TransactionCodeDataE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android7IBinder16setMinRpcThreadsEt",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android8internal9Stability14isSystemStableERKNS_2spINS_7IBinderEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZN7android8internal9Stability14isVendorStableERKNS_2spINS_7IBinderEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZNK7android2os17PersistableBundle13getByteVectorERKNS_8String16EPNSt3__16vectorIhNS5_9allocatorIhEEEE",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/libbinder_ndk.so",
+    "symbol": "_ZNK7android2os17PersistableBundle17getByteVectorKeysEv",
+    "version": "LIBBINDER"
+  },
+  {
+    "consumer": "research/candidates/mi8937-os4/system/system/lib64/liblog.so",
+    "symbol": "_ZNSt3__113__hash_memoryEPKvm",
+    "version": null
+  }
+]
+PROVIDER research/candidates/mi8937-os4/system/system/lib/libsync.so
+
+Version symbols section '.gnu.version' contains 22 entries:
+ Addr: 0x0000000000000324  Offset: 0x00000324  Link: 4 (.dynsym)
+  000:   0 (*local*)       2 (LIBC)          2 (LIBC)          2 (LIBC)       
+  004:   2 (LIBC)          2 (LIBC)          2 (LIBC)          2 (LIBC)       
+  008:   2 (LIBC)          2 (LIBC)          2 (LIBC)          2 (LIBC)       
+  00c:   1 (*global*)      1 (*global*)      1 (*global*)      1 (*global*)   
+  010:   1 (*global*)      1 (*global*)      1 (*global*)      1 (*global*)   
+  014:   1 (*global*)      1 (*global*)   
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000000350  Offset: 0x00000350  Link: 8 (.dynstr)
+  000000: Version: 1  File: libc.so  Cnt: 1
+  0x0010:   Name: LIBC  Flags: none  Version: 2
+
+PROVIDER research/candidates/mi8937-os4/system/system/lib64/libsync.so
+
+Version symbols section '.gnu.version' contains 20 entries:
+ Addr: 0x0000000000000530  Offset: 0x00000530  Link: 5 (.dynsym)
+  000:   0 (*local*)       2 (LIBC)          2 (LIBC)          2 (LIBC)       
+  004:   2 (LIBC)          2 (LIBC)          2 (LIBC)          2 (LIBC)       
+  008:   2 (LIBC)          2 (LIBC)          1 (*global*)      1 (*global*)   
+  00c:   1 (*global*)      1 (*global*)      1 (*global*)      1 (*global*)   
+  010:   1 (*global*)      1 (*global*)      1 (*global*)      1 (*global*)   
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000000558  Offset: 0x00000558  Link: 9 (.dynstr)
+  000000: Version: 1  File: libc.so  Cnt: 1
+  0x0010:   Name: LIBC  Flags: none  Version: 2
+

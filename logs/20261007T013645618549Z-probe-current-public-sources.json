@@ -1,0 +1,17 @@
+{
+  "label": "probe-current-public-sources",
+  "started_utc": "2026-10-07T01:36:45.618549+00:00",
+  "finished_utc": "2026-10-07T01:36:46.970406+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013645618549Z-probe-current-public-sources.log",
+  "output_sha256": "cc98d1efef663d08a7a5c2369107cfe3e79c68e71e66f128d299deedf17d8015",
+  "action": "复查公开供体入口与仓库云端状态，并定位尚未覆盖的原生库检查资料。",
+  "outcome": "已读取公开入口实际响应及最近构建结果，原生依赖资料路径已定位。",
+  "failure_note": "公开入口查询出现错误，真实失败信息已保留。",
+  "next_step": "在保留现有成品的基础上检查 linker namespace 和版本符号覆盖。"
+}

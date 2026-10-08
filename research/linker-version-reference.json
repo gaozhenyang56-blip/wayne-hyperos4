@@ -1,0 +1,17 @@
+{
+  "reference_only": true,
+  "actual_community_linker_identity_verified": false,
+  "sources": [
+    {
+      "file": "linker.cpp",
+      "url": "https://android.googlesource.com/platform/bionic/+/refs/heads/main/linker/linker.cpp?format=TEXT",
+      "sha256": "fcdc080bf5666d396a2928390cf35f067cff25a3ba04485032a085f90316562f"
+    },
+    {
+      "file": "linker_soinfo.cpp",
+      "url": "https://android.googlesource.com/platform/bionic/+/refs/heads/main/linker/linker_soinfo.cpp?format=TEXT",
+      "sha256": "cab308b5cf1de18df5d23cfa84fd23b2600495df7eb58ef0f03e45f9b857c20d"
+    }
+  ],
+  "rule": "An absent requested version matches global symbol definitions; explicitly wrong versions do not match."
+}

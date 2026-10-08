@@ -1,0 +1,268 @@
+linker_soinfo.cpp sha256 cab308b5cf1de18df5d23cfa84fd23b2600495df7eb58ef0f03e45f9b857c20d
+//    version matches.
+//  - If the requested version is not defined by the DSO, then verneed is kVersymGlobal, and only
+//    global symbol definitions match. (This special case is handled as part of the ordinary case
+//    where the version must match exactly.)
+static inline bool check_symbol_version(const ElfW(Versym)* ver_table, uint32_t sym_idx,
+                                        const ElfW(Versym) verneed) {
+  if (ver_table == nullptr) return true;
+  const uint32_t verdef = ver_table[sym_idx];
+  return (verneed == kVersymNotNeeded) ?
+      !(verdef & kVersymHiddenBit) :
+      verneed == (verdef & ~kVersymHiddenBit);
+}
+
+template <bool IsGeneral>
+__attribute__((noinline)) static const ElfW(Sym)*
+soinfo_do_lookup_impl(const char* name, const version_info* vi,
+                      soinfo** si_found_in, const SymbolLookupList& lookup_list) {
+  const auto [ hash, name_len ] = calculate_gnu_hash(name);
+  constexpr uint32_t kBloomMaskBits = sizeof(ElfW(Addr)) * 8;
+  SymbolName elf_symbol_name(name);
+
+      chain_value = lib->gnu_chain_[sym_idx];
+      if ((chain_value >> 1) == (hash >> 1)) {
+        if (vi != nullptr && !calculated_verneed) {
+          calculated_verneed = true;
+          verneed = find_verdef_version_index(lib->si_, vi);
+        }
+        if (check_symbol_version(lib->versym_, sym_idx, verneed) &&
+            static_cast<size_t>(sym->st_name) + name_len + 1 <= lib->strtab_size_ &&
+            memcmp(lib->strtab_ + sym->st_name, name, name_len + 1) == 0 &&
+            is_symbol_global_and_defined(lib->si_, sym)) {
+          *si_found_in = lib->si_;
+          return sym;
+        }
+      }
+      ++sym_idx;
+    } while ((chain_value & 1) == 0);
+  }
+}
+
+const ElfW(Sym)* soinfo_do_lookup(const char* name, const version_info* vi,
+                                  soinfo** si_found_in, const SymbolLookupList& lookup_list) {
+        if (vi != nullptr && !calculated_verneed) {
+          calculated_verneed = true;
+          verneed = find_verdef_version_index(lib->si_, vi);
+        }
+        if (check_symbol_version(lib->versym_, sym_idx, verneed) &&
+            static_cast<size_t>(sym->st_name) + name_len + 1 <= lib->strtab_size_ &&
+            memcmp(lib->strtab_ + sym->st_name, name, name_len + 1) == 0 &&
+            is_symbol_global_and_defined(lib->si_, sym)) {
+          *si_found_in = lib->si_;
+          return sym;
+        }
+      }
+      ++sym_idx;
+    } while ((chain_value & 1) == 0);
+  }
+}
+
+const ElfW(Sym)* soinfo_do_lookup(const char* name, const version_info* vi,
+                                  soinfo** si_found_in, const SymbolLookupList& lookup_list) {
+  return lookup_list.needs_slow_path() ?
+      soinfo_do_lookup_impl<true>(name, vi, si_found_in, lookup_list) :
+ElfW(Addr) soinfo::get_verdef_ptr() const {
+  return is_lp64_or_has_min_version(2) ? verdef_ptr_ : 0;
+}
+
+size_t soinfo::get_verdef_cnt() const {
+  return is_lp64_or_has_min_version(2) ? verdef_cnt_ : 0;
+}
+
+SymbolLookupLib soinfo::get_lookup_lib() {
+  SymbolLookupLib result {};
+  result.si_ = this;
+
+  // For libs that only have SysV hashes, leave the gnu_bloom_filter_ field NULL to signal that
+  // the fallback code path is needed.
+  if (!is_gnu_hash()) {
+    return result;
+  }
+
+  result.gnu_maskwords_ = gnu_maskwords_;
+  result.gnu_shift2_ = gnu_shift2_;
+  result.gnu_bloom_filter_ = gnu_bloom_filter_;
+  if (n == 0) {
+    return nullptr;
+  }
+
+  const ElfW(Versym) verneed = find_verdef_version_index(this, vi);
+  const ElfW(Versym)* versym = get_versym_table();
+
+  do {
+    ElfW(Sym)* s = symtab_ + n;
+    if (((gnu_chain_[n] ^ hash) >> 1) == 0 &&
+        check_symbol_version(versym, n, verneed) &&
+        strcmp(get_string(s->st_name), symbol_name.get_name()) == 0 &&
+        is_symbol_global_and_defined(this, s)) {
+      return symtab_ + n;
+    }
+  } while ((gnu_chain_[n++] & 1) == 0);
+
+  return nullptr;
+}
+
+const ElfW(Sym)* soinfo::elf_lookup(SymbolName& symbol_name, const version_info* vi) const {
+
+  do {
+    ElfW(Sym)* s = symtab_ + n;
+    if (((gnu_chain_[n] ^ hash) >> 1) == 0 &&
+        check_symbol_version(versym, n, verneed) &&
+        strcmp(get_string(s->st_name), symbol_name.get_name()) == 0 &&
+        is_symbol_global_and_defined(this, s)) {
+      return symtab_ + n;
+    }
+  } while ((gnu_chain_[n++] & 1) == 0);
+
+  return nullptr;
+}
+
+const ElfW(Sym)* soinfo::elf_lookup(SymbolName& symbol_name, const version_info* vi) const {
+  uint32_t hash = symbol_name.elf_hash();
+
+  LD_DEBUG(lookup, "SEARCH %s in %s@%p h=%x(elf) %zd",
+           symbol_name.get_name(), get_realpath(),
+           reinterpret_cast<void*>(base), hash, hash % nbucket_);
+
+  LD_DEBUG(lookup, "SEARCH %s in %s@%p h=%x(elf) %zd",
+           symbol_name.get_name(), get_realpath(),
+           reinterpret_cast<void*>(base), hash, hash % nbucket_);
+
+  const ElfW(Versym) verneed = find_verdef_version_index(this, vi);
+  const ElfW(Versym)* versym = get_versym_table();
+
+  for (uint32_t n = bucket_[hash % nbucket_]; n != 0; n = chain_[n]) {
+    ElfW(Sym)* s = symtab_ + n;
+
+    if (check_symbol_version(versym, n, verneed) &&
+        strcmp(get_string(s->st_name), symbol_name.get_name()) == 0 &&
+        is_symbol_global_and_defined(this, s)) {
+      return symtab_ + n;
+    }
+  }
+
+  return nullptr;
+}
+
+ElfW(Sym)* soinfo::find_symbol_by_address(const void* addr) {
+
+  for (uint32_t n = bucket_[hash % nbucket_]; n != 0; n = chain_[n]) {
+    ElfW(Sym)* s = symtab_ + n;
+
+    if (check_symbol_version(versym, n, verneed) &&
+        strcmp(get_string(s->st_name), symbol_name.get_name()) == 0 &&
+        is_symbol_global_and_defined(this, s)) {
+      return symtab_ + n;
+    }
+  }
+
+  return nullptr;
+}
+
+ElfW(Sym)* soinfo::find_symbol_by_address(const void* addr) {
+  return is_gnu_hash() ? gnu_addr_lookup(addr) : elf_addr_lookup(addr);
+}
+
+static bool symbol_matches_soaddr(const ElfW(Sym)* sym, ElfW(Addr) soaddr) {
+  // Skip TLS symbols. A TLS symbol's value is relative to the start of the TLS segment rather than
+  // to the start of the solib. The solib only reserves space for the initialized part of the TLS
+linker.cpp sha256 fcdc080bf5666d396a2928390cf35f067cff25a3ba04485032a085f90316562f
+  }
+
+  size_t offset = 0;
+
+  size_t verdef_cnt = si->get_verdef_cnt();
+  for (size_t i = 0; i<verdef_cnt; ++i) {
+    const ElfW(Verdef)* verdef = reinterpret_cast<ElfW(Verdef)*>(verdef_ptr + offset);
+    size_t verdaux_offset = offset + verdef->vd_aux;
+    offset += verdef->vd_next;
+
+    if (verdef->vd_version != 1) {
+      DL_ERR("unsupported verdef[%zd] vd_version: %d (expected 1) library: %s",
+          i, verdef->vd_version, si->get_realpath());
+      return false;
+    }
+
+    if ((verdef->vd_flags & VER_FLG_BASE) != 0) {
+      // "this is the version of the file itself.  It must not be used for
+      //  matching a symbol. It can be used to match references."
+      //
+      // http://www.akkadia.org/drepper/symbol-versioning
+
+  return true;
+}
+
+ElfW(Versym) find_verdef_version_index(const soinfo* si, const version_info* vi) {
+  if (vi == nullptr) {
+    return kVersymNotNeeded;
+  }
+
+  ElfW(Versym) result = kVersymGlobal;
+
+  if (!for_each_verdef(si,
+    [&](size_t, const ElfW(Verdef)* verdef, const ElfW(Verdaux)* verdaux) {
+      if (verdef->vd_hash == vi->elf_hash &&
+          strcmp(vi->name, si->get_string(verdaux->vda_name)) == 0) {
+        result = verdef->vd_ndx;
+        return true;
+      }
+
+      return false;
+    }
+                                 const char* sym_name, const version_info** vi) {
+  const ElfW(Versym)* sym_ver_ptr = get_versym(sym);
+  ElfW(Versym) sym_ver = sym_ver_ptr == nullptr ? 0 : *sym_ver_ptr;
+
+  if (sym_ver != VER_NDX_LOCAL && sym_ver != VER_NDX_GLOBAL) {
+    *vi = version_tracker.get_version_info(sym_ver);
+
+    if (*vi == nullptr) {
+      DL_ERR("cannot find verneed/verdef for version index=%d "
+          "referenced by symbol \"%s\" at \"%s\"", sym_ver, sym_name, get_realpath());
+      return false;
+    }
+  } else {
+    // there is no version info
+    *vi = nullptr;
+  }
+
+  return true;
+}
+
+static void apply_relr_reloc(ElfW(Addr) offset, ElfW(Addr) load_bias, bool has_memtag_globals) {
+Traceback (most recent call last):
+  File "<stdin>", line 10, in <module>
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 449, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<stdin>", line 5, in fetch
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 215, in urlopen
+    return opener.open(url, data, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 521, in open
+    response = meth(req, response)
+               ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 630, in http_response
+    response = self.parent.error(
+               ^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 559, in error
+    return self._call_chain(*args)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 492, in _call_chain
+    result = func(*args)
+             ^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/urllib/request.py", line 639, in http_error_default
+    raise HTTPError(req.full_url, code, msg, hdrs, fp)
+urllib.error.HTTPError: HTTP Error 404: Not Found

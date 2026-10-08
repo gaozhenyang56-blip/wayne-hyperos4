@@ -1,0 +1,16 @@
+{
+  "label": "inspect-runtime-provider-selection",
+  "started_utc": "2026-10-07T01:37:43.183470+00:00",
+  "finished_utc": "2026-10-07T01:37:43.248797+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013743183470Z-inspect-runtime-provider-selection.log",
+  "output_sha256": "a64731900d272ca4c3a2fd753dadaab166a845f566a1ea4a32dbd0498a2e0312",
+  "action": "确认 APEX 提取工具和旧检查所选的 libc 提供者，避免把缺失工具当兼容性失败。",
+  "outcome": "已核查工具可用性及实际提供者路径；前一项的命令失败来自未安装 protoc，不是镜像损坏。",
+  "next_step": "利用现有工具提取 runtime APEX，并补做全部传递依赖的版本符号审计。"
+}

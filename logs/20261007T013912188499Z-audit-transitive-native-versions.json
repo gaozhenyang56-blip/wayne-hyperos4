@@ -1,0 +1,21 @@
+{
+  "label": "audit-transitive-native-versions",
+  "started_utc": "2026-10-07T01:39:12.188499+00:00",
+  "finished_utc": "2026-10-07T01:39:13.812494+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/audit_native_versions.py",
+    "research/candidates/mi8937-os4/system",
+    "research/base-miku-a15/vendor",
+    "downloads/native-apex-audit/runtime",
+    "research/wayne-os4-native-versions.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013912188499Z-audit-transitive-native-versions.log",
+  "output_sha256": "886c4007dd3b81b9b34c4f4bc1d647bd853d95bfd2ab254d8c1aa127bee47e57",
+  "action": "对相机和显示的全部选定依赖执行实际 APEX bionic 版本符号审计。",
+  "outcome": "审计结果已生成；是否存在未解析符号和版本冲突以报告为准。",
+  "failure_note": "新增审计执行失败，原因保存在日志中。",
+  "next_step": "分类核实报告发现，避免对未证实的运行时问题盲目打补丁。"
+}

@@ -16,11 +16,11 @@ def append_markdown(root, report, imported=False):
     """Every operation gets a human-readable timestamped entry as well as JSON."""
     start=datetime.datetime.fromisoformat(report['started_utc'])
     end=datetime.datetime.fromisoformat(report.get('finished_utc',report['started_utc']))
-    local=start.astimezone(ZoneInfo('America/Los_Angeles'))
+    local=start.astimezone(ZoneInfo('Asia/Shanghai'))
     folder=root/'docs/operations';folder.mkdir(parents=True,exist_ok=True)
     target=root/os.environ['WAYNE_PROGRESS_FILE'] if os.environ.get('WAYNE_PROGRESS_FILE') else folder/(local.strftime('%Y-%m-%d')+'.md')
     target.parent.mkdir(parents=True,exist_ok=True)
-    if not target.exists():target.write_text('# 逐次操作日志\n\n时间显示为 America/Los_Angeles，同时保留 UTC 审计时间。\n\n')
+    if not target.exists():target.write_text('# 逐次操作日志\n\n时间显示为 Asia/Shanghai，同时保留 UTC 审计时间。\n\n')
     if 'UTC 起始：'+start.isoformat() in target.read_text():
         return
     with target.open('a') as stream:

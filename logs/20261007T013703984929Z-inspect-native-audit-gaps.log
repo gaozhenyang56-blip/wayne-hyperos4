@@ -1,0 +1,108 @@
+#!/usr/bin/env python3
+"""Conservative ELF dependency/symbol inventory; not a linker namespace test."""
+import argparse
+import functools
+import json
+import pathlib
+import re
+import subprocess
+
+
+@functools.lru_cache(None)
+def inspect(path):
+    with path.open('rb') as stream:
+        header = stream.read(20)
+    if header[:4] != b'\x7fELF':
+        raise ValueError('Not ELF: '+str(path))
+    dynamic = subprocess.check_output(['readelf','-dW',str(path)],text=True)
+    symbols = subprocess.check_output(['readelf','--dyn-syms','-W',str(path)],text=True)
+    defined, undefined = set(), set()
+    for row in symbols.splitlines():
+        # readelf can print IFUNC as '<OS specific>: 10', shifting split columns.
+        match = re.match(r'^\s*\d+:\s+\S+\s+\d+\s+.+?\s+(GLOBAL|WEAK|LOCAL)\s+\S+\s+(\S+)\s+(\S+)',row)
+        if not match:
+            continue
+        binding, section, symbol = match.groups()
+        name = symbol.split('@')[0]
+        if section == 'UND' and binding == 'GLOBAL':
+            undefined.add(name)
+        elif section != 'UND' and binding in ('GLOBAL','WEAK'):
+            defined.add(name)
+    return {'class':header[4], 'needed':re.findall(r'\(NEEDED\).*?\[(.*?)\]',dynamic),
+            'defined':defined,'undefined':undefined}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('system',type=pathlib.Path)
+    parser.add_argument('vendor',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    args = parser.parse_args()
+    libraries = {}
+    roots = [args.vendor, args.system/'system',args.system/'system_ext',args.system/'product']
+    for root in roots:
+        for p in sorted(root.rglob('*.so')):
+            if 'hwasan' in p.parts:
+                continue
+            if p.is_symlink() or not p.is_file():
+                continue
+            with p.open('rb') as stream:
+                header=stream.read(5)
+            if header[:4] == b'\x7fELF':
+                libraries.setdefault((header[4],p.name),[]).append(p)
+    selected = ['lib/hw/camera.sdm660.so',
+                'lib/hw/android.hardware.camera.provider@2.4-impl.so',
+                'bin/hw/android.hardware.camera.provider@2.4-service',
+                'bin/hw/android.hardware.graphics.composer@2.1-service']
+    results=[]
+    for name in selected:
+        target=args.vendor/name
+        if not target.exists():
+            results.append({'target':name,'status':'not_present'});continue
+        initial=inspect(target)
+        queue=[target];visited=set();missing=[];ambiguous={};exports=set()
+        while queue:
+            p=queue.pop()
+            if p in visited:continue
+            visited.add(p); info=inspect(p);exports.update(info['defined'])
+            for dependency in info['needed']:
+                candidates=libraries.get((info['class'],dependency),[])
+                if not candidates:
+                    missing.append({'consumer':str(p),'library':dependency})
+                else:
+                    if len(candidates)>1:
+                        ambiguous[dependency]=[str(x) for x in candidates]
+                    queue.append(candidates[0])
+        unresolved=sorted(initial['undefined']-exports)
+        results.append({'target':name,'elf_class':initial['class'],
+                        'missing_dependency_files':missing,
+                        'unresolved_target_symbols_under_inventory':unresolved,
+                        'ambiguous_providers':ambiguous,
+                        'selected_dependency_closure':[str(p) for p in sorted(visited)]})
+    report={'method':'filename and ELF class inventory, first provider selected',
+            'limitations':['Android linker namespaces not evaluated','APEX internal libraries not extracted',
+                           'Symbol versions not evaluated','Transitive undefined symbols not exhaustively checked',
+                           'Vendor provider preference may differ from runtime'],
+            'results':results,'runtime_compatibility_proven':False}
+    args.output.write_text(json.dumps(report,indent=2)+'\n')
+    print(json.dumps([{'target':r['target'],'missing':len(r.get('missing_dependency_files',[])),
+                      'unresolved':len(r.get('unresolved_target_symbols_under_inventory',[]))} for r in results]))
+
+
+if __name__=='__main__':main()
+
+{"method": "filename and ELF class inventory, first provider selected", "limitations": ["Android linker namespaces not evaluated", "APEX internal libraries not extracted", "Symbol versions not evaluated", "Transitive undefined symbols not exhaustively checked", "Vendor provider preference may differ from runtime"], "results": [{"target": "lib/hw/camera.sdm660.so", "elf_class": 1, "missing_dependency_files": [], "unresolved_target_symbols_under_inventory": [], "ambiguous_providers": {"libhardware.so": ["research/base-miku-a15/vendor/lib/libhardware.so", "research/candidates/mi8937-os4/system/system/lib/libhardware.so"], "libutils.so": ["research/base-miku-a15/vendor/lib/libutils.so", "research/candidates/mi8937-os4/system/system/lib/libutils.so"], "libcutils.so": ["research/base-miku-a15/vendor/lib/libcutils.so", "research/candidates/mi8937-os4/system/system/lib/libcutils.so"], "libui.so": ["research/base-miku-a15/vendor/lib/libui.so", "research/candidates/mi8937-os4/system/system/lib/libui.so"], "libcamera_metadata.so": ["research/base-miku-a15/vendor/lib/libcamera_metadata.so", "research/candidates/mi8937-os4/system/system/lib/libcamera_metadata.so"], "libbinder.so": ["research/base-miku-a15/vendor/lib/libbinder.so", "research/candidates/mi8937-os4/system/system/lib/libbinder.so"], "libion.so": ["research/base-miku-a15/vendor/lib/libion.so", "research/candidates/mi8937-os4/system/system/lib/libion.so"], "libhidltransport.so": ["research/base-miku-a15/vendor/lib/libhidltransport.so", "research/candidates/mi8937-os4/system/system/lib/libhidltransport.so"], "libhidlbase.so": ["research/base-miku-a15/vendor/lib/libhidlbase.so", "research/candidates/mi8937-os4/system/system/lib/libhidlbase.so"], "libc++.so": ["research/base-miku-a15/vendor/lib/libc++.so", "research/candidates/mi8937-os4/system/system/lib/libc++.so"], "libbase.so": ["research/base-miku-a15/vendor/lib/libbase.so", "research/candidates/mi8937-os4/system/system/lib/libbase.so"], "libgralloctypes.so": ["research/base-miku-a15/vendor/lib/libgralloctypes.so", "research/candidates/mi8937-os4/system/system/lib/libgralloctypes.so"], "android.hardware.graphics.mapper@4.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@4.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@4.0.so"], "android.hardware.graphics.common@1.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.0.so"], "android.hardware.graphics.common@1.1.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.1.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.1.so"], "android.hardware.graphics.common@1.2.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.common@1.2.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.common@1.2.so"], "android.hardware.common-V2-ndk.so": ["research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.common-V2-ndk.so"], "android.hardware.graphics.allocator-V2-ndk.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator-V2-ndk.so"], "android.hardware.graphics.allocator@2.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@2.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@2.0.so"], "android.hardware.graphics.allocator@3.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@3.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@3.0.so"], "android.hardware.graphics.allocator@4.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator@4.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.allocator@4.0.so"], "android.hardware.graphics.mapper@2.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.0.so"], "android.hardware.graphics.mapper@2.1.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@2.1.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@2.1.so"], "android.hardware.graphics.mapper@3.0.so": ["research/base-miku-a15/vendor/lib/android.hardware.graphics.mapper@3.0.so", "research/candidates/mi8937-os4/system/system/lib/android.hardware.graphics.mapper@3.0.so"]}, "selected_dependency_closure": ["research/base-miku-a15/vendor/lib/android.frameworks.displayservice@1.0.so", "research/base-miku-a15/vendor/lib/android.hardware.common-V2-ndk.so", "research/base-miku-a15/vendor/lib/android.hardware.graphics.allocator-V2-ndk.so", "research/base-mi
+ROOT research/base-miku-a15/vendor
+research/base-miku-a15/vendor/build.prop
+research/base-miku-a15/vendor/etc/public.libraries.txt
+research/base-miku-a15/vendor/odm/etc/build.prop
+research/base-miku-a15/vendor/vendor_dlkm/etc/build.prop
+research/base-miku-a15/vendor/odm_dlkm/etc/build.prop
+ROOT research/candidates/mi8937-os4/system
+research/candidates/mi8937-os4/system/system/build.prop
+research/candidates/mi8937-os4/system/system/etc/public.libraries.txt
+research/candidates/mi8937-os4/system/mi_ext/etc/build.prop
+research/candidates/mi8937-os4/system/mi_ext/etc/private/build.prop
+research/candidates/mi8937-os4/system/mi_product/etc/build.prop
+research/candidates/mi8937-os4/system/system_ext/etc/build.prop
+research/candidates/mi8937-os4/system/product/etc/build.prop

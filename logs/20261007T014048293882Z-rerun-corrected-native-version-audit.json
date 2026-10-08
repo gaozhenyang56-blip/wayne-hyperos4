@@ -1,0 +1,20 @@
+{
+  "label": "rerun-corrected-native-version-audit",
+  "started_utc": "2026-10-07T01:40:48.293882+00:00",
+  "finished_utc": "2026-10-07T01:40:49.706489+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/audit_native_versions.py",
+    "research/candidates/mi8937-os4/system",
+    "research/base-miku-a15/vendor",
+    "downloads/native-apex-audit/runtime",
+    "research/wayne-os4-native-versions.json"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014048293882Z-rerun-corrected-native-version-audit.log",
+  "output_sha256": "b41b42d64709aaa77fc6fec93ebeeead27275492aeb40c435f894691ba0be93a",
+  "action": "重新运行修正后的传递依赖审计，核查真实 APEX 提供者及全局版本回退。",
+  "outcome": "更新后的报告已经生成；发现项需要结合实际命名空间继续验证。",
+  "next_step": "检查剩余发现并运行版本符号正反例测试。"
+}

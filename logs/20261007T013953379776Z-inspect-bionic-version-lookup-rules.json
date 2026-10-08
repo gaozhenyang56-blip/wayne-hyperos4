@@ -1,0 +1,17 @@
+{
+  "label": "inspect-bionic-version-lookup-rules",
+  "started_utc": "2026-10-07T01:39:53.379776+00:00",
+  "finished_utc": "2026-10-07T01:39:53.886288+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261007T013953379776Z-inspect-bionic-version-lookup-rules.log",
+  "output_sha256": "58e48104ec06a4b1e3eb8e0c2f557da3cbc4b70e250fddde0524bb61eb879a29",
+  "action": "核对 Android linker 对无版本定义库的兼容规则，避免把静态符号差异误判为启动故障。",
+  "outcome": "已获取 AOSP linker 参考实现及哈希；实际供体 binary 仍可能存在社区补丁，结论会注明适用范围。",
+  "failure_note": "linker 参考源码取得失败，尚不能据此判断 libsync 的版本兼容。",
+  "next_step": "按实际版本匹配规则修正审计，并用正反例验证。"
+}

@@ -1,0 +1,19 @@
+{
+  "label": "confirm-restored-github-connection",
+  "started_utc": "2026-10-08T15:17:32.425237+00:00",
+  "finished_utc": "2026-10-08T15:17:33.742339+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "fetch",
+    "origin",
+    "main"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T151732425237Z-confirm-restored-github-connection.log",
+  "output_sha256": "496b1087267e6d071d77f015ac7d2d3e80c20529c401d3995f92af4879672b69",
+  "action": "确认 GitHub 插件及命令行连接恢复，检查远端最新历史。",
+  "outcome": "GitHub 命令行认证正常，已取得最新仓库历史；本地待同步改动均保留。",
+  "failure_note": "远端仓库访问未成功，先核查连接授权。",
+  "next_step": "补传此前未同步的 MD、原生库审计代码及报告，再重新测试附件上传。"
+}

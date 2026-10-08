@@ -1,0 +1,17 @@
+{
+  "label": "test-native-package-gates",
+  "started_utc": "2026-10-07T01:43:16.514596+00:00",
+  "finished_utc": "2026-10-07T01:43:16.726184+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014316514596Z-test-native-package-gates.log",
+  "output_sha256": "e95cccd412a81a49b68cb4fd04a607a278c753f9ec53b52af6a112664aefa2c8",
+  "action": "使用隔离的小镜像样例验证新报告能随包保存，缺目标、重复目标或符号缺口会阻止打包。",
+  "outcome": "正常样例包含新报告并通过 ZIP CRC；四种不完整/缺口样例均拒绝打包，现有实验分卷未改写。",
+  "failure_note": "新增打包前置条件回归失败，需先修复。",
+  "next_step": "整理本轮变更及本地待同步清单，等待 GitHub 连接恢复。"
+}

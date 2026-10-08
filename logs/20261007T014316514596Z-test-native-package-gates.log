@@ -1,0 +1,5 @@
+PASS valid
+PASS missing_target
+PASS duplicate_target
+PASS unresolved_symbol
+PASS missing_library

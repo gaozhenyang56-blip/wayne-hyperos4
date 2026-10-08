@@ -1,0 +1,16 @@
+{
+  "label": "inspect-native-audit-gaps",
+  "started_utc": "2026-10-07T01:37:03.984929+00:00",
+  "finished_utc": "2026-10-07T01:37:04.350397+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013703984929Z-inspect-native-audit-gaps.log",
+  "output_sha256": "4aa3d7982e31e9f9261160ff7c6b2b959a8a9756018c929ba12062f78026da1c",
+  "action": "读取既有原生依赖检查范围和实际 linker 配置，确定本轮新增核查项。",
+  "outcome": "旧检查只覆盖库文件和入口符号；已定位系统 linkerconfig 与供体 VNDK/APEX 资料。",
+  "next_step": "核对目标 vendor 的 VNDK 版本与系统可用命名空间及版本符号。"
+}

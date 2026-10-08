@@ -1,0 +1,115 @@
+downloads/native-apex-audit/runtime/lib/bionic/libc.so 55a27dd1336b75d5036b7e4ac3e0687189385514ab42ee68c2c5aaa1b8636e17
+e  Index: 2  Cnt: 1  Name: LIBC
+  0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 1  Name: LIBC_N
+  0x0054: Rev: 1  Flags: none  Index: 4  Cnt: 1  Name: LIBC_O
+  0x0070: Rev: 1  Flags: none  Index: 5  Cnt: 1  Name: LIBC_P
+  0x008c: Rev: 1  Flags: none  Index: 6  Cnt: 1  Name: LIBC_Q
+  0x00a8: Rev: 1  Flags: none  Index: 7  Cnt: 1  Name: LIBC_R
+  0x00c4: Rev: 1  Flags: none  Index: 8  Cnt: 1  Name: LIBC_S
+  0x00e0: Rev: 1  Flags: none  Index: 9  Cnt: 1  Name: LIBC_T
+  0x00fc: Rev: 1  Flags: none  Index: 10  Cnt: 1  Name: LIBC_U
+  0x0118: Rev: 1  Flags: none  Index: 11  Cnt: 1  Name: LIBC_V
+  0x0134: Rev: 1  Flags: none  Index: 12  Cnt: 1  Name: LIBC_36
+  0x0150: Rev: 1  Flags: none  Index: 13  Cnt: 1  Name: LIBC_37
+  0x016c: Rev: 1  Flags: none  Index: 14  Cnt: 1  Name: LIBC_PRIVATE
+  0x0188: Rev: 1  Flags: none  Index: 15  Cnt: 1  Name: LIBC_DEPRECATED
+  0x01a4: Rev: 1  Flags: none  Index: 16  Cnt: 1  Name: LIBC_PLATFORM
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000007ee4  Offset: 0x00007ee4  Link: 10 (.dynstr)
+  000000: Version: 1  File: libdl.so  Cnt: 2
+  0x0010:   Name: LIBC  Flags: none  Version: 17
+  0x0020:   Name: LIBC_N  Flags: none  Version: 18
+
+downloads/native-apex-audit/runtime/lib64/bionic/libc.so 0ba15a6384256194e0b78265814b2fcd04da88f6e27eb6d26998bb94df78e51a
+e  Index: 2  Cnt: 1  Name: LIBC
+  0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 1  Name: LIBC_N
+  0x0054: Rev: 1  Flags: none  Index: 4  Cnt: 1  Name: LIBC_O
+  0x0070: Rev: 1  Flags: none  Index: 5  Cnt: 1  Name: LIBC_P
+  0x008c: Rev: 1  Flags: none  Index: 6  Cnt: 1  Name: LIBC_Q
+  0x00a8: Rev: 1  Flags: none  Index: 7  Cnt: 1  Name: LIBC_R
+  0x00c4: Rev: 1  Flags: none  Index: 8  Cnt: 1  Name: LIBC_S
+  0x00e0: Rev: 1  Flags: none  Index: 9  Cnt: 1  Name: LIBC_T
+  0x00fc: Rev: 1  Flags: none  Index: 10  Cnt: 1  Name: LIBC_U
+  0x0118: Rev: 1  Flags: none  Index: 11  Cnt: 1  Name: LIBC_V
+  0x0134: Rev: 1  Flags: none  Index: 12  Cnt: 1  Name: LIBC_36
+  0x0150: Rev: 1  Flags: none  Index: 13  Cnt: 1  Name: LIBC_37
+  0x016c: Rev: 1  Flags: none  Index: 14  Cnt: 1  Name: LIBC_PRIVATE
+  0x0188: Rev: 1  Flags: none  Index: 15  Cnt: 1  Name: LIBC_DEPRECATED
+  0x01a4: Rev: 1  Flags: none  Index: 16  Cnt: 1  Name: LIBC_PLATFORM
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000009c68  Offset: 0x00009c68  Link: 10 (.dynstr)
+  000000: Version: 1  File: libdl.so  Cnt: 2
+  0x0010:   Name: LIBC  Flags: none  Version: 17
+  0x0020:   Name: LIBC_N  Flags: none  Version: 18
+
+downloads/native-apex-audit/runtime/lib64/bionic/hwasan/libc.so ca964510496872584671eca8ef5752580eba9bb608df09d2e7c0aeafdea8e4e8
+e  Index: 2  Cnt: 1  Name: LIBC
+  0x0038: Rev: 1  Flags: none  Index: 3  Cnt: 1  Name: LIBC_N
+  0x0054: Rev: 1  Flags: none  Index: 4  Cnt: 1  Name: LIBC_O
+  0x0070: Rev: 1  Flags: none  Index: 5  Cnt: 1  Name: LIBC_P
+  0x008c: Rev: 1  Flags: none  Index: 6  Cnt: 1  Name: LIBC_Q
+  0x00a8: Rev: 1  Flags: none  Index: 7  Cnt: 1  Name: LIBC_R
+  0x00c4: Rev: 1  Flags: none  Index: 8  Cnt: 1  Name: LIBC_S
+  0x00e0: Rev: 1  Flags: none  Index: 9  Cnt: 1  Name: LIBC_T
+  0x00fc: Rev: 1  Flags: none  Index: 10  Cnt: 1  Name: LIBC_U
+  0x0118: Rev: 1  Flags: none  Index: 11  Cnt: 1  Name: LIBC_V
+  0x0134: Rev: 1  Flags: none  Index: 12  Cnt: 1  Name: LIBC_36
+  0x0150: Rev: 1  Flags: none  Index: 13  Cnt: 1  Name: LIBC_37
+  0x016c: Rev: 1  Flags: none  Index: 14  Cnt: 1  Name: LIBC_PRIVATE
+  0x0188: Rev: 1  Flags: none  Index: 15  Cnt: 1  Name: LIBC_DEPRECATED
+  0x01a4: Rev: 1  Flags: none  Index: 16  Cnt: 1  Name: LIBC_PLATFORM
+
+Version needs section '.gnu.version_r' contains 1 entry:
+ Addr: 0x0000000000009fb4  Offset: 0x00009fb4  Link: 11 (.dynstr)
+  000000: Version: 1  File: libdl.so  Cnt: 2
+  0x0010:   Name: LIBC  Flags: none  Version: 17
+  0x0020:   Name: LIBC_N  Flags: none  Version: 18
+
+
+Symbol table '.dynsym' contains 3533 entries:
+   Num:    Value  Size Type    Bind   Vis      Ndx Name
+     0: 00000000     0 NOTYPE  LOCAL  DEFAULT  UND 
+     1: 00000000     0 FUNC    GLOBAL DEFAULT  UND __cxa_finalize@LIBC (2)
+     2: 00000000     0 FUNC    GLOBAL DEFAULT  UND __cxa_atexit@LIBC (2)
+     3: 00000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@LIBC (2)
+     4: 00000000     0 OBJECT  GLOBAL DEFAULT  UND __stack_chk_guard@LIBC (2)
+     5: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_condattr_init@LIBC (2)
+     6: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_condattr_setclock@LIBC (2)
+     7: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_mutex_init@LIBC (2)
+     8: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_cond_init@LIBC (2)
+     9: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_condattr_destroy@LIBC (2)
+    10: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_mutex_destroy@LIBC (2)
+    11: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_cond_destroy@LIBC (2)
+    12: 00000000     0 FUNC    GLOBAL DEFAULT  UND mm_camera_debug_log
+    13: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_join@LIBC (2)
+    14: 00000000     0 OBJECT  GLOBAL DEFAULT  UND g_cam_log
+    15: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_create@LIBC (2)
+    16: 00000000     0 FUNC    GLOBAL DEFAULT  UND prctl@LIBC (2)
+    17: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_mutex_lock@LIBC (2)
+    18: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_cond_signal@LIBC (2)
+    19: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_mutex_unlock@LIBC (2)
+    20: 00000000     0 FUNC    GLOBAL DEFAULT  UND pthread_cond_wait@LIBC (2)
+    21: 00000000     0 FUNC    GLOBAL DEFAULT  UND __cxa_guard_acquire
+    22: 00000000     0 FUNC    GLOBAL DEFAULT  UND __cxa_guard_release
+    23: 00000000     0 FUNC    GLOBAL DEFAULT  UND ioctl@LIBC (2)
+    24: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZdlPv
+    25: 00000000     0 FUNC    GLOBAL DEFAULT  UND __strlcat_chk@LIBC (2)
+    26: 00000000     0 FUNC    GLOBAL DEFAULT  UND usleep@LIBC (2)
+    27: 00000000     0 FUNC    GLOBAL DEFAULT  UND __vsnprintf_chk@LIBC (2)
+    28: 00000000     0 FUNC    GLOBAL DEFAULT  UND _Znwj
+    29: 00000000     0 FUNC    GLOBAL DEFAULT  UND systemTime
+    30: 00000000     0 FUNC    GLOBAL DEFAULT  UND property_get
+    31: 00000000     0 FUNC    GLOBAL DEFAULT  UND atoi@LIBC (2)
+    32: 00000000     0 FUNC    GLOBAL DEFAULT  UND hw_get_module
+    33: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlopen@LIBC (3)
+    34: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlsym@LIBC (3)
+    35: 00000000     0 FUNC    GLOBAL DEFAULT  UND dlclose@LIBC (3)
+    36: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN7android10frameworks14displayservice4V1_015IDisplayService10getServiceERKNSt3__112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEEb
+    37: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZNK7android7RefBase9decStrongEPKv
+    38: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN7android7RefBaseC2Ev
+    39: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZNK7android7RefBase9incStrongEPKv
+    40: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN7android8hardware7details13return_statusD2Ev
+    41: 00000000     0 FUNC    GLOBAL DEFAULT  UND _ZN7android10frameworks14displayservice4V1_015IDisplayService24registerForNotificationsERKNSt3__112basic_stringIcNS4_11char_traitsIcEENS4_9allocatorIcEEEERKNS_2spINS_4hidl7manager4V1_020IServiceNotificationEEE
+    42: 

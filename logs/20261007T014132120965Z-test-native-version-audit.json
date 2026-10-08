@@ -1,0 +1,17 @@
+{
+  "label": "test-native-version-audit",
+  "started_utc": "2026-10-07T01:41:32.120965+00:00",
+  "finished_utc": "2026-10-07T01:41:32.404491+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/test_native_versions.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014132120965Z-test-native-version-audit.log",
+  "output_sha256": "7b744f6c5bcd0111a5813b59f4cf4f5f3aaf4a28c99d566d58393133a0c7ab1a",
+  "action": "用独立编译的 ELF 正反例验证版本需求、错误版本及全局回退行为。",
+  "outcome": "版本消费者、正确与错误版本、缺失符号、全局回退和默认/非默认版本可见性检查通过。",
+  "failure_note": "版本符号回归检查失败，需要先修复审计器。",
+  "next_step": "记录本轮静态检查结论和同步阻塞，准备恢复连接后的待发布变更。"
+}

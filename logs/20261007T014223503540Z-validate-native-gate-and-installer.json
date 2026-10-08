@@ -1,0 +1,17 @@
+{
+  "label": "validate-native-gate-and-installer",
+  "started_utc": "2026-10-07T01:42:23.503540+00:00",
+  "finished_utc": "2026-10-07T01:42:23.600477+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T014223503540Z-validate-native-gate-and-installer.log",
+  "output_sha256": "d5fffbbcc821b61807886664670ebefd1d6cf1f4e4e0ee2e3c5f1999e01ca120",
+  "action": "核对新打包报告输入并检查安装器现有安全拒绝场景。",
+  "outcome": "新增报告覆盖四个目标且无必需符号缺口；既有安装器七项离线场景通过。",
+  "failure_note": "衔接或安装器回归失败，需要修复。",
+  "next_step": "更新本地待同步状态，并在 GitHub 连接恢复后立即上传记录和代码。"
+}

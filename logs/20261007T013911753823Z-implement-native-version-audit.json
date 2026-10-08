@@ -1,0 +1,19 @@
+{
+  "label": "implement-native-version-audit",
+  "started_utc": "2026-10-07T01:39:11.753823+00:00",
+  "finished_utc": "2026-10-07T01:39:11.780977+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/audit_native_versions.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261007T013911753823Z-implement-native-version-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "新增使用实际 runtime APEX bionic 的只读传递依赖及版本符号审计器。",
+  "outcome": "审计器已实现并通过语法检查；报告明确不宣称命名空间或真机兼容性通过。",
+  "failure_note": "审计器语法检查失败，尚未运行实际系统审计。",
+  "next_step": "运行现有镜像的新增审计，并检查缺失版本和传递符号。"
+}
