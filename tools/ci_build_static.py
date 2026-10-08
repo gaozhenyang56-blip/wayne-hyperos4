@@ -62,7 +62,7 @@ def stage(name):
         if check.returncode:
             ci.run('gh','release','create',TAG,'--repo',repo,'--draft','--prerelease','--target',source_commit,
                    '--title','wayne 原版静态分区 HyperOS 4 离线实验包（未真机验证）','--notes',
-                   '适用于原版容量静态分区的 wayne 离线实验：不转换分区，不要求预装 Miku UI。boot/vendor 参考材料经过静态适配。必须先在 root ADB Recovery 检查实际分区，再进入 bootloader；安装器拒绝容量或布局不符。严格 SELinux 检查仍失败，启动、加密和硬件功能未知。分卷须合并后解压，详见 INSTALL.txt。')
+                   '系统来自 Mi8937 社区标称 HyperOS 4.0.0.16 Beta 的供体，非官方小米 6X 系统。适用于原版容量静态分区的 wayne 离线实验：不转换分区，不要求预装 Miku UI。boot/vendor 参考材料经过静态适配。必须先在 root ADB Recovery 检查实际分区，再进入 bootloader；安装器拒绝容量或布局不符。严格 SELinux 检查仍失败，启动、加密和硬件功能未知。分卷须合并后解压，详见 INSTALL.txt。')
         files=sorted(folder.glob('*.zip.*'))+[folder/'SHA256SUMS',folder/'stage/INSTALL.txt',folder/'stage/manifest.json']
         ci.run('gh','release','upload',TAG,*files,'--repo',repo,'--clobber')
         release=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases/tags/'+TAG],text=True))
