@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-build",
+  "started_utc": "2026-10-08T17:49:37.049395+00:00",
+  "finished_utc": "2026-10-08T17:51:26.407819+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "build"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T174937049395Z-cloud-static-build.log",
+  "output_sha256": "359660602c7fe330e3d5e43261b83266f5b7eb7021104d6a28e792bbbcff9f6a",
+  "action": "生成保持原版容量的静态 boot/system/vendor。",
+  "outcome": "三张静态镜像已生成，没有修改 GPT 或使用 rawdump。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "完整核对静态镜像内容、元数据与安装拒绝条件"
+}

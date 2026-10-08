@@ -1,0 +1,9 @@
+{
+  "source_commit": "fa5177b919cac461ef19c1f3483b50b0f2203f16",
+  "workflow_commit": "fb5bd69061758b4b14691c9d74a6837526b95d7d",
+  "images": {
+    "system.img": "f60f97f6dcf6ad5646ec0f419a30c560c36ace709fa1302b1cb2386dc3ce5ddc",
+    "vendor.img": "496a6dd892a34b3178fe25f9ac6a61c6c4816afdb1c6ed2922d308ed1906cf6b",
+    "boot.img": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd"
+  }
+}
