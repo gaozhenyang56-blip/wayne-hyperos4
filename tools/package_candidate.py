@@ -47,6 +47,9 @@ def main():
     parser.add_argument('--build-commit',required=True)
     args=parser.parse_args()
     root=pathlib.Path(__file__).resolve().parent.parent
+    target=json.loads((root/'config/project-requirements.json').read_text()).get('target_device',{})
+    if target.get('dynamic_partitions') is False:
+        raise ValueError('Obsolete RDP package does not match the confirmed static target')
     output=root/'artifacts/releases';output.mkdir(parents=True,exist_ok=True)
     stage=output/'stage';stage.mkdir(exist_ok=True)
     reports={name:json.loads((root/'research'/name).read_text()) for name in
