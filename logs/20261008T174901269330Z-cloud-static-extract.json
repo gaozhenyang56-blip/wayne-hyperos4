@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-extract",
+  "started_utc": "2026-10-08T17:49:01.269330+00:00",
+  "finished_utc": "2026-10-08T17:49:32.969709+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "extract"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T174901269330Z-cloud-static-extract.log",
+  "output_sha256": "c7497874a88589231049df39de018dc44330d126addb03f6cd0607946c64eab2",
+  "action": "重建原始镜像并记录权限标签。",
+  "outcome": "原始镜像、inode 元数据和 runtime APEX 已提取。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "生成保持原版容量的静态 boot/system/vendor"
+}
