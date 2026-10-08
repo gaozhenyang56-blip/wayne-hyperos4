@@ -1,5 +1,8 @@
 # 小米 6X / wayne HyperOS 4 移植工程
 
+**当前目标已更正：用户设备为非动态分区，分区大小与原版一致，也不是 Miku UI。现有 `offline-20261006` 仅为 Miku RDP 布局研究产物，不适用于该设备，不能直接刷入。此前交付不满足当前设备要求。静态分区版本尚未生成；继续查证原厂分区容量与兼容的 4.19 启动/硬件底包，保留原分区表。**
+
+
 更新：2026-10-09（北京时间；[本轮操作记录](docs/operations/2026-10-09.md)，[连接恢复与修复记录](docs/operations/2026-10-08.md)）。
 
 目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线完成云端构建，并发布约 3.17 GB 的分卷实验刷机包。完整归档读回、镜像哈希和公开资产大小/摘要核验通过。[下载实验包](https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006)。尚未验证启动或硬件功能。
@@ -43,7 +46,7 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 
 大型原包、镜像和解包目录不进入 Git。实验成品使用 Releases 分卷资产，并标明构建提交、哈希和验证范围。
 
-## 成品下载与适用范围
+## 旧 RDP 实验产物（不适用于当前设备）
 
 公开预发布：[https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006](https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006)。
 
