@@ -9,10 +9,13 @@ import urllib.request
 import zipfile
 import hashlib
 import concurrent.futures
+import time
 
 
 class RemoteFile(io.RawIOBase):
-    def __init__(self, url):
+    def __init__(self, url, attempts=1):
+        if not 1 <= attempts <= 5:raise ValueError('Invalid retry limit')
+        self.attempts = attempts
         self.url = url
         self.pos = 0
         self.transferred = 0
@@ -25,6 +28,14 @@ class RemoteFile(io.RawIOBase):
                      for offset in range(start, start + length, 1024 * 1024)]
             with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
                 return b''.join(pool.map(lambda span: self.range(*span), spans))
+        for attempt in range(self.attempts):
+            try:return self._range_once(start,length)
+            except (OSError,ValueError) as error:
+                if attempt+1==self.attempts:raise
+                print(json.dumps({'range_retry':start,'attempt':attempt+1,'error':str(error)}),flush=True)
+                time.sleep(min(2**attempt,8))
+
+    def _range_once(self,start,length):
         req = urllib.request.Request(self.url, headers={
             'Range': f'bytes={start}-{start + length - 1}',
             'Accept-Encoding': 'identity',
@@ -116,7 +127,7 @@ def first(fields, number, default=None):
 
 def inspect(url, output, extract_entries=()):
     output.mkdir(parents=True, exist_ok=True)
-    remote = RemoteFile(url)
+    remote = RemoteFile(url,attempts=5)
     report = {'url': url, 'zip_size': remote.size, 'status': 'inspection_only',
               'boot_tested': False, 'entries': [], 'metadata': {}}
     with zipfile.ZipFile(remote) as archive:
