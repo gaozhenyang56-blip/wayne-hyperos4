@@ -2,7 +2,7 @@
   "success": true,
   "layout": "stock-size-static",
   "hardware_tested": false,
-  "system_full_recheck_performed": false,
+  "system_full_recheck_performed": true,
   "preserve_partition_table": true,
   "rawdump_repurposed": false,
   "partition_sizes": {

@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-verify",
+  "started_utc": "2026-10-08T17:51:29.732777+00:00",
+  "finished_utc": "2026-10-08T17:51:48.590464+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "verify"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175129732777Z-cloud-static-verify.log",
+  "output_sha256": "7c2365b87ff36d8349722076b725ec33447329fa029bf35f250feb512ee475d0",
+  "action": "完整核对静态镜像内容、元数据与安装拒绝条件。",
+  "outcome": "完整 system/vendor 和 boot 核验通过；硬件未测试，严格策略失败仍保留。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "核验目标 HAL 声明匹配"
+}
