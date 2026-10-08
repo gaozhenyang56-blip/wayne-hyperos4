@@ -5,14 +5,24 @@ r=get_json('releases/tags/'+tag)
 if r['draft'] or not r['prerelease']:raise ValueError('Expected public experimental prerelease')
 manifest_asset=next(a for a in r['assets'] if a['name']=='manifest.json')
 manifest=json.loads(urllib.request.urlopen(manifest_asset['browser_download_url']).read())
+head=get_json('commits/main')['sha']
+raw='https://raw.githubusercontent.com/'+repo+'/'+head+'/'
+candidate=json.loads(urllib.request.urlopen(raw+'artifacts/static-candidate-package.json').read())
+publication=json.loads(urllib.request.urlopen(raw+'artifacts/static-release-publication.json').read())
+if manifest!=candidate['manifest']:raise ValueError('Public manifest differs from committed build report')
+if publication['build_commit']!=manifest['build_commit'] or not publication['assets_verified']:
+    raise ValueError('Committed publication evidence mismatch')
 if manifest['layout']!='stock-size-static' or manifest['requires_miku_installed'] or not manifest['preserve_partition_table']:raise ValueError('Wrong user layout')
 ref=get_json('git/ref/tags/'+tag)
+if ref['object']['type']=='tag':ref={'object':get_json('git/tags/'+ref['object']['sha'])['object']}
 if ref['object']['sha']!=manifest['build_commit']:raise ValueError('Tag provenance mismatch')
 folder=pathlib.Path('/tmp/static-public-assets');folder.mkdir(exist_ok=True)
 checks=[]
 for a in r['assets']:
     if not a.get('digest','').startswith('sha256:'):raise ValueError('Missing published digest')
     row={'name':a['name'],'size':a['size'],'sha256':a['digest'].split(':')[1],'url':a['browser_download_url']}
+    if {'size':row['size'],'sha256':row['sha256']}!=publication['assets'][a['name']]:
+        raise ValueError('Public asset differs from committed publication evidence')
     if a['size']<1024*1024:
         content=urllib.request.urlopen(a['browser_download_url']).read();(folder/a['name']).write_bytes(content)
         if len(content)!=a['size'] or hashlib.sha256(content).hexdigest()!=row['sha256']:raise ValueError('Anonymous asset verification failed')
