@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-vintf",
+  "started_utc": "2026-10-08T17:51:51.540934+00:00",
+  "finished_utc": "2026-10-08T17:52:12.605375+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "vintf"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175151540934Z-cloud-static-vintf.log",
+  "output_sha256": "c3a475434399570faeba69739db4db3241d020d27fcecad22950098f56874ad0",
+  "action": "核验目标 HAL 声明匹配。",
+  "outcome": "限定范围的 VINTF 核验通过，不代表 HAL 功能正常。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "生成静态分卷刷机包并完整读回"
+}

@@ -1,0 +1,14 @@
+{
+  "check": {
+    "exit_code": 0,
+    "output": "HAL manifest/framework matrix compatibility passed.\nRuntime kernel, APEX manifests and linker namespaces are not covered.\n"
+  },
+  "hardware_tested": false,
+  "hidl_inheritance_metadata_provided": false,
+  "not_covered": [
+    "actual kernel configuration",
+    "APEX runtime",
+    "linker namespaces",
+    "HAL functionality"
+  ]
+}

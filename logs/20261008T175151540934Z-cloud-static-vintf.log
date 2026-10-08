@@ -1,0 +1,123 @@
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/libvintf/.git/
+From https://android.googlesource.com/platform/system/libvintf
+ * branch            9a095008eaf2b4ac7cb6e9d2da6aeca596f04062 -> FETCH_HEAD
+HEAD is now at 9a09500 hals_for_release.py print the AIDL version
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/libbase/.git/
+From https://android.googlesource.com/platform/system/libbase
+ * branch            6d19b5c690fa4220c10e42c2326150bbd4d4b7bb -> FETCH_HEAD
+HEAD is now at 6d19b5c libbase: Add const qualifier with member functions
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/logging/.git/
+From https://android.googlesource.com/platform/system/logging
+ * branch            bcac7c30d88a3773a7c0bc9f5617a23a886331fd -> FETCH_HEAD
+HEAD is now at bcac7c3 Save log.tag as well while running test
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/fmt/.git/
+From https://github.com/fmtlib/fmt
+ * branch            4afd0e498e9e1dd68775cc52087df774a19c761f -> FETCH_HEAD
+HEAD is now at 4afd0e4 Simplify fill_n for appenders
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/tinyxml2/.git/
+From https://github.com/leethomason/tinyxml2
+ * branch            8224e427b655b83dae5e2298f1e6919523a78737 -> FETCH_HEAD
+HEAD is now at 8224e42 Merge branch 'master' of github.com:leethomason/tinyxml2
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/system-core/.git/
+From https://android.googlesource.com/platform/system/core
+ * branch            a3b721a32242006b59cb12bd62c9133632af3a2d -> FETCH_HEAD
+HEAD is now at a3b721a Merge "init: flush ext4 file system on shutdown" into main
+hint: Using 'master' as the name for the initial branch. This default branch name
+hint: will change to "main" in Git 3.0. To configure the initial branch name
+hint: to use in all of your new repositories, which will suppress this warning,
+hint: call:
+hint:
+hint: 	git config --global init.defaultBranch <name>
+hint:
+hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hint: 'development'. The just-created branch can be renamed via this command:
+hint:
+hint: 	git branch -m <name>
+hint:
+hint: Disable this message with "git config set advice.defaultBranchName false"
+Initialized empty Git repository in /home/runner/work/wayne-hyperos4/wayne-hyperos4/sources/hidl-tools/.git/
+From https://android.googlesource.com/platform/system/tools/hidl
+ * branch            d11716d0c896b6850c53ba59642570d60966843a -> FETCH_HEAD
+HEAD is now at d11716d Merge "Convert allHidlLintsSingleton to use ModuleProxy." into main am: 9516a2c867
+Built tools/local/vintf_pair_check
+HAL manifest/framework matrix compatibility passed.
+Runtime kernel, APEX manifests and linker namespaces are not covered.
+
