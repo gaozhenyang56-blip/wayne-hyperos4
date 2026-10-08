@@ -1,0 +1,17 @@
+{
+  "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/untagged-c75899258190dd966141",
+  "tag": "offline-20261006",
+  "build_commit": "73526dd35460dc6c65465333b6b01d2851e95649",
+  "assets_verified": true,
+  "hardware_tested": false,
+  "parts": {
+    "wayne-hyperos4-offline-20261006.zip.001": {
+      "size": 1900000000,
+      "sha256": "2e4c708f78e86c3624582ccc2e7d8cda09f52ce7fe23b2cff5183bf2a700d445"
+    },
+    "wayne-hyperos4-offline-20261006.zip.002": {
+      "size": 1268883752,
+      "sha256": "a89ca0100733763ecade4b5147e9a50115a608d2f0066454afbc7f6fd01d4094"
+    }
+  }
+}

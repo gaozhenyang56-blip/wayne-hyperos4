@@ -1,0 +1,19 @@
+{
+  "label": "cloud-publish",
+  "started_utc": "2026-10-08T16:09:20.920496+00:00",
+  "finished_utc": "2026-10-08T16:10:24.309010+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_candidate.py",
+    "--stage",
+    "publish"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160920920496Z-cloud-publish.log",
+  "output_sha256": "ec6b117d6f003d767906da128286358f0dca045c48660be6ac9591ed50f4462a",
+  "action": "上传并核验 GitHub Releases 资产。",
+  "outcome": "资产大小和哈希已核验，实验预发布已公开。",
+  "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。",
+  "next_step": "在仓库提供成品链接；继续依据真实启动反馈处理运行时问题。"
+}
