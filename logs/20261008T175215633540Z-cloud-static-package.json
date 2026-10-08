@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-package",
+  "started_utc": "2026-10-08T17:52:15.633540+00:00",
+  "finished_utc": "2026-10-08T17:52:29.949663+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "package"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T175215633540Z-cloud-static-package.log",
+  "output_sha256": "72990737e62686cb0ba9b64b464d33d48f6748df7ee5aab05f4cbb53ab18a500",
+  "action": "生成静态分卷刷机包并完整读回。",
+  "outcome": "所有 ZIP 条目 CRC 和镜像哈希核验通过。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "发布静态实验包并核验全部资产"
+}

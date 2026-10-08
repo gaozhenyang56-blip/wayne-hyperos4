@@ -1,0 +1,75 @@
+{
+  "manifest": {
+    "device": "wayne",
+    "layout": "stock-size-static",
+    "android_sdk": 37,
+    "declared_hyperos": "4.0.0.16.XPCCNXM",
+    "kernel": "4.19.315-Miku-Vampire_v2-g3a74d7",
+    "kernel_vendor_material_origin": "Miku wayne reference, adapted to static physical mounts",
+    "requires_miku_installed": false,
+    "build_commit": "fa5177b919cac461ef19c1f3483b50b0f2203f16",
+    "created_utc": "2026-10-08T17:52:18.846177+00:00",
+    "status": "offline-static-experimental-unbooted",
+    "hardware_tested": false,
+    "strict_neverallow_passed": false,
+    "runtime_mode_policy_compiled": true,
+    "native_symbol_version_inventory_checked": true,
+    "linker_namespaces_verified": false,
+    "preserve_partition_table": true,
+    "partition_sizes": {
+      "system": 3221225472,
+      "vendor": 2147483648,
+      "boot": 67108864
+    },
+    "rawdump_repurposed": false,
+    "unresolved": [
+      "Boot and hardware behavior",
+      "Runtime linker/APEX compatibility",
+      "Strict SELinux neverallow conflicts",
+      "Data encryption compatibility with previous ROM",
+      "Core framework changes not fully audited"
+    ],
+    "images": {
+      "system.img": {
+        "size": 2940440576,
+        "sha256": "f60f97f6dcf6ad5646ec0f419a30c560c36ace709fa1302b1cb2386dc3ce5ddc"
+      },
+      "vendor.img": {
+        "size": 215953408,
+        "sha256": "496a6dd892a34b3178fe25f9ac6a61c6c4816afdb1c6ed2922d308ed1906cf6b"
+      },
+      "boot.img": {
+        "size": 18755584,
+        "sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd"
+      }
+    }
+  },
+  "parts": {
+    "wayne-hyperos4-static-20261009.zip.001": {
+      "size": 1900000000,
+      "sha256": "3d13c180baac74d65d24a01cc98d8629908f2024c7e9cbc26a494da7c349793e"
+    },
+    "wayne-hyperos4-static-20261009.zip.002": {
+      "size": 1275223037,
+      "sha256": "9ef668595fac323b6db83171b3072eeb7b795439b586fb7088a3900dbb1a8ec8"
+    }
+  },
+  "archive_entries": [
+    "INSTALL.txt",
+    "boot.img",
+    "install.py",
+    "manifest.json",
+    "reports/boot-check.json",
+    "reports/image-check.json",
+    "reports/native-versions.json",
+    "reports/runtime-policy.json",
+    "reports/strict-policy.json",
+    "reports/system-content-check.json",
+    "reports/system-metadata-check.json",
+    "reports/vendor-content-check.json",
+    "reports/vendor-metadata-check.json",
+    "reports/vintf-check.json",
+    "system.img",
+    "vendor.img"
+  ]
+}

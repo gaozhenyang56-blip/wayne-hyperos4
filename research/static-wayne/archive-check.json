@@ -1,0 +1,27 @@
+{
+  "success": true,
+  "parts": [
+    "/home/runner/work/wayne-hyperos4/wayne-hyperos4/artifacts/releases/static/wayne-hyperos4-static-20261009.zip.001",
+    "/home/runner/work/wayne-hyperos4/wayne-hyperos4/artifacts/releases/static/wayne-hyperos4-static-20261009.zip.002"
+  ],
+  "archive_entries": [
+    "wayne-hyperos4-static-20261009/INSTALL.txt",
+    "wayne-hyperos4-static-20261009/boot.img",
+    "wayne-hyperos4-static-20261009/install.py",
+    "wayne-hyperos4-static-20261009/manifest.json",
+    "wayne-hyperos4-static-20261009/reports/boot-check.json",
+    "wayne-hyperos4-static-20261009/reports/image-check.json",
+    "wayne-hyperos4-static-20261009/reports/native-versions.json",
+    "wayne-hyperos4-static-20261009/reports/runtime-policy.json",
+    "wayne-hyperos4-static-20261009/reports/strict-policy.json",
+    "wayne-hyperos4-static-20261009/reports/system-content-check.json",
+    "wayne-hyperos4-static-20261009/reports/system-metadata-check.json",
+    "wayne-hyperos4-static-20261009/reports/vendor-content-check.json",
+    "wayne-hyperos4-static-20261009/reports/vendor-metadata-check.json",
+    "wayne-hyperos4-static-20261009/reports/vintf-check.json",
+    "wayne-hyperos4-static-20261009/system.img",
+    "wayne-hyperos4-static-20261009/vendor.img"
+  ],
+  "image_hashes_match_manifest": true,
+  "hardware_tested": false
+}
