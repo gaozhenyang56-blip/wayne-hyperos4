@@ -21,6 +21,12 @@ def bounded(operation, label):
 
 
 def download(url, target, expected_hash):
+    if target.is_file():
+        with target.open('rb') as existing:cached_hash=hashlib.file_digest(existing,'sha256').hexdigest()
+        if cached_hash.lower()==expected_hash.lower():
+            print(json.dumps({'cached_source_verified':str(target),'sha256':cached_hash}),flush=True)
+            return
+        print(json.dumps({'cached_source_rejected':str(target),'reason':'SHA256 mismatch'}),flush=True)
     remote = bounded(lambda: RemoteFile(url), 'initial range probe')
     temporary = target.with_suffix(target.suffix + '.part')
     target.parent.mkdir(parents=True, exist_ok=True)
