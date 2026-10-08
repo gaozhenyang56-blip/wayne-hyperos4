@@ -23,3 +23,4 @@ research/**/*.js
 research/**/inode-metadata.json
 research/wayne-os4-system-metadata.json
 artifacts/releases/
+/artifacts/experimental/static/
