@@ -1,0 +1,37 @@
+{
+  "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-static-20261009",
+  "tag": "offline-static-20261009",
+  "draft": false,
+  "prerelease": true,
+  "build_commit": "fa5177b919cac461ef19c1f3483b50b0f2203f16",
+  "workflow_commit": "fb5bd69061758b4b14691c9d74a6837526b95d7d",
+  "assets_verified": true,
+  "assets": {
+    "wayne-hyperos4-static-20261009.zip.001": {
+      "size": 1900000000,
+      "sha256": "3d13c180baac74d65d24a01cc98d8629908f2024c7e9cbc26a494da7c349793e"
+    },
+    "wayne-hyperos4-static-20261009.zip.002": {
+      "size": 1275223037,
+      "sha256": "9ef668595fac323b6db83171b3072eeb7b795439b586fb7088a3900dbb1a8ec8"
+    },
+    "manifest.json": {
+      "size": 1492,
+      "sha256": "84dfadc2d2374cbeff9efabb70e66fdb7ca9504849004ef6d5ab232031ddc964"
+    },
+    "INSTALL.txt": {
+      "size": 1617,
+      "sha256": "9dd6bfdf9930c1b5729ba97634d893d3d31001f1f5575604450258ba84f35a08"
+    },
+    "SHA256SUMS": {
+      "size": 210,
+      "sha256": "76dd098aef522e00f1c4f5c19e75701dff202e6f4985913726b7b9d18de5e5a1"
+    }
+  },
+  "layout": "stock-size-static",
+  "requires_miku_installed": false,
+  "hardware_tested": false,
+  "publication_method": "recover-verified-existing-assets",
+  "verification_commit": "e04b1f3490377053d2097b576e8aa6bbd16df8e7",
+  "full_build_workflow_run_id": 37817225905
+}
