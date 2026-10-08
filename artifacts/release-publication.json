@@ -1,5 +1,5 @@
 {
-  "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/untagged-c75899258190dd966141",
+  "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006",
   "tag": "offline-20261006",
   "build_commit": "73526dd35460dc6c65465333b6b01d2851e95649",
   "assets_verified": true,
@@ -13,5 +13,7 @@
       "size": 1268883752,
       "sha256": "a89ca0100733763ecade4b5147e9a50115a608d2f0066454afbc7f6fd01d4094"
     }
-  }
+  },
+  "draft": false,
+  "prerelease": true
 }
