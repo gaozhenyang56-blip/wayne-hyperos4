@@ -24,7 +24,9 @@ def stage(name):
         raise ValueError('Static target/unchanged partition requirement violated')
     OUT.mkdir(parents=True,exist_ok=True);REPORT.mkdir(parents=True,exist_ok=True)
     def python(tool,*args):ci.run(sys.executable,ROOT/'tools'/tool,*args)
-    if name in ('tools','download','extract'):ci.stage(name)
+    if name in ('tools','download','extract'):
+        ci.stage(name)
+        if name=='extract':python('unpack_boot.py',ci.BASE/'boot.img',ci.BASE)
     elif name=='build':
         python('build_system_overlay.py',ci.DONOR/'system',ROOT/'config/compatibility_matrix.5.xml',
                OUT/'system-overlay.tar','--device-matrix',ROOT/'config/compatibility_matrix.device.wayne.xml',
