@@ -1,6 +1,6 @@
 # 小米 6X / wayne HyperOS 4 移植工程
 
-更新：2026-10-06（逐项精确时间见[操作记录](docs/operations/2026-10-06.md)）。
+更新：2026-10-08（北京时间；[本轮操作记录](docs/operations/2026-10-08.md)，[前轮记录](docs/operations/2026-10-07.md)）。
 
 目标是 Snapdragon 660 的小米 6X，保留 wayne 的 Linux 4.19 硬件支持，移植 HyperOS 4。没有真机测试。已按用户允许的 Mi8937 社区供体路线生成实验 boot/system 及约 3.17 GB 的分卷刷机包，完整归档和镜像哈希校验通过。未真机验证，尚未上传公开成品附件。
 
@@ -21,6 +21,7 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 - 实际改动为三份设备身份属性、新增 FCM 5 矩阵，以及换回 wayne 自身的设备 HAL 矩阵。没有把 vendor 的 FCM 等级改成新设备等级。
 - 合并 wayne vendor HAL 清单及碎片后，通过固定提交的 AOSP libvintf 框架矩阵检查。此检查不覆盖 APEX、内核、运行时服务或 linker namespace。
 - 相机及显示入口的依赖文件和入口未定义符号检查通过；不能据此宣称硬件可用。
+- 2026-10-07 新增实际 runtime APEX bionic 与传递版本符号审计：四个目标在选定作用域内均无缺库或未解析必需符号；LIBSYNC 的 AOSP 全局回退单独记录。[报告](research/wayne-os4-native-versions.json)不代表实际 Android 命名空间或硬件功能通过。独立编译的版本正反例及打包拒绝场景已验证。
 - SELinux 严格 neverallow 检查失败；Android init 风格的 -N 模式可以编译，但不会被记作严格检查通过。
 - boot 保留 wayne 内核，替换供体 first-stage init，适配合并后的分区布局；尚未验证启动。
 
@@ -28,7 +29,7 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 
 ## 记录与复现
 
-每次操作通过 tools/record_step.py 在 Markdown 记录时间、做了什么、发生了什么和下一步；命令、输出及哈希保存在原始日志；每次 Markdown 修改后立即通过 GitHub 插件提交。同步失败时先处理失败，不积攒到阶段末尾。
+每次操作记录时间、做了什么、发生了什么和下一步；原始命令与输出另存日志。2026-10-08 GitHub 连接恢复，此前未同步的原生库审计代码、报告和 MD 已补传，恢复每次 MD 修改后立即上传。
 
 - [逐次操作日志](docs/operations/2026-10-06.md)
 - [云端复现流程](.github/workflows/build-experimental.yml)
@@ -43,3 +44,5 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 本地分卷为 `wayne-hyperos4-offline-20261006.zip.001`（1,900,000,000 字节）及 `.zip.002`（1,269,073,508 字节），所有 ZIP 条目 CRC 和镜像哈希校验通过。仅支持已采用 Miku wayne retrofit 动态分区布局的设备；安装器验证设备、分区布局、空间和镜像哈希后写入 system/vendor/boot。
 
 当前上传受阻：GitHub Releases 附件接口对校验清单也返回 HTTP 400 `Bad Content-Length`；云端重建在 Google Drive 供体入口探测连续五次失败后停止。参见[最近一次云端任务](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37455741606)。Release 保持空草稿，尚无公开下载附件。现有原包、已校验分卷和所有研究文件保留；入口恢复后可重跑仓库工作流，远端资产大小与哈希核验通过后再公开。
+
+最新进展（2026-10-08）：供体范围预检已恢复，包含实际 runtime APEX 与版本符号检查的[新云端构建](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37800194092)正在执行。本机 Release 附件接口仍返回 401，成品上传与远端哈希校验尚未完成；没有真机启动结论。
