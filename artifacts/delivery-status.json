@@ -1,5 +1,5 @@
 {
-  "updated_utc": "2026-10-08T16:39:15.257634+00:00",
+  "updated_utc": "2026-10-08T17:35:13.583271+00:00",
   "status": "previous-release-incompatible-with-user-static-layout",
   "source_candidate": "Mi8937 community HyperOS 4 experiment",
   "release_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006",
@@ -39,5 +39,16 @@
   "next": "Verify original static partition capacities and compatible 4.19 boot/vendor before building a new static package.",
   "target_layout": "stock-size static wayne",
   "user_device_compatible_release_delivered": false,
-  "previous_release_retained_for_research": true
+  "previous_release_retained_for_research": true,
+  "current_static_workflow": {
+    "url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37817225905",
+    "status": "in_progress",
+    "static_release_delivered": false
+  },
+  "previous_static_attempt": {
+    "run_id": 37814471259,
+    "source_full_sha256_passed": true,
+    "failure": "SourceForge range connection reset while reading wayne reference",
+    "source_range_retries_added": true
+  }
 }
