@@ -5,12 +5,14 @@
     "android_sdk": 37,
     "declared_hyperos": "4.0.0.16.XPCCNXM",
     "kernel": "4.19.315-Miku-Vampire_v2-g3a74d7",
-    "build_commit": "c7926a98cc1493f8dac48a0acde3068ee7f3d6ef",
-    "created_utc": "2026-10-06T10:44:31.407399+00:00",
+    "build_commit": "73526dd35460dc6c65465333b6b01d2851e95649",
+    "created_utc": "2026-10-08T16:09:06.893265+00:00",
     "status": "offline-experimental-unbooted",
     "hardware_tested": false,
     "strict_neverallow_passed": false,
     "runtime_mode_policy_compiled": true,
+    "native_symbol_version_inventory_checked": true,
+    "linker_namespaces_verified": false,
     "unresolved": [
       "Strict SELinux neverallow conflicts",
       "Runtime linker/APEX compatibility",
@@ -25,8 +27,8 @@
         "sha256": "4802fbbde81560a234ecca1766e0e27ad4770c5bc1af1927cb6519d9038c24f8"
       },
       "system.img": {
-        "size": 2940682240,
-        "sha256": "d0b983ddd9a1aed8d17d84bfa2ac298debabb6b61cb36596a7168e80ab72ae8f"
+        "size": 2940440576,
+        "sha256": "f60f97f6dcf6ad5646ec0f419a30c560c36ace709fa1302b1cb2386dc3ce5ddc"
       },
       "vendor.img": {
         "size": 209600512,
@@ -37,11 +39,11 @@
   "parts": {
     "wayne-hyperos4-offline-20261006.zip.001": {
       "size": 1900000000,
-      "sha256": "5275c1e7e4486957517f9ba30c6bb8b753f29af87938c81158485f34dbe5597c"
+      "sha256": "2e4c708f78e86c3624582ccc2e7d8cda09f52ce7fe23b2cff5183bf2a700d445"
     },
     "wayne-hyperos4-offline-20261006.zip.002": {
-      "size": 1269073508,
-      "sha256": "bdda0cd2bb8828c53fd93c645ca9f38d00f3ae138e05f4b992149daf05af4058"
+      "size": 1268883752,
+      "sha256": "a89ca0100733763ecade4b5147e9a50115a608d2f0066454afbc7f6fd01d4094"
     }
   },
   "archive_entries": [
@@ -53,6 +55,7 @@
     "reports/runtime-policy.json",
     "reports/strict-policy.json",
     "reports/wayne-boot-check.json",
+    "reports/wayne-os4-native-versions.json",
     "reports/wayne-system-content-check.json",
     "reports/wayne-system-metadata-check.json",
     "reports/wayne-vintf-check.json",
