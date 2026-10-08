@@ -1,0 +1,19 @@
+{
+  "label": "cloud-extract",
+  "started_utc": "2026-10-08T15:38:30.763747+00:00",
+  "finished_utc": "2026-10-08T15:39:17.652809+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_candidate.py",
+    "--stage",
+    "extract"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153830763747Z-cloud-extract.log",
+  "output_sha256": "a90828cf2688aef3c8bf9b467ea147f7d6ef09adcfe3d16863af7a9111443167",
+  "action": "重建系统与目标 vendor，提取原始 inode 元数据。",
+  "outcome": "原始镜像已正确重建，原始标签及权限已记录。",
+  "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。",
+  "next_step": "生成保留 wayne 硬件支持的实验 boot/system"
+}
