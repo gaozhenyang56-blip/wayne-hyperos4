@@ -1,0 +1,17 @@
+{
+  "label": "prepare-final-static-audit-upload",
+  "started_utc": "2026-10-08T18:08:33.077546+00:00",
+  "finished_utc": "2026-10-08T18:08:44.975965+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T180833077546Z-prepare-final-static-audit-upload.log",
+  "output_sha256": "e3b4e62bb9c2fd5506c19185da2e7f363dc3bb42bea81f6649e5d044a4a01df9",
+  "action": "核对原始日志 SHA256，并准备以原始字节补传审计证据。",
+  "outcome": "所有已完成日志与记录中的 SHA256 一致；上传清单保留原始换行，纠正两个文本上传造成的换行差异。",
+  "failure_note": "原始日志与记录摘要不一致，停止补传并定位差异。",
+  "next_step": "补传剩余审计日志，确认仅保留已清空的历史本地 MD。"
+}
