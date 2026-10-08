@@ -33,7 +33,15 @@ def clone(name,url,commit):
     run('git','-C',path,'checkout','--detach','FETCH_HEAD')
 
 
+def require_rdp_target():
+    requirements=json.loads((ROOT/'config/project-requirements.json').read_text())
+    target=requirements.get('target_device',{})
+    if target.get('dynamic_partitions') is False:
+        raise ValueError('Current target is stock-size static wayne; obsolete Miku RDP build/publish is disabled')
+
+
 def stage(name):
+    if name in ('build','package','publish'):require_rdp_target()
     if name=='tools':
         clone('erofs-ci','https://github.com/erofs/erofs-utils.git','e625150a387e8a5eb2faae649d6454fbe597d404')
         folder=ROOT/'sources/erofs-ci'
@@ -209,6 +217,7 @@ def main():
     parser=argparse.ArgumentParser();parser.add_argument('--stage');args=parser.parse_args()
     os.chdir(ROOT)
     if args.stage:stage(args.stage);return
+    require_rdp_target()
     for index,(name,action,outcome) in enumerate(STAGES):
         next_step=STAGES[index+1][1] if index+1<len(STAGES) else '在仓库提供成品链接；继续依据真实启动反馈处理运行时问题。'
         progress=ROOT/os.environ['WAYNE_PROGRESS_FILE'];progress.parent.mkdir(parents=True,exist_ok=True)
