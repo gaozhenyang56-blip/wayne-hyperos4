@@ -157,8 +157,10 @@ def stage(name):
             if asset['size']!=record['size'] or asset.get('digest')!='sha256:'+record['sha256']:
                 raise ValueError('Remote asset size/digest mismatch: '+name)
         run('gh','release','edit',tag,'--repo',repo,'--draft=false','--prerelease','--latest=false','--target',os.environ['GITHUB_SHA'])
+        release=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases/tags/'+tag],text=True))
+        if release['draft']:raise ValueError('Release is still a draft after publication')
         (ROOT/'artifacts/release-publication.json').write_text(json.dumps({'url':release['html_url'],
-              'tag':tag,'build_commit':os.environ['GITHUB_SHA'],'assets_verified':True,'hardware_tested':False,
+              'tag':tag,'draft':False,'prerelease':True,'build_commit':os.environ['GITHUB_SHA'],'assets_verified':True,'hardware_tested':False,
               'parts':expected},indent=2)+'\n')
     else:raise ValueError('Unknown stage: '+name)
 
