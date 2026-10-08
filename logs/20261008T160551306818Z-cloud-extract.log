@@ -1,0 +1,26 @@
+{
+  "archive": "/home/runner/work/wayne-hyperos4/wayne-hyperos4/downloads/mi8937-hyperos4.zip",
+  "data_member": "system.new.dat",
+  "transfer_member": "vendor.transfer.list",
+  "size": 2940362752,
+  "sha256": "235c0104a84ac3a9e896c48c15b0e7a3033ef64ebd988f07ed0ef34a3ed0b137",
+  "zip_member_crc_verified": true,
+  "original_image_hash_verified": false,
+  "usage": "offline_analysis"
+}
+{
+  "size": 209600512,
+  "sha256": "2680ee25e0b7b65c8f43924cd8fe8709fff5cbe1f946dd2ad0f6fba8b5808e26",
+  "source": "/home/runner/work/wayne-hyperos4/wayne-hyperos4/research/base-miku-a15/vendor.new.dat.br",
+  "original_image_sha256_verified": false,
+  "purpose": "analysis_only"
+}
+{
+  "image": "/home/runner/work/wayne-hyperos4/wayne-hyperos4/research/candidates/mi8937-os4/boot.img",
+  "sha256": "ef6b44133f0802dc7b7576e1edad2db597f990766d9193cc3f5cc7b181f6fb3e",
+  "header_version": 0,
+  "kernel_size": 19508890,
+  "ramdisk_size": 1468522,
+  "page_size": 2048,
+  "kernel_banner": "Linux version 4.19.325-cip135-st19-FuntimeKernel-v2.5-[OC]-erofs (builder@android) (ZyC clang version 14.0.6 (https://github.com/llvm/llvm-project f28c006a5895fc0e329fe15fead81e37457cb1d1), GNU ld (GNU Binutils) 2.44.50.20250704) #1 SMP PREEMPT Wed Aug 19 17:17:42 UTC 2026\n"
+}
