@@ -43,4 +43,4 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 
 本地分卷为 `wayne-hyperos4-offline-20261006.zip.001`（1,900,000,000 字节）及 `.zip.002`（1,269,073,508 字节），所有 ZIP 条目 CRC 和镜像哈希校验通过。仅支持已采用 Miku wayne retrofit 动态分区布局的设备；安装器验证设备、分区布局、空间和镜像哈希后写入 system/vendor/boot。
 
-最新进展（2026-10-08）：供体范围预检已恢复，包含实际 runtime APEX 与版本符号检查的[新云端构建](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37800194092)正在执行。本机 Release 附件接口仍返回 401，成品上传与远端哈希校验尚未完成；没有真机启动结论。
+最新进展（2026-10-08）：上一轮完整原包哈希、目标条目 CRC、镜像提取和镜像生成通过；其后进度推送与实时 MD 更新发生竞态，任务在验证开始前停止。有限次数 fetch/rebase/push 修复已通过实际 Git 双克隆回归测试。包含实际 runtime APEX 与版本符号检查的[新云端构建](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37803213948)正在执行。本机 Release 附件接口仍返回 401，成品上传与远端哈希校验尚未完成；没有真机启动结论。
