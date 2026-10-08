@@ -1,0 +1,16 @@
+{
+  "label": "inspect-static-implementation-inputs",
+  "started_utc": "2026-10-08T16:48:58.506409+00:00",
+  "finished_utc": "2026-10-08T16:48:58.597779+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T164858506409Z-inspect-static-implementation-inputs.log",
+  "output_sha256": "e6cf697f60d564c0aaa336a3f39b30336ab6418e87f19e5bd5faca51dd982c05",
+  "action": "核对静态改造的打包工具和属性依赖，确认是否能保留既有硬件材料而取消 Miku 安装前提。",
+  "outcome": "重打包工具、原生库审计入口与布局属性依赖已核对，后续改造将使用独立静态产物路径。",
+  "next_step": "实现并测试静态 fstab、boot cmdline 和恢复环境写入检查。"
+}

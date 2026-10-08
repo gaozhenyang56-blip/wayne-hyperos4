@@ -186,6 +186,8 @@ STAGES=[('tools','编译固定版本的镜像工具','镜像工具准备完成�
 def sync_progress():
     run('git','add',os.environ['WAYNE_PROGRESS_FILE'],'logs')
     for name in ['artifacts/candidate-package.json','artifacts/release-publication.json',
+                 'artifacts/static-candidate-package.json','artifacts/static-release-publication.json',
+                 'research/static-wayne',
                  'research/candidate-archive-check.json','research/wayne-boot-check.json',
                  'research/wayne-system-content-check.json','research/wayne-system-metadata-check.json',
                  'research/wayne-vintf-check.json','research/wayne-os4-native-versions.json']:

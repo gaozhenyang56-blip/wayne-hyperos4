@@ -1,0 +1,10 @@
+{
+  "checked_original_paths": 2296,
+  "expected_modified_files": [
+    "build.prop",
+    "etc/fstab.qcom"
+  ],
+  "added_paths": [],
+  "failures": [],
+  "success": true
+}

@@ -1,0 +1,59 @@
+{
+  "sources": [
+    {
+      "repo": "LineageOS/android_device_xiaomi_wayne",
+      "commit": "0b56b70785a2df2ebf4a1135e0b74ed526ee2908",
+      "path": "BoardConfig.mk",
+      "url": "https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_wayne/0b56b70785a2df2ebf4a1135e0b74ed526ee2908/BoardConfig.mk",
+      "file": "research/static-wayne/android_device_xiaomi_wayne-BoardConfig.mk",
+      "sha256": "31e1449d305a8a32afb4c627d1c646181efb21e50df1b539cc5de46030928664"
+    },
+    {
+      "repo": "LineageOS/android_device_xiaomi_sdm660-common",
+      "commit": "c552718a6b9261e616e7166fcfbd2e9a28219870",
+      "path": "BoardConfigCommon.mk",
+      "url": "https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_sdm660-common/c552718a6b9261e616e7166fcfbd2e9a28219870/BoardConfigCommon.mk",
+      "file": "research/static-wayne/android_device_xiaomi_sdm660-common-BoardConfigCommon.mk",
+      "sha256": "5123365922b08f81197140daa0832c685da6d70e4cd82b8d49214b4717514e5c"
+    },
+    {
+      "repo": "LineageOS/android_device_xiaomi_wayne-common",
+      "commit": "44af6a90ae4a6d651ab4f8530975c2a34d676042",
+      "path": "BoardConfigCommon.mk",
+      "url": "https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_wayne-common/44af6a90ae4a6d651ab4f8530975c2a34d676042/BoardConfigCommon.mk",
+      "file": "research/static-wayne/android_device_xiaomi_wayne-common-BoardConfigCommon.mk",
+      "sha256": "ac2833b9d8928b10abdfaca0e17ca666f0776527f1f59333e759adf1b580423a"
+    },
+    {
+      "repo": "LineageOS/android_device_xiaomi_wayne",
+      "commit": "0b56b70785a2df2ebf4a1135e0b74ed526ee2908",
+      "path": "rootdir/etc/fstab.qcom",
+      "url": "https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_wayne/0b56b70785a2df2ebf4a1135e0b74ed526ee2908/rootdir/etc/fstab.qcom",
+      "file": "research/static-wayne/android_device_xiaomi_wayne-rootdir_etc_fstab.qcom",
+      "sha256": "7bd47e219e7dd4b9b5104b4a5db0bc3c37c52c02d553b89cb2f22e4683abeba6"
+    }
+  ],
+  "user_layout": "original static partition sizes",
+  "capacities_gpt_verified": false,
+  "board_config_capacities": {
+    "BOARD_SYSTEMIMAGE_PARTITION_SIZE": 3221225472,
+    "BOARD_VENDORIMAGE_PARTITION_SIZE": 2147483648
+  },
+  "existing_rdp_images_fit_check": {
+    "boot.img": {
+      "image_size": 18755584,
+      "partition_size": null,
+      "fits_reference_capacity": null
+    },
+    "system.img": {
+      "image_size": 2940440576,
+      "partition_size": 3221225472,
+      "fits_reference_capacity": true
+    },
+    "vendor.img": {
+      "image_size": 209600512,
+      "partition_size": 2147483648,
+      "fits_reference_capacity": true
+    }
+  }
+}

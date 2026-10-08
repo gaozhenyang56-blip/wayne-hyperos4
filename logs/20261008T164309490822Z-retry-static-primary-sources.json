@@ -1,0 +1,17 @@
+{
+  "label": "retry-static-primary-sources",
+  "started_utc": "2026-10-08T16:43:09.490822+00:00",
+  "finished_utc": "2026-10-08T16:43:12.245220+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T164309490822Z-retry-static-primary-sources.log",
+  "output_sha256": "e95b64328ef5c8c85635a447e879261cfe32abfa5553e0a436bb506df91b7588",
+  "action": "GitHub CLI 公共配置查询鉴权失败后，改用公开原始内容与 Git 引用核对静态容量，并检查现有 fstab。",
+  "outcome": "公开配置与现有挂载规则已取得；容量仍按固定上游证据核对，不使用旧动态组上限。",
+  "failure_note": "公共配置读取仍失败，保留失败日志并继续寻找原厂材料。",
+  "next_step": "确认静态布局及文件系统后实现独立构建门槛。"
+}

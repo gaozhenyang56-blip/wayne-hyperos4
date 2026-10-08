@@ -1,0 +1,16 @@
+{
+  "label": "add-static-installer-regressions",
+  "started_utc": "2026-10-08T17:01:20.192106+00:00",
+  "finished_utc": "2026-10-08T17:01:20.244032+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T170120192106Z-add-static-installer-regressions.log",
+  "output_sha256": "55f30081642418ba8e567a5611b5a1ff20e0c2ac417d6acd35554837b40f2b25",
+  "action": "为静态安装器加入离线设备模拟回归，验证所有设备/布局门槛都先于镜像写入。",
+  "outcome": "离线回归覆盖 LP 两份几何头、非 Recovery、错误机型、映射分区、容量不符、损坏镜像及成功写入范围。",
+  "next_step": "执行全部静态回归，修复任何失败后接入云端打包。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "implement-static-mount-transform",
+  "started_utc": "2026-10-08T16:50:09.619416+00:00",
+  "finished_utc": "2026-10-08T16:50:09.751869+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165009619416Z-implement-static-mount-transform.log",
+  "output_sha256": "6c33a3fe0089e5426419e77578a58e73dd2226b4dc1f0fb636a6d7f86bdc1a94",
+  "action": "实现独立静态 fstab 变换和 boot 布局选项，取消逻辑分区、super cmdline 与 rawdump/metadata 重用。",
+  "outcome": "静态模式使用物理 system/vendor 节点并保留数据加密参数，旧模式对静态目标拒绝执行；源码尚待回归验证。",
+  "next_step": "运行挂载规则和 boot 结构正反测试，再构建独立静态 vendor/boot。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "implement-static-vendor-builder",
+  "started_utc": "2026-10-08T16:54:02.016761+00:00",
+  "finished_utc": "2026-10-08T16:54:03.482083+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165402016761Z-implement-static-vendor-builder.log",
+  "output_sha256": "681beee73f4fa37e667d7b8d7977b16266b96b62081a3b5edf95f5905569bc11",
+  "action": "实现静态 vendor 的元数据保留重打包，仅变更 fstab 和动态布局属性。",
+  "outcome": "静态 vendor 构建器已创建，原 vendor 不覆盖，变更文件限定为两份配置。",
+  "next_step": "生成静态 boot/vendor 后逐项验证内容与 UID/GID/标签，再实现静态恢复安装器。"
+}

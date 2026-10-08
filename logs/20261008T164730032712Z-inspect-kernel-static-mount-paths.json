@@ -1,0 +1,17 @@
+{
+  "label": "inspect-kernel-static-mount-paths",
+  "started_utc": "2026-10-08T16:47:30.032712+00:00",
+  "finished_utc": "2026-10-08T16:47:31.242783+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T164730032712Z-inspect-kernel-static-mount-paths.log",
+  "output_sha256": "33522c58242dbdece13269a986cc68d908fecbec40714f1455220188ceee1c7e",
+  "action": "检查参考 4.19 内核附加 DTB 是否含动态 fstab，并定位 vendor 中的布局依赖。",
+  "outcome": "DTB、boot cmdline 和挂载依赖检查已保存，后续改造以实际节点为准。",
+  "failure_note": "DTB 检查失败，需先修复解析或取得可核验的内核材料。",
+  "next_step": "根据 DTB 结果构建物理分区 fstab，不复用 rawdump 或重分区。"
+}

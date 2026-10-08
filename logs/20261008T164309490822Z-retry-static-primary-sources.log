@@ -1,0 +1,129 @@
+https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_wayne-common/44af6a90ae4a6d651ab4f8530975c2a34d676042/BoardConfigCommon.mk
+#
+# Copyright (C) 2018 The LineageOS Project
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+# Inherit from sdm660-common
+include device/xiaomi/sdm660-common/BoardConfigCommon.mk
+
+WAYNE_PATH := device/xiaomi/wayne-common
+
+# Display
+TARGET_SCREEN_DENSITY := 440
+
+# HIDL
+DEVICE_MANIFEST_FILE += $(WAYNE_PATH)/manifest.xml
+
+# Kernel
+TARGET_KERNEL_CONFIG += vendor/xiaomi/wayne.config
+
+# Partitions
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 3221225472
+BOARD_VENDORIMAGE_PARTITION_SIZE := 2147483648
+
+# Properties
+TARGET_VENDOR_PROP += $(WAYNE_PATH)/vendor.prop
+
+# Inherit the proprietary files
+include vendor/xiaomi/wayne-common/BoardConfigVendor.mk
+
+https://raw.githubusercontent.com/LineageOS/android_device_xiaomi_wayne/0b56b70785a2df2ebf4a1135e0b74ed526ee2908/rootdir/etc/fstab.qcom
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+# Non-A/B fstab.qcom variant
+#<src>                                                   <mnt_point>          <type>  <mnt_flags and options>                                                                         <fs_mgr_flags>
+/dev/block/by-name/system                                /system              ext4    ro,barrier=1                                                                                    wait,first_stage_mount
+/dev/block/by-name/vendor                                /vendor              ext4    ro,barrier=1                                                                                    wait,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,background_gc=off,fsync_mode=nobarrier                                     wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,noatime,lazytime,errors=panic                            wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/misc                       /misc                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
+/dev/block/bootdevice/by-name/bluetooth                  /vendor/bt_firmware  vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait
+/dev/block/bootdevice/by-name/dsp                        /vendor/dsp          ext4    ro,nosuid,nodev,barrier=1                                                                       wait
+/dev/block/bootdevice/by-name/cache                      /cache               f2fs    nosuid,nodev,noatime,background_gc=off,fsync_mode=nobarrier                                     wait,quota
+/dev/block/bootdevice/by-name/cache                      /cache               ext4    nosuid,nodev,noatime,barrier=1                                                                  wait
+/dev/block/bootdevice/by-name/persist                    /mnt/vendor/persist  ext4    nosuid,nodev,barrier=1,noatime                                                                  wait,check
+
+/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*    /storage/usbotg      vfat    nosuid,nodev                                                                                    wait,voldmanaged=usbotg:auto
+
+/dev/block/bootdevice/by-name/boot                       /boot                emmc    defaults                                                                                        recoveryonly
+/dev/block/bootdevice/by-name/recovery                   /recovery            emmc    defaults                                                                                        recoveryonly
+
+MIKU BOOT INFO {"kernel_banner": "Linux version 4.19.315-Miku-Vampire_v2-g3a74d7 (nobody@android-build) (Android (11967740, +pgo, +bolt, +lto, +mlgo, based on r522817) clang version 18.0.1 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262), LLD 18.0.1) #1 SMP PREEMPT Sun Feb 9 03:32:52 CST 2025\n"}
+research/base-miku-a15/ramdisk/fstab.qcom
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# NOTE: /system and /vendor partitions are now early-mounted and the fstab entry is specified in device tree (duplicated below for recovery image purposes only):
+#       /proc/device-tree/firmware/android/fstab/system
+#       /proc/device-tree/firmware/android/fstab/vendor
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+# Non-A/B fstab.qcom variant
+#<src>                                                   <mnt_point>          <type>  <mnt_flags and options>                                                                         <fs_mgr_flags>
+system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/misc                       /misc                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
+/dev/block/bootdevice/by-name/bluetooth                  /vendor/bt_firmware  vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait
+/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*    /storage/usbotg      vfat    nosuid,nodev                                                                                    wait,voldmanaged=usbotg:auto
+/dev/block/bootdevice/by-name/dsp                        /vendor/dsp          ext4    ro,nosuid,nodev,barrier=1                                                                       wait
+/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/cache                      /cache               f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,quota
+/dev/block/bootdevice/by-name/cache                      /cache               ext4    nosuid,nodev,noatime,barrier=1                                                                  wait
+/dev/block/bootdevice/by-name/persist                    /mnt/vendor/persist  ext4    nosuid,nodev,barrier=1,noatime                                                                  wait,check
+/dev/block/bootdevice/by-name/boot                       /boot                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/recovery                   /recovery            emmc    defaults   
+research/base-miku-a15/vendor/etc/fstab.qcom
+# Android fstab file.
+# The filesystem that contains the filesystem checker binary (typically /system) cannot
+# specify MF_CHECK, and must come before any filesystems that do specify MF_CHECK
+
+# NOTE: /system and /vendor partitions are now early-mounted and the fstab entry is specified in device tree (duplicated below for recovery image purposes only):
+#       /proc/device-tree/firmware/android/fstab/system
+#       /proc/device-tree/firmware/android/fstab/vendor
+
+#TODO: Add 'check' as fs_mgr_flags with data partition.
+# Currently we dont have e2fsck compiled. So fs check would failed.
+
+# Non-A/B fstab.qcom variant
+#<src>                                                   <mnt_point>          <type>  <mnt_flags and options>                                                                         <fs_mgr_flags>
+system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,fileencryption=ice,quota
+/dev/block/bootdevice/by-name/misc                       /misc                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait
+/dev/block/bootdevice/by-name/bluetooth                  /vendor/bt_firmware  vfat    ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait
+/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto*    /storage/usbotg      vfat    nosuid,nodev                                                                                    wait,voldmanaged=usbotg:auto
+/dev/block/bootdevice/by-name/dsp                        /vendor/dsp          ext4    ro,nosuid,nodev,barrier=1                                                                       wait
+/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+/dev/block/bootdevice/by-name/cache                      /cache               f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,quota
+/dev/block/bootdevice/by-name/cache                      /cache               ext4    nosuid,nodev,noatime,barrier=1                                                                  wait
+/dev/block/bootdevice/by-name/persist                    /mnt/vendor/persist  ext4    nosuid,nodev,barrier=1,noatime                                                                  wait,check
+/dev/block/bootdevice/by-name/boot                       /boot                emmc    defaults                                                                                        defaults
+/dev/block/bootdevice/by-name/recovery                   /recovery            emmc    defaults   

@@ -1,0 +1,17 @@
+{
+  "label": "test-static-package-gates",
+  "started_utc": "2026-10-08T17:08:40.933903+00:00",
+  "finished_utc": "2026-10-08T17:08:45.028201+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "python3 /tmp/static-package-tests.py && python3 tools/test_static_package.py && python3 tools/test_static_layout.py && python3 tools/test_static_installer.py && python3 tools/test_progress_sync.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T170840933903Z-test-static-package-gates.log",
+  "output_sha256": "41521d5f43ef627d1262a1d18fca9bfed5fe35432da80a661a89c6e54ffa5067",
+  "action": "测试静态打包拒绝条件和分卷完整性检查。",
+  "outcome": "静态打包门槛、错误报告拒绝、分卷读回和损坏拒绝测试通过。",
+  "next_step": "上传静态源码及证据并运行云端全量构建。"
+}

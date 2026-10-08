@@ -1,0 +1,16 @@
+{
+  "label": "inspect-static-capacity-and-mounts",
+  "started_utc": "2026-10-08T16:41:37.572815+00:00",
+  "finished_utc": "2026-10-08T16:41:39.115729+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261008T164137572815Z-inspect-static-capacity-and-mounts.log",
+  "output_sha256": "ec853f5ab3a1ada111e5b41203e9794df33c58612d9f1a70befb90f11c81c33f",
+  "action": "追溯 wayne-common 配置并检查已有 boot/vendor 的静态布局改造条件。",
+  "outcome": "固定提交的容量与静态 fstab 交叉材料已保存，已有参考包的逻辑分区与 metadata 依赖已列出。",
+  "next_step": "逐项确认容量、EROFS 支持和原厂分区节点，决定静态底包与挂载方案。"
+}

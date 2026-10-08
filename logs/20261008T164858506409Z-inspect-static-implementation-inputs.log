@@ -1,0 +1,170 @@
+FILE tools/repack_system_metadata.py
+#!/usr/bin/env python3
+"""Stream source files to mkfs.erofs, restoring ownership and binary xattrs."""
+import argparse
+import base64
+import io
+import json
+import os
+import pathlib
+import stat
+import subprocess
+import tarfile
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('root',type=pathlib.Path)
+    parser.add_argument('metadata',type=pathlib.Path)
+    parser.add_argument('overlay',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    args=parser.parse_args();metadata=json.loads(args.metadata.read_text());patches={}
+    with tarfile.open(args.overlay) as tar:
+        for entry in tar:
+            if entry.isfile():patches[entry.name]=tar.extractfile(entry).read()
+    paths=metadata['paths'].copy()
+    for name in patches:
+        if name not in paths:
+            paths[name]={'nid':-1,'mode':stat.S_IFREG|0o644,'uid':0,'gid':0,
+                         'xattrs_base64':{'security.selinux':base64.b64encode(b'u:object_r:system_file:s0').decode()}}
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    part=args.output.with_suffix(args.output.suffix+'.part')
+    command=['tools/local/usr/bin/mkfs.erofs','--tar=f','-zlz4hc','-T1230768000',
+             '-U36b70828-7600-5b69-9c83-f2d6d7f8ae01',str(part)]
+    process=subprocess.Popen(command,stdin=subprocess.PIPE);seen={}
+    try:
+        with tarfile.open(fileobj=process.stdin,mode='w|',format=tarfile.PAX_FORMAT) as tar:
+            for name,record in sorted(paths.items(),key=lambda x:(x[0].count('/'),x[0])):
+                source=args.root/name;entry=tarfile.TarInfo(name)
+                entry.uid=record['uid'];entry.gid=record['gid'];entry.mode=stat.S_IMODE(record['mode'])
+                entry.mtime=metadata['epoch']
+                entry.pax_headers={'SCHILY.xattr.'+key:base64.b64decode(value).decode('utf-8','surrogateescape')
+                                   for key,value in record['xattrs_base64'].items()}
+                mode=record['mode'];nid=record['nid']
+                if stat.S_ISDIR(mode):entry.type=tarfile.DIRTYPE;tar.addfile(entry)
+                elif stat.S_ISLNK(mode):entry.type=tarfile.SYMTYPE;entry.linkname=os.readlink(source);tar.addfile(entry)
+                elif stat.S_ISREG(mode):
+                    if nid in seen and name not in patches:
+                        entry.type=tarfile.LNKTYPE;entry.linkname=seen[nid];tar.addfile(entry)
+                    else:
+                        if nid>=0:seen[nid]=name
+                        if name in patches:
+                            entry.size=len(patches[name]);tar.addfile(entry,io.BytesIO(patches[name]))
+                        else:
+                            entry.size=source.stat().st_size
+                            with source.open('rb') as stream:tar.addfile(entry,stream)
+                else:raise ValueError('Unsupported special inode '+name)
+        process.stdin.close();code=process.wait()
+        if code:raise RuntimeError('mkfs.erofs failed: '+str(code))
+    except BaseException:
+        process.stdin.close();process.terminate();process.wait();raise
+    part.replace(args.output)
+    print(json.dumps({'paths':len(paths),'patched_files':list(patches),'output':str(args.output)}))
+
+
+if __name__=='__main__':main()
+
+FILE tools/build_system_overlay.py
+#!/usr/bin/env python3
+"""Create a small EROFS overlay; original image metadata is kept by rebuild mode."""
+import argparse
+import base64
+import hashlib
+import io
+import json
+import os
+import pathlib
+import tarfile
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('system_root',type=pathlib.Path)
+    parser.add_argument('fcm5',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    parser.add_argument('--device-matrix',type=pathlib.Path,required=True,
+                        help='Use the target wayne device matrix, not the donor hardware matrix')
+    parser.add_argument('--metadata',type=pathlib.Path,
+                        help='Read source labels from the original inode inventory for rootless builds')
+    args=parser.parse_args();files={};changes={}
+    metadata=json.loads(args.metadata.read_text())['paths'] if args.metadata else None
+    def context_for(name):
+        if metadata is not None:
+            record=metadata.get(name)
+            if record is None:return 'u:object_r:system_file:s0'
+            return base64.b64decode(record['xattrs_base64']['security.selinux']).decode()
+        source=args.system_root/name
+        return os.getxattr(source,'security.selinux').decode() if source.exists() else 'u:object_r:system_file:s0'
+    for partition,path in [('system','system/build.prop'),('system_ext','system_ext/etc/build.prop'),
+                           ('product','product/etc/build.prop')]:
+        original=(args.system_root/path).read_bytes()
+        replacements={f'ro.product.{partition}.device':'wayne',f'ro.product.{partition}.name':'wayne_hyperos4',
+                      f'ro.product.{partition}.brand':'Xiaomi',f'ro.product.{partition}.manufacturer':'Xiaomi',
+                      f'ro.product.{partition}.model':'MI 6X'}
+        patched='\n'.join((row.split('=',1)[0]+'='+replacements[row.split('=',1)[0]])
+                          if '=' in row and row.split('=',1)[0] in replacements else row
+                          for row in original.decode().splitlines())+'\n'
+        content=patched.encode();files[path]=content
+        changes[path]={'before':hashlib.sha256(original).hexdigest(),
+                       'after':hashlib.sha256(content).hexdigest(),'properties':replacements}
+    path='system/etc/vintf/compatibility_matrix.5.xml';files[path]=args.fcm5.read_bytes()
+    changes[path]={'after':hashlib.sha256(files[path]).hexdigest(),'source':str(args.fcm5)}
+    path='system/etc/vintf/compatibility_matrix.device.xml'
+    files[path]=args.device_matrix.read_bytes()
+    changes[path]={'before':hashlib.sha256((args.system_root/path).read_bytes()).hexdigest(),
+                   'after':hashlib.sha256(files[path]).hexdigest(),'source':str(args.device_matrix)}
+    directories=set()
+    for path in files:
+        directories.update(str(parent) for parent in pathlib.PurePosixPath(path).parents if str(parent)!='.')
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    with tarfile.open(args.output,'w',format=tarfile.PAX_FORMAT) as archive:
+        for name in ['.']+sorted(directories,key=lambda x:(x.count('/'),x)):
+            entry=tarfile.TarInfo(name);entry.type=tarfile.DIRTYPE;entry.mode=0o755
+            entry.uid=0;entry.gid=0;entry.mtime=1230768000
+            context=context_for(name)
+            entry.pax_headers={'SCHILY.xattr.security.selinux':context}
+            archive.addfile(entry)
+        for name,content in sorted(files.items()):
+            entry=tarfile.TarInfo(name);entry.size=len(content);entry.uid=0;entry.gid=0
+            entry.mode=0o600 if name.endswith('build.prop') else 0o644;entry.mtime=1230768000
+            context=context_for(name)
+            entry.pax_headers={'SCHILY.xattr.security.selinux':context}
+            archive.addfile(entry,io.BytesIO(content))
+    args.output.with_suffix('.json').write_text(json.dumps({'changes':changes,
+                          'uid_gid_and_selinux_explicit':True,'payload_files':len(files)},indent=2)+'\n')
+    print(json.dumps({'payload_files':len(files),'tar':str(args.output)}))
+
+
+if __name__=='__main__':main()
+
+AUDIT CLI
+                            'dlopen dependencies and process-wide external scopes not exhaustively modeled',
+                            'Other APEX payloads not included',
+                            'Partition preference may differ from actual namespace provider preference',
+                            'AOSP version lookup rule is a reference; community linker patches not fully audited',
+                            'Unresolved inventory symbols require investigation, not automatic binary patches'],
+            'inputs': {str(p): hashlib.sha256(p.read_bytes()).hexdigest() for p in sorted(all_inputs)},
+            'results': results}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('system', type=pathlib.Path)
+    parser.add_argument('vendor', type=pathlib.Path)
+    parser.add_argument('runtime', type=pathlib.Path)
+    parser.add_argument('output', type=pathlib.Path)
+    args = parser.parse_args()
+    targets = ['lib/hw/camera.sdm660.so', 'lib/hw/android.hardware.camera.provider@2.4-impl.so',
+               'bin/hw/android.hardware.camera.provider@2.4-service',
+               'bin/hw/android.hardware.graphics.composer@2.1-service']
+    report = audit(args.system, args.vendor, args.runtime, targets)
+    args.output.write_text(json.dumps(report, indent=2) + '\n')
+    print(json.dumps([{'target': r['target'], 'libraries': r.get('inspected_libraries'),
+                       'missing': len(r.get('missing_dependency_files', [])),
+                       'unresolved': len(r.get('unresolved_required_symbols_in_selected_scope', [])),
+                       'version_fallbacks': len(r.get('dependency_version_fallbacks', []))}
+                      for r in report['results']], indent=2))
+
+
+if __name__ == '__main__':
+    main()

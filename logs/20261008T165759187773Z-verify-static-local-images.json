@@ -1,0 +1,17 @@
+{
+  "label": "verify-static-local-images",
+  "started_utc": "2026-10-08T16:57:59.187773+00:00",
+  "finished_utc": "2026-10-08T16:58:41.619471+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165759187773Z-verify-static-local-images.log",
+  "output_sha256": "eba6c0e35c5f61886c9ea1513922b917d2cdb89eec6e3bbc142cff6aff300cb5",
+  "action": "复用既有已校验合并 system 的硬链接，独立验证新静态 boot/vendor 的内容、标签和原生库。",
+  "outcome": "新静态 boot/vendor 及四项原生库审计通过；system 本地使用既有验证结果，云端将重新完整验证。",
+  "failure_note": "静态镜像验证失败，需按报告修复后再打包。",
+  "next_step": "完成静态恢复环境检查和云端全量复现。"
+}

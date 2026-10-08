@@ -1,0 +1,17 @@
+{
+  "label": "test-static-installation-guards",
+  "started_utc": "2026-10-08T17:01:24.197292+00:00",
+  "finished_utc": "2026-10-08T17:01:25.031709+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T170124197292Z-test-static-installation-guards.log",
+  "output_sha256": "a82af8e078e1b26fa67a8ec4270f2ad73ccf8ced58afadf0ba9dd22ca1a9f55e",
+  "action": "运行静态安装器的写入前拒绝测试及挂载变换回归。",
+  "outcome": "七项安装器安全门槛和四项挂载变换回归通过，没有访问真机。",
+  "failure_note": "静态回归失败，必须先修复才打包。",
+  "next_step": "完善旧 bootloader 查询兼容性并接入静态云端构建。"
+}

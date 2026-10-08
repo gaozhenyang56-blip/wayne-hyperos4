@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "kernel_and_appended_dtb_preserved": true,
+  "cmdline_changed_for_static_layout": true,
+  "boot_id_verified": true,
+  "fstab_uses_physical_nodes": true,
+  "rawdump_repurposed": false,
+  "hardware_tested": false,
+  "size": 18755584,
+  "sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd"
+}

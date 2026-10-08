@@ -1,0 +1,38 @@
+CMDLINE androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 printk.devkmsg=on usbcore.autosuspend=7 androidboot.boot_devices=soc/c0c4000.sdhci androidboot.super_partition=system
+{
+  "reference_boot": "research/base-miku-a15/boot.img",
+  "cmdline": "androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 printk.devkmsg=on usbcore.autosuspend=7 androidboot.boot_devices=soc/c0c4000.sdhci androidboot.super_partition=system",
+  "dtbs": [
+    {
+      "dtb_offset_in_gzip_tail": 0,
+      "size": 345452,
+      "fstab_properties": []
+    }
+  ],
+  "hardware_tested": false
+}
+research/base-miku-a15/ramdisk/fstab.qcom:14:system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:15:system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:16:system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:17:system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:18:product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:19:product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:20:vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:21:vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/ramdisk/fstab.qcom:29:/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:14:system                                                   /system              erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:15:system                                                   /system              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:16:system_ext                                               /system_ext          erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:17:system_ext                                               /system_ext          ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:18:product                                                  /product             erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:19:product                                                  /product             ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:20:vendor                                                   /vendor              erofs   ro                                                                                              wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:21:vendor                                                   /vendor              ext4    ro,barrier=1                                                                                    wait,logical,first_stage_mount
+research/base-miku-a15/vendor/etc/fstab.qcom:29:/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+research/base-miku-a15/vendor/etc/ueventd.rc:407:/sys/class/graphics/fb*     cec/logical_addr         0664    system  graphics
+research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc:178:    # Allow access to emmc rawdump block partition and dload sysfs node
+research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc:179:    #chown root system /dev/block/bootdevice/by-name/rawdump
+research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc:180:    #chmod 0660 /dev/block/bootdevice/by-name/rawdump
+research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc:449:#on property:persist.vendor.sys.rawdump_copy=1
+research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc:452:#on property:persist.vendor.sys.rawdump_copy=0
+

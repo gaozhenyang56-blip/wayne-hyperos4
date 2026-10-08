@@ -1,0 +1,17 @@
+{
+  "label": "support-legacy-bootloader-query",
+  "started_utc": "2026-10-08T17:02:07.581231+00:00",
+  "finished_utc": "2026-10-08T17:02:07.857157+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T170207581231Z-support-legacy-bootloader-query.log",
+  "output_sha256": "fc23540c8545d4075fe2f0420accd022e74e5566176c3bd4c597964ff02c2e14",
+  "action": "兼容旧 bootloader 未提供 is-userspace 查询的情况，仍要求可确认的 bootloader 版本、解锁和容量门槛。",
+  "outcome": "未知查询只在明确不支持变量时走有限回退；新增旧 bootloader 场景通过，其他错误仍拒绝。",
+  "failure_note": "兼容性回归失败，需要修复后才打包。",
+  "next_step": "完成静态打包与云端复现流程。"
+}

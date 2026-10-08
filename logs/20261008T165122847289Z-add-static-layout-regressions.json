@@ -1,0 +1,16 @@
+{
+  "label": "add-static-layout-regressions",
+  "started_utc": "2026-10-08T16:51:22.847289+00:00",
+  "finished_utc": "2026-10-08T16:51:22.936562+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165122847289Z-add-static-layout-regressions.log",
+  "output_sha256": "2fe1a798bc3eba24071ed3c5b4ed651f81182e813fe1d0466f6d27c87323fac3",
+  "action": "加入真实参考 fstab 和 boot cmdline 的静态变换回归测试，验证加密参数保留及异常输入拒绝。",
+  "outcome": "测试脚本已创建，支持原参考 emmc 行省略 fs_mgr 字段的合法情况；尚待执行确认。",
+  "next_step": "执行回归并构建静态 boot，核对内核、DTB、镜像 ID 和挂载规则。"
+}

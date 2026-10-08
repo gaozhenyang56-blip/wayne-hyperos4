@@ -41,7 +41,11 @@ def main():
     parser.add_argument('base',type=pathlib.Path)
     parser.add_argument('donor_init',type=pathlib.Path)
     parser.add_argument('output',type=pathlib.Path)
+    parser.add_argument('--layout',choices=['miku-wayne-retrofit-dynamic','stock-size-static'],default='miku-wayne-retrofit-dynamic')
     args=parser.parse_args()
+    requirements=pathlib.Path(__file__).resolve().parent.parent/'config/project-requirements.json'
+    if requirements.exists() and json.loads(requirements.read_text()).get('target_device',{}).get('dynamic_partitions') is False and args.layout!='stock-size-static':
+        raise ValueError('Static target requires explicit stock-size-static boot mode')
     original=args.base.read_bytes()
     if original[:8]!=b'ANDROID!':raise ValueError('Invalid boot magic')
     version=struct.unpack_from('<I',original,40)[0]
@@ -59,6 +63,9 @@ def main():
     for name,fields,content in records:
         replacement=content
         if name=='init':replacement=args.donor_init.read_bytes()
+        elif name=='fstab.qcom' and args.layout=='stock-size-static':
+            from static_wayne_layout import static_fstab
+            replacement=static_fstab(content.decode()).encode()
         elif name=='fstab.qcom':
             replacement='\n'.join(row for row in content.decode().splitlines()
                                   if not row.split() or row.split()[0] not in ('system_ext','product'))+'\n'
@@ -83,6 +90,13 @@ def main():
         raise ValueError('Expected three ramdisk replacements')
     ramdisk=gzip.compress(serialize(updated),mtime=0)
     header=bytearray(original[:page])
+    if args.layout=='stock-size-static':
+        from static_wayne_layout import static_cmdline
+        cmdline=(original[64:576].split(b'\0',1)[0]+original[608:1632].split(b'\0',1)[0]).decode()
+        encoded=static_cmdline(cmdline).encode()
+        if len(encoded)>=1536:raise ValueError('Cmdline too long')
+        header[64:576]=encoded[:512].ljust(512,b'\0')
+        header[608:1632]=encoded[512:].ljust(1024,b'\0')
     struct.pack_into('<I',header,16,len(ramdisk))
     struct.pack_into('<I',header,44,(17<<25)|((2026-2000)<<4)|8)
     identity=hashlib.sha1()
@@ -104,8 +118,9 @@ def main():
     report={'output':str(args.output),'size':len(output),'sha256':hashlib.sha256(output).hexdigest(),
             'base':str(args.base),'base_sha256':hashlib.sha256(original).hexdigest(),
             'kernel_and_appended_dtb_sha256':hashlib.sha256(kernel).hexdigest(),
-            'kernel_dtb_cmdline_preserved':True,'cpio_metadata_roundtrip_verified':True,
-            'ramdisk_changes':changes,'layout':'wayne retrofit dynamic; merged system; separate wayne vendor',
+            'kernel_dtb_cmdline_preserved':args.layout!='stock-size-static',
+            'kernel_and_appended_dtb_preserved':True,'cmdline_changed_for_static_layout':args.layout=='stock-size-static','cpio_metadata_roundtrip_verified':True,
+            'ramdisk_changes':changes,'layout':args.layout,
             'status':'UNTESTED_BOOT_CANDIDATE_NOT_A_COMPLETE_ROM'}
     args.output.with_suffix('.img.json').write_text(json.dumps(report,indent=2)+'\n')
     print(json.dumps(report,indent=2))

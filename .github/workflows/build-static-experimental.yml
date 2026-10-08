@@ -1,0 +1,41 @@
+name: Build stock-size static wayne experimental package
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: wayne-static-experimental-release
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    env:
+      GH_TOKEN: ${{ github.token }}
+      WAYNE_PROGRESS_FILE: docs/operations/github-static-build-${{ github.run_id }}.md
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Preflight source and synchronize timestamped report
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          set +e
+          python tools/record_step.py --action '检查静态版供体原包入口。' --outcome '供体入口和 ZIP 头预检通过。' --failure-note '供体预检失败，构建停止。' --next '通过后准备镜像工具和静态构建。' cloud-static-source-preflight -- python tools/preflight_source.py
+          result=$?
+          python -c 'import sys; sys.path.insert(0,"tools"); import ci_build_candidate as ci; ci.sync_progress()'
+          sync_result=$?
+          if [ "$sync_result" -ne 0 ]; then exit "$sync_result"; fi
+          exit "$result"
+      - name: Prepare ephemeral runner
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc
+          sudo apt-get update
+          sudo apt-get install -y autoconf automake libtool pkg-config liblz4-dev liblzma-dev libzstd-dev uuid-dev zlib1g-dev g++
+          python -m pip install -r requirements.txt
+      - name: Build, verify and publish static experimental assets
+        run: python tools/ci_build_static.py

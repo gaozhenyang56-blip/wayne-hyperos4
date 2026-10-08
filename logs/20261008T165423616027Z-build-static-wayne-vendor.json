@@ -1,0 +1,20 @@
+{
+  "label": "build-static-wayne-vendor",
+  "started_utc": "2026-10-08T16:54:23.616027+00:00",
+  "finished_utc": "2026-10-08T16:54:49.284549+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_static_vendor.py",
+    "research/base-miku-a15/vendor",
+    "research/base-miku-a15/vendor.img",
+    "artifacts/experimental/static/vendor.img"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165423616027Z-build-static-wayne-vendor.log",
+  "output_sha256": "631db7ec59114e0e01ae9480627d3542dd48374fcdf2e94c8547ce322157f75e",
+  "action": "按两文件静态配置覆盖重打包 vendor，保留原 inode 权限和二进制 xattr。",
+  "outcome": "静态 vendor 已生成，具体文件内容与元数据还需独立核对。",
+  "failure_note": "静态 vendor 重打包失败，需读取日志修复。",
+  "next_step": "解码重建镜像并逐项比较，再运行安装器回归。"
+}

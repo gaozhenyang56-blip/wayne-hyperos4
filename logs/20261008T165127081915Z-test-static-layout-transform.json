@@ -1,0 +1,17 @@
+{
+  "label": "test-static-layout-transform",
+  "started_utc": "2026-10-08T16:51:27.081915+00:00",
+  "finished_utc": "2026-10-08T16:51:27.361005+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/test_static_layout.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165127081915Z-test-static-layout-transform.log",
+  "output_sha256": "af55efa5c3ceb122f8184c380aa405d3f3b4e7e0c1e892773d0eff31d0645c8a",
+  "action": "执行静态挂载、数据加密参数、cmdline 和布局属性回归测试。",
+  "outcome": "四项真实输入和异常拒绝回归全部通过。",
+  "failure_note": "静态回归未通过，需按失败项修复。",
+  "next_step": "构建静态 boot/vendor 并核对镜像结构和元数据。"
+}

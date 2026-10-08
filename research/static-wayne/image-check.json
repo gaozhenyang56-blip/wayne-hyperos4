@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "layout": "stock-size-static",
+  "hardware_tested": false,
+  "system_full_recheck_performed": false,
+  "preserve_partition_table": true,
+  "rawdump_repurposed": false,
+  "partition_sizes": {
+    "system": 3221225472,
+    "vendor": 2147483648,
+    "boot": 67108864
+  }
+}

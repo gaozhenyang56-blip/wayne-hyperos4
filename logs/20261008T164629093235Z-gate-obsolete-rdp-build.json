@@ -1,0 +1,16 @@
+{
+  "label": "gate-obsolete-rdp-build",
+  "started_utc": "2026-10-08T16:46:29.093235+00:00",
+  "finished_utc": "2026-10-08T16:46:29.238627+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T164629093235Z-gate-obsolete-rdp-build.log",
+  "output_sha256": "d1d7bf925c6685892d5d81114e474a6867acee99bc3fb4e7722b10584e71dc29",
+  "action": "添加静态目标约束，阻止旧动态分区构建流程继续生成或发布；准备静态挂载改造检查。",
+  "outcome": "旧构建和发布路径现会因目标布局不匹配而明确停止，静态容量配置与证据已保存。",
+  "next_step": "检查内核 DTB 的 fstab 并实现物理分区挂载与静态安装器。"
+}

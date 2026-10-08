@@ -1,0 +1,519 @@
+
+FILE AGENTS.md
+
+
+FILE config/project-requirements.json
+{
+  "markdown_progress": {
+    "language": "Chinese",
+    "fields": [
+      "做了什么",
+      "发生了什么",
+      "下一步"
+    ],
+    "timestamps": true,
+    "upload_after_each_edit": true,
+    "raw_commands_and_output": "logs only"
+  },
+  "final_rom": "Publish to gaozhenyang56-blip/wayne-hyperos4 Releases with hashes and honest no-device-test status",
+  "donor_selection": {
+    "prefer": "Near Snapdragon 660 hardware and Linux 4.19",
+    "mi8937": "User explicitly permits trying the Mi8937 community port as an experimental candidate; platform name is not an OS version",
+    "release_gate": "Verify actual framework/APEX version and trustworthy provenance, not just build properties"
+  }
+}
+
+
+FILE tools/install_wayne.py
+#!/usr/bin/env python3
+"""Verify or install the explicitly untested wayne retrofit-dynamic candidate."""
+import argparse
+import hashlib
+import json
+import pathlib
+import re
+import subprocess
+import sys
+
+
+GROUP_LIMIT = 6241120256
+
+
+def verify_images(root):
+    manifest = json.loads((root/'manifest.json').read_text(encoding='utf-8'))
+    if manifest.get('device') != 'wayne' or manifest.get('layout') != 'miku-wayne-retrofit-dynamic':
+        raise ValueError('This package is not a supported wayne retrofit-dynamic package')
+    images = manifest.get('images', {})
+    if set(images) != {'boot.img', 'system.img', 'vendor.img'}:
+        raise ValueError('Expected exactly boot, system and target vendor images')
+    for name, record in images.items():
+        path = root/name
+        if path.stat().st_size != record['size']:
+            raise ValueError('Wrong image size: '+name)
+        with path.open('rb') as stream:
+            digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+        if digest != record['sha256']:
+            raise ValueError('SHA-256 mismatch: '+name)
+    if images['boot.img']['size'] > 67108864:
+        raise ValueError('Boot image exceeds the reference wayne boot partition')
+    if images['system.img']['size']+images['vendor.img']['size'] > GROUP_LIMIT:
+        raise ValueError('Images exceed the reference dynamic partition group')
+    return manifest
+
+
+class Fastboot:
+    def __init__(self, binary, serial):
+        self.command = [binary]+(['-s', serial] if serial else [])
+
+    def run(self, *args):
+        result = subprocess.run(self.command+list(args), capture_output=True, text=True,
+                                timeout=900)
+        output = result.stdout+result.stderr
+        if result.returncode:
+            raise RuntimeError('fastboot '+ ' '.join(args)+' failed:\n'+output)
+        return output
+
+    def getvar(self, name):
+        output = self.run('getvar', name)
+        match = re.search(r'(?m)^\s*(?:\(bootloader\)\s*)?'+re.escape(name)+r':\s*([^\r\n]+)', output)
+        if not match:
+            raise RuntimeError('Missing fastboot variable: '+name)
+        return match.group(1).strip()
+
+
+def number(value):
+    return int(value, 16) if value.lower().startswith('0x') else int(value, 10)
+
+
+def make_plan(fastboot, manifest, root):
+    expected = {'product': 'wayne', 'is-userspace': 'yes', 'super-partition-name': 'system',
+                'is-logical:system': 'yes', 'is-logical:vendor': 'yes', 'is-logical:boot': 'no'}
+    for name, value in expected.items():
+        actual = fastboot.getvar(name)
+        if actual != value:
+            raise ValueError(f'Unsupported device/layout: {name}={actual}, expected {value}')
+    images = manifest['images']
+    if number(fastboot.getvar('partition-size:boot')) < images['boot.img']['size']:
+        raise ValueError('Actual boot partition is too small')
+    # Keep existing product/system_ext allocations; the new boot mounts merged copies.
+    existing_other = sum(number(fastboot.getvar('partition-size:'+name))
+                         for name in ('product', 'system_ext'))
+    if images['system.img']['size']+images['vendor.img']['size']+existing_other > GROUP_LIMIT:
+        raise ValueError('Existing product/system_ext allocations leave insufficient group space')
+    # No mutation occurs before all local checks and every device query have passed.
+    return [('resize-logical-partition', 'system', str(images['system.img']['size'])),
+            ('resize-logical-partition', 'vendor', str(images['vendor.img']['size'])),
+            ('flash', 'system', str(root/'system.img')),
+            ('flash', 'vendor', str(root/'vendor.img')),
+            ('flash', 'boot', str(root/'boot.img'))]
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--verify-only', action='store_true', help='Only verify package images; no device needed')
+    parser.add_argument('--flash', action='store_true', help='Install the explicitly untested candidate in fastbootd')
+    parser.add_argument('--serial', help='Target fastboot serial number')
+    parser.add_argument('--fastboot', default='fastboot')
+    args = parser.parse_args()
+    if args.flash and args.verify_only:
+        parser.error('--flash and --verify-only are mutually exclusive')
+    root = pathlib.Path(__file__).resolve().parent
+    manifest = verify_images(root)
+    print('Package SHA-256 checks passed. Status: offline experimental, no device boot test.')
+    if not args.flash:
+        return
+    fastboot = Fastboot(args.fastboot, args.serial)
+    plan = make_plan(fastboot, manifest, root)
+    for command in plan:
+        print('Running:', ' '.join(command), flush=True)
+        print(fastboot.run(*command), flush=True)
+    print('Images written. Device remains in fastbootd; boot and hardware behavior are unverified.')
+
+
+if __name__ == '__main__':
+    try:
+        main()
+    except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+        print(str(error), file=sys.stderr)
+        raise SystemExit(1)
+
+
+FILE tools/build_wayne_boot.py
+#!/usr/bin/env python3
+"""Build an untested wayne boot candidate, retaining its kernel, DTB and cmdline."""
+import argparse
+import gzip
+import hashlib
+import json
+import pathlib
+import struct
+from unpack_boot import decode_ramdisk
+
+
+def cpio_records(data):
+    offset=0;result=[]
+    while offset+110<=len(data):
+        header=data[offset:offset+110];offset+=110
+        if header[:6] not in (b'070701',b'070702'):raise ValueError('Unsupported CPIO')
+        fields=[int(header[6+i*8:14+i*8],16) for i in range(13)]
+        name=data[offset:offset+fields[11]-1].decode()
+        offset=(offset+fields[11]+3)&~3
+        content=data[offset:offset+fields[6]]
+        if len(content)!=fields[6]:raise ValueError('Truncated CPIO')
+        offset=(offset+fields[6]+3)&~3
+        result.append((name,fields,content))
+        if name=='TRAILER!!!':return result
+    raise ValueError('Missing CPIO trailer')
+
+
+def serialize(records):
+    output=bytearray()
+    for name,original,content in records:
+        fields=original.copy();encoded=name.encode()+b'\0'
+        fields[6]=len(content);fields[11]=len(encoded);fields[12]=0
+        output.extend(b'070701'+''.join(f'{x:08x}' for x in fields).encode()+encoded)
+        output.extend(bytes((-len(output))%4));output.extend(content)
+        output.extend(bytes((-len(output))%4))
+    return bytes(output)
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('base',type=pathlib.Path)
+    parser.add_argument('donor_init',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    args=parser.parse_args()
+    original=args.base.read_bytes()
+    if original[:8]!=b'ANDROID!':raise ValueError('Invalid boot magic')
+    version=struct.unpack_from('<I',original,40)[0]
+    page=struct.unpack_from('<I',original,36)[0]
+    kernel_size=struct.unpack_from('<I',original,8)[0]
+    ramdisk_size=struct.unpack_from('<I',original,16)[0]
+    second_size=struct.unpack_from('<I',original,24)[0]
+    if version!=1 or page!=4096 or second_size or struct.unpack_from('<I',original,1632)[0]:
+        raise ValueError('Only reference v1/4096 boot without second or recovery DTBO supported')
+    if original[-64:-60]==b'AVBf':raise ValueError('AVB footer not supported')
+    kernel=original[page:page+kernel_size]
+    ramdisk_offset=page+((kernel_size+page-1)//page)*page
+    records=cpio_records(decode_ramdisk(original[ramdisk_offset:ramdisk_offset+ramdisk_size]))
+    changes={};found=set();updated=[]
+    for name,fields,content in records:
+        replacement=content
+        if name=='init':replacement=args.donor_init.read_bytes()
+        elif name=='fstab.qcom':
+            replacement='\n'.join(row for row in content.decode().splitlines()
+                                  if not row.split() or row.split()[0] not in ('system_ext','product'))+'\n'
+            replacement=replacement.encode()
+        elif name=='system/etc/ramdisk/build.prop':
+            props={'ro.product.bootimage.name':'wayne_hyperos4',
+                   'ro.bootimage.build.fingerprint':'Xiaomi/wayne_hyperos4/wayne:17/CP2A.260605.016/offline01:user/test-keys',
+                   'ro.bootimage.build.id':'CP2A.260605.016','ro.bootimage.build.tags':'test-keys',
+                   'ro.bootimage.build.version.incremental':'offline01',
+                   'ro.bootimage.build.version.release':'17',
+                   'ro.bootimage.build.version.release_or_codename':'17',
+                   'ro.bootimage.build.version.sdk':'37'}
+            replacement='\n'.join((row.split('=',1)[0]+'='+props[row.split('=',1)[0]])
+                                  if '=' in row and row.split('=',1)[0] in props else row
+                                  for row in content.decode().splitlines())+'\n'
+            replacement=replacement.encode()
+        if replacement!=content:
+            found.add(name);changes[name]={'before':hashlib.sha256(content).hexdigest(),
+                                          'after':hashlib.sha256(replacement).hexdigest()}
+        updated.append((name,fields,replacement))
+    if found!={'init','fstab.qcom','system/etc/ramdisk/build.prop'}:
+        raise ValueError('Expected three ramdisk replacements')
+    ramdisk=gzip.compress(serialize(updated),mtime=0)
+    header=bytearray(original[:page])
+    struct.pack_into('<I',header,16,len(ramdisk))
+    struct.pack_into('<I',header,44,(17<<25)|((2026-2000)<<4)|8)
+    identity=hashlib.sha1()
+    for payload in [kernel,ramdisk,b'',b'']:
+        identity.update(payload);identity.update(struct.pack('<I',len(payload)))
+    header[576:608]=identity.digest()+bytes(12)
+    output=bytes(header)+kernel+bytes((-len(kernel))%page)+ramdisk+bytes((-len(ramdisk))%page)
+    if len(output)>64*1024*1024:raise ValueError('Boot exceeds reference partition limit')
+    # Validate the emitted archive and ensure only the intended entries changed.
+    emitted=cpio_records(decode_ramdisk(ramdisk))
+    expected=[]
+    for name,fields,content in updated:
+        normalized=fields.copy();normalized[6]=len(content)
+        normalized[11]=len(name.encode())+1;normalized[12]=0
+        expected.append((name,normalized,content))
+    if emitted!=expected:raise ValueError('CPIO roundtrip mismatch')
+    if output[page:page+kernel_size]!=kernel:raise ValueError('Kernel changed')
+    args.output.parent.mkdir(parents=True,exist_ok=True);args.output.write_bytes(output)
+    report={'output':str(args.output),'size':len(output),'sha256':hashlib.sha256(output).hexdigest(),
+            'base':str(args.base),'base_sha256':hashlib.sha256(original).hexdigest(),
+            'kernel_and_appended_dtb_sha256':hashlib.sha256(kernel).hexdigest(),
+            'kernel_dtb_cmdline_preserved':True,'cpio_metadata_roundtrip_verified':True,
+            'ramdisk_changes':changes,'layout':'wayne retrofit dynamic; merged system; separate wayne vendor',
+            'status':'UNTESTED_BOOT_CANDIDATE_NOT_A_COMPLETE_ROM'}
+    args.output.with_suffix('.img.json').write_text(json.dumps(report,indent=2)+'\n')
+    print(json.dumps(report,indent=2))
+
+
+if __name__=='__main__':main()
+
+
+FILE tools/package_candidate.py
+#!/usr/bin/env python3
+"""Package validated offline images into a split ZIP, with honest test status."""
+import argparse
+import datetime
+import hashlib
+import io
+import json
+import pathlib
+import shutil
+import subprocess
+import zipfile
+
+
+class SplitWriter(io.RawIOBase):
+    def __init__(self, prefix, limit=1900000000):
+        self.prefix=prefix;self.limit=limit;self.stream=None;self.size=0;self.paths=[]
+
+    def writable(self):
+        return True
+
+    def write(self, data):
+        total=len(data)
+        while data:
+            if self.stream is None or self.size==self.limit:
+                if self.stream:self.stream.close()
+                path=self.prefix.with_name(self.prefix.name+f'.{len(self.paths)+1:03}')
+                self.paths.append(path);self.stream=path.open('wb');self.size=0
+            chunk=data[:self.limit-self.size]
+            self.stream.write(chunk);self.size+=len(chunk);data=data[len(chunk):]
+        return total
+
+    def flush(self):
+        if self.stream:self.stream.flush()
+
+    def close(self):
+        if self.stream:self.stream.close();self.stream=None
+        super().close()
+
+
+def hash_file(path):
+    with path.open('rb') as stream:
+        return hashlib.file_digest(stream,'sha256').hexdigest()
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--build-commit',required=True)
+    args=parser.parse_args()
+    root=pathlib.Path(__file__).resolve().parent.parent
+    output=root/'artifacts/releases';output.mkdir(parents=True,exist_ok=True)
+    stage=output/'stage';stage.mkdir(exist_ok=True)
+    reports={name:json.loads((root/'research'/name).read_text()) for name in
+             ['wayne-system-content-check.json','wayne-system-metadata-check.json',
+              'wayne-boot-check.json','wayne-vintf-check.json','wayne-os4-native-versions.json']}
+    for name in ['wayne-system-content-check.json','wayne-system-metadata-check.json','wayne-boot-check.json']:
+        if not reports[name]['success']:raise ValueError('Failed prerequisite: '+name)
+    if reports['wayne-vintf-check.json']['check']['exit_code']!=0:
+        raise ValueError('Target HAL declaration check failed')
+    native=reports['wayne-os4-native-versions.json']['results']
+    expected_native_targets={'lib/hw/camera.sdm660.so',
+                             'lib/hw/android.hardware.camera.provider@2.4-impl.so',
+                             'bin/hw/android.hardware.camera.provider@2.4-service',
+                             'bin/hw/android.hardware.graphics.composer@2.1-service'}
+    if len(native)!=4 or {r['target'] for r in native}!=expected_native_targets or any(
+            r['inspected_libraries']<=0 or r['missing_dependency_files'] or
+            r['unresolved_required_symbols_in_selected_scope'] for r in native):
+        raise ValueError('Native version-symbol inventory is incomplete or unresolved')
+    strict=json.loads((root/'research/wayne-os4-policy/policy-check.json').read_text())
+    runtime=json.loads((root/'research/wayne-os4-policy/runtime/policy-check.json').read_text())
+    if not runtime['success']:raise ValueError('Runtime-mode policy compilation failed')
+    paths={'boot.img':root/'artifacts/experimental/boot.img',
+           'system.img':root/'artifacts/experimental/system.img',
+           'vendor.img':root/'research/base-miku-a15/vendor.img'}
+    manifest={'device':'wayne','layout':'miku-wayne-retrofit-dynamic','android_sdk':37,
+              'declared_hyperos':'4.0.0.16.XPCCNXM','kernel':'4.19.315-Miku-Vampire_v2-g3a74d7',
+              'build_commit':args.build_commit,'created_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+              'status':'offline-experimental-unbooted','hardware_tested':False,
+              'strict_neverallow_passed':strict['success'],
+              'runtime_mode_policy_compiled':runtime['success'],
+              'native_symbol_version_inventory_checked':True,
+              'linker_namespaces_verified':False,
+              'unresolved':['Strict SELinux neverallow conflicts','Runtime linker/APEX compatibility',
+                            'Core framework changes relative to official control not fully audited',
+                            'Actual kernel build config is not embedded correctly','Boot and hardware behavior'],
+              'group_limit':6241120256,
+              'images':{name:{'size':path.stat().st_size,'sha256':hash_file(path)} for name,path in paths.items()}}
+    if manifest['images']['system.img']['size']+manifest['images']['vendor.img']['size']>manifest['group_limit']:
+        raise ValueError('Image allocation exceeds reference group')
+    if manifest['images']['boot.img']['size']>67108864:raise ValueError('Boot exceeds reference partition')
+    (stage/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+    shutil.copyfile(root/'tools/install_wayne.py',stage/'install.py')
+    instructions='''Xiaomi 6X (wayne) HyperOS 4 - OFFLINE EXPERIMENTAL PACKAGE
+
+No physical device was available. Boot, encryption, radio, camera, fingerprint
+and other hardware behavior have not been tested. Strict SELinux neverallow
+checking still fails. This is not a verified stable release.
+
+Supported prerequisite: wayne already using the Miku Android 15 retrofit
+dynamic partition layout with metadata on system and system/vendor/cust backing
+devices. This package does not convert a stock or other partition layout.
+
+Download all ZIP parts and compare them to SHA256SUMS. Concatenate parts in
+numeric order into one ZIP, then extract. Windows: use copy /b; Linux/macOS:
+use cat. Do not extract or flash a single part on its own.
+
+Python 3.11+ is required. Run python install.py --verify-only to check all
+images without a device. The JSON manifest lists exact image hashes and status.
+
+Installing writes system, vendor and boot. Back up your data and the original
+images first. Enter a compatible fastbootd on an unlocked wayne and use current
+Android platform-tools. Run python install.py --flash --serial DEVICE_SERIAL.
+The script rejects a different device, unsupported layout and insufficient
+space. It preserves existing product/system_ext allocations, writes no firmware,
+does not erase userdata and does not reboot automatically. A data reset may be
+necessary across Android versions, but is not performed by this package.
+
+Static reports are in reports/. Their scope is limited: HAL declarations are
+not proof that the services run; entry-point ELF symbol checks do not resolve
+all linker namespaces or APEX behavior. Runtime SELinux compilation with -N
+does not mean strict neverallow checking passed.
+'''
+    (stage/'INSTALL.txt').write_text(instructions)
+    prefix=output/'wayne-hyperos4-offline-20261006.zip'
+    if list(output.glob(prefix.name+'.*')):raise ValueError('Existing parts: refusing to overwrite')
+    writer=SplitWriter(prefix);base='wayne-hyperos4-offline-20261006/'
+    files={**paths,'manifest.json':stage/'manifest.json','install.py':stage/'install.py',
+           'INSTALL.txt':stage/'INSTALL.txt'}
+    files.update({'reports/'+name:root/'research'/name for name in reports})
+    files['reports/strict-policy.json']=root/'research/wayne-os4-policy/policy-check.json'
+    files['reports/runtime-policy.json']=root/'research/wayne-os4-policy/runtime/policy-check.json'
+    files['reports/framework-origin.json']=root/'research/community-framework-origin-check.json'
+    try:
+        with zipfile.ZipFile(writer,'w',compression=zipfile.ZIP_STORED,allowZip64=True) as archive:
+            for name,path in sorted(files.items()):
+                info=zipfile.ZipInfo(base+name,(2009,1,1,0,0,0))
+                info.external_attr=(0o100755 if name=='install.py' else 0o100644)<<16
+                with path.open('rb') as source,archive.open(info,'w',force_zip64=True) as target:
+                    shutil.copyfileobj(source,target,8*1024*1024)
+    finally:
+        writer.close()
+    sums={path.name:{'size':path.stat().st_size,'sha256':hash_file(path)} for path in writer.paths}
+    (output/'SHA256SUMS').write_text(''.join(record['sha256']+'  '+name+'\n' for name,record in sums.items()))
+    result={'manifest':manifest,'parts':sums,'archive_entries':sorted(files)}
+    (root/'artifacts/candidate-package.json').write_text(json.dumps(result,indent=2)+'\n')
+    print(json.dumps({'parts':sums,'hardware_tested':False,'strict_neverallow_passed':strict['success']},indent=2))
+
+
+if __name__=='__main__':
+    main()
+
+
+FILE research/candidates/selection.json
+{
+  "selection": "spes",
+  "selection_status": "provisional",
+  "reason": "Snapdragon 680; extracted port boot contains Linux 4.19.325; explicit full HyperOS4 community ROM link",
+  "download": {
+    "success": true,
+    "id": "kmZT7B8z",
+    "name": "hos4.0.0.17.wpacnxm_a17_spes.zip",
+    "size": 4813008353,
+    "views": 221,
+    "bandwidth_used": 470733340654,
+    "bandwidth_used_paid": 0,
+    "downloads": 188,
+    "date_upload": "2026-09-06T03:22:27.024Z",
+    "date_last_view": "2026-10-05T17:20:29.71Z",
+    "mime_type": "application/zip",
+    "thumbnail_href": "/file/kmZT7B8z/thumbnail",
+    "hash_sha256": "cec53dad779dc1e4c4477f24da00408a209a1d1d70fcbae25f1639b8f7e907c2",
+    "delete_after_date": "0001-01-01T00:00:00Z",
+    "delete_after_downloads": 0,
+    "availability": "",
+    "availability_message": "",
+    "abuse_type": "",
+    "abuse_reporter_name": "",
+    "can_edit": false,
+    "can_download": true,
+    "show_ads": true,
+    "allow_video_player": true,
+    "download_speed_limit": 0
+  },
+  "kernel": {
+    "header_version": 3,
+    "kernel_size": 22620391,
+    "kernel_banner": "Linux version 4.19.325-hanbal-gforce-base (ahmed@AAZ-PC) (Android (14488419, +pgo, +bolt, +lto, +mlgo, based on r584948) clang version 22.0.0 (https://android.googlesource.com/toolchain/llvm-project 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99), LLD 22.0.0 (/mnt/disks/build-disk/src/googleplex-android/llvm-r584948-release/out/llvm-project/llvm 2d65e4108033380e6fe8e08b1f1826cd2bfb0c99)) #2 SMP PREEMPT Wed Sep 2 16:18:06 UTC 2026\n"
+  },
+  "internal_system_version_verified": false,
+  "ota_metadata_reused_android": 13,
+  "secondary_reference": "Mi8937 HyperOS4 Android17 4.19 non-RDP",
+  "secondary_reference_record": {
+    "id": "hyperos-4.0.0.16-beta",
+    "device": "Mi8937",
+    "name": "HyperOS 4.0.0.16 Beta",
+    "shortName": "HyperOS 4 Beta",
+    "android": "17",
+    "channel": "experimental",
+    "date": "2026-08-27",
+    "size": "2.50 GB",
+    "maintainer": "alpha",
+    "supports": [
+      "santoni",
+      "ugg",
+      "land"
+    ],
+    "mirrors": [
+      {
+        "label": "Google Drive",
+        "url": "https://drive.google.com/file/d/1_Tu-HcN1PIz4PItm5vvCuh5FrjJpfDTX/view?usp=drivesdk",
+        "primary": true
+      },
+      {
+        "label": "Telegram",
+        "url": "https://t.me/santonibackup/76",
+        "primary": false
+      }
+    ],
+    "extras": [
+      {
+        "label": "KernelSU Next Manager",
+        "url": "https://github.com/KernelSU-Next/KernelSU-Next/releases/download/v3.3.0/KernelSU_Next_v3.3.0_33214-release.apk"
+      }
+    ],
+    "recovery": {
+      "label": "OrangeFox Recovery",
+      "url": "https://t.me/R3SPX_UPDATES/4527"
+    },
+    "screenshots": [],
+    "screenshotsAlbum": null,
+    "install": [
+      "Wipe System, Vendor, Data, Dalvik/ART Cache, Cache, Metadata, Internal storage",
+      "Format data > yes",
+      "Flash the ROM zip",
+      "Reboot to system and wait 10 minutes to boot",
+      "Done"
+    ],
+    "bugs": [],
+    "changelog": [
+      "Initial Port from Xiaomi 17 OS4 Beta",
+      "Update kernel to latest sources and OC Gpu to 598MHz",
+      "Fixed a scenario where WiFi won't connect in Russian and Indonesian languages",
+      "Fixed Fingerprint"
+    ],
+    "notes": [
+      "• Includes GApps",
+      "• Not recommended for 2/16 & Mi8917",
+      "• Do not change wallpaper from home screen",
+      "• Warning: Do not change the kernel, or you will get a bootloop",
+      "• Experimental ROM; Not for daily usage",
+      "",
+      "Credits:",
+      "• @juezhi6668 for the surfaceflinger patch",
+      "• @Venusidk & @wannqn for helping",
+      "• @me_cafebabe for the resources"
+    ],
+    "noteStyle": "callout",
+    "_source": "data/releases/Mi8937/hyperos-4.0.0.16-beta.json"
+  },
+  "other_os4_candidate": "topaz/tapas community ROM, 5.15 kernel source, Snapdragon685",
+  "same_soc_no_os4_verified": "lavender Snapdragon660 community ports found only HyperOS1/2"
+}

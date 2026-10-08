@@ -45,8 +45,10 @@ def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('parts',type=pathlib.Path,nargs='+')
     parser.add_argument('--report',type=pathlib.Path,required=True)
+    parser.add_argument('--base',default='wayne-hyperos4-offline-20261006/')
     args=parser.parse_args()
-    base='wayne-hyperos4-offline-20261006/'
+    base=args.base
+    if not base.endswith('/') or '/' in base[:-1] or '..' in base:raise ValueError('Invalid archive prefix')
     checked=[]
     with zipfile.ZipFile(SplitReader(args.parts)) as archive:
         info=archive.getinfo(base+'manifest.json')

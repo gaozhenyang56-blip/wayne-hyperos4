@@ -1,0 +1,16 @@
+{
+  "label": "inspect-static-layout-correction",
+  "started_utc": "2026-10-08T16:38:22.646302+00:00",
+  "finished_utc": "2026-10-08T16:38:23.348694+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T163822646302Z-inspect-static-layout-correction.log",
+  "output_sha256": "0815665757414eb00b80f8aaad36155c25d002ec9287f2e42cbc637388cededd",
+  "action": "接收设备不是动态分区也不是 Miku UI 的更正，复核现有方案的布局依赖。",
+  "outcome": "确认现有包仅支持 Miku retrofit 布局，不适用于用户设备；需撤销适用性并调查静态分区方案。",
+  "next_step": "更新公开说明和 Release，再调查静态分区容量、内核和底包来源。"
+}

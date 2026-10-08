@@ -1,0 +1,27 @@
+{
+  "label": "mark-old-release-incompatible",
+  "started_utc": "2026-10-08T16:39:35.636189+00:00",
+  "finished_utc": "2026-10-08T16:39:37.131126+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "edit",
+    "offline-20261006",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--title",
+    "旧 Miku RDP 实验包：不适用于原版静态分区 wayne",
+    "--notes-file",
+    "/tmp/wayne-incompatible-release-notes.txt",
+    "--prerelease",
+    "--latest=false"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T163935636189Z-mark-old-release-incompatible.log",
+  "output_sha256": "ec6b117d6f003d767906da128286358f0dca045c48660be6ac9591ed50f4462a",
+  "action": "把旧公开 Release 标记为不适用于原版静态分区的小米 6X，保留研究附件。",
+  "outcome": "旧 Release 说明和标题已明确布局不匹配，避免将研究包误认为当前设备成品。",
+  "failure_note": "旧 Release 标记更新失败，README 已先行更正，需继续补齐公开 Release 说明。",
+  "next_step": "查证原版分区容量和可用静态 4.19 底包。"
+}

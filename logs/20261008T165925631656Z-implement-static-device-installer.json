@@ -1,0 +1,16 @@
+{
+  "label": "implement-static-device-installer",
+  "started_utc": "2026-10-08T16:59:25.631656+00:00",
+  "finished_utc": "2026-10-08T16:59:25.768829+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165925631656Z-implement-static-device-installer.log",
+  "output_sha256": "893ef2d73e3b6f181fe71078f7015bcf14463b15cbcf394c8b6d3f3ba20dc337",
+  "action": "实现静态设备安装器：先在 Recovery 读取物理分区、容量及 LP 元数据，再进入 bootloader 校验后写入。",
+  "outcome": "静态安装器已实现，默认只校验文件；显式刷写前完成所有布局门槛，不格式化额外分区或转换分区表。",
+  "next_step": "用离线正反场景测试验证动态布局、错误容量和错误设备均在写入前被拒绝。"
+}

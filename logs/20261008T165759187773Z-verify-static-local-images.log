@@ -1,0 +1,41 @@
+{
+  "checked_original_paths": 2296,
+  "expected_modified_files": [
+    "build.prop",
+    "etc/fstab.qcom"
+  ],
+  "added_paths": [],
+  "failures": [],
+  "success": true
+}
+[
+  {
+    "target": "lib/hw/camera.sdm660.so",
+    "libraries": 49,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 2
+  },
+  {
+    "target": "lib/hw/android.hardware.camera.provider@2.4-impl.so",
+    "libraries": 65,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 3
+  },
+  {
+    "target": "bin/hw/android.hardware.camera.provider@2.4-service",
+    "libraries": 33,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 0
+  },
+  {
+    "target": "bin/hw/android.hardware.graphics.composer@2.1-service",
+    "libraries": 43,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 3
+  }
+]
+PASS: static boot, vendor content/metadata, native inventories and partition bounds; hardware untested.

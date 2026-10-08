@@ -1,0 +1,22 @@
+{
+  "label": "build-static-wayne-boot",
+  "started_utc": "2026-10-08T16:54:16.424840+00:00",
+  "finished_utc": "2026-10-08T16:54:18.220599+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/build_wayne_boot.py",
+    "research/base-miku-a15/boot.img",
+    "research/candidates/mi8937-os4/ramdisk/init",
+    "artifacts/experimental/static/boot.img",
+    "--layout",
+    "stock-size-static"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T165416424840Z-build-static-wayne-boot.log",
+  "output_sha256": "ce29b7bda93aadcb9071e26ccc98477ebf33eb86fd3cb005cc5c13f5f37723da",
+  "action": "生成独立静态 boot 并保留原内核/DTB，取消 super 与逻辑分区挂载。",
+  "outcome": "静态 boot 已生成，CPIO 往返和内核字节一致性检查通过；未测试启动。",
+  "failure_note": "静态 boot 生成失败，需修复结构或变换规则。",
+  "next_step": "生成静态 vendor，并完成独立镜像验证。"
+}
