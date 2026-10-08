@@ -1,0 +1,17 @@
+{
+  "label": "inspect-static-property-residuals",
+  "started_utc": "2026-10-08T17:12:56.776773+00:00",
+  "finished_utc": "2026-10-08T17:12:57.712537+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "rg -n \"dynamic_partitions|super_partition|metadata_encryption|/metadata\" research/candidates/mi8937-os4/system/system/build.prop research/candidates/mi8937-os4/system/product/etc/build.prop research/candidates/mi8937-os4/system/system_ext/etc/build.prop research/base-miku-a15/vendor/build.prop research/base-miku-a15/vendor/etc/fstab.qcom || true; gh run view 37814471259 --repo gaozhenyang56-blip/wayne-hyperos4 --json status,conclusion"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171256776773Z-inspect-static-property-residuals.log",
+  "output_sha256": "47c004e45af02086536599380dc34473daf49627d4dbf77263cc5633112628c8",
+  "action": "检查供体是否残留强制动态分区属性及静态数据挂载依赖。",
+  "outcome": "已复查构建属性和挂载配置；userdata 仍使用原参考 fileencryption=ice，旧系统加密兼容性尚未验证。",
+  "next_step": "继续云端全量重建和核验，成品保留加密未知说明。"
+}

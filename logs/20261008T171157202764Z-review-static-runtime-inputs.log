@@ -1,0 +1,115 @@
+"""Static wayne mount transformations; never resize or repurpose partitions."""
+
+def static_fstab(source):
+    output=['# wayne stock-size static layout; system/product/system_ext are merged.']
+    seen=set()
+    for line in source.splitlines():
+        if not line.strip() or line.lstrip().startswith('#'):continue
+        fields=line.split()
+        if len(fields)==4 and fields[1] in ('/boot','/recovery') and fields[2]=='emmc':fields.append('defaults')
+        if len(fields)!=5:raise ValueError('Unexpected fstab row: '+line)
+        device,mount,fs,options,flags=fields
+        if mount in ('/product','/system_ext','/metadata') or device.endswith('/rawdump'):continue
+        if mount in ('/system','/vendor'):
+            if fs!='erofs':continue
+            device='/dev/block/bootdevice/by-name/'+mount[1:]
+            flags=','.join(x for x in flags.split(',') if x!='logical')
+            seen.add(mount)
+        if 'logical' in flags.split(',') or 'formattable' in flags.split(','):
+            raise ValueError('Unexpected logical or formattable mount')
+        output.append(' '.join((device,mount,fs,options,flags)))
+    if seen!={'/system','/vendor'}:raise ValueError('Expected system/vendor EROFS mounts')
+    return '\n'.join(output)+'\n'
+
+
+def static_cmdline(source):
+    parts=source.split()
+    if not any(p.startswith('androidboot.super_partition=') for p in parts):
+        raise ValueError('Reference super partition cmdline missing')
+    parts=[p for p in parts if not p.startswith(('androidboot.super_partition=',
+               'androidboot.dynamic_partitions=','androidboot.dynamic_partitions_retrofit='))]
+    parts+=['androidboot.dynamic_partitions=false','androidboot.dynamic_partitions_retrofit=false']
+    return ' '.join(parts)
+
+
+def static_vendor_properties(source):
+    changes={'ro.boot.dynamic_partitions':'false','ro.boot.dynamic_partitions_retrofit':'false'}
+    seen=set();rows=[]
+    for row in source.splitlines():
+        key=row.split('=',1)[0]
+        if key in changes:row=key+'='+changes[key];seen.add(key)
+        rows.append(row)
+    if seen!=set(changes):raise ValueError('Reference dynamic properties missing')
+    return '\n'.join(rows)+'\n'
+#!/usr/bin/env python3
+"""Create a small EROFS overlay; original image metadata is kept by rebuild mode."""
+import argparse
+import base64
+import hashlib
+import io
+import json
+import os
+import pathlib
+import tarfile
+
+
+def main():
+    parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('system_root',type=pathlib.Path)
+    parser.add_argument('fcm5',type=pathlib.Path)
+    parser.add_argument('output',type=pathlib.Path)
+    parser.add_argument('--device-matrix',type=pathlib.Path,required=True,
+                        help='Use the target wayne device matrix, not the donor hardware matrix')
+    parser.add_argument('--metadata',type=pathlib.Path,
+                        help='Read source labels from the original inode inventory for rootless builds')
+    args=parser.parse_args();files={};changes={}
+    metadata=json.loads(args.metadata.read_text())['paths'] if args.metadata else None
+    def context_for(name):
+        if metadata is not None:
+            record=metadata.get(name)
+            if record is None:return 'u:object_r:system_file:s0'
+            return base64.b64decode(record['xattrs_base64']['security.selinux']).decode()
+        source=args.system_root/name
+        return os.getxattr(source,'security.selinux').decode() if source.exists() else 'u:object_r:system_file:s0'
+    for partition,path in [('system','system/build.prop'),('system_ext','system_ext/etc/build.prop'),
+                           ('product','product/etc/build.prop')]:
+        original=(args.system_root/path).read_bytes()
+        replacements={f'ro.product.{partition}.device':'wayne',f'ro.product.{partition}.name':'wayne_hyperos4',
+                      f'ro.product.{partition}.brand':'Xiaomi',f'ro.product.{partition}.manufacturer':'Xiaomi',
+                      f'ro.product.{partition}.model':'MI 6X'}
+        patched='\n'.join((row.split('=',1)[0]+'='+replacements[row.split('=',1)[0]])
+                          if '=' in row and row.split('=',1)[0] in replacements else row
+                          for row in original.decode().splitlines())+'\n'
+        content=patched.encode();files[path]=content
+        changes[path]={'before':hashlib.sha256(original).hexdigest(),
+                       'after':hashlib.sha256(content).hexdigest(),'properties':replacements}
+    path='system/etc/vintf/compatibility_matrix.5.xml';files[path]=args.fcm5.read_bytes()
+    changes[path]={'after':hashlib.sha256(files[path]).hexdigest(),'source':str(args.fcm5)}
+    path='system/etc/vintf/compatibility_matrix.device.xml'
+    files[path]=args.device_matrix.read_bytes()
+    changes[path]={'before':hashlib.sha256((args.system_root/path).read_bytes()).hexdigest(),
+                   'after':hashlib.sha256(files[path]).hexdigest(),'source':str(args.device_matrix)}
+    directories=set()
+    for path in files:
+        directories.update(str(parent) for parent in pathlib.PurePosixPath(path).parents if str(parent)!='.')
+    args.output.parent.mkdir(parents=True,exist_ok=True)
+    with tarfile.open(args.output,'w',format=tarfile.PAX_FORMAT) as archive:
+        for name in ['.']+sorted(directories,key=lambda x:(x.count('/'),x)):
+            entry=tarfile.TarInfo(name);entry.type=tarfile.DIRTYPE;entry.mode=0o755
+            entry.uid=0;entry.gid=0;entry.mtime=1230768000
+            context=context_for(name)
+            entry.pax_headers={'SCHILY.xattr.security.selinux':context}
+            archive.addfile(entry)
+        for name,content in sorted(files.items()):
+            entry=tarfile.TarInfo(name);entry.size=len(content);entry.uid=0;entry.gid=0
+            entry.mode=0o600 if name.endswith('build.prop') else 0o644;entry.mtime=1230768000
+            context=context_for(name)
+            entry.pax_headers={'SCHILY.xattr.security.selinux':context}
+            archive.addfile(entry,io.BytesIO(content))
+    args.output.with_suffix('.json').write_text(json.dumps({'changes':changes,
+                          'uid_gid_and_selinux_explicit':True,'payload_files':len(files)},indent=2)+'\n')
+    print(json.dumps({'payload_files':len(files),'tar':str(args.output)}))
+
+
+if __name__=='__main__':main()
+{"conclusion":"","jobs":[{"completedAt":"0001-01-01T00:00:00Z","conclusion":"","databaseId":113439433499,"name":"build","startedAt":"2026-10-08T17:10:20Z","status":"in_progress","steps":[{"conclusion":"success","name":"Set up job","number":1,"status":"completed"},{"conclusion":"success","name":"Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683","number":2,"status":"completed"},{"conclusion":"success","name":"Run actions/setup-python@v5","number":3,"status":"completed"},{"conclusion":"success","name":"Preflight source and synchronize timestamped report","number":4,"status":"completed"},{"conclusion":"","name":"Prepare ephemeral runner","number":5,"status":"in_progress"},{"conclusion":"","name":"Build, verify and publish static experimental assets","number":6,"status":"pending"},{"conclusion":"","name":"Post Run actions/setup-python@v5","number":11,"status":"pending"},{"conclusion":"","name":"Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683","number":12,"status":"pending"}],"url":"https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37814471259/job/113439433499"}],"status":"in_progress"}

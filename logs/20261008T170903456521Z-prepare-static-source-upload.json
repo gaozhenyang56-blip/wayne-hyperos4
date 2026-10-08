@@ -1,0 +1,17 @@
+{
+  "label": "prepare-static-source-upload",
+  "started_utc": "2026-10-08T17:09:03.456521+00:00",
+  "finished_utc": "2026-10-08T17:09:03.664802+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,json,subprocess; r=pathlib.Path(\".\"); paths=set(subprocess.check_output([\"git\",\"diff\",\"--name-only\"],text=True).splitlines()); paths.update(subprocess.check_output([\"git\",\"ls-files\",\"--others\",\"--exclude-standard\"],text=True).splitlines()); paths={p for p in paths if p.startswith((\"tools/\",\"research/static-wayne/\",\"logs/\",\"config/\",\".github/\")) or p in (\"README.md\",\"artifacts/delivery-status.json\")}; entries=[{\"path\":p,\"mode\":\"100644\",\"type\":\"blob\",\"content\":(r/p).read_text()} for p in sorted(paths)]; pathlib.Path(\"/tmp/static-upload.json\").write_text(json.dumps(entries,ensure_ascii=False)); print(len(entries),pathlib.Path(\"/tmp/static-upload.json\").stat().st_size); print(\"\\n\".join(sorted(paths)))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T170903456521Z-prepare-static-source-upload.log",
+  "output_sha256": "3265bd4158b26d270c570e43acd979d8e700e088d63d5cae078d20e7e1d94fb5",
+  "action": "准备上传静态实现、容量来源、离线报告和本轮操作证据。",
+  "outcome": "源码上传清单已生成，排除了大镜像和派生 inode 数据。",
+  "next_step": "提交到仓库后启动静态 Actions 工作流。"
+}

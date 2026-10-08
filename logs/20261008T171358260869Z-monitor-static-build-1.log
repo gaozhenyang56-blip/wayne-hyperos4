@@ -1,0 +1,46 @@
+{"conclusion":"","jobs":[{"completedAt":"0001-01-01T00:00:00Z","conclusion":"","databaseId":113439433499,"name":"build","startedAt":"2026-10-08T17:10:20Z","status":"in_progress","steps":[{"conclusion":"success","name":"Set up job","number":1,"status":"completed"},{"conclusion":"success","name":"Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683","number":2,"status":"completed"},{"conclusion":"success","name":"Run actions/setup-python@v5","number":3,"status":"completed"},{"conclusion":"success","name":"Preflight source and synchronize timestamped report","number":4,"status":"completed"},{"conclusion":"success","name":"Prepare ephemeral runner","number":5,"status":"completed"},{"conclusion":"","name":"Build, verify and publish static experimental assets","number":6,"status":"in_progress"},{"conclusion":"","name":"Post Run actions/setup-python@v5","number":11,"status":"pending"},{"conclusion":"","name":"Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683","number":12,"status":"pending"}],"url":"https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37814471259/job/113439433499"}],"status":"in_progress"}
+# 逐次操作日志
+
+时间显示为 Asia/Shanghai，同时保留 UTC 审计时间。
+
+## 2026-10-09T01:10:24.466170+08:00 — cloud-static-source-preflight
+
+UTC 起始：2026-10-08T17:10:24.466170+00:00；结束：2026-10-08T17:10:26.588401+00:00。
+
+做了什么：检查静态版供体原包入口。
+
+发生了什么：供体入口和 ZIP 头预检通过。
+
+下一步：通过后准备镜像工具和静态构建。
+
+证据：[原始日志](../../logs/20261008T171024466170Z-cloud-static-source-preflight.log)。
+
+## 2026-10-08T17:13:14.501267+00:00
+
+做了什么：开始编译固定版本镜像工具。
+
+发生了什么：云端进入本阶段。
+
+下一步：下载并校验供体和 wayne 参考材料。
+
+## 2026-10-09T01:13:16.307081+08:00 — cloud-static-tools
+
+UTC 起始：2026-10-08T17:13:16.307081+00:00；结束：2026-10-08T17:13:28.316434+00:00。
+
+做了什么：编译固定版本镜像工具。
+
+发生了什么：镜像工具准备完成。
+
+下一步：下载并校验供体和 wayne 参考材料
+
+证据：[原始日志](../../logs/20261008T171316307081Z-cloud-static-tools.log)。
+
+## 2026-10-08T17:13:29.846052+00:00
+
+做了什么：开始下载并校验供体和 wayne 参考材料。
+
+发生了什么：云端进入本阶段。
+
+下一步：重建原始镜像并记录权限标签。
+
+

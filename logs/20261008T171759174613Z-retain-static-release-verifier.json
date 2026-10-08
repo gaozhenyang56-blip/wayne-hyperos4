@@ -1,0 +1,17 @@
+{
+  "label": "retain-static-release-verifier",
+  "started_utc": "2026-10-08T17:17:59.174613+00:00",
+  "finished_utc": "2026-10-08T17:17:59.187357+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "cp",
+    "/tmp/check-static-release.py",
+    "tools/verify_static_release.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171759174613Z-retain-static-release-verifier.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "将公开静态 Release 核验脚本纳入可复现源码。",
+  "outcome": "独立核验脚本已保存到 tools，可在发布后复查五项资产。",
+  "next_step": "同步脚本并继续跟踪供体下载。"
+}

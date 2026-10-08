@@ -1,0 +1,23 @@
+{
+  "label": "retry-static-workflow-dispatch",
+  "started_utc": "2026-10-08T17:10:13.704706+00:00",
+  "finished_utc": "2026-10-08T17:10:16.210962+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "378748955",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--ref",
+    "main"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171013704706Z-retry-static-workflow-dispatch.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "在 GitHub 注册新工作流后重新触发静态构建。",
+  "outcome": "静态工作流触发成功，开始全量构建。",
+  "failure_note": "工作流再次触发失败，继续定位权限或入口问题。",
+  "next_step": "跟踪云端进度并修复任何真实失败。"
+}

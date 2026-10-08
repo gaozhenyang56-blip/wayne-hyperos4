@@ -1,0 +1,4 @@
+research/base-miku-a15/vendor/build.prop:188:ro.boot.dynamic_partitions=true
+research/base-miku-a15/vendor/build.prop:189:ro.boot.dynamic_partitions_retrofit=true
+research/base-miku-a15/vendor/etc/fstab.qcom:29:/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount
+{"conclusion":"","status":"in_progress"}

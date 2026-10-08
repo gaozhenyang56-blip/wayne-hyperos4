@@ -1,0 +1,16 @@
+{
+  "label": "clarify-static-build-docs",
+  "started_utc": "2026-10-08T17:15:12.652715+00:00",
+  "finished_utc": "2026-10-08T17:15:12.769343+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/update-static-docs.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171512652715Z-clarify-static-build-docs.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "更正 README 当前交付描述，并补全继承配置中的 boot 容量证据。",
+  "outcome": "README 明确静态版正在构建、旧包不兼容、Miku 仅为材料来源；boot 64 MiB 容量来源已补全。",
+  "next_step": "继续云端下载与全量核验，成功后更新实际成品链接。"
+}

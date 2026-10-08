@@ -1,0 +1,18 @@
+{
+  "label": "prepare-static-public-verification",
+  "started_utc": "2026-10-08T17:17:40.646102+00:00",
+  "finished_utc": "2026-10-08T17:17:41.289835+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "/tmp/check-static-release.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171740646102Z-prepare-static-public-verification.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "准备独立的公开成品核验，避免仅依据云端上传结果交付。",
+  "outcome": "核验脚本已准备：检查静态 manifest、标签提交、五项资产摘要及三个小附件匿名下载。",
+  "next_step": "云端发布后执行独立核验，再提供最终链接。"
+}

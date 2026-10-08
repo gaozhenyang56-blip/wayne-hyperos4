@@ -1,0 +1,22 @@
+{
+  "label": "dispatch-static-cloud-build",
+  "started_utc": "2026-10-08T17:09:53.623519+00:00",
+  "finished_utc": "2026-10-08T17:09:54.180324+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "build-static-experimental.yml",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--ref",
+    "main"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261008T170953623519Z-dispatch-static-cloud-build.log",
+  "output_sha256": "ce27f7c6e8efeb2d1f1274c11ff3d145556e370f911253189d23e29ea8f454ea",
+  "action": "将静态实现和离线证据发布到 GitHub，并触发静态构建。",
+  "outcome": "静态源码已提交，专用工作流触发成功。",
+  "next_step": "跟踪云端构建，任何失败修复后重跑。"
+}

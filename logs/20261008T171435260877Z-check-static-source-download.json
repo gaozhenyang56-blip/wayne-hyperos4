@@ -1,0 +1,16 @@
+{
+  "label": "check-static-source-download",
+  "started_utc": "2026-10-08T17:14:35.260877+00:00",
+  "finished_utc": "2026-10-08T17:14:37.298035+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/monitor-static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171435260877Z-check-static-source-download.log",
+  "output_sha256": "add7200117583fcb40510ae13d16338533d4ed349e0b10cbdb2839f8cedf6f28",
+  "action": "核对云端准备完成后的真实下载阶段。",
+  "outcome": "云端依赖准备和工具编译通过，供体完整下载正在进行。",
+  "next_step": "等待完整哈希校验结束后核验静态镜像。"
+}

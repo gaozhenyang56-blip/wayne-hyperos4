@@ -1,0 +1,18 @@
+{
+  "label": "fix-static-clean-runner-input",
+  "started_utc": "2026-10-08T17:10:48.767956+00:00",
+  "finished_utc": "2026-10-08T17:10:48.850765+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_build_static.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171048767956Z-fix-static-clean-runner-input.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查干净云端环境的输入依赖并补齐目标 boot 的 ramdisk 提取。",
+  "outcome": "发现静态核验需要参考 ramdisk；已将显式提取加入静态 extract 阶段。",
+  "next_step": "立即上传修复，云端阶段同步时取得新版源码。"
+}

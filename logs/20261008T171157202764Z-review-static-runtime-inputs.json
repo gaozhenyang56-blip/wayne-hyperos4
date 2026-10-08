@@ -1,0 +1,17 @@
+{
+  "label": "review-static-runtime-inputs",
+  "started_utc": "2026-10-08T17:11:57.202764+00:00",
+  "finished_utc": "2026-10-08T17:11:59.091507+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "bash",
+    "-c",
+    "cat tools/static_wayne_layout.py; cat tools/build_system_overlay.py; gh run view 37814471259 --repo gaozhenyang56-blip/wayne-hyperos4 --json status,conclusion,jobs"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T171157202764Z-review-static-runtime-inputs.log",
+  "output_sha256": "37dc17a63caa228089627fd156013d1fb4382c11cff21e9ec7e647baa42b4f3d",
+  "action": "复查静态挂载转换、系统补丁范围和云端运行状态。",
+  "outcome": "静态 boot/vendor 使用物理节点，移除了 logical 及 rawdump/metadata 挂载；系统补丁保留既有范围。云端仍在准备环境。",
+  "next_step": "待云端进入工具和供体下载阶段，继续跟踪完整核验。"
+}
