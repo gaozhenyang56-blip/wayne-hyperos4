@@ -9,6 +9,7 @@ import pathlib
 import shutil
 import subprocess
 import sys
+import time
 import zipfile
 
 ROOT=pathlib.Path(__file__).resolve().parent.parent
@@ -114,6 +115,7 @@ def stage(name):
         shutil.rmtree(verified)
         run(sys.executable,ROOT/'tools/test_installer_offline.py')
         run(sys.executable,ROOT/'tools/test_native_versions.py')
+        run(sys.executable,ROOT/'tools/test_progress_sync.py')
         run(sys.executable,ROOT/'tools/audit_native_versions.py',DONOR/'system',BASE/'vendor',
             ROOT/'downloads/native-apex-audit/runtime',ROOT/'research/wayne-os4-native-versions.json')
     elif name=='vintf':
@@ -180,8 +182,25 @@ def sync_progress():
         if (ROOT/name).exists():run('git','add',name)
     if subprocess.run(['git','diff','--cached','--quiet']).returncode==0:return
     run('git','commit','-m','docs: update timestamped cloud build progress')
-    run('git','fetch','origin','main');run('git','rebase','--autostash','origin/main')
-    run('git','push','origin','HEAD:main')
+    push_progress()
+
+
+def push_progress():
+    # A concurrent plugin MD update can advance main between fetch and push.
+    for attempt in range(5):
+        run('git','fetch','origin','main')
+        run('git','rebase','--autostash','origin/main')
+        result=subprocess.run(['git','push','origin','HEAD:main'],text=True,
+                              stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
+        print(result.stdout,flush=True)
+        if result.returncode==0:return
+        if not any(marker in result.stdout.lower() for marker in
+                   ('[rejected]','[remote rejected]','non-fast-forward','cannot lock ref')):
+            raise subprocess.CalledProcessError(result.returncode,result.args,output=result.stdout)
+        if attempt==4:
+            raise subprocess.CalledProcessError(result.returncode,result.args,output=result.stdout)
+        print('Progress push raced with another update; refetching without force.',flush=True)
+        time.sleep(min(attempt+1,3))
 
 
 def main():
