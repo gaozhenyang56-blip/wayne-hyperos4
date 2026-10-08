@@ -1,0 +1,5 @@
+Original ZIP range preflight passed 2683141762
+HTTP 401: Bad credentials (https://uploads.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/releases/404595475/assets?label=&name=SHA256SUMS)
+Try authenticating with:  gh auth login
+Preflight exit: 0
+Release upload exit: 1

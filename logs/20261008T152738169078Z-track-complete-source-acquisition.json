@@ -1,0 +1,16 @@
+{
+  "label": "track-complete-source-acquisition",
+  "started_utc": "2026-10-08T15:27:38.169078+00:00",
+  "finished_utc": "2026-10-08T15:28:20.368816+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152738169078Z-track-complete-source-acquisition.log",
+  "output_sha256": "054a0ad8e575bfe07ee6f9f2ff3af0915a97a0ee996c1ad3ed866539387b4257",
+  "action": "持续跟踪完整原包取得，核查本阶段是否结束或失败。",
+  "outcome": "当前云端状态和阶段记录已保存，原包完整性仍以 SHA-256 结束检查为准。",
+  "next_step": "本阶段成功后核查镜像提取，失败时定位具体分段响应。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "diagnose-release-auth-and-source",
+  "started_utc": "2026-10-08T15:20:51.614705+00:00",
+  "finished_utc": "2026-10-08T15:20:54.870469+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152051614705Z-diagnose-release-auth-and-source.log",
+  "output_sha256": "857d7a8d526a236f0333460055a2cd139b6536a1273e571aa528430d27c864e4",
+  "action": "区分插件连接与命令行 Release 授权，并复查原包范围入口。",
+  "outcome": "已读取普通 GitHub API、Release 与供体入口的真实响应，接下来据此选择上传路径。",
+  "next_step": "供体可下载时启动云端构建；否则保留已同步代码并记录具体外部阻塞。"
+}

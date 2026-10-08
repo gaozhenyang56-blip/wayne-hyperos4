@@ -1,0 +1,23 @@
+{
+  "label": "retry-release-after-reconnect",
+  "started_utc": "2026-10-08T15:20:11.148039+00:00",
+  "finished_utc": "2026-10-08T15:20:11.544763+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "release",
+    "upload",
+    "offline-20261006",
+    "artifacts/releases/SHA256SUMS",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--clobber"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261008T152011148039Z-retry-release-after-reconnect.log",
+  "output_sha256": "1453980fae8e344a239d4f1fc9a4e96ecfacefeeae6e3675190d6d3e1f6d32b3",
+  "action": "在 GitHub 连接恢复后重新测试 Release 校验清单上传。",
+  "outcome": "校验清单上传成功，下一步上传并核对实验分卷。",
+  "failure_note": "连接已恢复，但附件请求仍失败；以实际响应判断传输阻塞。",
+  "next_step": "成功时上传已有成品；失败时检查云端原包入口并重试复现路径。"
+}

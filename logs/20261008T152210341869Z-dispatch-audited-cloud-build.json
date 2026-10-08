@@ -1,0 +1,23 @@
+{
+  "label": "dispatch-audited-cloud-build",
+  "started_utc": "2026-10-08T15:22:10.341869+00:00",
+  "finished_utc": "2026-10-08T15:22:13.638825+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "build-experimental.yml",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--ref",
+    "main"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152210341869Z-dispatch-audited-cloud-build.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "启动已包含 APEX 和版本符号检查的新云端构建。",
+  "outcome": "云端工作流调度请求成功，接下来核对实际任务。",
+  "failure_note": "命令行工作流调度失败，需要使用插件发布触发配置。",
+  "next_step": "跟踪下载、重建、检查和附件发布的实际结果。"
+}

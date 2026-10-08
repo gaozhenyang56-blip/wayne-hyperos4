@@ -1,0 +1,25 @@
+{
+  "label": "inspect-new-audited-cloud-run",
+  "started_utc": "2026-10-08T15:22:27.764931+00:00",
+  "finished_utc": "2026-10-08T15:22:28.588845+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "run",
+    "list",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--workflow",
+    "build-experimental.yml",
+    "--limit",
+    "1",
+    "--json",
+    "databaseId,status,conclusion,url,headSha"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152227764931Z-inspect-new-audited-cloud-run.log",
+  "output_sha256": "1a384dafc2f731d607b2e36f8be5b451a7db42e55bad31b403a4504ef65d14b7",
+  "action": "确认刚调度的云端任务 ID、提交和实际运行状态。",
+  "outcome": "已取得真实任务链接及状态，开始跟踪执行。",
+  "next_step": "核对原包预检及后续完整下载，不把已启动等同于构建完成。"
+}

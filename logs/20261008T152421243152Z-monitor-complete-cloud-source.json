@@ -1,0 +1,16 @@
+{
+  "label": "monitor-complete-cloud-source",
+  "started_utc": "2026-10-08T15:24:21.243152+00:00",
+  "finished_utc": "2026-10-08T15:25:03.219586+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152421243152Z-monitor-complete-cloud-source.log",
+  "output_sha256": "1532b0b78967437b42598dc3c0e8a62fb20a2c614a6cfb88b61fe8cc7df5c21a",
+  "action": "跟踪云端预检通过后的工具编译和完整原包下载阶段。",
+  "outcome": "真实阶段记录和任务状态已读取，完整哈希检查仍以阶段结束结果为准。",
+  "next_step": "完整原包取得后检查新 APEX 审计及实验包发布。"
+}

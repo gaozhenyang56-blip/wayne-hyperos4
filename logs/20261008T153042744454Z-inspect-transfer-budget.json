@@ -1,0 +1,18 @@
+{
+  "label": "inspect-transfer-budget",
+  "started_utc": "2026-10-08T15:30:42.744454+00:00",
+  "finished_utc": "2026-10-08T15:30:42.750796+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "sed",
+    "-n",
+    "1,220p",
+    "tools/download_verified.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153042744454Z-inspect-transfer-budget.log",
+  "output_sha256": "cb7a412f9e07a0cec7441f42f20c4d39ef1ec2fff25ba795f88fda3e275f12c6",
+  "action": "检查分段下载的超时与重试限制，确认云端任务仍有合理执行预算。",
+  "outcome": "下载使用四路并发、每段最多五次尝试，并在结束时验证整个原包哈希。",
+  "next_step": "等待本轮下载给出完整性结果；如失败，根据实际响应修复。"
+}

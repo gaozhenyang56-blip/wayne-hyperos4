@@ -1,0 +1,17 @@
+{
+  "label": "monitor-restored-cloud-build",
+  "started_utc": "2026-10-08T15:23:24.945467+00:00",
+  "finished_utc": "2026-10-08T15:24:01.303572+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import time,subprocess;time.sleep(35);subprocess.run([\"gh\",\"run\",\"view\",\"37800194092\",\"--repo\",\"gaozhenyang56-blip/wayne-hyperos4\",\"--json\",\"status,conclusion,jobs,url\"],check=True)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152324945467Z-monitor-restored-cloud-build.log",
+  "output_sha256": "abea25e8cf278676231043d4af776ebbe7be52a30ace231b1d4f6cff7c2a74a4",
+  "action": "短时跟踪新云端构建，读取预检与实际执行步骤。",
+  "outcome": "实际步骤状态已保存；后续依照真实执行结果推进。",
+  "next_step": "下载完成后检查镜像提取与新审计，失败时按具体日志修复。"
+}

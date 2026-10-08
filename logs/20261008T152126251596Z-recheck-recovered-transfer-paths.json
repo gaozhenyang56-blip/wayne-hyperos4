@@ -1,0 +1,17 @@
+{
+  "label": "recheck-recovered-transfer-paths",
+  "started_utc": "2026-10-08T15:21:26.251596+00:00",
+  "finished_utc": "2026-10-08T15:21:30.508353+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261008T152126251596Z-recheck-recovered-transfer-paths.log",
+  "output_sha256": "6b0403011e9c48ce51f2a5c39e01546e3dd802aad3186cacab1a4a9f4a77408a",
+  "action": "对恢复的入口执行完整预检，并再试一次已有校验清单上传。",
+  "outcome": "预检和小附件测试结果已经取得，原始结果用于决定是否启动云端复现。",
+  "failure_note": "预检或上传失败，保留真实错误以选择备用路径。",
+  "next_step": "原包预检成功后启动最新审计流程的云端构建。"
+}

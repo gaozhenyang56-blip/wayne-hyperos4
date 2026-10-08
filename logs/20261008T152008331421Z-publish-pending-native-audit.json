@@ -1,0 +1,17 @@
+{
+  "label": "publish-pending-native-audit",
+  "started_utc": "2026-10-08T15:20:08.331421+00:00",
+  "finished_utc": "2026-10-08T15:20:08.368393+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "print(\"Pending audit source and reports published\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T152008331421Z-publish-pending-native-audit.log",
+  "output_sha256": "2000e08439366431977a0673f778565788f9081aa0760184048b19e94a2335c0",
+  "action": "补传原生库审计器、测试、云端前置检查及此前未同步的原始日志。",
+  "outcome": "代码和检查报告已提交 main；既有分卷保留，没有重建已完成的镜像。",
+  "next_step": "更新连接状态说明并重新核查 Release 上传与原包入口。"
+}
