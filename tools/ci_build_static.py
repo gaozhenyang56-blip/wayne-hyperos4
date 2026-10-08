@@ -39,7 +39,7 @@ def stage(name):
             'workflow_commit':os.environ['GITHUB_SHA'],
             'images':{n+'.img':ci.sha(OUT/(n+'.img')) for n in STOCK}},indent=2)+'\n')
     elif name=='verify':
-        for tool in ('test_static_layout.py','test_static_installer.py','test_static_package.py','test_native_versions.py','test_progress_sync.py'):
+        for tool in ('test_source_retries.py','test_static_layout.py','test_static_installer.py','test_static_package.py','test_native_versions.py','test_progress_sync.py'):
             python(tool)
         python('verify_static_candidate.py')
         for entry in json.loads((ROOT/'research/community-framework-origin-check.json').read_text())['files']:
