@@ -34,6 +34,10 @@ def stage(name):
         python('repack_system_metadata.py',ci.DONOR/'system',ci.DONOR/'inode-metadata.json',OUT/'system-overlay.tar',OUT/'system.img')
         python('build_wayne_boot.py',ci.BASE/'boot.img',ci.DONOR/'ramdisk/init',OUT/'boot.img','--layout','stock-size-static')
         python('build_static_vendor.py',ci.BASE/'vendor',ci.BASE/'vendor.img',OUT/'vendor.img')
+        (REPORT/'build-input.json').write_text(json.dumps({
+            'source_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
+            'workflow_commit':os.environ['GITHUB_SHA'],
+            'images':{n+'.img':ci.sha(OUT/(n+'.img')) for n in STOCK}},indent=2)+'\n')
     elif name=='verify':
         for tool in ('test_static_layout.py','test_static_installer.py','test_static_package.py','test_native_versions.py','test_progress_sync.py'):
             python(tool)
@@ -45,14 +49,18 @@ def stage(name):
         ci.stage('vintf')
         shutil.copyfile(ROOT/'research/wayne-vintf-check.json',REPORT/'vintf-check.json')
     elif name=='package':
-        python('package_static_candidate.py','--build-commit',os.environ['GITHUB_SHA'])
+        source=json.loads((REPORT/'build-input.json').read_text())
+        for name,digest in source['images'].items():
+            if ci.sha(OUT/name)!=digest:raise ValueError('Built image changed: '+name)
+        python('package_static_candidate.py','--build-commit',source['source_commit'])
         python('verify_split_zip.py',*sorted((ROOT/'artifacts/releases/static').glob('*.zip.*')),
                '--base',NAME+'/','--report',REPORT/'archive-check.json')
     elif name=='publish':
         repo=os.environ['GITHUB_REPOSITORY'];folder=ROOT/'artifacts/releases/static'
+        source_commit=json.loads((ROOT/'artifacts/static-candidate-package.json').read_text())['manifest']['build_commit']
         check=subprocess.run(['gh','release','view',TAG,'--repo',repo],capture_output=True)
         if check.returncode:
-            ci.run('gh','release','create',TAG,'--repo',repo,'--draft','--prerelease','--target',os.environ['GITHUB_SHA'],
+            ci.run('gh','release','create',TAG,'--repo',repo,'--draft','--prerelease','--target',source_commit,
                    '--title','wayne 原版静态分区 HyperOS 4 离线实验包（未真机验证）','--notes',
                    '适用于原版容量静态分区的 wayne 离线实验：不转换分区，不要求预装 Miku UI。boot/vendor 参考材料经过静态适配。必须先在 root ADB Recovery 检查实际分区，再进入 bootloader；安装器拒绝容量或布局不符。严格 SELinux 检查仍失败，启动、加密和硬件功能未知。分卷须合并后解压，详见 INSTALL.txt。')
         files=sorted(folder.glob('*.zip.*'))+[folder/'SHA256SUMS',folder/'stage/INSTALL.txt',folder/'stage/manifest.json']
@@ -64,12 +72,12 @@ def stage(name):
             asset=assets[name]
             if asset['size']!=record['size'] or asset.get('digest')!='sha256:'+record['sha256']:
                 raise ValueError('Public asset size/digest mismatch: '+name)
-        ci.run('gh','release','edit',TAG,'--repo',repo,'--draft=false','--prerelease','--latest=false','--target',os.environ['GITHUB_SHA'])
+        ci.run('gh','release','edit',TAG,'--repo',repo,'--draft=false','--prerelease','--latest=false','--target',source_commit)
         release=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases/tags/'+TAG],text=True))
         if release['draft']:raise ValueError('Static release still a draft')
         (ROOT/'artifacts/static-release-publication.json').write_text(json.dumps({
             'url':release['html_url'],'tag':TAG,'draft':False,'prerelease':True,
-            'build_commit':os.environ['GITHUB_SHA'],'assets_verified':True,'assets':expected,
+            'build_commit':source_commit,'workflow_commit':os.environ['GITHUB_SHA'],'assets_verified':True,'assets':expected,
             'layout':'stock-size-static','requires_miku_installed':False,'hardware_tested':False},indent=2)+'\n')
     else:raise ValueError('Unknown stage: '+name)
 
