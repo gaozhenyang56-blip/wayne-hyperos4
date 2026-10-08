@@ -15,5 +15,17 @@
     "prefer": "Near Snapdragon 660 hardware and Linux 4.19",
     "mi8937": "User explicitly permits trying the Mi8937 community port as an experimental candidate; platform name is not an OS version",
     "release_gate": "Verify actual framework/APEX version and trustworthy provenance, not just build properties"
+  },
+  "target_device": {
+    "device": "wayne",
+    "kernel_series": "4.19",
+    "dynamic_partitions": false,
+    "current_rom_is_miku": false,
+    "partition_sizes": "unchanged from original, confirmed by user",
+    "partition_conversion_authorized": false,
+    "preserve_partition_table": true,
+    "current_rom_name": null,
+    "current_recovery": null,
+    "capacity_bytes_verified": false
   }
 }
