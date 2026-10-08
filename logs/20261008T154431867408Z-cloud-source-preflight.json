@@ -1,0 +1,17 @@
+{
+  "label": "cloud-source-preflight",
+  "started_utc": "2026-10-08T15:44:31.867408+00:00",
+  "finished_utc": "2026-10-08T15:44:34.690999+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "python",
+    "tools/preflight_source.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154431867408Z-cloud-source-preflight.log",
+  "output_sha256": "f23069206d93f6f4d7136c5ea423942f2c58f650970e5d469b7595a85d735106",
+  "action": "检查供体原包分段入口。",
+  "outcome": "云端取得正确 ZIP 头和完整文件大小。",
+  "failure_note": "云端供体入口不可用，构建停止。",
+  "next_step": "预检成功后继续下载；失败时寻找可核验的原包镜像。"
+}
