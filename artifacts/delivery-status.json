@@ -1,6 +1,6 @@
 {
-  "updated_utc": "2026-10-08T16:14:39.766446+00:00",
-  "status": "public-offline-experimental-release",
+  "updated_utc": "2026-10-08T16:39:15.257634+00:00",
+  "status": "previous-release-incompatible-with-user-static-layout",
   "source_candidate": "Mi8937 community HyperOS 4 experiment",
   "release_url": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006",
   "release_tag": "offline-20261006",
@@ -36,5 +36,8 @@
   "local_old_archive_preserved": true,
   "old_local_report_backup": "artifacts/releases/local-checkpoint-c7926a9",
   "local_binary_upload_auth_failure": "historical local HTTP 401; delivery completed through GitHub Actions",
-  "next": "Physical boot and hardware verification remains pending; offline release is delivered."
+  "next": "Verify original static partition capacities and compatible 4.19 boot/vendor before building a new static package.",
+  "target_layout": "stock-size static wayne",
+  "user_device_compatible_release_delivered": false,
+  "previous_release_retained_for_research": true
 }
