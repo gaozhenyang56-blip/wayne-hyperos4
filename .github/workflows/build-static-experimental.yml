@@ -20,6 +20,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
+      - uses: actions/cache/restore@v4
+        id: source-cache
+        with:
+          path: downloads/mi8937-hyperos4.zip
+          key: mi8937-source-sha256-1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39
       - name: Preflight source and synchronize timestamped report
         run: |
           git config user.name github-actions[bot]
@@ -47,3 +52,21 @@ jobs:
           exit "$result"
       - name: Build, verify and publish static experimental assets
         run: python tools/ci_build_static.py
+      - name: Verify source cache candidate even after a later stage fails
+        if: always()
+        id: cache-check
+        run: |
+          python - <<'PY'
+          import hashlib,os,pathlib
+          p=pathlib.Path('downloads/mi8937-hyperos4.zip')
+          verified=False
+          if p.is_file():
+              with p.open('rb') as f: verified=hashlib.file_digest(f,'sha256').hexdigest()=='1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39'
+          with open(os.environ['GITHUB_OUTPUT'],'a') as f: f.write('verified='+str(verified).lower()+'\n')
+          print('Complete source SHA256 verified for cache:',verified)
+          PY
+      - uses: actions/cache/save@v4
+        if: always() && steps.cache-check.outputs.verified == 'true' && steps.source-cache.outputs.cache-hit != 'true'
+        with:
+          path: downloads/mi8937-hyperos4.zip
+          key: mi8937-source-sha256-1a9a9eb684e1174455ae3a84524de2e4f309ddc62e7dacae6565aa8d2dd14c39
