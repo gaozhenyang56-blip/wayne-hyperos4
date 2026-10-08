@@ -1,0 +1,17 @@
+{
+  "label": "cloud-static-source-preflight",
+  "started_utc": "2026-10-08T17:31:36.083068+00:00",
+  "finished_utc": "2026-10-08T17:31:37.707503+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "python",
+    "tools/preflight_source.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T173136083068Z-cloud-static-source-preflight.log",
+  "output_sha256": "f23069206d93f6f4d7136c5ea423942f2c58f650970e5d469b7595a85d735106",
+  "action": "检查静态版供体原包入口。",
+  "outcome": "供体入口和 ZIP 头预检通过。",
+  "failure_note": "供体预检失败，构建停止。",
+  "next_step": "通过后准备镜像工具和静态构建。"
+}
