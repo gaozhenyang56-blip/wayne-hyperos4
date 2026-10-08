@@ -1,0 +1,18 @@
+https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/untagged-b781760beaa7effd8509
+gh: Not Found (HTTP 404)
+Traceback (most recent call last):
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 108, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 95, in main
+    if a.stage:stage(a.stage);return
+               ^^^^^^^^^^^^^^
+  File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_static.py", line 68, in stage
+    release=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases/tags/'+TAG],text=True))
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['gh', 'api', 'repos/gaozhenyang56-blip/wayne-hyperos4/releases/tags/offline-static-20261009']' returned non-zero exit status 1.

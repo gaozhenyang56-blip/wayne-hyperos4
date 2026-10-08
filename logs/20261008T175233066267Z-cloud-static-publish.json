@@ -1,0 +1,19 @@
+{
+  "label": "cloud-static-publish",
+  "started_utc": "2026-10-08T17:52:33.066267+00:00",
+  "finished_utc": "2026-10-08T17:53:36.910163+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_static.py",
+    "--stage",
+    "publish"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261008T175233066267Z-cloud-static-publish.log",
+  "output_sha256": "45e62fa7d4081c633748b2509f07f19fa4a9491aff570676f6be29a7d2d727ac",
+  "action": "发布静态实验包并核验全部资产。",
+  "outcome": "五项 Release 资产的大小和哈希已核验，预发布已公开。",
+  "failure_note": "本阶段失败，日志已保留；没有将失败记为通过。",
+  "next_step": "提供实验成品链接，保留未真机测试和运行时问题说明。"
+}
