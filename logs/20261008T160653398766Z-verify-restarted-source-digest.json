@@ -1,0 +1,16 @@
+{
+  "label": "verify-restarted-source-digest",
+  "started_utc": "2026-10-08T16:06:53.398766+00:00",
+  "finished_utc": "2026-10-08T16:06:55.480386+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160653398766Z-verify-restarted-source-digest.log",
+  "output_sha256": "3f35e7affe099522e9ee3224c5872a233e2f0b6fb801d52b03b0ad33b5c258f2",
+  "action": "独立读取新任务的完整下载证据，确认供体 SHA-256 校验成功。",
+  "outcome": "新任务日志包含预期完整原包哈希和完整文件校验通过标志。",
+  "next_step": "检查镜像提取和重建，再读取新增原生库与同步回归验证。"
+}

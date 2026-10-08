@@ -1,0 +1,16 @@
+{
+  "label": "verify-release-digests-and-links",
+  "started_utc": "2026-10-08T16:12:03.803815+00:00",
+  "finished_utc": "2026-10-08T16:12:04.466223+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T161203803815Z-verify-release-digests-and-links.log",
+  "output_sha256": "a0dff3c4b35840178c839fa5fbc2ec397cf614959ec8ceb37717a7c2a2c4e23d",
+  "action": "逐项比对公开分卷附件大小与 SHA-256，检查发布报告的链接是否仍指向草稿。",
+  "outcome": "两份公开分卷摘要与本轮清单一致，归档验证和四项原生库审计通过；发现发布报告保存了发布前的草稿 URL，需要修正。",
+  "next_step": "修正发布 URL 的生成和报告，更新 README 成品入口及交付状态。"
+}

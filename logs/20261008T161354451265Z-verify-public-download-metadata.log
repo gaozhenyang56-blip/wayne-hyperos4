@@ -1,0 +1,31 @@
+[{"name": "INSTALL.txt", "sha256_verified": true, "bytes": 1699}, {"name": "manifest.json", "sha256_verified": true, "bytes": 1260}, {"name": "SHA256SUMS", "sha256_verified": true, "bytes": 212}]
+Xiaomi 6X (wayne) HyperOS 4 - OFFLINE EXPERIMENTAL PACKAGE
+
+No physical device was available. Boot, encryption, radio, camera, fingerprint
+and other hardware behavior have not been tested. Strict SELinux neverallow
+checking still fails. This is not a verified stable release.
+
+Supported prerequisite: wayne already using the Miku Android 15 retrofit
+dynamic partition layout with metadata on system and system/vendor/cust backing
+devices. This package does not convert a stock or other partition layout.
+
+Download all ZIP parts and compare them to SHA256SUMS. Concatenate parts in
+numeric order into one ZIP, then extract. Windows: use copy /b; Linux/macOS:
+use cat. Do not extract or flash a single part on its own.
+
+Python 3.11+ is required. Run python install.py --verify-only to check all
+images without a device. The JSON manifest lists exact image hashes and status.
+
+Installing writes system, vendor and boot. Back up your data and the original
+images first. Enter a compatible fastbootd on an unlocked wayne and use current
+Android platform-tools. Run python install.py --flash --serial DEVICE_SERIAL.
+The script rejects a different device, unsupported layout and insufficient
+space. It preserves existing product/system_ext allocations, writes no firmware,
+does not erase userdata and does not reboot automatically. A data reset may be
+necessary across Android versions, but is not performed by this package.
+
+Static reports are in reports/. Their scope is limited: HAL declarations are
+not proof that the services run; entry-point ELF symbol checks do not resolve
+all linker namespaces or APEX behavior. Runtime SELinux compilation with -N
+does not mean strict neverallow checking passed.
+

@@ -1,0 +1,16 @@
+{
+  "label": "inspect-public-release-handoff",
+  "started_utc": "2026-10-08T16:11:22.104119+00:00",
+  "finished_utc": "2026-10-08T16:11:26.414163+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T161122104119Z-inspect-public-release-handoff.log",
+  "output_sha256": "70f25ac1f061b7feb6085d38f4eb398d6165e270fbee6e5d087cf44e22a77f17",
+  "action": "独立核查公开 Release 的实际附件，并读取本轮打包、发布和兼容性报告。",
+  "outcome": "公开 Release 元数据及本轮报告已取得，准备逐项比对实际附件大小和摘要。",
+  "next_step": "比对通过后更新 README 和交付状态，保留旧本地检查点并同步云端报告。"
+}

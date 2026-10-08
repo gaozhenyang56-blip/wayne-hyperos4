@@ -1,0 +1,17 @@
+{
+  "label": "final-repository-consistency",
+  "started_utc": "2026-10-08T16:15:52.814664+00:00",
+  "finished_utc": "2026-10-08T16:15:54.263053+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T161552814664Z-final-repository-consistency.log",
+  "output_sha256": "6b9044b591885e026ac9cfcf81c2be17e907cc6f46e550cc33564144ec812873",
+  "action": "最终对齐已发布仓库，补取云端记录，检查源码、报告、说明与公开成品的一致性。",
+  "outcome": "最终源代码、报告、README 和交付状态与远端一致，旧本地分卷保持不变；云端缺失记录已补齐。",
+  "failure_note": "最终一致性检查失败，先修复差异再交付。",
+  "next_step": "补传本次已完成操作的剩余原始证据；实验成品已公开，实际启动和硬件验证仍待真机。"
+}

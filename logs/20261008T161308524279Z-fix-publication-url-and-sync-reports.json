@@ -1,0 +1,16 @@
+{
+  "label": "fix-publication-url-and-sync-reports",
+  "started_utc": "2026-10-08T16:13:08.524279+00:00",
+  "finished_utc": "2026-10-08T16:13:13.957418+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T161308524279Z-fix-publication-url-and-sync-reports.log",
+  "output_sha256": "f4cf475686a8eb849759865b02ed589c72cc63b419db447f70badbdc53eee282",
+  "action": "保留旧本地产物报告，同步云端最终报告，并修复发布报告使用草稿 URL 的问题。",
+  "outcome": "旧报告已备份，云端最终报告已同步；发布脚本改为公开后重新读取 Release，并使用公开 URL。",
+  "next_step": "上传源码修复和报告，核验公开小附件，再更新 README 和交付状态。"
+}

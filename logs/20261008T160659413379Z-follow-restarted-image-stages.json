@@ -1,0 +1,17 @@
+{
+  "label": "follow-restarted-image-stages",
+  "started_utc": "2026-10-08T16:06:59.413379+00:00",
+  "finished_utc": "2026-10-08T16:07:42.094923+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160659413379Z-follow-restarted-image-stages.log",
+  "output_sha256": "2227d0db59aa9872b88fbe9e8110c5fb82e3b025e0cdb2919d85965ffca30ba9",
+  "action": "跟踪完整原包核验通过后的镜像提取与重建。",
+  "outcome": "当前实际镜像阶段已保存。",
+  "next_step": "重建成功后核查离线验证报告及同步回归测试。"
+}

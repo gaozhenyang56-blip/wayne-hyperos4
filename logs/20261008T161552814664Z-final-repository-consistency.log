@@ -1,0 +1,23 @@
+From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+ * branch            main       -> FETCH_HEAD
+   4e48f6f..8aaa5b7  main       -> origin/main
+{"source_and_reports_match_remote": true, "restored_cloud_files": 16, "local_old_archive_preserved": true, "public_release": "https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006", "assets": 5}
+0261008T160659413379Z-follow-restarted-image-stages.log
+?? logs/20261008T160814247965Z-monitor-new-image-verification.json
+?? logs/20261008T160814247965Z-monitor-new-image-verification.log
+?? logs/20261008T160932850698Z-read-cloud-verification-reports.json
+?? logs/20261008T160932850698Z-read-cloud-verification-reports.log
+?? logs/20261008T161004653872Z-follow-hal-and-package-stages.json
+?? logs/20261008T161004653872Z-follow-hal-and-package-stages.log
+?? logs/20261008T161122104119Z-inspect-public-release-handoff.json
+?? logs/20261008T161122104119Z-inspect-public-release-handoff.log
+?? logs/20261008T161203803815Z-verify-release-digests-and-links.json
+?? logs/20261008T161203803815Z-verify-release-digests-and-links.log
+?? logs/20261008T161308524279Z-fix-publication-url-and-sync-reports.json
+?? logs/20261008T161308524279Z-fix-publication-url-and-sync-reports.log
+?? logs/20261008T161354451265Z-verify-public-download-metadata.json
+?? logs/20261008T161354451265Z-verify-public-download-metadata.log
+?? logs/20261008T161439674441Z-finalize-public-delivery-docs.json
+?? logs/20261008T161439674441Z-finalize-public-delivery-docs.log
+?? logs/20261008T161552814664Z-final-repository-consistency.log
+

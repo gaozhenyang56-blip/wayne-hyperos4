@@ -1,0 +1,10 @@
+{"status": "in_progress", "conclusion": null, "updated_at": "2026-10-08T15:44:27Z"}
+2026-10-08T16:05:49.752489+00:00
+
+做了什么：开始重建系统与目标 vendor，提取原始 inode 元数据。
+
+发生了什么：云端任务已进入本阶段。
+
+下一步：完成本阶段后，生成保留 wayne 硬件支持的实验 boot/system。
+
+

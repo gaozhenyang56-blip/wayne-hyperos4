@@ -1,0 +1,48 @@
+PASS: public part digests, sizes and state; archive readback; focused HAL check; four native inventories.
+Publication URL needs update: https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/untagged-c75899258190dd966141 -> https://github.com/gaozhenyang56-blip/wayne-hyperos4/releases/tag/offline-20261006
+{"ref":"refs/tags/offline-20261006","node_id":"REF_kwDOU9qPvLpyZWZzL3RhZ3Mvb2ZmbGluZS0yMDI2MTAwNg","url":"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/git/refs/tags/offline-20261006","object":{"sha":"73526dd35460dc6c65465333b6b01d2851e95649","type":"commit","url":"https://api.github.com/repos/gaozhenyang56-blip/wayne-hyperos4/git/commits/73526dd35460dc6c65465333b6b01d2851e95649"}}
+        args=[ROOT/'tools/local/vintf_pair_check',BASE/'vendor/etc/vintf/manifest.xml',
+              *sorted((BASE/'vendor/etc/vintf/manifest').glob('*.xml')),ROOT/'config/compatibility_matrix.5.xml',
+              ROOT/'config/compatibility_matrix.device.wayne.xml',
+              *sorted(p for p in (DONOR/'system/system/etc/vintf').glob('compatibility_matrix*.xml')
+                      if p.name!='compatibility_matrix.device.xml')]
+        result=subprocess.run([str(x) for x in args],capture_output=True,text=True)
+        print(result.stdout+result.stderr)
+        (ROOT/'research/wayne-vintf-check.json').write_text(json.dumps({'check':{'exit_code':result.returncode,
+              'output':result.stdout+result.stderr},'hardware_tested':False,'hidl_inheritance_metadata_provided':False,
+              'not_covered':['actual kernel configuration','APEX runtime','linker namespaces','HAL functionality']},indent=2)+'\n')
+        if result.returncode:raise ValueError('Target HAL declaration mismatch')
+    elif name=='package':
+        run(sys.executable,ROOT/'tools/package_candidate.py','--build-commit',os.environ['GITHUB_SHA'])
+        parts=sorted((ROOT/'artifacts/releases').glob('*.zip.*'))
+        run(sys.executable,ROOT/'tools/verify_split_zip.py',*parts,'--report',ROOT/'research/candidate-archive-check.json')
+    elif name=='publish':
+        repo=os.environ['GITHUB_REPOSITORY'];tag='offline-20261006'
+        check=subprocess.run(['gh','release','view',tag,'--repo',repo],capture_output=True)
+        if check.returncode:
+            run('gh','release','create',tag,'--repo',repo,'--draft','--prerelease','--target',os.environ['GITHUB_SHA'],
+                '--title','wayne HyperOS 4 离线实验包（未真机验证）','--notes',
+                '无真机测试。仅供已采用 Miku retrofit 动态分区布局的 wayne 实验。严格 SELinux 检查仍失败，运行时问题未完全核验。')
+        files=sorted((ROOT/'artifacts/releases').glob('*.zip.*'))+[ROOT/'artifacts/releases/SHA256SUMS',
+              ROOT/'artifacts/releases/stage/INSTALL.txt',ROOT/'artifacts/releases/stage/manifest.json']
+        run('gh','release','upload',tag,*files,'--repo',repo,'--clobber')
+        releases=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases'],text=True))
+        release=next(r for r in releases if r['tag_name']==tag)
+        expected=json.loads((ROOT/'artifacts/candidate-package.json').read_text())['parts']
+        assets={a['name']:a for a in release['assets']}
+        for name,record in expected.items():
+            asset=assets[name]
+            if asset['size']!=record['size'] or asset.get('digest')!='sha256:'+record['sha256']:
+                raise ValueError('Remote asset size/digest mismatch: '+name)
+        run('gh','release','edit',tag,'--repo',repo,'--draft=false','--prerelease','--latest=false','--target',os.environ['GITHUB_SHA'])
+        (ROOT/'artifacts/release-publication.json').write_text(json.dumps({'url':release['html_url'],
+              'tag':tag,'build_commit':os.environ['GITHUB_SHA'],'assets_verified':True,'hardware_tested':False,
+              'parts':expected},indent=2)+'\n')
+    else:raise ValueError('Unknown stage: '+name)
+
+
+STAGES=[('tools','编译固定版本的镜像工具','镜像工具准备完成。'),
+        ('download','取得并校验社区供体和 wayne 原包材料','完整供体哈希和底包条目 CRC 校验通过。'),
+        ('extract','重建系统与目标 vendor，提取原始 inode 元数据','原始镜像已正确重建，原始标签及权限已记录。'),
+        ('build','生成保留 wayne 硬件支持的实验 boot/system','实验镜像已生成，没有真机启动结论。'),
+        ('verify','核对镜像内容、元数据、boot 结构和策略证据输入','离线镜像检查通过，严格策略失败仍如实保留。'),

@@ -1,0 +1,17 @@
+{
+  "label": "monitor-new-image-verification",
+  "started_utc": "2026-10-08T16:08:14.247965+00:00",
+  "finished_utc": "2026-10-08T16:08:56.128020+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py",
+    "40"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160814247965Z-monitor-new-image-verification.log",
+  "output_sha256": "5064f310764df20a00ccfc626e31b4bee13514c8f779e2ca07e01a61420dd131",
+  "action": "检查修复构建的镜像重建是否完成并进入离线验证。",
+  "outcome": "最新镜像阶段和任务状态已读取。",
+  "next_step": "进入验证后读取内容、元数据、boot 和版本符号报告。"
+}

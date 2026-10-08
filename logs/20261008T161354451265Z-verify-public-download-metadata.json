@@ -1,0 +1,17 @@
+{
+  "label": "verify-public-download-metadata",
+  "started_utc": "2026-10-08T16:13:54.451265+00:00",
+  "finished_utc": "2026-10-08T16:13:55.388069+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T161354451265Z-verify-public-download-metadata.log",
+  "output_sha256": "a0e22bccadbfc2ff756ff5cc6daf0e7988fa988d4d559f7fa79d8b396c2e9360",
+  "action": "通过公开下载 URL 读取安装说明、清单和校验文件，独立验证小附件的实际内容。",
+  "outcome": "三份公开小附件已下载且 SHA-256 与 GitHub 摘要一致，清单构建提交和分卷哈希匹配本轮报告。",
+  "failure_note": "公开下载检查未通过，需要区分连接限制与附件问题并继续排查。",
+  "next_step": "根据已核验的实际成品更新 README 和交付状态。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "inspect-latest-restarted-stage",
+  "started_utc": "2026-10-08T16:06:21.657540+00:00",
+  "finished_utc": "2026-10-08T16:06:23.467474+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "/tmp/wayne-monitor-current.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160621657540Z-inspect-latest-restarted-stage.log",
+  "output_sha256": "b6dca4836cfdb7d476adb77218ba863eb63eca845aa0d2876ed224ce789dc1ee",
+  "action": "增量监控证据已上传，检查修复任务的最新阶段变化。",
+  "outcome": "监控日志已公开提交；当前阶段状态已读取。",
+  "next_step": "按最新阶段继续核查镜像重建、离线验证和发布。"
+}
