@@ -1,0 +1,36 @@
+        ('package','生成并完整读回分卷实验刷机包','ZIP CRC 和镜像哈希检查通过。'),
+        ('publish','上传并核验 GitHub Releases 资产','资产大小和哈希已核验，实验预发布已公开。')]
+
+
+def sync_progress():
+    run('git','add',os.environ['WAYNE_PROGRESS_FILE'],'logs')
+    for name in ['artifacts/candidate-package.json','artifacts/release-publication.json',
+                 'research/candidate-archive-check.json','research/wayne-boot-check.json',
+                 'research/wayne-system-content-check.json','research/wayne-system-metadata-check.json',
+                 'research/wayne-vintf-check.json','research/wayne-os4-native-versions.json']:
+        if (ROOT/name).exists():run('git','add',name)
+    if subprocess.run(['git','diff','--cached','--quiet']).returncode==0:return
+    run('git','commit','-m','docs: update timestamped cloud build progress')
+    run('git','fetch','origin','main');run('git','rebase','--autostash','origin/main')
+    run('git','push','origin','HEAD:main')
+
+
+def main():
+    parser=argparse.ArgumentParser();parser.add_argument('--stage');args=parser.parse_args()
+    os.chdir(ROOT)
+    if args.stage:stage(args.stage);return
+    for index,(name,action,outcome) in enumerate(STAGES):
+        next_step=STAGES[index+1][1] if index+1<len(STAGES) else '在仓库提供成品链接；继续依据真实启动反馈处理运行时问题。'
+        progress=ROOT/os.environ['WAYNE_PROGRESS_FILE'];progress.parent.mkdir(parents=True,exist_ok=True)
+        with progress.open('a') as stream:
+            stream.write('## '+datetime.datetime.now(datetime.timezone.utc).isoformat()+'\n\n做了什么：开始'+action+'。\n\n发生了什么：云端任务已进入本阶段。\n\n下一步：完成本阶段后，'+next_step+'。\n\n')
+        sync_progress()
+        command=[sys.executable,'tools/record_step.py','--action',action+'。','--outcome',outcome,
+                 '--failure-note','本阶段失败；原始日志已保留，不把失败记为通过。','--next',next_step,
+                 'cloud-'+name,'--',sys.executable,'tools/ci_build_candidate.py','--stage',name]
+        result=subprocess.run(command)
+        sync_progress()
+        if result.returncode:raise SystemExit(result.returncode)
+
+
+if __name__=='__main__':main()

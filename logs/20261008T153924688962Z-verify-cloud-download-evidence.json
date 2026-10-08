@@ -1,0 +1,16 @@
+{
+  "label": "verify-cloud-download-evidence",
+  "started_utc": "2026-10-08T15:39:24.688962+00:00",
+  "finished_utc": "2026-10-08T15:39:26.024417+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153924688962Z-verify-cloud-download-evidence.log",
+  "output_sha256": "c4a37829c4384e87da7c5e9395420a7c2c8dc1b81c3af5eb7c9057ed1163b2b4",
+  "action": "核验云端完整原包校验日志中的哈希结论，确认进入镜像提取阶段。",
+  "outcome": "完整原包 SHA-256 及目标条目校验记录已读取，云端已进入镜像提取。",
+  "next_step": "检查提取是否完成，然后核查重打包的元数据保留和启动镜像验证。"
+}

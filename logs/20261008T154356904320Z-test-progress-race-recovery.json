@@ -1,0 +1,17 @@
+{
+  "label": "test-progress-race-recovery",
+  "started_utc": "2026-10-08T15:43:56.904320+00:00",
+  "finished_utc": "2026-10-08T15:43:59.366134+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/test_progress_sync.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154356904320Z-test-progress-race-recovery.log",
+  "output_sha256": "1a33a4bde0d1191b00863294edbc45b10db4fa704652b4d6a5e632ddba421d8c",
+  "action": "运行真实双克隆 Git 竞态回归测试，验证同步修复不会覆盖任一方的 MD 更新。",
+  "outcome": "首次推送实际遭拒后成功重新同步，两份修改均保留；重复推送无额外提交。",
+  "failure_note": "竞态测试未通过，需要先修复重试逻辑。",
+  "next_step": "上传经过测试的同步修复并重新启动云端构建。"
+}

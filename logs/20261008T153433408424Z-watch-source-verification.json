@@ -1,0 +1,16 @@
+{
+  "label": "watch-source-verification",
+  "started_utc": "2026-10-08T15:34:33.408424+00:00",
+  "finished_utc": "2026-10-08T15:35:19.287051+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153433408424Z-watch-source-verification.log",
+  "output_sha256": "054a0ad8e575bfe07ee6f9f2ff3af0915a97a0ee996c1ad3ed866539387b4257",
+  "action": "检查当前云端任务是否已结束原包下载，读取最新阶段记录。",
+  "outcome": "当前任务状态及仓库阶段记录已读取，未依据入口检查推断完整下载成功。",
+  "next_step": "完成下载后核查重建和验证；失败则定位对应原始日志。"
+}

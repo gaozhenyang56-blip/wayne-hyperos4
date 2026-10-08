@@ -1,0 +1,18 @@
+{
+  "label": "review-build-publication-order",
+  "started_utc": "2026-10-08T15:32:28.946406+00:00",
+  "finished_utc": "2026-10-08T15:32:28.953048+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "sed",
+    "-n",
+    "170,300p",
+    "tools/ci_build_candidate.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153228946406Z-review-build-publication-order.log",
+  "output_sha256": "a58566d1a7f7a604a0473b524d7e0427cff0d34c720808ca223e893d6b7244e1",
+  "action": "复核云端阶段编排和上传失败处理，确保完成验证后才发布成品。",
+  "outcome": "云端依次执行下载、提取、重建、离线验证、兼容性检查、打包和 Release 发布；失败会保留阶段日志。",
+  "next_step": "继续等候下载结果，随后跟踪实际构建和发布。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "follow-cloud-download-result",
+  "started_utc": "2026-10-08T15:35:38.528300+00:00",
+  "finished_utc": "2026-10-08T15:36:21.467397+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153538528300Z-follow-cloud-download-result.log",
+  "output_sha256": "054a0ad8e575bfe07ee6f9f2ff3af0915a97a0ee996c1ad3ed866539387b4257",
+  "action": "持续核查供体下载阶段的退出结果。",
+  "outcome": "已获取本轮任务状态与最新阶段记录。",
+  "next_step": "下载结束后立即检查其日志及后续镜像阶段。"
+}

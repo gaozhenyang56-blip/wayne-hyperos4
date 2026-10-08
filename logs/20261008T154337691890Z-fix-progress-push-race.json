@@ -1,0 +1,16 @@
+{
+  "label": "fix-progress-push-race",
+  "started_utc": "2026-10-08T15:43:37.691890+00:00",
+  "finished_utc": "2026-10-08T15:43:38.078484+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154337691890Z-fix-progress-push-race.log",
+  "output_sha256": "90e2e2b9286e438c8e5b33e30775d122095b30876d658f55f72d1af6b2d4bbf7",
+  "action": "修复云端进度上传与实时 MD 更新之间的并发推送竞态，并加入实际 Git 正反场景验证。",
+  "outcome": "同步流程已改为有限次数重新 fetch/rebase/push，不使用强制推送；并发测试脚本已加入验证阶段。",
+  "next_step": "运行实际双克隆仓库竞态测试，再上传修复并重启云端任务。"
+}

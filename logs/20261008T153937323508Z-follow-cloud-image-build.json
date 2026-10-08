@@ -1,0 +1,16 @@
+{
+  "label": "follow-cloud-image-build",
+  "started_utc": "2026-10-08T15:39:37.323508+00:00",
+  "finished_utc": "2026-10-08T15:40:20.725770+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153937323508Z-follow-cloud-image-build.log",
+  "output_sha256": "394355be82bbe488e1ff9c161cdf1416ec0d9d05beafe765c86e95f1789f282b",
+  "action": "跟踪完整原包校验通过后的镜像提取和构建。",
+  "outcome": "云端最新镜像阶段及运行状态已保存。",
+  "next_step": "提取和构建完成后读取镜像、元数据及原生库验证结果。"
+}

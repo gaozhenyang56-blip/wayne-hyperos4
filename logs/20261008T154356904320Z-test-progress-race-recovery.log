@@ -1,0 +1,26 @@
+From /tmp/wayne-progress-race-l_9aaje6/origin
+ * branch            main       -> FETCH_HEAD
+Current branch main is up to date.
+To /tmp/wayne-progress-race-l_9aaje6/origin.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to '/tmp/wayne-progress-race-l_9aaje6/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Progress push raced with another update; refetching without force.
+From /tmp/wayne-progress-race-l_9aaje6/origin
+ * branch            main       -> FETCH_HEAD
+   facec15..dcf3310  main       -> origin/main
+Rebasing (1/1)Successfully rebased and updated refs/heads/main.
+To /tmp/wayne-progress-race-l_9aaje6/origin.git
+   dcf3310..b15eb5a  HEAD -> main
+
+From /tmp/wayne-progress-race-l_9aaje6/origin
+ * branch            main       -> FETCH_HEAD
+Current branch main is up to date.
+Everything up-to-date
+
+PASS: rejected concurrent push recovered; both updates retained; repeat is idempotent.

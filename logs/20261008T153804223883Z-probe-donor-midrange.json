@@ -1,0 +1,17 @@
+{
+  "label": "probe-donor-midrange",
+  "started_utc": "2026-10-08T15:38:04.223883+00:00",
+  "finished_utc": "2026-10-08T15:38:07.554206+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153804223883Z-probe-donor-midrange.log",
+  "output_sha256": "07bb6cedd9cbc18449a4f933e89abb5978a11df84d8834cf320879402451bcc5",
+  "action": "抽查供体原包中段的范围响应，排查入口恢复后仍存在的下载风险。",
+  "outcome": "中段抽查响应的长度和耗时已记录；这不代替云端完整原包校验。",
+  "failure_note": "中段抽查失败，记录响应原因；云端结果仍以运行日志为准。",
+  "next_step": "继续检查云端完整下载结果，按其实际错误修复。"
+}

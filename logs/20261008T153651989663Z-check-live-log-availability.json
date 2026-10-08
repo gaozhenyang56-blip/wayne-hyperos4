@@ -1,0 +1,16 @@
+{
+  "label": "check-live-log-availability",
+  "started_utc": "2026-10-08T15:36:51.989663+00:00",
+  "finished_utc": "2026-10-08T15:37:37.824775+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153651989663Z-check-live-log-availability.log",
+  "output_sha256": "6f8737a4eee055ebbc9b54322fa0a6568803acc7c3d462216679a280157ebe9f",
+  "action": "尝试通过 GitHub 插件读取运行中任务日志，并继续检查云端状态。",
+  "outcome": "运行中任务日志接口返回 BlobNotFound，暂不可读取；已保存最新阶段状态。",
+  "next_step": "阶段结束后读取已发布日志；继续等待下载校验结果。"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "monitor-after-midrange-probe",
+  "started_utc": "2026-10-08T15:38:24.058789+00:00",
+  "finished_utc": "2026-10-08T15:39:06.291577+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153824058789Z-monitor-after-midrange-probe.log",
+  "output_sha256": "a451341b2dcca4dc42ec732f59b665b133422b1a927c8f91fc5839db0f4ee7d8",
+  "action": "在中段范围抽查通过后，继续检查云端完整下载与重建阶段。",
+  "outcome": "本轮任务的最新状态及阶段结果已保存。",
+  "next_step": "取得完整哈希结果后核查镜像提取和重建；失败时读取实际日志。"
+}

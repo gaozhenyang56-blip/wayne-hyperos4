@@ -1,0 +1,173 @@
+From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+ * branch            main       -> FETCH_HEAD
+   ae94b02..0e713db  main       -> origin/main
+ docs/operations/2026-10-07.md                      |  232 -
+ docs/operations/2026-10-08.md                      |  436 -
+ docs/operations/github-build-37800194092.md        |   96 -
+ docs/operations/github-build-37803213948.md        |   16 -
+ ...2316883870Z-inspect-current-project-status.json |   17 -
+ ...22316883870Z-inspect-current-project-status.log |    7 -
+ ...3618457514Z-resume-connection-and-timezone.json |   18 -
+ ...13618457514Z-resume-connection-and-timezone.log |    0
+ ...013645618549Z-probe-current-public-sources.json |   17 -
+ ...T013645618549Z-probe-current-public-sources.log |    7 -
+ ...07T013703984929Z-inspect-native-audit-gaps.json |   16 -
+ ...007T013703984929Z-inspect-native-audit-gaps.log |  108 -
+ ...13714668577Z-inspect-apex-linker-materials.json |   16 -
+ ...013714668577Z-inspect-apex-linker-materials.log |   67 -
+ ...183470Z-inspect-runtime-provider-selection.json |   16 -
+ ...3183470Z-inspect-runtime-provider-selection.log |   11 -
+ ...3758036007Z-extract-runtime-apex-for-audit.json |   19 -
+ ...13758036007Z-extract-runtime-apex-for-audit.log |    0
+ ...013758525584Z-inspect-apex-symbol-versions.json |   16 -
+ ...T013758525584Z-inspect-apex-symbol-versions.log |  115 -
+ ...3911753823Z-implement-native-version-audit.json |   19 -
+ ...13911753823Z-implement-native-version-audit.log |    0
+ ...12188499Z-audit-transitive-native-versions.json |   21 -
+ ...912188499Z-audit-transitive-native-versions.log |   30 -
+ ...89862Z-investigate-native-version-findings.json |   16 -
+ ...289862Z-investigate-native-version-findings.log |  252 -
+ ...79776Z-inspect-bionic-version-lookup-rules.json |   17 -
+ ...379776Z-inspect-bionic-version-lookup-rules.log |  268 -
+ ...849472Z-refine-native-audit-provider-rules.json |   16 -
+ ...7849472Z-refine-native-audit-provider-rules.log |    0
+ ...3882Z-rerun-corrected-native-version-audit.json |   20 -
+ ...93882Z-rerun-corrected-native-version-audit.log |   30 -
+ ...07T014132120965Z-test-native-version-audit.json |   17 -
+ ...007T014132120965Z-test-native-version-audit.log |    1 -
+ ...4223064102Z-integrate-native-version-gates.json |   21 -
+ ...14223064102Z-integrate-native-version-gates.log |    0
+ ...503540Z-validate-native-gate-and-installer.json |   17 -
+ ...3503540Z-validate-native-gate-and-installer.log |    6 -
+ ...07T014316514596Z-test-native-package-gates.json |   17 -
+ ...007T014316514596Z-test-native-package-gates.log |    5 -
+ ...1558415Z-record-current-offline-checkpoint.json |   16 -
+ ...51558415Z-record-current-offline-checkpoint.log |    1 -
+ ...1Z-inspect-pending-native-audit-checkpoint.json |   17 -
+ ...21Z-inspect-pending-native-audit-checkpoint.log |   52 -
+ ...425237Z-confirm-restored-github-connection.json |   19 -
+ ...2425237Z-confirm-restored-github-connection.log |    3 -
+ ...152008331421Z-publish-pending-native-audit.json |   17 -
+ ...T152008331421Z-publish-pending-native-audit.log |    1 -
+ ...52011148039Z-retry-release-after-reconnect.json |   23 -
+ ...152011148039Z-retry-release-after-reconnect.log |    1 -
+ ...51614705Z-diagnose-release-auth-and-source.json |   16 -
+ ...051614705Z-diagnose-release-auth-and-source.log |    3 -
+ ...26251596Z-recheck-recovered-transfer-paths.json |   17 -
+ ...126251596Z-recheck-recovered-transfer-paths.log |    5 -
+ ...152210341869Z-dispatch-audited-cloud-build.json |   23 -
+ ...T152210341869Z-dispatch-audited-cloud-build.log |    0
+ ...61008T152220987765Z-cloud-source-preflight.json |   17 -
+ ...261008T152220987765Z-cloud-source-preflight.log |    1 -
+ ...52227764931Z-inspect-new-audited-cloud-run.json |   25 -
+ ...152227764931Z-inspect-new-audited-cloud-run.log |    1 -
+ ...6950465Z-update-restored-connection-status.json |   16 -
+ ...16950465Z-update-restored-connection-status.log |    0
+ ...152324945467Z-monitor-restored-cloud-build.json |   17 -
+ ...T152324945467Z-monitor-restored-cloud-build.log |    1 -
+ ...52421243152Z-monitor-complete-cloud-source.json |   16 -
+ ...152421243152Z-monitor-complete-cloud-source.log |   18 -
+ logs/20261008T152508311395Z-cloud-tools.json       |   19 -
+ logs/20261008T152508311395Z-cloud-tools.log        |  460 -
+ logs/20261008T152527529286Z-cloud-download.json    |   19 -
+ logs/20261008T152527529286Z-cloud-download.log     |  170 -
+ ...2533895558Z-inspect-cloud-preparation-step.json |   22 -
+ ...52533895558Z-inspect-cloud-preparation-step.log |    1 -
+ ...52614411453Z-monitor-pinned-cloud-progress.json |   16 -
+ ...152614411453Z-monitor-pinned-cloud-progress.log |   46 -
+ ...8169078Z-track-complete-source-acquisition.json |   16 -
+ ...38169078Z-track-complete-source-acquisition.log |   47 -
+ ...0261008T153026694367Z-monitor-source-stage.json |   16 -
+ ...20261008T153026694367Z-monitor-source-stage.log |   47 -
+ ...1008T153042744454Z-inspect-transfer-budget.json |   18 -
+ ...61008T153042744454Z-inspect-transfer-budget.log |   58 -
+ ...0261008T153100526022Z-prepare-oct8-evidence.log |    0
+ logs/20261008T153830763747Z-cloud-extract.json     |   19 -
+ logs/20261008T153830763747Z-cloud-extract.log      |   26 -
+ logs/20261008T153922450723Z-cloud-build.json       |   19 -
+ logs/20261008T153922450723Z-cloud-build.log        | 9172 --------------------
+ ...61008T154431867408Z-cloud-source-preflight.json |   17 -
+ ...261008T154431867408Z-cloud-source-preflight.log |    1 -
+ research/linker-version-reference.json             |   17 -
+ research/wayne-os4-native-versions-initial.json    |  659 --
+ research/wayne-os4-native-versions.json            |  434 -
+ tools/audit_native_versions.py                     |  177 -
+ tools/test_native_versions.py                      |   56 -
+ tools/test_progress_sync.py                        |   60 -
+ 93 files changed, 13941 deletions(-)
+
+84Z-inspect-apex-symbol-versions.log
+D	logs/20261007T013911753823Z-implement-native-version-audit.json
+D	logs/20261007T013911753823Z-implement-native-version-audit.log
+D	logs/20261007T013912188499Z-audit-transitive-native-versions.json
+D	logs/20261007T013912188499Z-audit-transitive-native-versions.log
+D	logs/20261007T013928289862Z-investigate-native-version-findings.json
+D	logs/20261007T013928289862Z-investigate-native-version-findings.log
+D	logs/20261007T013953379776Z-inspect-bionic-version-lookup-rules.json
+D	logs/20261007T013953379776Z-inspect-bionic-version-lookup-rules.log
+D	logs/20261007T014047849472Z-refine-native-audit-provider-rules.json
+D	logs/20261007T014047849472Z-refine-native-audit-provider-rules.log
+D	logs/20261007T014048293882Z-rerun-corrected-native-version-audit.json
+D	logs/20261007T014048293882Z-rerun-corrected-native-version-audit.log
+D	logs/20261007T014132120965Z-test-native-version-audit.json
+D	logs/20261007T014132120965Z-test-native-version-audit.log
+D	logs/20261007T014223064102Z-integrate-native-version-gates.json
+D	logs/20261007T014223064102Z-integrate-native-version-gates.log
+D	logs/20261007T014223503540Z-validate-native-gate-and-installer.json
+D	logs/20261007T014223503540Z-validate-native-gate-and-installer.log
+D	logs/20261007T014316514596Z-test-native-package-gates.json
+D	logs/20261007T014316514596Z-test-native-package-gates.log
+D	logs/20261007T014351558415Z-record-current-offline-checkpoint.json
+D	logs/20261007T014351558415Z-record-current-offline-checkpoint.log
+D	logs/20261007T014351990321Z-inspect-pending-native-audit-checkpoint.json
+D	logs/20261007T014351990321Z-inspect-pending-native-audit-checkpoint.log
+D	logs/20261008T151732425237Z-confirm-restored-github-connection.json
+D	logs/20261008T151732425237Z-confirm-restored-github-connection.log
+D	logs/20261008T152008331421Z-publish-pending-native-audit.json
+D	logs/20261008T152008331421Z-publish-pending-native-audit.log
+D	logs/20261008T152011148039Z-retry-release-after-reconnect.json
+D	logs/20261008T152011148039Z-retry-release-after-reconnect.log
+D	logs/20261008T152051614705Z-diagnose-release-auth-and-source.json
+D	logs/20261008T152051614705Z-diagnose-release-auth-and-source.log
+D	logs/20261008T152126251596Z-recheck-recovered-transfer-paths.json
+D	logs/20261008T152126251596Z-recheck-recovered-transfer-paths.log
+D	logs/20261008T152210341869Z-dispatch-audited-cloud-build.json
+D	logs/20261008T152210341869Z-dispatch-audited-cloud-build.log
+D	logs/20261008T152220987765Z-cloud-source-preflight.json
+D	logs/20261008T152220987765Z-cloud-source-preflight.log
+D	logs/20261008T152227764931Z-inspect-new-audited-cloud-run.json
+D	logs/20261008T152227764931Z-inspect-new-audited-cloud-run.log
+D	logs/20261008T152316950465Z-update-restored-connection-status.json
+D	logs/20261008T152316950465Z-update-restored-connection-status.log
+D	logs/20261008T152324945467Z-monitor-restored-cloud-build.json
+D	logs/20261008T152324945467Z-monitor-restored-cloud-build.log
+D	logs/20261008T152421243152Z-monitor-complete-cloud-source.json
+D	logs/20261008T152421243152Z-monitor-complete-cloud-source.log
+D	logs/20261008T152508311395Z-cloud-tools.json
+D	logs/20261008T152508311395Z-cloud-tools.log
+D	logs/20261008T152527529286Z-cloud-download.json
+D	logs/20261008T152527529286Z-cloud-download.log
+D	logs/20261008T152533895558Z-inspect-cloud-preparation-step.json
+D	logs/20261008T152533895558Z-inspect-cloud-preparation-step.log
+D	logs/20261008T152614411453Z-monitor-pinned-cloud-progress.json
+D	logs/20261008T152614411453Z-monitor-pinned-cloud-progress.log
+D	logs/20261008T152738169078Z-track-complete-source-acquisition.json
+D	logs/20261008T152738169078Z-track-complete-source-acquisition.log
+D	logs/20261008T153026694367Z-monitor-source-stage.json
+D	logs/20261008T153026694367Z-monitor-source-stage.log
+D	logs/20261008T153042744454Z-inspect-transfer-budget.json
+D	logs/20261008T153042744454Z-inspect-transfer-budget.log
+D	logs/20261008T153100526022Z-prepare-oct8-evidence.log
+D	logs/20261008T153830763747Z-cloud-extract.json
+D	logs/20261008T153830763747Z-cloud-extract.log
+D	logs/20261008T153922450723Z-cloud-build.json
+D	logs/20261008T153922450723Z-cloud-build.log
+D	logs/20261008T154431867408Z-cloud-source-preflight.json
+D	logs/20261008T154431867408Z-cloud-source-preflight.log
+D	research/linker-version-reference.json
+D	research/wayne-os4-native-versions-initial.json
+D	research/wayne-os4-native-versions.json
+D	tools/audit_native_versions.py
+D	tools/test_native_versions.py
+D	tools/test_progress_sync.py
+

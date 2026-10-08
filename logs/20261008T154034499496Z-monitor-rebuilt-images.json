@@ -1,0 +1,16 @@
+{
+  "label": "monitor-rebuilt-images",
+  "started_utc": "2026-10-08T15:40:34.499496+00:00",
+  "finished_utc": "2026-10-08T15:41:16.610862+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T154034499496Z-monitor-rebuilt-images.log",
+  "output_sha256": "394355be82bbe488e1ff9c161cdf1416ec0d9d05beafe765c86e95f1789f282b",
+  "action": "检查云端实验 boot/system 重建是否完成及下一阶段结果。",
+  "outcome": "当前构建阶段与运行状态已读取，尚未将运行中步骤记为通过。",
+  "next_step": "重建成功后核查内容和元数据差异，并检查新增版本符号审计。"
+}

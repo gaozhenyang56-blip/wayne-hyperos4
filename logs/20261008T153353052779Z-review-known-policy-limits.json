@@ -1,0 +1,16 @@
+{
+  "label": "review-known-policy-limits",
+  "started_utc": "2026-10-08T15:33:53.052779+00:00",
+  "finished_utc": "2026-10-08T15:33:53.313772+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T153353052779Z-review-known-policy-limits.log",
+  "output_sha256": "084bd772bbf5bd979fc07911e305c6a4dd97982a0e3b4192b18fd1ba0ea84237",
+  "action": "复核 README 与 SELinux 检查证据，明确实验包的真实验证边界。",
+  "outcome": "已核对当前说明和策略报告；真机启动未测试、严格 neverallow 检查未通过仍需保留。",
+  "next_step": "云端结束后按实际发布结果更新 README，保持已知限制清楚可见。"
+}

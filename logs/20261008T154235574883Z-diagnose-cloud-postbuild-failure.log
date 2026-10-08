@@ -1,0 +1,123 @@
+build	Build, record progress and publish verified experimental assets	﻿2026-10-08T15:25:05.7075970Z ##[group]Run python tools/ci_build_candidate.py
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7076470Z [36;1mpython tools/ci_build_candidate.py[0m
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7118770Z shell: /usr/bin/bash -e {0}
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7119174Z env:
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7121650Z   GH_TOKEN: ***
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7122049Z   WAYNE_PROGRESS_FILE: docs/operations/github-build-37800194092.md
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7122558Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7123127Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib/pkgconfig
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7123617Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7124130Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7124572Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.17/x64
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7125041Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.17/x64/lib
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7125474Z ##[endgroup]
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7748594Z [main f02010b] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:05.7749573Z  1 file changed, 8 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:06.1599874Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:06.1600670Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:06.1601523Z    a98f60a..25971d2  main       -> origin/main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:06.1780443Z Rebasing (1/1)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:06.1781168Z Successfully rebased and updated refs/heads/main.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:08.2702233Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:08.2703152Z    25971d2..5d9efc7  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.5422764Z {"label": "cloud-tools", "started_utc": "2026-10-08T15:25:08.311395+00:00", "finished_utc": "2026-10-08T15:25:24.540575+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_candidate.py", "--stage", "tools"], "exit_code": 0, "output": "logs/20261008T152508311395Z-cloud-tools.log", "output_sha256": "979de003c58779a3b3acf71bebeb7f50833eb1ae761c591941f4085856b2fda9", "action": "编译固定版本的镜像工具。", "outcome": "镜像工具准备完成。", "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。", "next_step": "取得并校验社区供体和 wayne 原包材料"}
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.5719907Z [main 28a8e20] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.5720690Z  3 files changed, 491 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.5721372Z  create mode 100644 logs/20261008T152508311395Z-cloud-tools.json
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.5722214Z  create mode 100644 logs/20261008T152508311395Z-cloud-tools.log
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.7879992Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.7880706Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:24.7952585Z Current branch main is up to date.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:25.8909632Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:25.8910918Z    5d9efc7..28a8e20  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:25.9164665Z [main 57fab15] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:25.9165388Z  1 file changed, 8 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:26.3638446Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:26.3639116Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:26.3700870Z Current branch main is up to date.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:27.4909323Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:25:27.4909889Z    28a8e20..57fab15  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.4014877Z {"label": "cloud-download", "started_utc": "2026-10-08T15:25:27.529286+00:00", "finished_utc": "2026-10-08T15:38:27.399756+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_candidate.py", "--stage", "download"], "exit_code": 0, "output": "logs/20261008T152527529286Z-cloud-download.log", "output_sha256": "7aa2b5a0681cb9f82d97ebd85186656189c2ffdc957858613858a11a648367b1", "action": "取得并校验社区供体和 wayne 原包材料。", "outcome": "完整供体哈希和底包条目 CRC 校验通过。", "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。", "next_step": "重建系统与目标 vendor，提取原始 inode 元数据"}
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.4294531Z [main 00e53b7] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.4295622Z  3 files changed, 201 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.4296061Z  create mode 100644 logs/20261008T152527529286Z-cloud-download.json
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.4296612Z  create mode 100644 logs/20261008T152527529286Z-cloud-download.log
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.7754919Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.7755632Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.7756120Z    57fab15..7d29578  main       -> origin/main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.7937468Z Created autostash: 4aded08
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.8223591Z Rebasing (1/1)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.8224143Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:27.8224752Z Successfully rebased and updated refs/heads/main.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:28.9836826Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:28.9837689Z    7d29578..8d96c9d  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.0097557Z [main 313cceb] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.0099048Z  1 file changed, 8 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.2234008Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.2235003Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.2413403Z Created autostash: aa48204
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.2414812Z Current branch main is up to date.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:29.2511005Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:30.7261245Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:38:30.7262192Z    8d96c9d..313cceb  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:17.7631810Z {"label": "cloud-extract", "started_utc": "2026-10-08T15:38:30.763747+00:00", "finished_utc": "2026-10-08T15:39:17.652809+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_candidate.py", "--stage", "extract"], "exit_code": 0, "output": "logs/20261008T153830763747Z-cloud-extract.log", "output_sha256": "a90828cf2688aef3c8bf9b467ea147f7d6ef09adcfe3d16863af7a9111443167", "action": "重建系统与目标 vendor，提取原始 inode 元数据。", "outcome": "原始镜像已正确重建，原始标签及权限已记录。", "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。", "next_step": "生成保留 wayne 硬件支持的实验 boot/system"}
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:17.9243464Z [main 997bf61] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:17.9245495Z  3 files changed, 57 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:17.9246265Z  create mode 100644 logs/20261008T153830763747Z-cloud-extract.json
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:17.9247052Z  create mode 100644 logs/20261008T153830763747Z-cloud-extract.log
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:18.3425619Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:18.3426780Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:18.3427201Z    313cceb..b59fdc8  main       -> origin/main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:18.5427912Z Created autostash: 673232e
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:19.2573109Z Rebasing (1/1)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:19.2574213Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:19.2574809Z Successfully rebased and updated refs/heads/main.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.2314474Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.2315272Z    b59fdc8..b7d33d3  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.6136830Z [main c573ae0] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.6137689Z  1 file changed, 8 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.8223763Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:20.8224653Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:21.1823556Z Created autostash: 7a4a672
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:21.1824737Z Current branch main is up to date.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:21.3369320Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:22.3691332Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:39:22.3692059Z    b7d33d3..c573ae0  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.2735196Z {"label": "cloud-build", "started_utc": "2026-10-08T15:39:22.450723+00:00", "finished_utc": "2026-10-08T15:41:18.270855+00:00", "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4", "command": ["/opt/hostedtoolcache/Python/3.11.17/x64/bin/python", "tools/ci_build_candidate.py", "--stage", "build"], "exit_code": 0, "output": "logs/20261008T153922450723Z-cloud-build.log", "output_sha256": "064d53d981495b665bf1fce621a13a555a99e6ffc76c065dd14e2ab8c823e8fe", "action": "生成保留 wayne 硬件支持的实验 boot/system。", "outcome": "实验镜像已生成，没有真机启动结论。", "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。", "next_step": "核对镜像内容、元数据、boot 结构和策略证据输入"}
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.3145912Z [main 2c95464] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.3146608Z  3 files changed, 9203 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.3147216Z  create mode 100644 logs/20261008T153922450723Z-cloud-build.json
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.3147951Z  create mode 100644 logs/20261008T153922450723Z-cloud-build.log
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.6949108Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.6949707Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.6950132Z    c573ae0..e17e97f  main       -> origin/main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.7216552Z Created autostash: 73d962e
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.7544480Z Rebasing (1/1)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.7544973Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:18.7545367Z Successfully rebased and updated refs/heads/main.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.0258963Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.0259530Z    e17e97f..91a5ae7  HEAD -> main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.2149669Z [main 6ec3a76] docs: update timestamped cloud build progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.2150396Z  1 file changed, 8 insertions(+)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.4303327Z From https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.4303909Z  * branch            main       -> FETCH_HEAD
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.7952470Z Created autostash: 9d7500d
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.7953580Z Current branch main is up to date.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:20.9846847Z Applied autostash.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9101811Z To https://github.com/gaozhenyang56-blip/wayne-hyperos4
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9102860Z  ! [remote rejected] HEAD -> main (cannot lock ref 'refs/heads/main': is at 6d9042f7492ab202e3149034fa692aa71a20b1fa but expected 91a5ae79a98aa30b69405ec68fc28012a0f4439c)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9103766Z error: failed to push some refs to 'https://github.com/gaozhenyang56-blip/wayne-hyperos4'
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9115450Z Traceback (most recent call last):
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9538698Z   File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 205, in <module>
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9539898Z     if __name__=='__main__':main()
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9540330Z                             ^^^^^^
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9540958Z   File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 196, in main
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9541549Z     sync_progress()
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9542465Z   File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 184, in sync_progress
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9543097Z     run('git','push','origin','HEAD:main')
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9543672Z   File "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_build_candidate.py", line 21, in run
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9544318Z     subprocess.run([str(x) for x in args],check=True,**kwargs)
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:21.9544929Z   File "/opt/hostedtoolcache/Python/3.11.17/x64/lib/python3.11/subprocess.py", line 571, in run
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:22.1358048Z     raise CalledProcessError(retcode, process.args,
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:22.1359503Z subprocess.CalledProcessError: Command '['git', 'push', 'origin', 'HEAD:main']' returned non-zero exit status 1.
+build	Build, record progress and publish verified experimental assets	2026-10-08T15:41:22.1753239Z ##[error]Process completed with exit code 1.
