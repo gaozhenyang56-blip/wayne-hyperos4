@@ -65,7 +65,8 @@ def stage(name):
                    '系统来自 Mi8937 社区标称 HyperOS 4.0.0.16 Beta 的供体，非官方小米 6X 系统。适用于原版容量静态分区的 wayne 离线实验：不转换分区，不要求预装 Miku UI。boot/vendor 参考材料经过静态适配。必须先在 root ADB Recovery 检查实际分区，再进入 bootloader；安装器拒绝容量或布局不符。严格 SELinux 检查仍失败，启动、加密和硬件功能未知。分卷须合并后解压，详见 INSTALL.txt。')
         files=sorted(folder.glob('*.zip.*'))+[folder/'SHA256SUMS',folder/'stage/INSTALL.txt',folder/'stage/manifest.json']
         ci.run('gh','release','upload',TAG,*files,'--repo',repo,'--clobber')
-        release=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases/tags/'+TAG],text=True))
+        releases=json.loads(subprocess.check_output(['gh','api','repos/'+repo+'/releases?per_page=100'],text=True))
+        release=next(r for r in releases if r['tag_name']==TAG)
         expected={p.name:{'size':p.stat().st_size,'sha256':ci.sha(p)} for p in files}
         assets={a['name']:a for a in release['assets']}
         for name,record in expected.items():
