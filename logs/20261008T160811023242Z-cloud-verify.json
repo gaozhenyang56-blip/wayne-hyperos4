@@ -1,0 +1,19 @@
+{
+  "label": "cloud-verify",
+  "started_utc": "2026-10-08T16:08:11.023242+00:00",
+  "finished_utc": "2026-10-08T16:08:29.922065+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/opt/hostedtoolcache/Python/3.11.17/x64/bin/python",
+    "tools/ci_build_candidate.py",
+    "--stage",
+    "verify"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261008T160811023242Z-cloud-verify.log",
+  "output_sha256": "f9e1ffbbfd07677c648a47e4e6bf554ec30439ba23c0db1e98de71fe3a640b11",
+  "action": "核对镜像内容、元数据、boot 结构和策略证据输入。",
+  "outcome": "离线镜像检查通过，严格策略失败仍如实保留。",
+  "failure_note": "本阶段失败；原始日志已保留，不把失败记为通过。",
+  "next_step": "使用固定 AOSP 代码检查目标 HAL 声明"
+}

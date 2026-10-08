@@ -1,0 +1,77 @@
+{
+  "checked_original_paths": 9134,
+  "expected_modified_files": [
+    "product/etc/build.prop",
+    "system/build.prop",
+    "system/etc/vintf/compatibility_matrix.5.xml",
+    "system/etc/vintf/compatibility_matrix.device.xml",
+    "system_ext/etc/build.prop"
+  ],
+  "added_paths": [
+    "system/etc/vintf/compatibility_matrix.5.xml"
+  ],
+  "failures": [],
+  "success": true
+}
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.002s
+
+OK
+PASS: versioned consumer, matching/wrong/missing export, global fallback, default/nondefault visibility
+From /tmp/wayne-progress-race-mp8p1ngi/origin
+ * branch            main       -> FETCH_HEAD
+Current branch main is up to date.
+To /tmp/wayne-progress-race-mp8p1ngi/origin.git
+ ! [rejected]        HEAD -> main (fetch first)
+error: failed to push some refs to '/tmp/wayne-progress-race-mp8p1ngi/origin.git'
+hint: Updates were rejected because the remote contains work that you do not
+hint: have locally. This is usually caused by another repository pushing to
+hint: the same ref. If you want to integrate the remote changes, use
+hint: 'git pull' before pushing again.
+hint: See the 'Note about fast-forwards' in 'git push --help' for details.
+
+Progress push raced with another update; refetching without force.
+From /tmp/wayne-progress-race-mp8p1ngi/origin
+ * branch            main       -> FETCH_HEAD
+   3d5345d..2371109  main       -> origin/main
+Rebasing (1/1)Successfully rebased and updated refs/heads/main.
+To /tmp/wayne-progress-race-mp8p1ngi/origin.git
+   2371109..22283db  HEAD -> main
+
+From /tmp/wayne-progress-race-mp8p1ngi/origin
+ * branch            main       -> FETCH_HEAD
+Current branch main is up to date.
+Everything up-to-date
+
+PASS: rejected concurrent push recovered; both updates retained; repeat is idempotent.
+[
+  {
+    "target": "lib/hw/camera.sdm660.so",
+    "libraries": 49,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 2
+  },
+  {
+    "target": "lib/hw/android.hardware.camera.provider@2.4-impl.so",
+    "libraries": 65,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 3
+  },
+  {
+    "target": "bin/hw/android.hardware.camera.provider@2.4-service",
+    "libraries": 33,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 0
+  },
+  {
+    "target": "bin/hw/android.hardware.graphics.composer@2.1-service",
+    "libraries": 43,
+    "missing": 0,
+    "unresolved": 0,
+    "version_fallbacks": 3
+  }
+]

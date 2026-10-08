@@ -1,11 +1,9 @@
 {
   "success": true,
+  "hardware_tested": false,
   "kernel_and_appended_dtb_preserved": true,
   "cmdline_preserved": true,
   "boot_id_verified": true,
-  "donor_first_stage_init_sha256": "b2cbef515c938aa130f7a69689b6279f71edff07e22c172bc5355e17b0042c59",
-  "merged_partition_fstab_verified": true,
   "boot_size": 18755584,
-  "boot_sha256": "4802fbbde81560a234ecca1766e0e27ad4770c5bc1af1927cb6519d9038c24f8",
-  "hardware_tested": false
+  "boot_sha256": "4802fbbde81560a234ecca1766e0e27ad4770c5bc1af1927cb6519d9038c24f8"
 }
