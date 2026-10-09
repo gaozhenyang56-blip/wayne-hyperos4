@@ -1,0 +1,43 @@
+{
+  "repository": "jakecommon/linux-sdm660-xiaomi-wayne",
+  "commit": "eefc44180fdfc30cdc760109c8acf189482c238d",
+  "files": [
+    {
+      "path": "Makefile",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/Makefile",
+      "sha256": "34ca1bd93705a06f0e471625c07409b8067827450b6f040103232a54c1d0049b",
+      "size": 74322
+    },
+    {
+      "path": "README.md",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/README.md",
+      "sha256": "880738decac3d8906a85122d78f0895079d24c7c5474acd7fa21365ce05cd6b5",
+      "size": 3538
+    },
+    {
+      "path": "configs/wayne-release.config",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/configs/wayne-release.config",
+      "sha256": "0c65d565d44ead4987c11ac0ac4cad0d9bd46131b73818e77bfb166a04c0fdea",
+      "size": 220892
+    },
+    {
+      "path": "scripts/build-wayne.sh",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/scripts/build-wayne.sh",
+      "sha256": "1a47c4da3d865828c25b6ce3af0244c01442684528b5cb1282fceb91eecedafb",
+      "size": 1652
+    },
+    {
+      "path": "scripts/verify-wayne.sh",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/scripts/verify-wayne.sh",
+      "sha256": "cbb950ff5ce2dcbb76a0fe310280a73b276e12748e7523792824886b9d3fab87",
+      "size": 1098
+    },
+    {
+      "path": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dts",
+      "url": "https://raw.githubusercontent.com/jakecommon/linux-sdm660-xiaomi-wayne/eefc44180fdfc30cdc760109c8acf189482c238d/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dts",
+      "sha256": "559d7bdc523b4df234e037144081f1ae02ba55a6e7e45d7f22276bca6e870fb6",
+      "size": 426
+    }
+  ],
+  "hardware_tested_here": false
+}
