@@ -1,0 +1,17 @@
+{
+  "label": "link-kernel-experiment",
+  "started_utc": "2026-10-09T14:33:45.719835+00:00",
+  "finished_utc": "2026-10-09T14:33:45.748398+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T143345719835Z-link-kernel-experiment.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "在 README 增加 6.x 探索入口，并切换 GitHub 插件读取构建进展。",
+  "outcome": "README 原有内容保留，入口已即时上传；命令行读取 Actions 遇到 401，插件仍可正常读取仓库，改用插件查询任务。",
+  "next_step": "取得任务结束后的真实日志和研究产物，核验结果。"
+}
