@@ -1,0 +1,37 @@
+{
+  "repository": "https://github.com/sdm660-mainline/linux.git",
+  "branch": "qcom-sdm660-6.6.y",
+  "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+  "target_device": "wayne",
+  "status": "source_probe_not_bootable_release",
+  "hardware_tested": false,
+  "android_vendor_abi_verified": false,
+  "partition_layout": "stock_static_unchanged",
+  "files": [
+    {
+      "path": "Makefile",
+      "sha256": "21efd08cd2ec6b93ba95b88fdd2d9b4aec443aedb099d2ef162edcf3ed1e2ee0",
+      "size": 67432
+    },
+    {
+      "path": "arch/arm64/configs/sdm660_defconfig",
+      "sha256": "8748d513a68c2f82cfcc370b6dc32e2c933e40a3ecf65cfa40c263c82665bbfb",
+      "size": 16941
+    },
+    {
+      "path": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts",
+      "sha256": "45260f93f552a861d88b01a6857754a8624de9af6d1c3867913547822b9df6cc",
+      "size": 11279
+    },
+    {
+      "path": "arch/arm64/boot/dts/qcom/Makefile",
+      "sha256": "c4b9f92724e6d692cd3ee56a644102bcfece773f3636fa40a16784d3d267c383",
+      "size": 12451
+    },
+    {
+      "path": "security/selinux/Kconfig",
+      "sha256": "489219b78c203ee07917bc3dca271d286d618ba82cd1a7a69dff7b8205364eda",
+      "size": 2889
+    }
+  ]
+}
