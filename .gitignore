@@ -27,3 +27,4 @@ artifacts/releases/
 /research/higher-kernel/upstream/
 /research/higher-kernel/6.6/
 /research/gpu-allocator-stage/lineage-wayne/selected-vendor/
+/research/selinux-allocator-stage/raw/

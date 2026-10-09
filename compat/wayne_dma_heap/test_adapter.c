@@ -12,7 +12,7 @@ static int fake_open(const char *path, int flags, void *context)
 {
     struct state *s=context;s->opens++;
     assert(!strcmp(path,"/dev/dma_heap/system"));
-    assert(flags==(O_RDWR|O_CLOEXEC));return s->open_error ? s->open_error : 11;
+    assert(flags==(O_RDONLY|O_CLOEXEC));return s->open_error ? s->open_error : 11;
 }
 static int fake_allocate(int fd, unsigned long cmd, struct dma_heap_allocation_data *r, void *context)
 {
@@ -45,6 +45,17 @@ int main(void)
     r.len=0;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-E2BIG);
     r.len=WAYNE_MAX_PROBE_BYTES+1;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-E2BIG);r.len=4096;
     assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,NULL,&plan)==-EINVAL);
+    /* Policy/DAC refusal is propagated, never retried with broader access. */
+    for (int denial = 0; denial < 2; denial++) {
+        int error = denial ? -EPERM : -EACCES;
+        struct state denied = {.open_error=error};
+        struct wayne_heap_ops denied_ops = {fake_open,fake_allocate,fake_close,&denied};
+        assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&denied_ops)==error);
+        assert(fd==-1 && denied.opens==1 && !denied.allocates && !denied.closes);
+        denied.open_error=0;denied.allocation_error=error;
+        assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&denied_ops)==error);
+        assert(fd==-1 && denied.opens==2 && denied.allocates==1 && denied.closes==1);
+    }
     s.open_error=-ENOENT;assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops)==-ENOENT);
     assert(fd==-1 && !s.allocates && !s.closes);s.open_error=0;s.allocation_error=-ENOMEM;
     assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops)==-ENOMEM);

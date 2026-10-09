@@ -1,0 +1,536 @@
+{
+  "checked_utc": "2026-10-09T21:54:38.752930+00:00",
+  "target": "China Xiaomi Mi 6X wayne, static partitions; not jasmine or Miku UI",
+  "evidence_scope": "local experimental donor platform plus non-Miku wayne comparison vendor, NOT user current policy",
+  "inputs": [
+    {
+      "path": "downloads/verified-wayne-system/system/etc/selinux/plat_file_contexts",
+      "sha256": "608895445f9cd8bd7c83c2611cae1a5ed27c15cecf3e2ad8560edecbf5768fc6",
+      "lines": [
+        {
+          "line": 76,
+          "text": "/dev/dma_heap(/.*)?     u:object_r:dmabuf_heap_device:s0"
+        },
+        {
+          "line": 77,
+          "text": "/dev/dma_heap/system    u:object_r:dmabuf_system_heap_device:s0"
+        },
+        {
+          "line": 78,
+          "text": "/dev/dma_heap/system-uncached    u:object_r:dmabuf_system_heap_device:s0"
+        },
+        {
+          "line": 79,
+          "text": "/dev/dma_heap/system-secure(.*)\t u:object_r:dmabuf_system_secure_heap_device:s0"
+        }
+      ]
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/vendor_file_contexts",
+      "sha256": "e888c4acca90b0459d0e91b7a75fbe0bc477754bedfbf928251e8db7ffbcd9d8",
+      "lines": [
+        {
+          "line": 807,
+          "text": "/dev/kgsl-3d0                                   u:object_r:gpu_device:s0"
+        }
+      ]
+    },
+    {
+      "path": "downloads/verified-wayne-system/system/etc/selinux/plat_sepolicy.cil",
+      "sha256": "5b463f556391a6e2486056132da8a814b896c66c2d4d63f042ab83e3a50d1087",
+      "lines": [
+        {
+          "line": 14277,
+          "text": "(allow base_typeattr_281 dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 17195,
+          "text": "(neverallow app_zygote gpu_device (chr_file (ioctl read write getattr lock append map execute open watch watch_reads execute_no_trans)))"
+        },
+        {
+          "line": 19747,
+          "text": "(allow bootanim dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 20548,
+          "text": "(allow cameraserver dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 22367,
+          "text": "(neverallow crash_dump gpu_device (chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))"
+        },
+        {
+          "line": 30183,
+          "text": "(neverallow ephemeral_app gpu_device (chr_file (execute)))"
+        },
+        {
+          "line": 32555,
+          "text": "(allow gpu_sphal_domain gpu_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 32560,
+          "text": "(allow gpu_sphal_domain gpu_device (dir (ioctl read getattr lock open watch watch_reads search)))"
+        },
+        {
+          "line": 34394,
+          "text": "(allow hal_camera dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 36255,
+          "text": "(allow hal_graphics_allocator dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 36401,
+          "text": "(allow hal_graphics_composer dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 45649,
+          "text": "(neverallow base_typeattr_819 gpu_device (chr_file (ioctl read write getattr lock append map execute open watch watch_reads)))"
+        },
+        {
+          "line": 46092,
+          "text": "(allow isolated_compute_app dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 49683,
+          "text": "(allow mediaserver dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 49971,
+          "text": "(allow mediaswcodec dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 50216,
+          "text": "(allow mediatranscoding dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 50893,
+          "text": "(allow mmd gpu_device (chr_file (write)))"
+        },
+        {
+          "line": 50913,
+          "text": "(allow mmd gpu_device (memfd_file (write)))"
+        },
+        {
+          "line": 51399,
+          "text": "(neverallow native_app_zygote gpu_device (chr_file (ioctl read write create getattr setattr lock relabelfrom relabelto append map unlink link rename execute quotaon mounton audit_access open execmod watch watch_mount watch_sb watch_with_perm watch_reads execute_no_trans entrypoint)))"
+        },
+        {
+          "line": 53755,
+          "text": "(allow pcc_component companion_device_service (service_manager (find)))"
+        },
+        {
+          "line": 54025,
+          "text": "(neverallow pcc_component gpu_device (chr_file (execute)))"
+        },
+        {
+          "line": 54699,
+          "text": "(allow permissioncontroller_app gpu_device (dir (search)))"
+        },
+        {
+          "line": 58902,
+          "text": "(allow rs gpu_device (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 59493,
+          "text": "(neverallow sdk_sandbox_all gpu_device (chr_file (execute)))"
+        },
+        {
+          "line": 64883,
+          "text": "(allow surfaceflinger dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 70956,
+          "text": "(allow system_server dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 78729,
+          "text": "(allow cameraserver dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 78769,
+          "text": "(allow virtual_camera dmabuf_system_heap_device (chr_file (read open)))"
+        },
+        {
+          "line": 82013,
+          "text": "(neverallow webview_zygote gpu_device (chr_file (ioctl read write getattr lock append map execute open watch watch_reads execute_no_trans)))"
+        }
+      ]
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/vendor_sepolicy.cil",
+      "sha256": "e1c1fa314059404e05dbf409a87456beaff778ea212053231175bfa6bb478396",
+      "lines": [
+        {
+          "line": 2571,
+          "text": "(allow hal_sensors_default ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2572,
+          "text": "(allow hal_sensors_default dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2618,
+          "text": "(allow hal_tv_tuner_default ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2619,
+          "text": "(allow hal_tv_tuner_default dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2703,
+          "text": "(allow mediacodec gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 2704,
+          "text": "(allow mediacodec ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 2705,
+          "text": "(allow mediacodec dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2744,
+          "text": "(allow tee_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2889,
+          "text": "(allow adsprpcd ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 2994,
+          "text": "(allow cameraserver_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 3024,
+          "text": "(allow cdsprpcd ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 3065,
+          "text": "(allow chre ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 3362,
+          "text": "(allow vendor_dspservice ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 3456,
+          "text": "(allow esepmdaemon ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 3679,
+          "text": "(allow hal_camera gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 3885,
+          "text": "(allow hal_esepowermanager_qti ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4080,
+          "text": "(allow hal_imsrtp ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4140,
+          "text": "(allow hal_neuralnetworks_default ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4146,
+          "text": "(allow hal_neuralnetworks_default gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4319,
+          "text": "(allow hal_qseecom_default ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4333,
+          "text": "(allow hal_qteeconnector ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4431,
+          "text": "(allow vendor_scve ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4434,
+          "text": "(allow vendor_scve gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4454,
+          "text": "(allow hal_sensors ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 4510,
+          "text": "(allow hal_soter_qti ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4590,
+          "text": "(allow hal_voiceprint ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4661,
+          "text": "(allow hbtp ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4704,
+          "text": "(allow hdcp_srm ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 4969,
+          "text": "(allow qti_init_shell gpu_device_32_0 (chr_file (getattr)))"
+        },
+        {
+          "line": 5638,
+          "text": "(allow mm-qcamerad gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5663,
+          "text": "(allow mm-qcamerad ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6046,
+          "text": "(allow poweroffhandler gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6683,
+          "text": "(allow vendor_qvrd_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 6691,
+          "text": "(allow vendor_qvrd_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6890,
+          "text": "(allow rmt_storage modem_efs_partition_device (blk_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6940,
+          "text": "(allow sec_nvm ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6977,
+          "text": "(allow seemp_health_daemon ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7037,
+          "text": "(allow sensors ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7069,
+          "text": "(allow spdaemon ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7385,
+          "text": "(allow thermal-engine ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7440,
+          "text": "(allow tlocd ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7680,
+          "text": "(allow vendor_vppservice ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7837,
+          "text": "(allow wifidisplayhalservice ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 8630,
+          "text": "(allow hal_mlipay_default ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        }
+      ]
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/plat_pub_versioned.cil",
+      "sha256": "d45d0b3751893f1dccc1c623535495e3dbd847ed69a712c28c969b3254f4dd08",
+      "lines": [
+        {
+          "line": 4960,
+          "text": "(allow base_typeattr_191_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5047,
+          "text": "(allow base_typeattr_191_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 5048,
+          "text": "(allow base_typeattr_191_32_0 dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 5332,
+          "text": "(allow bootanim_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5340,
+          "text": "(allow bootanim_32_0 ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5341,
+          "text": "(allow bootanim_32_0 dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 5372,
+          "text": "(allow bufferhubd_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5373,
+          "text": "(allow bufferhubd_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 5390,
+          "text": "(allow cameraserver_32_0 ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 5391,
+          "text": "(allow cameraserver_32_0 dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 6474,
+          "text": "(allow dumpstate_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 6531,
+          "text": "(allow dumpstate_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 6841,
+          "text": "(allow fingerprintd_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 6899,
+          "text": "(allow gatekeeperd_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 6962,
+          "text": "(allow hal_audio ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7115,
+          "text": "(allow hal_camera ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7116,
+          "text": "(allow hal_camera dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7176,
+          "text": "(allow hal_cas ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7206,
+          "text": "(allow hal_codec2_server ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7209,
+          "text": "(allow hal_codec2_client ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7328,
+          "text": "(allow hal_drm ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7411,
+          "text": "(allow hal_face ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7432,
+          "text": "(allow hal_fingerprint ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7453,
+          "text": "(allow hal_gatekeeper ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7485,
+          "text": "(allow hal_graphics_allocator gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7486,
+          "text": "(allow hal_graphics_allocator ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7487,
+          "text": "(allow hal_graphics_allocator dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7504,
+          "text": "(allow hal_graphics_composer gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 7505,
+          "text": "(allow hal_graphics_composer ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7506,
+          "text": "(allow hal_graphics_composer dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7608,
+          "text": "(allow hal_keymaster ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7624,
+          "text": "(allow hal_keymint ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7702,
+          "text": "(allow hal_neuralnetworks_server ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 7793,
+          "text": "(allow hal_omx_server ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 9320,
+          "text": "(allow mediaserver_32_0 gpu_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 9377,
+          "text": "(allow mediaserver_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 9378,
+          "text": "(allow mediaserver_32_0 dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 9413,
+          "text": "(allow mediaswcodec_32_0 dmabuf_system_heap_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        },
+        {
+          "line": 10371,
+          "text": "(allow shell_32_0 ion_device_32_0 (chr_file (ioctl read write getattr lock append map open watch watch_reads)))"
+        },
+        {
+          "line": 11513,
+          "text": "(allow vr_hwc_32_0 ion_device_32_0 (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+        }
+      ]
+    }
+  ],
+  "allocator_direct_rule": {
+    "line": 36255,
+    "text": "(allow hal_graphics_allocator dmabuf_system_heap_device (chr_file (ioctl read getattr lock map open watch watch_reads)))"
+  },
+  "fix": "heap control FD O_RDONLY|O_CLOEXEC; allocation buffer fd_flags still O_RDWR|O_CLOEXEC",
+  "required_control_permissions": [
+    "read",
+    "open",
+    "ioctl"
+  ],
+  "client_domain_known": false,
+  "current_vendor_policy_available": false,
+  "avc_available": false,
+  "merged_neverallow_checked": false,
+  "runtime_labels_verified": false,
+  "domain_access_verified": false,
+  "historical_strict_policy_report": "research/wayne-os4-policy/policy-check.json; unrelated historical pairing, still failed",
+  "notes": [
+    "system heap has an explicit platform dmabuf_system_heap_device label distinct from generic/secure heaps",
+    "comparison vendor explicitly labels kgsl-3d0 gpu_device; ION label unresolved in inspected context files",
+    "versioned 32.0 vendor attributes require matching platform mappings, not direct type substitution",
+    "neverallow/allowx and expanded attributes must be checked in an actual merged policy before authorization claims"
+  ],
+  "policy_allows_added": false,
+  "permissive_enabled": false,
+  "hardware_tested": false,
+  "bootable_verified": false
+}

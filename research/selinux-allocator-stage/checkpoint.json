@@ -1,0 +1,37 @@
+{
+  "saved_utc": "2026-10-09T21:56:05.427407+00:00",
+  "baseline": "9e22a9b",
+  "stage": "short static SELinux audit, stopped",
+  "target": "China wayne/SDM660, stock static partitions, no Miku/jasmine baseline",
+  "fix": "readonly heap control open only; buffer access flags unchanged",
+  "patch_sha256": "c2ae3ce2781111bfc42a4d74a642f500af0283a720e556daff115957e8ea01e1",
+  "tests": "host positive, explicit old-code refusal and EACCES/EPERM open/ioctl refusal passed",
+  "current_vendor_and_avc_available": false,
+  "caller_domain_known": false,
+  "merged_neverallow_conflicts_verified": false,
+  "policy_changed": false,
+  "permissive_changed": false,
+  "kernel_recompiled": false,
+  "hardware_tested": false,
+  "bootable_verified": false,
+  "immutable_reports": {
+    "artifacts/kernel-6.6-probe.json": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+    "artifacts/kernel-6.6-allocator-probe.json": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+    "artifacts/static-candidate-package.json": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+    "research/wayne-os4-policy/policy-check.json": "b42a261e3b6a1ca055fde0a2b24f40c2e33e80de56d8bfcc718f5a8880549e90",
+    "research/wayne-os4-policy/compiler.log": "5b8b9feffdf94fa9053904f87fb348021b716528be5557a00cc053dd6d2a4aed",
+    "research/allocator-implementation/checkpoint.json": "953c34c6150940b92dcf5002a954100c56bf2f3c1993af4dfecce99cea04fdc9"
+  },
+  "next": [
+    "Identify actual rebuilt-client SELinux domain and obtain current user vendor policy/version and node contexts",
+    "Compile matched full platform/vendor CIL with strict neverallow and resolve attribute mappings and ioctl xperms",
+    "Obtain actual ls -Z/AVC/DAC evidence before any narrowly justified allow; no broad or permissive workaround"
+  ],
+  "budget": {
+    "user_reported_5h_remaining_percent": 39,
+    "user_reported_week_remaining_percent": 52,
+    "reserve_each_percent": 20,
+    "live_usage_available": false,
+    "action": "short bounded stage, saved and paused; no precise quota claim"
+  }
+}

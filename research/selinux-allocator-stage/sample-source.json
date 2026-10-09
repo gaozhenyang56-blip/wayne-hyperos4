@@ -1,0 +1,27 @@
+{
+  "sample_role": "non-Miku Lineage19.1 wayne comparison only; not current user vendor",
+  "vendor_image_sha256": "7d80ed1037a61ff8796a3e6df5e2f0aceda1dc4df5be17843d4e42bca1dca089",
+  "source_url": "https://downloads.sourceforge.net/project/lineageos-wayne/lineage-19.1-20251122-UNOFFICIAL-wayne.zip",
+  "extracted_read_only": [
+    {
+      "path": "research/selinux-allocator-stage/raw/vendor_file_contexts",
+      "sha256": "e888c4acca90b0459d0e91b7a75fbe0bc477754bedfbf928251e8db7ffbcd9d8",
+      "size": 90559
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/vendor_sepolicy.cil",
+      "sha256": "e1c1fa314059404e05dbf409a87456beaff778ea212053231175bfa6bb478396",
+      "size": 791457
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/plat_pub_versioned.cil",
+      "sha256": "d45d0b3751893f1dccc1c623535495e3dbd847ed69a712c28c969b3254f4dd08",
+      "size": 983052
+    },
+    {
+      "path": "research/selinux-allocator-stage/raw/plat_sepolicy_vers.txt",
+      "sha256": "74f7a31ab6c166f6a676abe9b030445200bbb31ae31ef468245ecd82e575c872",
+      "size": 5
+    }
+  ]
+}

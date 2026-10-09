@@ -44,7 +44,8 @@ int wayne_ion_system_alloc_with_ops(uint32_t profile, unsigned long command,
     if (!ops || !ops->open_heap || !ops->allocate || !ops->close_fd) return -EINVAL;
     result = wayne_ion_system_plan(profile, command, input, &request);
     if (result) return result;
-    heap = ops->open_heap("/dev/dma_heap/system", O_RDWR | O_CLOEXEC, ops->context);
+    /* Heap control FD needs read/open/ioctl, not write. Buffer FD stays O_RDWR. */
+    heap = ops->open_heap("/dev/dma_heap/system", O_RDONLY | O_CLOEXEC, ops->context);
     if (heap < 0) return heap;
     result = ops->allocate(heap, DMA_HEAP_IOCTL_ALLOC, &request, ops->context);
     ops->close_fd(heap, ops->context); /* Never retry close or close caller's buffer. */

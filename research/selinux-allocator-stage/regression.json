@@ -1,0 +1,18 @@
+{
+  "checked_utc": "2026-10-09T21:55:09.509585+00:00",
+  "old_adapter_ref": "9e22a9b",
+  "old_adapter_rejected_by_readonly_control_test": true,
+  "old_adapter_exit_code": -6,
+  "current_adapter_test_exit_code": 0,
+  "positive_control_open": "O_RDONLY|O_CLOEXEC",
+  "positive_buffer_flags": "O_RDWR|O_CLOEXEC",
+  "negative_cases": [
+    "O_RDWR control FD rejected by mock",
+    "EACCES and EPERM on open propagated without retry or allocation",
+    "EACCES and EPERM on ioctl propagated, heap closed once, output fd -1",
+    "legacy ION/OEM/secure/uncached/reserved/oversize rejection retained"
+  ],
+  "test_scope": "host mocks and static policy witnesses, not SELinux enforcement or hardware",
+  "cross_compile_this_stage": false,
+  "merged_policy_compile_this_stage": false
+}
