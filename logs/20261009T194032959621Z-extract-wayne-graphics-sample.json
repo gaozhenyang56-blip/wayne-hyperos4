@@ -1,0 +1,25 @@
+{
+  "label": "extract-wayne-graphics-sample",
+  "started_utc": "2026-10-09T19:40:32.959621+00:00",
+  "finished_utc": "2026-10-09T19:41:38.507689+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/inspect_ota.py",
+    "https://downloads.sourceforge.net/project/lineageos-wayne/lineage-19.1-20251122-UNOFFICIAL-wayne.zip",
+    "research/gpu-allocator-stage/lineage-wayne",
+    "--extract-entry",
+    "boot.img",
+    "--extract-entry",
+    "vendor.new.dat.br",
+    "--extract-entry",
+    "vendor.transfer.list"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T194032959621Z-extract-wayne-graphics-sample.log",
+  "output_sha256": "88ee7d623e5a8ba0d581f17d2c100e2e743cddccb4878717deae697c7de6cbe1",
+  "action": "选择性读取非 Miku 的 wayne 成品包 boot、vendor 和 block OTA 清单。",
+  "outcome": "指定 ZIP 成员已读取并通过成员 CRC 校验，保留 SHA256；没有完整包签名/整包哈希验证，不执行安装脚本。",
+  "failure_note": "成员读取失败，已保留原因；本阶段不继续套用未经验证文件。",
+  "next_step": "恢复 vendor 镜像并只读取图形库、HAL、fstab 和设备节点权限证据。"
+}

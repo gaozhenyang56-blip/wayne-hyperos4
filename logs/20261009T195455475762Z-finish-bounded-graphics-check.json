@@ -1,0 +1,18 @@
+{
+  "label": "finish-bounded-graphics-check",
+  "started_utc": "2026-10-09T19:54:55.475762+00:00",
+  "finished_utc": "2026-10-09T19:54:56.501026+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess; args=[\"python3\",\"tools/audit_graphics_contract.py\",\"research/gpu-allocator-stage/lineage-wayne/selected-vendor\",\"research/gpu-allocator-stage/lineage-wayne/selected-files.json\",\"config/kernel-6.6-graphics-profile.json\",\"research/gpu-allocator-stage/graphics-contract.json\",\"--reject-legacy-pairing\"]; r=subprocess.run(args); assert r.returncode==2; print(\"Legacy pairing rejection verified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T195455475762Z-finish-bounded-graphics-check.log",
+  "output_sha256": "42f3d09dcca4e98f78f0824d1a418265a19eafd945e4ceed70cc029ba2e66db1",
+  "action": "保存 GPU/分配器阶段断点、测试结果及基线审计，验证旧 vendor 配主线组合被明确拒绝。",
+  "outcome": "拒绝检查返回预期 2；报告仍标记硬件和启动未验证。8 项离线测试与旧产物哈希写入断点，历史严格 SELinux 和新图形策略问题保留。本阶段不再扩大或重编译。",
+  "failure_note": "阶段交付核验失败，保留日志后修复，不掩盖失败。",
+  "next_step": "同步全部源码、证据、MD 和断点到 GitHub，结束本轮。"
+}

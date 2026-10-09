@@ -1,0 +1,16 @@
+{
+  "id": "wayne-6.6-msm-drm-experiment",
+  "device": "wayne",
+  "region": "China",
+  "partition_layout": "stock_static",
+  "backend": "msm_drm",
+  "allocator_path": "dma_buf_heaps",
+  "provided_legacy_abis": {"kgsl": false, "ion": false, "msm_fb": false},
+  "selected_path": "Freedreno Gallium GLES + compatible gralloc/mapper/allocator + DRM hwcomposer; source rebuild required",
+  "adreno_generation": "a5xx (A512)",
+  "turnip_selected": false,
+  "status": "path_and_config_request_only_not_integrated",
+  "current_rom_vendor_known": false,
+  "hardware_tested": false,
+  "bootable_verified": false
+}

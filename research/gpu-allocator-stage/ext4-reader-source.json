@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://deb.debian.org/debian/pool/main/e/e2fsprogs/e2fsprogs_1.47.0-2+b2_amd64.deb",
+    "sha256": "fedd424691c08ef0739729026be298e7be8236337bf8e031b3c7ec66794e6fc2"
+  },
+  {
+    "url": "https://deb.debian.org/debian/pool/main/e/e2fsprogs/libext2fs2_1.47.0-2+b2_amd64.deb",
+    "sha256": "dff731f2318df99da4b8bf5f330f415f95b94c609bac29e7b2edba0a38f22a98"
+  },
+  {
+    "url": "https://deb.debian.org/debian/pool/main/e/e2fsprogs/libss2_1.47.0-2+b2_amd64.deb",
+    "sha256": "24115749c09b4e259acff1f799faccd1748ff322bd638b09d820729cb3b24579"
+  }
+]

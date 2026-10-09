@@ -26,3 +26,4 @@ artifacts/releases/
 /artifacts/experimental/static/
 /research/higher-kernel/upstream/
 /research/higher-kernel/6.6/
+/research/gpu-allocator-stage/lineage-wayne/selected-vendor/

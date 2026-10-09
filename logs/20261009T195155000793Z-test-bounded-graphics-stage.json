@@ -1,0 +1,18 @@
+{
+  "label": "test-bounded-graphics-stage",
+  "started_utc": "2026-10-09T19:51:55.000793+00:00",
+  "finished_utc": "2026-10-09T19:51:56.618313+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/test_graphics_contract.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T195155000793Z-test-bounded-graphics-stage.log",
+  "output_sha256": "3c135ff5c0f0616ccffb01240973dff4630d210eef0cfcf3516e18e9c7da3913",
+  "action": "完成 GPU 阶段离线回归：样本 ABI 拒绝、篡改拒绝、native ioctl、固定 Kconfig 子树和稀疏 OTA 恢复。",
+  "outcome": "8 项测试通过；ION 与 DMA-heap ioctl 类型和 fd 偏移不同，改设备路径不等于 ABI 兼容。DMA-BUF 配置请求在固定子树内生效，关闭外部 DMA_CMA 依赖时 CMA heap 正确禁用。不是全树 olddefconfig/新内核编译或真机测试。",
+  "failure_note": "回归存在失败，保留日志并先修复，不将其记为通过。",
+  "next_step": "写入可复現步骤、剩余问题和断点，完整同步 GitHub 后结束本阶段。"
+}

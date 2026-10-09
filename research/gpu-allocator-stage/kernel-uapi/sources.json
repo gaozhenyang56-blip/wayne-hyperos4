@@ -1,0 +1,37 @@
+[
+  {
+    "repository": "sdm660-mainline/linux",
+    "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+    "source_path": "include/uapi/linux/dma-heap.h",
+    "evidence_file": "research/gpu-allocator-stage/kernel-uapi/dma-heap.h",
+    "sha256": "2870b36ee84ed6ecb03cf9f2dd856302348258439a088138c4b0170d86882324"
+  },
+  {
+    "repository": "sdm660-mainline/linux",
+    "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+    "source_path": "drivers/dma-buf/heaps/Kconfig",
+    "evidence_file": "research/gpu-allocator-stage/kernel-uapi/Kconfig",
+    "sha256": "89310aa9337eb3fd5da8d531099e66dcb749630ddf11e5073a2d92f94af51d34"
+  },
+  {
+    "repository": "sdm660-mainline/linux",
+    "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+    "source_path": "drivers/gpu/drm/msm/Kconfig",
+    "evidence_file": "research/gpu-allocator-stage/kernel-uapi/msm-Kconfig",
+    "sha256": "208830e6d1523fa851394e12b5e39d378c04d659385fbea582984ad2bf64ae88"
+  },
+  {
+    "repository": "sdm660-mainline/linux",
+    "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+    "source_path": "drivers/dma-buf/Kconfig",
+    "evidence_file": "research/gpu-allocator-stage/kernel-uapi/dma-buf-Kconfig",
+    "sha256": "c8936a0e50f1a400a3adb1bcdb25d336646e3529afd66238d1acc298dbf9a624"
+  },
+  {
+    "repository": "sdm660-mainline/linux",
+    "commit": "6a4e475000ecc7e864911959a1984a0664088464",
+    "source_path": "arch/arm64/configs/sdm660_defconfig",
+    "evidence_file": "research/gpu-allocator-stage/kernel-uapi/sdm660_defconfig",
+    "sha256": "8748d513a68c2f82cfcc370b6dc32e2c933e40a3ecf65cfa40c263c82665bbfb"
+  }
+]

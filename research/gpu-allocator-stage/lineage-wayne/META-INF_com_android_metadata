@@ -1,0 +1,9 @@
+ota-property-files=metadata:69:344,metadata.pb:481:225                 
+ota-required-cache=0
+ota-type=BLOCK
+post-build=xiaomi/wayne/wayne:8.1.0/OPM1.171019.011/V9.5.11.0.ODCCNFA:user/release-keys
+post-build-incremental=eng.uotanw.20251122.230445
+post-sdk-level=32
+post-security-patch-level=2025-03-05
+post-timestamp=1763823834
+pre-device=wayne

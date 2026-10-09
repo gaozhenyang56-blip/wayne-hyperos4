@@ -1,0 +1,21 @@
+{
+  "label": "implement-bounded-graphics-fix",
+  "started_utc": "2026-10-09T19:48:42.900733+00:00",
+  "finished_utc": "2026-10-09T19:48:43.025789+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/audit_graphics_contract.py",
+    "tools/test_graphics_contract.py",
+    "tools/ci_kernel_66_probe.py",
+    "tools/record_step.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T194842900733Z-implement-bounded-graphics-fix.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "建立非 Miku 图形接口审计与拒绝检查，补齐后续 6.6 DMA-BUF heaps/sync 配置并纠正目标基线声明。",
+  "outcome": "已识别 KGSL、ION、厂商 framebuffer 三类阻碍，6.6 配置请求新增 system/CMA heaps 和 sync；当前旧内核产物保持不变。目标明确为国行 6X、独立项目，Miku 只记为历史第三方样本。已有 Artifact 下载仍返回 403，实际旧 .config 未独立读回。",
+  "next_step": "完成 native UAPI、Kconfig 子树与样本拒绝/篡改离线测试；记录可复现路径和剩余 SELinux 问题。"
+}

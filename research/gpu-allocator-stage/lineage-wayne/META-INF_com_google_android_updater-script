@@ -1,0 +1,21 @@
+assert(getprop("ro.product.device") == "wayne" || getprop("ro.build.product") == "wayne" || abort("E3004: This package is for device: wayne; this device is " + getprop("ro.product.device") + "."););
+ui_print("Target: xiaomi/wayne/wayne:8.1.0/OPM1.171019.011/V9.5.11.0.ODCCNFA:user/release-keys");
+package_extract_dir("install", "/tmp/install");
+set_metadata_recursive("/tmp/install", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0644);
+set_metadata_recursive("/tmp/install/bin", "uid", 0, "gid", 0, "dmode", 0755, "fmode", 0755);
+run_program("/tmp/install/bin/backuptool.sh", "backup", "/dev/block/bootdevice/by-name/system", "ext4");
+ui_print("Patching system image unconditionally...");
+show_progress(0.800000, 0);
+block_image_update("/dev/block/bootdevice/by-name/system", package_extract_file("system.transfer.list"), "system.new.dat.br", "system.patch.dat") ||
+  abort("E1001: Failed to update system image.");
+ui_print("Patching vendor image unconditionally...");
+show_progress(0.100000, 0);
+block_image_update("/dev/block/bootdevice/by-name/vendor", package_extract_file("vendor.transfer.list"), "vendor.new.dat.br", "vendor.patch.dat") ||
+  abort("E2001: Failed to update vendor image.");
+show_progress(0.020000, 10);
+run_program("/tmp/install/bin/backuptool.sh", "restore", "/dev/block/bootdevice/by-name/system", "ext4");
+package_extract_file("boot.img", "/dev/block/bootdevice/by-name/boot");
+show_progress(0.100000, 10);
+ui_print("Flashing logo images");
+package_extract_file("install/firmware-update/logo.img", "/dev/block/bootdevice/by-name/splash");
+set_progress(1.000000);

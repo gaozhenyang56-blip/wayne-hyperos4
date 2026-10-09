@@ -1,0 +1,19 @@
+{
+  "label": "inspect-nonmiku-wayne-ota",
+  "started_utc": "2026-10-09T19:39:29.502572+00:00",
+  "finished_utc": "2026-10-09T19:39:33.965893+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/inspect_ota.py",
+    "https://downloads.sourceforge.net/project/lineageos-wayne/lineage-19.1-20251122-UNOFFICIAL-wayne.zip",
+    "research/gpu-allocator-stage/lineage-wayne"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T193929502572Z-inspect-nonmiku-wayne-ota.log",
+  "output_sha256": "a84be7355f51953e1142804f814a7933e519b5286613aab0a6675d74a9d166bc",
+  "action": "核对同机型非 Miku 成品包 LineageOS wayne 的 ZIP 目录、目标身份与静态挂载线索。",
+  "outcome": "成品 ZIP 目录和更新元数据已保存，继续按内容核验，不把发布页名称视为兼容性证明。",
+  "failure_note": "成品包入口读取失败，原始错误已保存；将限定重试或采用另一个同机型包。",
+  "next_step": "从成品包选择性读取 boot 与 vendor，比较 GPU/ION、图形 HAL 和启动配置。"
+}

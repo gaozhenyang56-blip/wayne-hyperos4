@@ -1,0 +1,44 @@
+{
+  "saved_utc": "2026-10-09T19:54:55.303062+00:00",
+  "stage": "6.6 GPU and allocator evidence/config/offline tests",
+  "stage_completed": true,
+  "kernel_driver_integration_completed": false,
+  "target": {
+    "device": "wayne",
+    "region": "China",
+    "is_jasmine": false,
+    "dynamic_partitions": false,
+    "current_rom_is_miku": false,
+    "current_boot_vendor_verified": false
+  },
+  "existing_kernel_build_run": 37944711030,
+  "kernel_recompiled_this_stage": false,
+  "new_config_requires_future_build": true,
+  "new_config_sha256": "e91991852ec20cb073bc08794accc87050a549e1079593816e1bb98269e0e07a",
+  "preserved_existing_probe_sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+  "preserved_419_package_manifest_sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+  "sample": "lineage-19.1-20251122-UNOFFICIAL-wayne.zip",
+  "sample_kernel": "4.4.302",
+  "sample_is_current_user_rom": false,
+  "contract": "research/gpu-allocator-stage/graphics-contract.json",
+  "tests": "research/gpu-allocator-stage/tests.json",
+  "selected_path": "msm DRM + Freedreno GLES + source-rebuilt compatible allocator/mapper/composer",
+  "next": "Pin graphics userspace source versions and native_handle format, test buffer sharing/cache/fences offline before any new build",
+  "remaining": [
+    "legacy KGSL/ION/MSM framebuffer ABI not provided",
+    "secure heaps and protected content",
+    "HAL/VNDK/linker and 32/64-bit loading",
+    "SELinux historical neverallow failure and new DRM/heap policy",
+    "wayne board differences, firmware/modules, boot packaging, VINTF and encryption",
+    "actual device boot/hardware unverified"
+  ],
+  "artifact_local_download_status": 403,
+  "quota": {
+    "user_reported_5h_remaining_percent": 97,
+    "user_reported_week_remaining_percent": 61,
+    "requested_reserve_percent_each": 20,
+    "usage_readback_available": false,
+    "reserve_exactly_measured": false,
+    "control": "bounded single stage; no new kernel build or indefinite retry"
+  }
+}

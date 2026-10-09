@@ -18,6 +18,8 @@
   },
   "target_device": {
     "device": "wayne",
+    "region": "China",
+    "product": "Xiaomi Mi 6X, not Xiaomi Mi A2/jasmine",
     "kernel_series": "4.19",
     "dynamic_partitions": false,
     "current_rom_is_miku": false,
@@ -27,5 +29,20 @@
     "current_rom_name": null,
     "current_recovery": null,
     "capacity_bytes_verified": false
+  },
+  "project_affiliation": "Independent project; unrelated to Miku UI",
+  "hardware_baseline": {
+    "current_rom_name_known": false,
+    "current_vendor_binary_known": false,
+    "current_boot_binary_known": false,
+    "miku_is_target_baseline": false,
+    "historical_miku_samples": "Third-party research and historical 4.19 artifact inputs only; preserve provenance and artifacts, never infer user firmware",
+    "kernel_6x_role": "Independent experiment; no inherited ROM/vendor baseline"
+  },
+  "bounded_gpu_stage": {
+    "prefer_completed_rom_samples": true,
+    "no_repeat_kernel_build": true,
+    "no_device_testing": true,
+    "scope": "6.6 GPU/allocator source evidence, narrow config fix and offline checks"
   }
 }

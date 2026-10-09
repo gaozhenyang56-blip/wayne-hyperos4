@@ -1,0 +1,168 @@
+{
+  "requested": [
+    "lib/libgsl.so",
+    "lib/libion.so",
+    "lib/libsdmcore.so",
+    "lib/libsdmutils.so",
+    "lib/libgrallocutils.so",
+    "lib/egl/libEGL_adreno.so",
+    "lib/egl/libGLESv2_adreno.so",
+    "lib/hw/gralloc.sdm660.so",
+    "lib/hw/hwcomposer.sdm660.so",
+    "lib/hw/android.hardware.graphics.allocator@2.0-impl.so",
+    "lib/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+    "lib64/libgsl.so",
+    "lib64/libion.so",
+    "lib64/libsdmcore.so",
+    "lib64/libsdmutils.so",
+    "lib64/libgrallocutils.so",
+    "lib64/egl/libEGL_adreno.so",
+    "lib64/egl/libGLESv2_adreno.so",
+    "lib64/hw/gralloc.sdm660.so",
+    "lib64/hw/hwcomposer.sdm660.so",
+    "lib64/hw/android.hardware.graphics.allocator@2.0-impl.so",
+    "lib64/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+    "etc/fstab.qcom",
+    "etc/vintf/manifest.xml",
+    "etc/manifest.xml",
+    "build.prop",
+    "etc/init/android.hardware.graphics.allocator@2.0-service.rc",
+    "etc/init/android.hardware.graphics.composer@2.1-service.rc",
+    "etc/init/hw/init.qcom.rc",
+    "etc/ueventd.rc"
+  ],
+  "extracted": [
+    {
+      "path": "lib/libgsl.so",
+      "sha256": "d411349bfc8771ad4b7d1edb56a036515690c762ebe982221e0e67eca25448a3",
+      "size": 1950536
+    },
+    {
+      "path": "lib/libsdmcore.so",
+      "sha256": "93ad22de86db0a2eff1c6d73bf2e064e04372e625e24853c57f5c7e8e87c2f2e",
+      "size": 268932
+    },
+    {
+      "path": "lib/libsdmutils.so",
+      "sha256": "de569e68005b0d1173aecb4d68c19ea609da6fcba5fafb20b71b2a561981ad4f",
+      "size": 16668
+    },
+    {
+      "path": "lib/libgrallocutils.so",
+      "sha256": "8c9558c5c070ed8e0361125a23d0bc7915ec4f33aa285d69c74b6772c426cfb7",
+      "size": 16420
+    },
+    {
+      "path": "lib/egl/libEGL_adreno.so",
+      "sha256": "051ee71d312eccdcf22a27ecd1e6563c5660e689be9b2617efbdfbfb079570e6",
+      "size": 21456
+    },
+    {
+      "path": "lib/egl/libGLESv2_adreno.so",
+      "sha256": "8f8e1505e1e3a74482c50209bc73125eed0c90f22829d07fca198d48cc98d53a",
+      "size": 2332216
+    },
+    {
+      "path": "lib/hw/gralloc.sdm660.so",
+      "sha256": "d78329d1af71a64847013582b885fc7481ab53be5d164a125e236cbcbc9fc0a3",
+      "size": 50488
+    },
+    {
+      "path": "lib/hw/hwcomposer.sdm660.so",
+      "sha256": "248535b81a58cc5473816e37a7db5462cc967a6b798c4d3495bd8d579ba146d4",
+      "size": 223396
+    },
+    {
+      "path": "lib/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+      "sha256": "5e490c38c5b2b40abd994dc583ebf9b171af4a9bd5dc6f1cca906e8409a4e88d",
+      "size": 20840
+    },
+    {
+      "path": "lib64/libgsl.so",
+      "sha256": "d541f714969847be61afc5ed7c1c8af7b5baa0f41e1813c05f93568c0f12f70e",
+      "size": 2125912
+    },
+    {
+      "path": "lib64/libsdmcore.so",
+      "sha256": "e250a31fe6d4832c7cd9c4855db1a15c26818f50da3e60e53d0c51a3ffcb3cbf",
+      "size": 357952
+    },
+    {
+      "path": "lib64/libsdmutils.so",
+      "sha256": "44f8f1a8a315308499527aa2cf5a1b15a93265a22a1bf993ff541ecc3e857ea1",
+      "size": 23656
+    },
+    {
+      "path": "lib64/libgrallocutils.so",
+      "sha256": "d28abc658fa5bb052062a5170aeff8237e2c5e2d087b7f0f7c1478fe82fe1061",
+      "size": 27528
+    },
+    {
+      "path": "lib64/egl/libEGL_adreno.so",
+      "sha256": "4ec8f56dd70737a4fe3922c9fc1d27cad0757c4cd62f3a1ba16110d795548f6c",
+      "size": 39864
+    },
+    {
+      "path": "lib64/egl/libGLESv2_adreno.so",
+      "sha256": "e59c4b5afabee25c940916d30b2f9a5251dc6b61ffadeba4b4bc19fd07576065",
+      "size": 3512376
+    },
+    {
+      "path": "lib64/hw/gralloc.sdm660.so",
+      "sha256": "336dda3a32025679d0a5cbecb83c66fa775833b03cc4b41409a2ead3271cc6b6",
+      "size": 70856
+    },
+    {
+      "path": "lib64/hw/hwcomposer.sdm660.so",
+      "sha256": "d51afa4bba2c6d4330c12b356a8adecc58a872ddd16a60ec824efcde9d1b3e48",
+      "size": 302384
+    },
+    {
+      "path": "lib64/hw/android.hardware.graphics.allocator@2.0-impl.so",
+      "sha256": "bbcc2710ad38c85d320089e74cf2fff011238e419112b5868e45caea1ae64f3f",
+      "size": 20352
+    },
+    {
+      "path": "lib64/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+      "sha256": "75e468208eb4220992baeb2f8a6709af5a3c6ae6f2a9672e6e865b74dc18c43c",
+      "size": 34008
+    },
+    {
+      "path": "etc/fstab.qcom",
+      "sha256": "2637d1bf22d629dac1ae9facfde79d93ca1a8d82b031ff934daa3e68e845df35",
+      "size": 3173
+    },
+    {
+      "path": "etc/vintf/manifest.xml",
+      "sha256": "f95b2ac032dacf577d9e91807fde5e3ba8582d65efb540043c9f6f3cb19740a6",
+      "size": 11850
+    },
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "size": 9138
+    },
+    {
+      "path": "etc/init/android.hardware.graphics.allocator@2.0-service.rc",
+      "sha256": "a139a3fd898f2c8404efbb51646814a2ec5cb848f8135bbc63d1b829c142037d",
+      "size": 367
+    },
+    {
+      "path": "etc/init/android.hardware.graphics.composer@2.1-service.rc",
+      "sha256": "2272ae38541f35caa05f7ca426f690e32b92c930622317e925e7796a29708bfa",
+      "size": 342
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "size": 22435
+    }
+  ],
+  "missing": [
+    "lib/libion.so",
+    "lib/hw/android.hardware.graphics.allocator@2.0-impl.so",
+    "lib64/libion.so",
+    "etc/manifest.xml",
+    "etc/ueventd.rc"
+  ]
+}

@@ -47,7 +47,8 @@ def build():
     run(*common, 'olddefconfig')
     config = (OUT / '.config').read_text()
     required = ['ANDROID_BINDER_IPC', 'ANDROID_BINDERFS', 'SECURITY_SELINUX',
-                'FS_ENCRYPTION', 'EXT4_FS', 'EROFS_FS', 'DEVTMPFS', 'BLK_DEV_INITRD', 'COMPAT']
+                'FS_ENCRYPTION', 'EXT4_FS', 'EROFS_FS', 'DEVTMPFS', 'BLK_DEV_INITRD', 'COMPAT',
+                'DMABUF_HEAPS', 'DMABUF_HEAPS_SYSTEM', 'DMA_CMA', 'DMABUF_HEAPS_CMA', 'SYNC_FILE']
     for symbol in required:
         if 'CONFIG_' + symbol + '=y\n' not in config:
             raise ValueError('Required Android prerequisite missing: ' + symbol)

@@ -1,0 +1,46 @@
+{
+  "profile": "wayne-6.6-msm-drm-experiment",
+  "findings": [
+    {
+      "abi": "kgsl",
+      "files": [
+        "lib/libgsl.so",
+        "lib64/libgsl.so"
+      ],
+      "status": "requires_port_or_replacement"
+    },
+    {
+      "abi": "ion",
+      "files": [
+        "lib/libgsl.so",
+        "lib/hw/gralloc.sdm660.so",
+        "lib64/libgsl.so",
+        "lib64/hw/gralloc.sdm660.so"
+      ],
+      "status": "requires_port_or_replacement"
+    },
+    {
+      "abi": "msm_fb",
+      "files": [
+        "lib/libsdmcore.so",
+        "lib/libsdmutils.so",
+        "lib64/libsdmcore.so",
+        "lib64/libsdmutils.so"
+      ],
+      "status": "requires_port_or_replacement"
+    }
+  ],
+  "legacy_pairing_rejected": true,
+  "evidence_kind": "ELF strings and dynamic dependencies; no ioctl execution",
+  "compatible_verified": false,
+  "hardware_tested": false,
+  "remaining": [
+    "gralloc buffer-handle layout and modifiers",
+    "fences and cache coherency",
+    "secure/protected heaps",
+    "SELinux device and service policy",
+    "32/64-bit graphics loading",
+    "wayne-specific display/boot bringup"
+  ]
+}
+Legacy pairing rejection verified
