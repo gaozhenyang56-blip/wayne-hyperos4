@@ -59,6 +59,7 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 - [旧 RDP 云端阶段记录](docs/operations/github-build-37803213948.md)
 - [静态云端复现流程](.github/workflows/build-static-experimental.yml)
 - [实际交付状态](artifacts/delivery-status.json)
+- [6.x 内核探索记录](docs/kernel-6.6-experiment.md)：独立 SDM660 6.6.9 编译实验，未验证 Android 启动及厂商驱动接口。
 - [当前静态分卷与镜像哈希](artifacts/static-candidate-package.json)
 - sources.lock.json：固定上游源码提交。
 - tools/：下载、镜像转换、元数据保留重打包和离线兼容性检查工具。
