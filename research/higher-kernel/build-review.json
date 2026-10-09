@@ -1,0 +1,18 @@
+{
+  "reviewed_utc": "2026-10-09T14:40:15Z",
+  "run_id": 37944711030,
+  "job_id": 113867892216,
+  "workflow_conclusion": "success",
+  "source_build_commit": "154551d16502e2244f7ceb1ebdd32b168093ddef",
+  "artifact": {
+    "id": 11623820496,
+    "name": "wayne-kernel-6.6-research-only",
+    "size_in_bytes": 8237323,
+    "digest": "sha256:d4fa8c51b34237ee9a6416602ae5770636e4672e30138f8486b19209d5b436dc",
+    "expires_at": "2027-01-07T14:30:41Z"
+  },
+  "local_artifact_readback_verified": false,
+  "local_download_http_status": 403,
+  "bootable_verified": false,
+  "hardware_tested": false
+}
