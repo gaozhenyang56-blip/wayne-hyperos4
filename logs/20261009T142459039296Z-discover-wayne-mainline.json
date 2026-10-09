@@ -1,0 +1,19 @@
+{
+  "label": "discover-wayne-mainline",
+  "started_utc": "2026-10-09T14:24:59.039296+00:00",
+  "finished_utc": "2026-10-09T14:25:02.219874+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "api",
+    "repos/jakecommon/linux-sdm660-xiaomi-wayne/contents/arch/arm64/boot/dts/qcom",
+    "--jq",
+    ".[].name"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T142459039296Z-discover-wayne-mainline.log",
+  "output_sha256": "52f5f119e90b70dc07213318e8c76a734f5c9e9c620396640376f17b6203d966",
+  "action": "检索 SDM660 高版本内核，找到 wayne 专用 Linux 7.0.9 主线分支并固定源码提交。",
+  "outcome": "源码提交为 eefc44180fdfc30cdc760109c8acf189482c238d；作者的硬件支持记录来自 Debian 路线，尚不能据此判断 HyperOS 可用。",
+  "next_step": "保存配置和设备树证据，核对 Android Binder、GPU 和音频等接口。"
+}

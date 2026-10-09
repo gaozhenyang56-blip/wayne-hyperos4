@@ -1,0 +1,20 @@
+{
+  "label": "dispatch-kernel-66-probe",
+  "started_utc": "2026-10-09T14:31:02.158931+00:00",
+  "finished_utc": "2026-10-09T14:31:03.293042+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "37944711030",
+    "--json",
+    "status,conclusion,url"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T143102158931Z-dispatch-kernel-66-probe.log",
+  "output_sha256": "e0206e6eef03840a65d9c76ab7541785efd27e02a404eb1b6a47158601356336",
+  "action": "通过 GitHub 插件同步 6.6 实验源码并启动云端交叉编译。",
+  "outcome": "运行 37944711030 已创建，源码固定在 154551d16502e2244f7ceb1ebdd32b168093ddef；流程只保存研究内核及 DTB，不上传新的刷机包。",
+  "next_step": "观察构建结果，依据实际错误修复。"
+}

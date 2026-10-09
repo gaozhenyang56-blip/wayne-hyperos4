@@ -1,0 +1,18 @@
+{
+  "label": "create-kernel-66-probe",
+  "started_utc": "2026-10-09T14:29:55.537132+00:00",
+  "finished_utc": "2026-10-09T14:29:55.734860+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/ci_kernel_66_probe.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T142955537132Z-create-kernel-66-probe.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "建立独立 6.6.9 编译探针、Android 配置片段和 wayne 板级定义；不生成可刷 boot。",
+  "outcome": "确认候选真实版本为 6.6.9，新增云端编译流程和输出哈希核验。原始文件下载触发 429 后，GitHub 内容 API 取证成功。Python 语法和差异格式检查通过。",
+  "next_step": "将实验源码同步到 GitHub 并运行真实交叉编译，失败时依据日志修复。"
+}

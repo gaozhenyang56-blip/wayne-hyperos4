@@ -1,0 +1,17 @@
+{
+  "label": "audit-vendor-kernel-interfaces",
+  "started_utc": "2026-10-09T14:31:47.472009+00:00",
+  "finished_utc": "2026-10-09T14:31:47.564134+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json; d=json.load(open(\"research/higher-kernel/vendor-device-interface-evidence.json\")); assert len(d[\"found_files\"])==10; print(\"10 ELF interface records\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T143147472009Z-audit-vendor-kernel-interfaces.log",
+  "output_sha256": "0ba994f7f39c51aa800b2871387aff826c23294e251051fc93e53812c09969ff",
+  "action": "扫描参考 vendor 的 ELF 文件，核对高版本内核必须兼容的真实设备接口。",
+  "outcome": "10 个二进制包含 KGSL 或 ION 设备路径，含 32/64 位 libgsl、视频解码库和指纹库；证据已保存哈希。字符串证据不等于动态调用测试，但确认直接替换主线内核存在接口风险。",
+  "next_step": "读取云端 6.6 编译结果，再规划厂商 GPU 和分配器接口适配。"
+}

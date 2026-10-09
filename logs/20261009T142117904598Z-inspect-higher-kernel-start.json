@@ -1,0 +1,17 @@
+{
+  "label": "inspect-higher-kernel-start",
+  "started_utc": "2026-10-09T14:21:17.904598+00:00",
+  "finished_utc": "2026-10-09T14:21:17.951893+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T142117904598Z-inspect-higher-kernel-start.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "从已交付静态实验包断点检查高版本内核探索条件。",
+  "outcome": "工作区无未提交开发修改，当前目标保持原版静态分区；当前已验证参考内核为 4.19，开始查找更高版本候选。",
+  "next_step": "核对 SDM660/wayne 的高版本源码与硬件支持证据。"
+}

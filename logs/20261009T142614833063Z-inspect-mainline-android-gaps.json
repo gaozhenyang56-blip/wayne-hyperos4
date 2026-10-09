@@ -1,0 +1,17 @@
+{
+  "label": "inspect-mainline-android-gaps",
+  "started_utc": "2026-10-09T14:26:14.833063+00:00",
+  "finished_utc": "2026-10-09T14:26:14.940023+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import pathlib,hashlib,json; d=json.loads(pathlib.Path(\"research/higher-kernel/source-evidence.json\").read_text()); assert all(hashlib.sha256((pathlib.Path(\"research/higher-kernel/upstream\")/r[\"path\"]).read_bytes()).hexdigest()==r[\"sha256\"] for r in d[\"files\"]); print(\"six source files verified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T142614833063Z-inspect-mainline-android-gaps.log",
+  "output_sha256": "e47ec0d8cd29976d6426fc3996b1fb6cfc796afdbfb99364d4c9d17ac0571359",
+  "action": "保存并校验高版本源码配置和 wayne 设备树，按用户要求将探索目标限制在 6.x。",
+  "outcome": "7.0.9 的 Binder 已开启，但 GPU 使用 DRM_MSM；参考 Android 设备配置要求 KGSL、ION 和 msm_camera 接口，文件系统加密未启用。7.x 仅作为移植参考，继续寻找 6.x 分支。",
+  "next_step": "确认 6.x 候选的真实版本和设备支持，建立独立探索配置。"
+}
