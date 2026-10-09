@@ -1,0 +1,17 @@
+{
+  "label": "review-kernel-66-build",
+  "started_utc": "2026-10-09T14:40:15.910461+00:00",
+  "finished_utc": "2026-10-09T14:40:15.972334+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json; d=json.load(open(\"artifacts/kernel-6.6-probe.json\")); assert d[\"compiled\"] and not d[\"bootable_verified\"] and not d[\"flashable_boot_created\"]; assert d[\"kernel_release\"]==\"6.6.9-sdm660+\"; print(\"Reviewed compile success; runtime remains unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T144015910461Z-review-kernel-66-build.log",
+  "output_sha256": "a08fdd2ef1f1104488565dc1a8e423604eb07a6a134d2c71737294b9435f7505",
+  "action": "复核 6.6.9 云端构建成功结果，更新探索文档并核对研究产物信息。",
+  "outcome": "任务 37944711030 全部通过；生成 6.6.9-sdm660+ Image.gz 和 wayne DTB，实际 Android 基础配置检查通过，报告与研究产物已保存 GitHub。当前工作区下载 Artifact 返回 403，本地独立读回未通过；尚未验证启动、厂商 ABI 或完整模块集。",
+  "next_step": "以 KGSL/ION 兼容为首项继续适配，并核对 wayne 板级差异和早期驱动加载。"
+}
