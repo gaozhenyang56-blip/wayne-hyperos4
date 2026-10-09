@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+    "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+    "sha256": "e863e8aad69fafeae3e405f52d73fee17f1b90a99d37a1d38317a5f5c6bb0298",
+    "exact_sample_kernel_match": false
+  },
+  {
+    "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/sdm660-mtp-jasmine.dts",
+    "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+    "sha256": "f690fe1c334bd35ee489c9fe2315f5e05948caf94ab94e684cbd8f61de969c51",
+    "exact_sample_kernel_match": false
+  }
+]

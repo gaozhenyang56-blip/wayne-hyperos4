@@ -1,0 +1,15 @@
+{
+  "label": "implement-source-heap-adapter",
+  "started_utc": "2026-10-09T20:14:09.739044+00:00",
+  "finished_utc": "2026-10-09T20:14:09.742560+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "downloads/allocator-native/test_adapter"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T201409739044Z-implement-source-heap-adapter.log",
+  "output_sha256": "bf66fcbf005d1b1ba3a6d1657e49585d16c69a6110bf6dfbd96df7fc4226933d",
+  "action": "实现独立、可撤回的 source-client system-heap 适配器，核对传统 ION 与主线 heap 接口边界。",
+  "outcome": "仅接受固定宽度、缓存、非安全、源代码客户端请求；拒绝 32/64 位传统 ION、OEM heap、secure/uncached 与未知 ioctl。真实 POSIX 后端已实现，host 测试用 mock 验证，未调用硬件。修复测试代码编译警告后 -Werror 编译通过。不向旧 vendor 注入，不创建 /dev/ion。",
+  "next_step": "建立 ARM32/ARM64 交叉构建及独立 6.6 heap 配置验证流程，核对 wayne DTS 差异。"
+}

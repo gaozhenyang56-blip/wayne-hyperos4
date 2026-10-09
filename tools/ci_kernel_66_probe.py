@@ -23,7 +23,8 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def build():
+def build(report_path=None):
+    report_path = report_path or REPORT
     lock = json.loads((ROOT / 'config/kernel-6.6-experiment.json').read_text())
     SOURCE.mkdir(parents=True, exist_ok=True)
     run('git', 'init', SOURCE)
@@ -69,6 +70,9 @@ def build():
         'source_commit': actual, 'repository': lock['repository'], 'kernel_release': release,
         'compiled': True, 'android_config_prerequisites_verified': required,
         'dtb_compatible': compatible, 'hardware_tested': False,
+        'board_identity_validation_scope': 'compatible tag only; inherited jasmine board details unverified',
+        'target_device': 'China Xiaomi Mi 6X (wayne), not Mi A2',
+        'provided_legacy_graphics_abis': {'kgsl': False, 'ion': False, 'msm_fb': False},
         'android_vendor_abi_verified': False, 'bootable_verified': False,
         'flashable_boot_created': False, 'partition_table_modified': False,
         'modules_built': False,
@@ -79,8 +83,8 @@ def build():
         'outputs': [{'path': str(p.relative_to(SOURCE)), 'sha256': digest(p),
                      'size': p.stat().st_size} for p in files],
     }
-    REPORT.parent.mkdir(exist_ok=True)
-    REPORT.write_text(json.dumps(report, indent=2) + '\n')
+    report_path.parent.mkdir(exist_ok=True)
+    report_path.write_text(json.dumps(report, indent=2) + '\n')
     print(json.dumps(report, indent=2))
 
 

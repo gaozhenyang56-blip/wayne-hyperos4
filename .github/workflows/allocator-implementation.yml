@@ -1,0 +1,38 @@
+name: Bounded wayne allocator implementation and 6.6 build
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: wayne-allocator-implementation
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    env:
+      WAYNE_PROGRESS_FILE: docs/operations/allocator-build-${{ github.run_id }}.md
+      WAYNE_PROGRESS_TIMEZONE: America/Los_Angeles
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Progress identity
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Verify adapter and changed kernel configuration
+        run: python3 tools/ci_allocator_implementation.py
+      - name: Save research outputs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wayne-allocator-implementation-research-only
+          path: |
+            downloads/allocator-cross/
+            research/allocator-implementation/cross-build.json
+            artifacts/kernel-6.6-allocator-probe.json
+            sources/kernel-6.6-probe/out/.config
+            sources/kernel-6.6-probe/out/arch/arm64/boot/Image.gz
+            sources/kernel-6.6-probe/out/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dtb
+            logs/*allocator-implementation-*
