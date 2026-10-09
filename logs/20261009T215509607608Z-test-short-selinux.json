@@ -1,0 +1,17 @@
+{
+  "label": "test-short-selinux",
+  "started_utc": "2026-10-09T21:55:09.607608+00:00",
+  "finished_utc": "2026-10-09T21:55:09.616752+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T215509607608Z-test-short-selinux.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "修复 heap 控制 FD 的多余写打开需求，并静态审计已有节点标签、规则和neverallow证据。",
+  "outcome": "改为 O_RDONLY，buffer FD 仍 O_RDWR。正例、EACCES/EPERM拒绝和原ION负例通过；旧提交代码被新只读测试确实拒绝。KGSL参考标签为gpu_device，system heap平台标签独立；ION显式标签和当前客户端域未知，不改任何allow/permissive。",
+  "next_step": "保存最小补丁、来源、测试及未核实的合并策略/AVC项，短阶段结束后暂停。"
+}
