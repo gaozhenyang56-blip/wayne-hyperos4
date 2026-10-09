@@ -1,0 +1,60 @@
+{
+  "finished_utc": "2026-10-09T20:29:25.582179+00:00",
+  "source_commit": "6a4e475000ecc7e864911959a1984a0664088464",
+  "repository": "https://github.com/sdm660-mainline/linux.git",
+  "kernel_release": "6.6.9-sdm660+",
+  "compiled": true,
+  "android_config_prerequisites_verified": [
+    "ANDROID_BINDER_IPC",
+    "ANDROID_BINDERFS",
+    "SECURITY_SELINUX",
+    "FS_ENCRYPTION",
+    "EXT4_FS",
+    "EROFS_FS",
+    "DEVTMPFS",
+    "BLK_DEV_INITRD",
+    "COMPAT",
+    "DMABUF_HEAPS",
+    "DMABUF_HEAPS_SYSTEM",
+    "DMA_CMA",
+    "DMABUF_HEAPS_CMA",
+    "SYNC_FILE"
+  ],
+  "dtb_compatible": "xiaomi,wayne qcom,sdm660",
+  "hardware_tested": false,
+  "board_identity_validation_scope": "compatible tag only; inherited jasmine board details unverified",
+  "target_device": "China Xiaomi Mi 6X (wayne), not Mi A2",
+  "provided_legacy_graphics_abis": {
+    "kgsl": false,
+    "ion": false,
+    "msm_fb": false
+  },
+  "android_vendor_abi_verified": false,
+  "bootable_verified": false,
+  "flashable_boot_created": false,
+  "partition_table_modified": false,
+  "modules_built": false,
+  "limitations": [
+    "jasmine hardware inherited; board differences unverified",
+    "downstream KGSL/ION/camera/audio ABI compatibility unverified",
+    "early modules and firmware loading not integrated",
+    "Android boot packaging and VINTF kernel compatibility unverified"
+  ],
+  "outputs": [
+    {
+      "path": "out/.config",
+      "sha256": "dc461bd202af705ab33a6082cb2bd0fc2fb4fe052706861505cb41e13dda6d36",
+      "size": 186251
+    },
+    {
+      "path": "out/arch/arm64/boot/Image.gz",
+      "sha256": "991311b91bf781bac57e8c2eaca96fe6b2786ea4b894f4eebbd2d06a9767f8aa",
+      "size": 8266726
+    },
+    {
+      "path": "out/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dtb",
+      "sha256": "a13b5e4755921612c307009294a2899c6d95d1f3674713a656faaca5e6485dcd",
+      "size": 49676
+    }
+  ]
+}

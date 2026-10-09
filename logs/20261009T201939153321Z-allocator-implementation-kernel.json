@@ -1,0 +1,18 @@
+{
+  "label": "allocator-implementation-kernel",
+  "started_utc": "2026-10-09T20:19:39.153321+00:00",
+  "finished_utc": "2026-10-09T20:29:25.597479+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/usr/bin/python3",
+    "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_allocator_implementation.py",
+    "--kernel"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T201939153321Z-allocator-implementation-kernel.log",
+  "output_sha256": "7ad1af885b4da735bab41d299953e0474779eb9dcf4e72b46f6530b3ddea344a",
+  "action": "验证完整 6.6 配置并编译 heap/sync 实验内核和 DTB，独立保存报告。",
+  "outcome": "本阶段命令完成；构建通过不代表旧 vendor 兼容或整机启动。",
+  "failure_note": "本阶段失败，已保存日志并停止，不伪造成功。",
+  "next_step": "核对研究报告、配置生效及未解决的 KGSL/显示/安全堆接口。"
+}
