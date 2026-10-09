@@ -1,3 +1,5 @@
 # Preserve original OTA metadata bytes, including padding.
 research/gpu-allocator-stage/lineage-wayne/META-INF_* -whitespace
 research/allocator-implementation/*.dts -whitespace
+research/allocator-implementation/*.dtsi -whitespace
+research/allocator-implementation/*.patch -whitespace

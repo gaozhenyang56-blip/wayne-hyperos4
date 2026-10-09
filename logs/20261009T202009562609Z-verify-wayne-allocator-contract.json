@@ -1,0 +1,20 @@
+{
+  "label": "verify-wayne-allocator-contract",
+  "started_utc": "2026-10-09T20:20:09.562609+00:00",
+  "finished_utc": "2026-10-09T20:20:09.656414+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/build_allocator_adapter.py",
+    "tools/ci_allocator_implementation.py",
+    "tools/ci_kernel_66_probe.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T202009562609Z-verify-wayne-allocator-contract.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "复核国行 wayne 下游 DTS、静态分区启动路径和旧 vendor 图形接口拒绝行为。",
+  "outcome": "wayne/jasmine 共用部分硬件文件但 board-id 和早挂载 fstab 不同；源码无法证实用户真机面板。首次审计参数文件名错误，纠正后旧 vendor 配对按预期返回 2。云端 ARM32/ARM64 报告已产生，内核继续编译。",
+  "next_step": "检查交叉编译报告和最终内核配置，保存最小补丁的限制及下一断点。"
+}

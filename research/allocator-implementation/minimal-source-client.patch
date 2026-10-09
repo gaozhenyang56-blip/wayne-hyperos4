@@ -1,0 +1,384 @@
+diff --git a/.github/workflows/allocator-implementation.yml b/.github/workflows/allocator-implementation.yml
+new file mode 100644
+index 0000000..7f270f0
+--- /dev/null
++++ b/.github/workflows/allocator-implementation.yml
+@@ -0,0 +1,38 @@
++name: Bounded wayne allocator implementation and 6.6 build
++on:
++  workflow_dispatch:
++permissions:
++  contents: write
++concurrency:
++  group: wayne-allocator-implementation
++  cancel-in-progress: false
++jobs:
++  verify:
++    runs-on: ubuntu-24.04
++    timeout-minutes: 30
++    env:
++      WAYNE_PROGRESS_FILE: docs/operations/allocator-build-${{ github.run_id }}.md
++      WAYNE_PROGRESS_TIMEZONE: America/Los_Angeles
++    steps:
++      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
++        with:
++          fetch-depth: 0
++      - name: Progress identity
++        run: |
++          git config user.name github-actions[bot]
++          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
++      - name: Verify adapter and changed kernel configuration
++        run: python3 tools/ci_allocator_implementation.py
++      - name: Save research outputs
++        if: always()
++        uses: actions/upload-artifact@v4
++        with:
++          name: wayne-allocator-implementation-research-only
++          path: |
++            downloads/allocator-cross/
++            research/allocator-implementation/cross-build.json
++            artifacts/kernel-6.6-allocator-probe.json
++            sources/kernel-6.6-probe/out/.config
++            sources/kernel-6.6-probe/out/arch/arm64/boot/Image.gz
++            sources/kernel-6.6-probe/out/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dtb
++            logs/*allocator-implementation-*
+diff --git a/compat/wayne_dma_heap/adapter.c b/compat/wayne_dma_heap/adapter.c
+new file mode 100644
+index 0000000..e78cc17
+--- /dev/null
++++ b/compat/wayne_dma_heap/adapter.c
+@@ -0,0 +1,80 @@
++/* SPDX-License-Identifier: MIT */
++#include <errno.h>
++#include <fcntl.h>
++#include <limits.h>
++#include <stddef.h>
++#include <sys/ioctl.h>
++#include <unistd.h>
++#include "adapter.h"
++
++_Static_assert(sizeof(struct ion_allocation_data) == 24, "fixed-width ION required");
++_Static_assert(sizeof(struct dma_heap_allocation_data) == 24, "DMA heap UAPI size");
++_Static_assert(offsetof(struct ion_allocation_data, fd) == 16, "ION fd offset");
++_Static_assert(offsetof(struct dma_heap_allocation_data, fd) == 8, "heap fd offset");
++
++int wayne_ion_system_plan(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input,
++                         struct dma_heap_allocation_data *output)
++{
++    struct dma_heap_allocation_data request = {0};
++    if (!input || !output) return -EINVAL;
++    if (profile != WAYNE_SOURCE_SYSTEM_PROFILE) return -EOPNOTSUPP;
++    /* Legacy handle-based 32/64-bit ION, CUSTOM/SHARE/FREE are all rejected. */
++    if (command != ION_IOC_ALLOC) return -ENOTTY;
++    if (input->heap_id_mask != WAYNE_SOURCE_SYSTEM_MASK) return -EOPNOTSUPP;
++    /* Mainline system heap is cached: no uncached/secure flag downgrading. */
++    if (input->flags != ION_FLAG_CACHED) return -EOPNOTSUPP;
++    if (input->unused || input->fd) return -EINVAL;
++    if (!input->len || input->len > WAYNE_MAX_PROBE_BYTES) return -E2BIG;
++    request.len = input->len;
++    request.fd_flags = O_RDWR | O_CLOEXEC;
++    request.heap_flags = 0;
++    *output = request;
++    return 0;
++}
++
++int wayne_ion_system_alloc_with_ops(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input, int *output_fd,
++                         const struct wayne_heap_ops *ops)
++{
++    struct dma_heap_allocation_data request;
++    int result, heap;
++    if (!output_fd) return -EINVAL;
++    *output_fd = -1;
++    if (!ops || !ops->open_heap || !ops->allocate || !ops->close_fd) return -EINVAL;
++    result = wayne_ion_system_plan(profile, command, input, &request);
++    if (result) return result;
++    heap = ops->open_heap("/dev/dma_heap/system", O_RDWR | O_CLOEXEC, ops->context);
++    if (heap < 0) return heap;
++    result = ops->allocate(heap, DMA_HEAP_IOCTL_ALLOC, &request, ops->context);
++    ops->close_fd(heap, ops->context); /* Never retry close or close caller's buffer. */
++    if (result < 0) return result;
++    if (result != 0 || request.fd > INT_MAX) return -EIO;
++    *output_fd = (int)request.fd;
++    return 0;
++}
++
++static int system_open(const char *path, int flags, void *context)
++{
++    int fd; (void)context;
++    fd = open(path, flags);
++    return fd < 0 ? -errno : fd;
++}
++static int system_allocate(int fd, unsigned long command,
++                           struct dma_heap_allocation_data *request, void *context)
++{
++    int result; (void)context;
++    result = ioctl(fd, command, request);
++    return result < 0 ? -errno : result;
++}
++static int system_close(int fd, void *context)
++{
++    (void)context;
++    return close(fd);
++}
++int wayne_ion_system_alloc(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input, int *output_fd)
++{
++    const struct wayne_heap_ops ops = {system_open, system_allocate, system_close, NULL};
++    return wayne_ion_system_alloc_with_ops(profile, command, input, output_fd, &ops);
++}
+diff --git a/compat/wayne_dma_heap/adapter.h b/compat/wayne_dma_heap/adapter.h
+new file mode 100644
+index 0000000..914ec88
+--- /dev/null
++++ b/compat/wayne_dma_heap/adapter.h
+@@ -0,0 +1,30 @@
++/* SPDX-License-Identifier: MIT */
++#ifndef WAYNE_DMA_HEAP_ADAPTER_H
++#define WAYNE_DMA_HEAP_ADAPTER_H
++#include <stdint.h>
++#include "ion-lineage.h"
++#include "dma-heap.h"
++
++/* Source-owned protocol. This is NOT a Qualcomm/OEM heap-ID mapping. */
++#define WAYNE_SOURCE_SYSTEM_PROFILE UINT32_C(0x574e6601)
++#define WAYNE_SOURCE_SYSTEM_MASK UINT32_C(1)
++#define WAYNE_MAX_PROBE_BYTES UINT64_C(16777216)
++
++struct wayne_heap_ops {
++    int (*open_heap)(const char *path, int flags, void *context);
++    int (*allocate)(int heap_fd, unsigned long command,
++                    struct dma_heap_allocation_data *request, void *context);
++    int (*close_fd)(int fd, void *context);
++    void *context;
++};
++
++/* Negative errno on failure. Only fixed-width, cached, source-owned requests. */
++int wayne_ion_system_plan(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input,
++                         struct dma_heap_allocation_data *output);
++int wayne_ion_system_alloc_with_ops(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input, int *output_fd,
++                         const struct wayne_heap_ops *ops);
++int wayne_ion_system_alloc(uint32_t profile, unsigned long command,
++                         const struct ion_allocation_data *input, int *output_fd);
++#endif
+diff --git a/compat/wayne_dma_heap/test_adapter.c b/compat/wayne_dma_heap/test_adapter.c
+new file mode 100644
+index 0000000..373ae15
+--- /dev/null
++++ b/compat/wayne_dma_heap/test_adapter.c
+@@ -0,0 +1,55 @@
++/* SPDX-License-Identifier: MIT */
++#include <assert.h>
++#include <errno.h>
++#include <fcntl.h>
++#include <stdio.h>
++#include <string.h>
++#include <sys/ioctl.h>
++#include "adapter.h"
++
++struct state {int opens, allocates, closes, open_error, allocation_error;};
++static int fake_open(const char *path, int flags, void *context)
++{
++    struct state *s=context;s->opens++;
++    assert(!strcmp(path,"/dev/dma_heap/system"));
++    assert(flags==(O_RDWR|O_CLOEXEC));return s->open_error ? s->open_error : 11;
++}
++static int fake_allocate(int fd, unsigned long cmd, struct dma_heap_allocation_data *r, void *context)
++{
++    struct state *s=context;s->allocates++;assert(fd==11 && cmd==DMA_HEAP_IOCTL_ALLOC);
++    assert(r->len==4096 && r->fd_flags==(O_RDWR|O_CLOEXEC) && !r->heap_flags);
++    if(s->allocation_error) return s->allocation_error;
++    r->fd=42;
++    return 0;
++}
++static int fake_close(int fd, void *context)
++{struct state *s=context;s->closes++;assert(fd==11);return 0;}
++
++int main(void)
++{
++    const uint32_t profile=WAYNE_SOURCE_SYSTEM_PROFILE;
++    struct ion_allocation_data r={.len=4096,.heap_id_mask=WAYNE_SOURCE_SYSTEM_MASK,.flags=ION_FLAG_CACHED};
++    struct dma_heap_allocation_data plan={0};struct state s={0};int fd=99;
++    const struct wayne_heap_ops ops={fake_open,fake_allocate,fake_close,&s};
++    assert(!wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan));assert(plan.len==4096);
++    assert(wayne_ion_system_plan(0,ION_IOC_ALLOC,&r,&plan)==-EOPNOTSUPP);
++    assert(wayne_ion_system_plan(profile,_IOC(_IOC_READ|_IOC_WRITE,'I',0,20),&r,&plan)==-ENOTTY);
++    assert(wayne_ion_system_plan(profile,_IOC(_IOC_READ|_IOC_WRITE,'I',0,32),&r,&plan)==-ENOTTY);
++    assert(wayne_ion_system_plan(profile,_IOC(_IOC_READ|_IOC_WRITE,'I',6,8),&r,&plan)==-ENOTTY);
++    r.heap_id_mask=1u<<25;assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops)==-EOPNOTSUPP);
++    assert(fd==-1 && !s.opens);r.heap_id_mask=WAYNE_SOURCE_SYSTEM_MASK;
++    r.flags=0;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-EOPNOTSUPP);
++    r.flags=ION_FLAG_CACHED|0x80000000u;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-EOPNOTSUPP);
++    r.flags=ION_FLAG_CACHED;r.unused=1;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-EINVAL);
++    r.unused=0;r.fd=7;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-EINVAL);r.fd=0;
++    r.len=0;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-E2BIG);
++    r.len=WAYNE_MAX_PROBE_BYTES+1;assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,&r,&plan)==-E2BIG);r.len=4096;
++    assert(wayne_ion_system_plan(profile,ION_IOC_ALLOC,NULL,&plan)==-EINVAL);
++    s.open_error=-ENOENT;assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops)==-ENOENT);
++    assert(fd==-1 && !s.allocates && !s.closes);s.open_error=0;s.allocation_error=-ENOMEM;
++    assert(wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops)==-ENOMEM);
++    assert(fd==-1 && s.closes==1);s.allocation_error=0;
++    assert(!wayne_ion_system_alloc_with_ops(profile,ION_IOC_ALLOC,&r,&fd,&ops));assert(fd==42 && s.closes==2);
++    puts("adapter positive translation and negative/FD ownership tests passed; mocked heap only");
++    return 0;
++}
+diff --git a/tools/build_allocator_adapter.py b/tools/build_allocator_adapter.py
+new file mode 100644
+index 0000000..bfb98a2
+--- /dev/null
++++ b/tools/build_allocator_adapter.py
+@@ -0,0 +1,58 @@
++#!/usr/bin/env python3
++"""Host mock tests and GNU/Linux ARM cross-builds, never a vendor injection."""
++import argparse
++import datetime
++import hashlib
++import json
++import pathlib
++import subprocess
++
++ROOT=pathlib.Path(__file__).resolve().parent.parent
++UAPI=ROOT/'research/gpu-allocator-stage/kernel-uapi'
++CODE=ROOT/'compat/wayne_dma_heap'
++
++
++def run(args):
++    subprocess.run([str(x) for x in args],check=True)
++
++
++def build(output,cross=False):
++    output.mkdir(parents=True,exist_ok=True)
++    flags=['-D_GNU_SOURCE','-std=c11','-Wall','-Wextra','-Werror','-fPIC','-O2','-I'+str(UAPI)]
++    source=CODE/'adapter.c';test=CODE/'test_adapter.c'
++    run(['cc',*flags,source,test,'-o',output/'test_adapter'])
++    run([output/'test_adapter'])
++    artifacts=[]
++    if cross:
++        for prefix,arch,bits,machine in [('aarch64-linux-gnu-','aarch64',64,'AArch64'),
++                                        ('arm-linux-gnueabihf-','armv7',32,'ARM')]:
++            dest=output/arch;dest.mkdir(exist_ok=True);obj=dest/'adapter.o';lib=dest/'libwayne_dma_heap.a'
++            run([prefix+'gcc',*flags,'-c',source,'-o',obj]);run([prefix+'ar','rcs',lib,obj])
++            header=subprocess.check_output(['readelf','-h',str(obj)],text=True)
++            if 'ELF'+str(bits) not in header or 'Machine:' not in header or machine not in header:
++                raise ValueError('Wrong object target: '+arch)
++            (dest/'readelf.txt').write_text(header)
++            for path in [obj,lib]:
++                artifacts.append({'path':str(path.relative_to(ROOT)),
++                    'sha256':hashlib.sha256(path.read_bytes()).hexdigest(),'size':path.stat().st_size,
++                    'target':arch,'elf_bits':bits,'machine':machine})
++    report={'finished_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),
++        'host_test_exit_code':0,'host_backend':'mocked heap syscalls only',
++        'cross_compiled':cross,'cross_environment':'GNU/Linux toolchains',
++        'android_bionic_linked':False,'injected_into_vendor':False,'kgsl_implemented':False,
++        'legacy_ion_ioctl_implemented':False,'hardware_tested':False,'bootable_verified':False,
++        'sources':{str(p.relative_to(ROOT)):hashlib.sha256(p.read_bytes()).hexdigest()
++                   for p in [source,CODE/'adapter.h',test,UAPI/'ion-lineage.h',UAPI/'dma-heap.h']},
++        'outputs':artifacts}
++    return report
++
++
++def main():
++    p=argparse.ArgumentParser();p.add_argument('--cross',action='store_true')
++    p.add_argument('--output',type=pathlib.Path,default=ROOT/'downloads/allocator-native')
++    p.add_argument('--report',type=pathlib.Path,required=True);args=p.parse_args()
++    report=build(args.output.resolve(),args.cross);args.report.parent.mkdir(parents=True,exist_ok=True)
++    args.report.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report,indent=2))
++
++
++if __name__=='__main__':main()
+diff --git a/tools/ci_allocator_implementation.py b/tools/ci_allocator_implementation.py
+new file mode 100644
+index 0000000..a6abb33
+--- /dev/null
++++ b/tools/ci_allocator_implementation.py
+@@ -0,0 +1,52 @@
++#!/usr/bin/env python3
++"""One bounded allocator build, keeping previous kernel reports immutable."""
++import datetime
++import os
++import pathlib
++import subprocess
++import sys
++import json
++from ci_build_candidate import sync_progress,run
++
++ROOT=pathlib.Path(__file__).resolve().parent.parent
++KERNEL_REPORT=ROOT/'artifacts/kernel-6.6-allocator-probe.json'
++REPORT=ROOT/'research/allocator-implementation/cross-build.json'
++
++
++def main():
++    os.chdir(ROOT)
++    steps=[('prepare',['sudo','apt-get','update'],'更新独立 allocator 构建环境。'),
++      ('dependencies',['sudo','apt-get','install','-y','gcc-aarch64-linux-gnu','gcc-arm-linux-gnueabihf',
++                       'make','flex','bison','libssl-dev','libelf-dev','bc','device-tree-compiler'],
++                       '准备 ARM32/ARM64 工具链与内核依赖。'),
++      ('adapter',[sys.executable,'tools/build_allocator_adapter.py','--cross','--output',
++                  'downloads/allocator-cross','--report',str(REPORT)],
++                  '运行受限 source-client 适配器负例测试与 GNU/Linux ARM32/ARM64 交叉编译。'),
++      ('kernel',[sys.executable,__file__,'--kernel'],
++                  '验证完整 6.6 配置并编译 heap/sync 实验内核和 DTB，独立保存报告。')]
++    before={p:p.read_bytes() for p in [ROOT/'artifacts/kernel-6.6-probe.json',ROOT/'artifacts/static-candidate-package.json']}
++    for name,command,action in steps:
++        now=datetime.datetime.now(datetime.timezone.utc).isoformat()
++        path=ROOT/os.environ['WAYNE_PROGRESS_FILE'];path.parent.mkdir(exist_ok=True,parents=True)
++        with path.open('a') as f:
++            f.write(f'## {now}\n\n做了什么：开始{action}\n\n发生了什么：进入本阶段；不注入旧 vendor，不生成可刷 boot。\n\n下一步：保存阶段结果并核对剩余接口阻碍。\n\n')
++        sync_progress()
++        r=subprocess.run([sys.executable,'tools/record_step.py','--action',action,
++            '--outcome','本阶段命令完成；构建通过不代表旧 vendor 兼容或整机启动。',
++            '--failure-note','本阶段失败，已保存日志并停止，不伪造成功。',
++            '--next','核对研究报告、配置生效及未解决的 KGSL/显示/安全堆接口。',
++            'allocator-implementation-'+name,'--',*command])
++        for p in [REPORT,KERNEL_REPORT]:
++            if p.exists():run('git','add',p)
++        sync_progress()
++        if r.returncode:raise SystemExit(r.returncode)
++    if any(p.read_bytes()!=data for p,data in before.items()):
++        raise ValueError('Historical build report changed')
++
++
++if __name__=='__main__':
++    if sys.argv[1:]==['--kernel']:
++        from ci_kernel_66_probe import build
++        build(KERNEL_REPORT)
++    elif not sys.argv[1:]:main()
++    else:raise SystemExit('Unknown argument')
+diff --git a/tools/ci_kernel_66_probe.py b/tools/ci_kernel_66_probe.py
+index bffad93..80e01f5 100644
+--- a/tools/ci_kernel_66_probe.py
++++ b/tools/ci_kernel_66_probe.py
+@@ -23,7 +23,8 @@ def digest(path):
+     return hashlib.sha256(path.read_bytes()).hexdigest()
+ 
+ 
+-def build():
++def build(report_path=None):
++    report_path = report_path or REPORT
+     lock = json.loads((ROOT / 'config/kernel-6.6-experiment.json').read_text())
+     SOURCE.mkdir(parents=True, exist_ok=True)
+     run('git', 'init', SOURCE)
+@@ -69,6 +70,9 @@ def build():
+         'source_commit': actual, 'repository': lock['repository'], 'kernel_release': release,
+         'compiled': True, 'android_config_prerequisites_verified': required,
+         'dtb_compatible': compatible, 'hardware_tested': False,
++        'board_identity_validation_scope': 'compatible tag only; inherited jasmine board details unverified',
++        'target_device': 'China Xiaomi Mi 6X (wayne), not Mi A2',
++        'provided_legacy_graphics_abis': {'kgsl': False, 'ion': False, 'msm_fb': False},
+         'android_vendor_abi_verified': False, 'bootable_verified': False,
+         'flashable_boot_created': False, 'partition_table_modified': False,
+         'modules_built': False,
+@@ -79,8 +83,8 @@ def build():
+         'outputs': [{'path': str(p.relative_to(SOURCE)), 'sha256': digest(p),
+                      'size': p.stat().st_size} for p in files],
+     }
+-    REPORT.parent.mkdir(exist_ok=True)
+-    REPORT.write_text(json.dumps(report, indent=2) + '\n')
++    report_path.parent.mkdir(exist_ok=True)
++    report_path.write_text(json.dumps(report, indent=2) + '\n')
+     print(json.dumps(report, indent=2))
+ 
+ 

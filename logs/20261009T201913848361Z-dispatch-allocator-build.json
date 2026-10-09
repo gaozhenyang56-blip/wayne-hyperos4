@@ -1,0 +1,22 @@
+{
+  "label": "dispatch-allocator-build",
+  "started_utc": "2026-10-09T20:19:13.848361+00:00",
+  "finished_utc": "2026-10-09T20:19:14.650814+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "gh",
+    "run",
+    "view",
+    "37986150560",
+    "--repo",
+    "gaozhenyang56-blip/wayne-hyperos4",
+    "--json",
+    "status,url,headSha"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T201913848361Z-dispatch-allocator-build.log",
+  "output_sha256": "6640637c160e95cb9fbfbf451585a5384b1001b8565412dcb385c35a1a2ec80e",
+  "action": "已提交最小源代码客户端适配器并启动独立云端构建。",
+  "outcome": "提交 0681027；运行 37986150560 验证 ARM64/ARM32 静态库及新增 heap 配置的 6.6 构建，旧报告不覆盖。",
+  "next_step": "核对 wayne 专属设备树差异、接口拒绝行为并收集实际编译结果。"
+}

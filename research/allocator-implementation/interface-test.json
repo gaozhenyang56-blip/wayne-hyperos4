@@ -1,0 +1,8 @@
+{
+  "finished_utc": "2026-10-09T20:20:09.173784+00:00",
+  "expected_exit_code": 2,
+  "actual_exit_code": 2,
+  "source_client_adapter_injected": false,
+  "legacy_vendor_pairing_rejected": true,
+  "hardware_tested": false
+}

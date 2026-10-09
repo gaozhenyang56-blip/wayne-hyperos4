@@ -1,0 +1,17 @@
+{
+  "label": "verify-allocator-patch",
+  "started_utc": "2026-10-09T20:22:10.230024+00:00",
+  "finished_utc": "2026-10-09T20:22:10.254053+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T202210230024Z-verify-allocator-patch.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "保存可复现的最小补丁及设备/接口阻塞清单，并检查旧成果未变化。",
+  "outcome": "最小补丁在 f40b63c 独立 worktree 上 git apply --check 通过；旧内核与静态镜像报告哈希保持原值。双架构编译已通过，内核任务尚在运行。",
+  "next_step": "等待单次新配置构建结论，保存报告、阶段断点并停止本轮。"
+}

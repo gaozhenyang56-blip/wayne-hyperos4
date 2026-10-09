@@ -1,0 +1,46 @@
+{
+  "checked_utc": "2026-10-09T20:20:49.829726+00:00",
+  "target": "China Xiaomi Mi 6X (wayne), stock static partitions",
+  "sample": "non-Miku Lineage19.1 wayne; not current user vendor",
+  "downstream_reference_commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+  "exact_sample_kernel_match": false,
+  "wayne_board_id": [
+    "0x020008:0",
+    "0x50008:0"
+  ],
+  "jasmine_board_id": [
+    "0x030008:0",
+    "8:0"
+  ],
+  "wayne_early_mount": "firmware/android/fstab/system: physical by-name/system ext4; vendor wait flag",
+  "jasmine_early_mount": "not equivalent: no system override in inspected jasmine.dtsi",
+  "sample_fstab": "Non-A/B physical partition paths; system/vendor recoveryonly with DT early mount; encryptable=ice",
+  "mainline_dtb_status": "jasmine inheritance with wayne tag is compilation scaffold only; not board bringup",
+  "vendor_graphics": {
+    "allocator": "2.0",
+    "mapper": "2.1",
+    "composer": "2.1",
+    "required_legacy_interfaces": [
+      "kgsl",
+      "ion",
+      "msm_fb"
+    ],
+    "matched_to_user_current_system": false
+  },
+  "kernel_heap_api": "public header exports get_drvdata/get_name/add; does not declare dma_heap_find or dma_heap_buffer_alloc",
+  "minimal_path": "source-owned cached non-secure system-heap allocator only, no vendor injection",
+  "remaining": [
+    "KGSL ioctls and legacy ION handle/OEM heap ABI",
+    "Android bionic/NDK linkage and native buffer handles",
+    "DMA_BUF_IOCTL_SYNC CPU cache protocol and fences",
+    "GPU DMA-BUF import, IOMMU and protected content",
+    "SELinux heap/HAL device labels and domains",
+    "wayne board-id/boot DT selection and first-stage static mounts",
+    "display panel, clocks, regulators and composer integration",
+    "camera and audio downstream driver/HAL ABI",
+    "ICE encryption and userdata unlock compatibility",
+    "init modules/firmware/VINTF boot contract"
+  ],
+  "bootable_verified": false,
+  "hardware_tested": false
+}

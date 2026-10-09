@@ -1,0 +1,495 @@
+{
+  "sample_role": "non-Miku wayne ROM comparison only; not user current vendor",
+  "graphics_files": [
+    {
+      "path": "lib/libgsl.so",
+      "sha256": "d411349bfc8771ad4b7d1edb56a036515690c762ebe982221e0e67eca25448a3",
+      "size": 1950536,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libcutils.so",
+        "liblog.so",
+        "libz.so",
+        "libsync.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/ion",
+        "/dev/kgsl-2d0",
+        "/dev/kgsl-2d1",
+        "/dev/kgsl-3d0",
+        "/sys/class/kgsl/kgsl-3d0/snapshot",
+        "/sys/kernel/debug/kgsl/proc/%d/mem"
+      ]
+    },
+    {
+      "path": "lib/libsdmcore.so",
+      "sha256": "93ad22de86db0a2eff1c6d73bf2e064e04372e625e24853c57f5c7e8e87c2f2e",
+      "size": 268932,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libsdmutils.so",
+        "libdrm.so",
+        "libdrmutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/graphics/fb",
+        "/sys/devices/virtual/graphics/fb",
+        "/sys/devices/virtual/graphics/fb0/connected",
+        "/sys/devices/virtual/graphics/fb0/mdp/bw_mode_bitmap",
+        "/sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en",
+        "/sys/devices/virtual/graphics/fb0/msm_fb_type"
+      ]
+    },
+    {
+      "path": "lib/libsdmutils.so",
+      "sha256": "de569e68005b0d1173aecb4d68c19ea609da6fcba5fafb20b71b2a561981ad4f",
+      "size": 16668,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/sys/devices/virtual/graphics/fb0/mdp/caps"
+      ]
+    },
+    {
+      "path": "lib/libgrallocutils.so",
+      "sha256": "8c9558c5c070ed8e0361125a23d0bc7915ec4f33aa285d69c74b6772c426cfb7",
+      "size": 16420,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libqdMetaData.so",
+        "android.hardware.graphics.common@1.1.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib/egl/libEGL_adreno.so",
+      "sha256": "051ee71d312eccdcf22a27ecd1e6563c5660e689be9b2617efbdfbfb079570e6",
+      "size": 21456,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libadreno_utils.so",
+        "libgsl.so",
+        "libcutils.so",
+        "libdl.so",
+        "libz.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib/egl/libGLESv2_adreno.so",
+      "sha256": "8f8e1505e1e3a74482c50209bc73125eed0c90f22829d07fca198d48cc98d53a",
+      "size": 2332216,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libadreno_utils.so",
+        "libgsl.so",
+        "libllvm-glnext.so",
+        "libcutils.so",
+        "libdl.so",
+        "libz.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib/hw/gralloc.sdm660.so",
+      "sha256": "d78329d1af71a64847013582b885fc7481ab53be5d164a125e236cbcbc9fc0a3",
+      "size": 50488,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libqdMetaData.so",
+        "libsync.so",
+        "libgrallocutils.so",
+        "android.hardware.graphics.common@1.1.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "path": "lib/hw/hwcomposer.sdm660.so",
+      "sha256": "248535b81a58cc5473816e37a7db5462cc967a6b798c4d3495bd8d579ba146d4",
+      "size": 223396,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "libsdmcore.so",
+        "libqservice.so",
+        "libbinder.so",
+        "libhardware.so",
+        "libhardware_legacy.so",
+        "libutils.so",
+        "libcutils.so",
+        "libsync.so",
+        "libqdutils.so",
+        "libqdMetaData.so",
+        "libdrmutils.so",
+        "libsdmutils.so",
+        "libc++.so",
+        "liblog.so",
+        "libgrallocutils.so",
+        "vendor.display.config@1.0.so",
+        "libhidlbase.so",
+        "libui.so",
+        "libgpu_tonemapper.so",
+        "vendor.display.config@1.1.so",
+        "vendor.display.config@1.2.so",
+        "vendor.display.config@1.3.so",
+        "vendor.display.config@1.4.so",
+        "vendor.display.config@1.5.so",
+        "vendor.display.config@1.6.so",
+        "vendor.display.config@1.7.so",
+        "vendor.display.config@1.8.so",
+        "vendor.display.config@1.9.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+      "sha256": "5e490c38c5b2b40abd994dc583ebf9b171af4a9bd5dc6f1cca906e8409a4e88d",
+      "size": 20840,
+      "elf_class": 32,
+      "machine": "EM_ARM",
+      "needed": [
+        "android.hardware.graphics.mapper@2.0.so",
+        "android.hardware.graphics.mapper@2.1.so",
+        "libbase.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libhidlbase.so",
+        "liblog.so",
+        "libsync.so",
+        "libutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/libgsl.so",
+      "sha256": "d541f714969847be61afc5ed7c1c8af7b5baa0f41e1813c05f93568c0f12f70e",
+      "size": 2125912,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libcutils.so",
+        "liblog.so",
+        "libz.so",
+        "libsync.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/ion",
+        "/dev/kgsl-2d0",
+        "/dev/kgsl-2d1",
+        "/dev/kgsl-3d0",
+        "/sys/class/kgsl/kgsl-3d0/snapshot",
+        "/sys/kernel/debug/kgsl/proc/%d/mem"
+      ]
+    },
+    {
+      "path": "lib64/libsdmcore.so",
+      "sha256": "e250a31fe6d4832c7cd9c4855db1a15c26818f50da3e60e53d0c51a3ffcb3cbf",
+      "size": 357952,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libsdmutils.so",
+        "libdrm.so",
+        "libdrmutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/graphics/fb",
+        "/sys/devices/virtual/graphics/fb",
+        "/sys/devices/virtual/graphics/fb0/connected",
+        "/sys/devices/virtual/graphics/fb0/mdp/bw_mode_bitmap",
+        "/sys/devices/virtual/graphics/fb0/msm_cmd_autorefresh_en",
+        "/sys/devices/virtual/graphics/fb0/msm_fb_type"
+      ]
+    },
+    {
+      "path": "lib64/libsdmutils.so",
+      "sha256": "44f8f1a8a315308499527aa2cf5a1b15a93265a22a1bf993ff541ecc3e857ea1",
+      "size": 23656,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/sys/devices/virtual/graphics/fb0/mdp/caps"
+      ]
+    },
+    {
+      "path": "lib64/libgrallocutils.so",
+      "sha256": "d28abc658fa5bb052062a5170aeff8237e2c5e2d087b7f0f7c1478fe82fe1061",
+      "size": 27528,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libqdMetaData.so",
+        "android.hardware.graphics.common@1.1.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/egl/libEGL_adreno.so",
+      "sha256": "4ec8f56dd70737a4fe3922c9fc1d27cad0757c4cd62f3a1ba16110d795548f6c",
+      "size": 39864,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libadreno_utils.so",
+        "libgsl.so",
+        "libcutils.so",
+        "libdl.so",
+        "libz.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/egl/libGLESv2_adreno.so",
+      "sha256": "e59c4b5afabee25c940916d30b2f9a5251dc6b61ffadeba4b4bc19fd07576065",
+      "size": 3512376,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libadreno_utils.so",
+        "libgsl.so",
+        "libllvm-glnext.so",
+        "libcutils.so",
+        "libdl.so",
+        "libz.so",
+        "liblog.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/hw/gralloc.sdm660.so",
+      "sha256": "336dda3a32025679d0a5cbecb83c66fa775833b03cc4b41409a2ead3271cc6b6",
+      "size": 70856,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "liblog.so",
+        "libutils.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libqdMetaData.so",
+        "libsync.so",
+        "libgrallocutils.so",
+        "android.hardware.graphics.common@1.1.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "path": "lib64/hw/hwcomposer.sdm660.so",
+      "sha256": "d51afa4bba2c6d4330c12b356a8adecc58a872ddd16a60ec824efcde9d1b3e48",
+      "size": 302384,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "libsdmcore.so",
+        "libqservice.so",
+        "libbinder.so",
+        "libhardware.so",
+        "libhardware_legacy.so",
+        "libutils.so",
+        "libcutils.so",
+        "libsync.so",
+        "libqdutils.so",
+        "libqdMetaData.so",
+        "libdrmutils.so",
+        "libsdmutils.so",
+        "libc++.so",
+        "liblog.so",
+        "libgrallocutils.so",
+        "vendor.display.config@1.0.so",
+        "libhidlbase.so",
+        "libui.so",
+        "libgpu_tonemapper.so",
+        "vendor.display.config@1.1.so",
+        "vendor.display.config@1.2.so",
+        "vendor.display.config@1.3.so",
+        "vendor.display.config@1.4.so",
+        "vendor.display.config@1.5.so",
+        "vendor.display.config@1.6.so",
+        "vendor.display.config@1.7.so",
+        "vendor.display.config@1.8.so",
+        "vendor.display.config@1.9.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/hw/android.hardware.graphics.allocator@2.0-impl.so",
+      "sha256": "bbcc2710ad38c85d320089e74cf2fff011238e419112b5868e45caea1ae64f3f",
+      "size": 20352,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "android.hardware.graphics.allocator@2.0.so",
+        "libbase.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libhidlbase.so",
+        "liblog.so",
+        "libutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    },
+    {
+      "path": "lib64/hw/android.hardware.graphics.mapper@2.0-impl-2.1.so",
+      "sha256": "75e468208eb4220992baeb2f8a6709af5a3c6ae6f2a9672e6e865b74dc18c43c",
+      "size": 34008,
+      "elf_class": 64,
+      "machine": "EM_AARCH64",
+      "needed": [
+        "android.hardware.graphics.mapper@2.0.so",
+        "android.hardware.graphics.mapper@2.1.so",
+        "libbase.so",
+        "libcutils.so",
+        "libhardware.so",
+        "libhidlbase.so",
+        "liblog.so",
+        "libsync.so",
+        "libutils.so",
+        "libc++.so",
+        "libc.so",
+        "libm.so",
+        "libdl.so"
+      ],
+      "device_path_strings": []
+    }
+  ],
+  "contract": {
+    "profile": "wayne-6.6-msm-drm-experiment",
+    "findings": [
+      {
+        "abi": "kgsl",
+        "files": [
+          "lib/libgsl.so",
+          "lib64/libgsl.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "ion",
+        "files": [
+          "lib/libgsl.so",
+          "lib/hw/gralloc.sdm660.so",
+          "lib64/libgsl.so",
+          "lib64/hw/gralloc.sdm660.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "msm_fb",
+        "files": [
+          "lib/libsdmcore.so",
+          "lib/libsdmutils.so",
+          "lib64/libsdmcore.so",
+          "lib64/libsdmutils.so"
+        ],
+        "status": "requires_port_or_replacement"
+      }
+    ],
+    "legacy_pairing_rejected": true,
+    "evidence_kind": "ELF strings and dynamic dependencies; no ioctl execution",
+    "compatible_verified": false,
+    "hardware_tested": false,
+    "remaining": [
+      "gralloc buffer-handle layout and modifiers",
+      "fences and cache coherency",
+      "secure/protected heaps",
+      "SELinux device and service policy",
+      "32/64-bit graphics loading",
+      "wayne-specific display/boot bringup"
+    ]
+  }
+}

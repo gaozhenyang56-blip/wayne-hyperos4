@@ -1,0 +1,6 @@
+{
+  "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+  "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+  "sha256": "ee702adb37f5f806c5dc6fcea3af96e431f8e6bd5975351f534dbf86e1bbc596",
+  "exact_sample_kernel_match": false
+}
