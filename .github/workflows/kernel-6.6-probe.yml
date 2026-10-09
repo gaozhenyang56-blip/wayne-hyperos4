@@ -1,0 +1,36 @@
+name: Compile wayne SDM660 6.6 research kernel
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: wayne-kernel-6.6-probe
+  cancel-in-progress: false
+jobs:
+  probe:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    env:
+      WAYNE_PROGRESS_FILE: docs/operations/kernel-6.6-${{ github.run_id }}.md
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+      - name: Prepare progress identity
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - name: Compile and synchronize progress after each stage
+        run: python3 tools/ci_kernel_66_probe.py
+      - name: Retain research outputs and failure logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: wayne-kernel-6.6-research-only
+          if-no-files-found: warn
+          path: |
+            artifacts/kernel-6.6-probe.json
+            sources/kernel-6.6-probe/out/.config
+            sources/kernel-6.6-probe/out/arch/arm64/boot/Image.gz
+            sources/kernel-6.6-probe/out/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dtb
+            logs/*kernel-6.6-*
