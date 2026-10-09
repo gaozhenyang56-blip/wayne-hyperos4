@@ -1,6 +1,6 @@
 # 小米 6X / wayne HyperOS 4 移植工程
 
-**当前交付：原版容量静态分区实验包 `offline-static-20261009` 已公开。保留原分区表，不要求预装 Miku UI。旧 `offline-20261006` 是 Miku RDP 研究产物，不适用于当前设备。没有真机测试，也没有已验证的启动结论。**
+**当前交付：原版容量静态分区实验包 `offline-static-20261009` 已公开并保留。目标为国行小米 6X（wayne），不是小米 A2，保持原版静态分区。项目独立，与 Miku UI 无关；历史成果曾采用其第三方样本，来源如实保留，但不能代表用户系统或当前硬件基线。旧 `offline-20261006` 是 RDP 研究产物，不适用于当前设备。没有真机测试或已验证的启动结论。**
 
 
 更新：2026-10-09（北京时间；[本轮操作记录](docs/operations/2026-10-09.md)，[连接恢复与修复记录](docs/operations/2026-10-08.md)）。
@@ -26,12 +26,12 @@
 云端任务已通过完整镜像及 ZIP 检查，发布阶段因草稿查询接口 404 中断；该问题已修复，随后通过[已有资产恢复器](tools/publish_static_existing.py)完成核验和公开。原任务的失败结论及原始日志如实保留，没有伪造 CI 成功。
 
 
-## 当前采用的材料
+## 历史产物来源与研究材料
 
 | 用途 | 已验证的材料 | 状态 |
 | --- | --- | --- |
 | 实验系统供体 | Mi8937 社区标称 HyperOS 4.0.0.16 Beta 的包 | SD430/435 老平台；版本属性与 CRC 已检查，但不能据此证明框架真实性或官方 HyperOS 4 身份；继续作为实验候选，不能视为官方机型支持 |
-| 目标硬件支持 | Miku UI wayne Android 15 | 借用 wayne vendor、4.19.315 内核和 DTB；改为静态挂载及 cmdline，保留参考数据加密参数；不要求当前系统为 Miku UI |
+| 历史第三方样本，非目标基线 | Miku UI wayne Android 15 | 既有 4.19 静态实验成果借用过其 vendor、内核和 DTB；保留成果及真实来源，不认定为用户当前 ROM，6.x 不沿用其默认硬件基线 |
 | 配置较接近的候选 | Redmi Note 11 spes，SD680 / 4.19 | boot 已核验；完整下载受阻，系统内部版本未确认，暂未用于构建 |
 | 官方框架对照 | 小米 15 dada 官方 OS4 | 用于对照，不使用其硬件支持或启动镜像 |
 
@@ -60,6 +60,7 @@ Mi8937 使用更老的 SD430/435，并非相同 SoC。此前用它进行离线�
 - [静态云端复现流程](.github/workflows/build-static-experimental.yml)
 - [实际交付状态](artifacts/delivery-status.json)
 - [6.x 内核探索记录](docs/kernel-6.6-experiment.md)：独立 SDM660 6.6.9 编译实验，未验证 Android 启动及厂商驱动接口。
+- [6.6 GPU/分配器阶段断点](docs/gpu-allocator-stage.md)：同机型非 Miku 成品包对照、ABI 拒绝检查和 DMA-BUF 配置修复；不代表可启动。
 - [当前静态分卷与镜像哈希](artifacts/static-candidate-package.json)
 - sources.lock.json：固定上游源码提交。
 - tools/：下载、镜像转换、元数据保留重打包和离线兼容性检查工具。
