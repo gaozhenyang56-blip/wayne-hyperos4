@@ -1,0 +1,17 @@
+{
+  "label": "close-bounded-gpu-stage",
+  "started_utc": "2026-10-09T19:57:19.050469+00:00",
+  "finished_utc": "2026-10-09T19:57:19.203213+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess; expected={\"docs/gpu-allocator-stage.md\":\"506527529546f623d9acd7c8af67e6b46fbe075f\",\"config/project-requirements.json\":\"27b742c615bfa0d61284eac499355cb4a3432470\",\"tools/audit_graphics_contract.py\":\"7e31bac84fa129821df4b66d7117b6c471114fe1\",\"config/kernel-6.6-android.fragment\":\"550cbaa517b0946c7dde2fac9720bc56c01de1e9\"}; assert all(subprocess.check_output([\"git\",\"hash-object\",p],text=True).strip()==sha for p,sha in expected.items()); assert not subprocess.check_output([\"git\",\"diff\",\"ecc4764\",\"--\",\"artifacts/static-candidate-package.json\",\"artifacts/kernel-6.6-probe.json\"]); print(\"Remote blob hashes and preserved artifact reports verified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T195719050469Z-close-bounded-gpu-stage.log",
+  "output_sha256": "8152c87a0120f31cf45bab3487c2437a2548beb0575a5bf0fad18412e09f39ff",
+  "action": "完成 GitHub 同步及保留成果核验，保存本轮停止位置。",
+  "outcome": "主要实现提交 f40b63c、复现断点提交 7c66e54 已推送；阶段文档、目标基线、审计工具和分配器配置远端已核对。4.19 成品清单与首次 6.6 报告无改动。本轮到此暂停，未精确读取页面/周额度，未声称满足实测启动条件。",
+  "next_step": "下次从图形用户空间版本和 native_handle 合约固定开始，不重做本阶段取证或内核编译。"
+}
