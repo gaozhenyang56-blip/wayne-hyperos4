@@ -1,0 +1,8 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+/* Experimental board identity only: inherited jasmine hardware is unverified. */
+#include "sdm660-xiaomi-jasmine.dts"
+
+/ {
+	model = "Xiaomi Mi 6X (6.6 compile probe)";
+	compatible = "xiaomi,wayne", "qcom,sdm660";
+};
