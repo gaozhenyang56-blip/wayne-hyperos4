@@ -1,0 +1,17 @@
+{
+  "label": "reproduce-allocator-patch",
+  "started_utc": "2026-10-09T20:23:37.115700+00:00",
+  "finished_utc": "2026-10-09T20:23:37.126464+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T202337115700Z-reproduce-allocator-patch.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "在独立基线实际应用补丁并复现本机编译和接口测试，随后移除临时 worktree。",
+  "outcome": "不是只做补丁检查：f40b63c 加最小补丁后 mock 正例与负例再次通过，源码哈希一致；暂存检查曾把补丁自身的上下文空行误识别为空白问题，已用限定 .gitattributes 保留原补丁文本。",
+  "next_step": "保存新内核构建结论和最终断点，不延长本轮。"
+}

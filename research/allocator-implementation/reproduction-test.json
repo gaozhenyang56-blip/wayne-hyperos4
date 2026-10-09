@@ -1,0 +1,24 @@
+{
+  "finished_utc": "2026-10-09T20:23:20.711740+00:00",
+  "host_test_exit_code": 0,
+  "host_backend": "mocked heap syscalls only",
+  "cross_compiled": false,
+  "cross_environment": "GNU/Linux toolchains",
+  "android_bionic_linked": false,
+  "injected_into_vendor": false,
+  "kgsl_implemented": false,
+  "legacy_ion_ioctl_implemented": false,
+  "hardware_tested": false,
+  "bootable_verified": false,
+  "sources": {
+    "compat/wayne_dma_heap/adapter.c": "9d12f30e6c0a4b659bc2812b65a8c6b841fd89bb0f37870e594abee6be390210",
+    "compat/wayne_dma_heap/adapter.h": "85ab9876c6be9ae504c662a88d776d3fb99c453c9c8db15c142ae563067642c9",
+    "compat/wayne_dma_heap/test_adapter.c": "f7cf1e43d90a9c1a97f440bdfee54004404efe00600b8fa837c7379a040ec748",
+    "research/gpu-allocator-stage/kernel-uapi/ion-lineage.h": "36dc5068b0c0352def3b8224dca9bc5c58505618c70e243e01d8740cb511d63e",
+    "research/gpu-allocator-stage/kernel-uapi/dma-heap.h": "2870b36ee84ed6ecb03cf9f2dd856302348258439a088138c4b0170d86882324"
+  },
+  "outputs": [],
+  "patch_applied": true,
+  "baseline_commit": "f40b63c",
+  "patch_sha256": "e3275a61cdabc096b13a669097720ba402c29421a7a20d3566f6a8f1e867c59e"
+}
