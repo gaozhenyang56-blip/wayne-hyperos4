@@ -14,7 +14,17 @@
 - boot 格式、早期模块/固件加载、VINTF 内核要求、厂商二进制 ABI 和实际启动均未验证。
 - 用户设备维持原版大小的静态分区；本实验不更改分区，不生成可刷 boot，不替换公开实验包。
 
-下一步：建立可复现的 6.6.9 Image 与 wayne DTB 构建，检查 Android 配置是否真正生效。编译通过之后，再处理 KGSL/显示、音视频和启动接口；无真机时不把构建成功记为启动成功。
+## 首次构建结果
+
+时间：2026-10-09T14:38:22Z（UTC）。
+
+做了什么：运行固定源码的交叉编译，并检查实际生成的配置和 DTB。
+
+发生了什么：[云端任务 37944711030](https://github.com/gaozhenyang56-blip/wayne-hyperos4/actions/runs/37944711030) 全部通过。生成 `6.6.9-sdm660+` 内核 `Image.gz`（8,261,631 字节）及 wayne DTB（49,676 字节），Binder、Binderfs、SELinux、文件系统加密、EXT4、EROFS 和 32 位兼容配置检查通过。DTB 的 compatible 为 `xiaomi,wayne qcom,sdm660`。完整驱动模块未构建，不能直接作为 Android 启动内核刷入。
+
+生成配置、内核和 DTB 已保存在该任务的 `wayne-kernel-6.6-research-only` Artifact 中；[构建报告及哈希](../artifacts/kernel-6.6-probe.json) 已写入仓库。编译日志也已实时上传。尝试在当前工作区下载 Artifact 时遇到 HTTP 403，因此尚未完成本地独立读回；不将云端生成的哈希记作本地复核结果。
+
+下一步：优先解决 KGSL/ION 与参考 vendor 的接口兼容，再核对 wayne 面板/触摸差异、早期模块和固件、音视频、boot 封装及 VINTF 内核要求。当前分支仍是 6.6.9，若继续作为长期基线，需要合入后续稳定版修复。无真机时不把构建成功记为启动成功。
 
 源码证据：
 
