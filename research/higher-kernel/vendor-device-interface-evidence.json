@@ -1,0 +1,82 @@
+{
+  "reference_vendor": "Miku Android 15 wayne; not user current ROM",
+  "binary_string_evidence_only": true,
+  "found_files": [
+    {
+      "file": "lib/libgsl.so",
+      "sha256": "2ccc1d58dc0adcce44b818affe213b0af3b59de35e118c600520b4c31b0d905f",
+      "device_references": [
+        "/dev/ion",
+        "/dev/kgsl-2d0",
+        "/dev/kgsl-2d1",
+        "/dev/kgsl-3d0"
+      ]
+    },
+    {
+      "file": "lib/libOmxVdec.so",
+      "sha256": "93b57d5ff9197e5611f682bf8e0a4b615045e3518fada976fb332742ab34feb6",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib/libmmjpeg.so",
+      "sha256": "e634c7eadc7eb4a4494806296ee8d4b194d28ab8c2819b30352f413d713a5465",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib/libion.so",
+      "sha256": "5771c5e52ef4c524248d7f785a942f6d9961616c3d7d7abd9b1e471c981e9fe5",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib/libmmcamera2_imglib_modules.so",
+      "sha256": "bd7262bf7bda5df436bbfb546dc9f2a136efd1aaf474ab92d012a7b9d192d53d",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib64/libgsl.so",
+      "sha256": "a8b64fc9b4f18778c03cbeb1750fe31cf7cff5b8c1607398eb049d662355cef7",
+      "device_references": [
+        "/dev/ion",
+        "/dev/kgsl-2d0",
+        "/dev/kgsl-2d1",
+        "/dev/kgsl-3d0"
+      ]
+    },
+    {
+      "file": "lib64/libOmxVdec.so",
+      "sha256": "66d8cdf112356e630d029c0d521fb138da884f280157317df20633d79eaafe9f",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib64/libgf_ca.so",
+      "sha256": "3f77c3d81530aa0b65795f05ee9d26598333a4c01f6528d52544c18af6fccd06",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib64/libion.so",
+      "sha256": "922047ab0f58f24a6c1e3fe414a0b9f720a6bccdf14d2cac77af5ca2fa410f4f",
+      "device_references": [
+        "/dev/ion"
+      ]
+    },
+    {
+      "file": "lib64/hw/fingerprint.fpc.default.so",
+      "sha256": "d116e82c745ae29cccb324bb1a6b88edead7c886cca4ef9641e458ed3fd1bbfb",
+      "device_references": [
+        "/dev/ion"
+      ]
+    }
+  ]
+}
