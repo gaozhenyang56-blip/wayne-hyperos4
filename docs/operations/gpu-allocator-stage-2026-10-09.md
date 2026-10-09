@@ -62,3 +62,15 @@ UTC 起始：2026-10-09T19:48:42.900733+00:00；结束：2026-10-09T19:48:43.025
 
 证据：[原始日志](../../logs/20261009T194842900733Z-implement-bounded-graphics-fix.log)。
 
+## 2026-10-09T12:51:55.000793-07:00 — test-bounded-graphics-stage
+
+UTC 起始：2026-10-09T19:51:55.000793+00:00；结束：2026-10-09T19:51:56.618313+00:00。
+
+做了什么：完成 GPU 阶段离线回归：样本 ABI 拒绝、篡改拒绝、native ioctl、固定 Kconfig 子树和稀疏 OTA 恢复。
+
+发生了什么：8 项测试通过；ION 与 DMA-heap ioctl 类型和 fd 偏移不同，改设备路径不等于 ABI 兼容。DMA-BUF 配置请求在固定子树内生效，关闭外部 DMA_CMA 依赖时 CMA heap 正确禁用。不是全树 olddefconfig/新内核编译或真机测试。
+
+下一步：写入可复現步骤、剩余问题和断点，完整同步 GitHub 后结束本阶段。
+
+证据：[原始日志](../../logs/20261009T195155000793Z-test-bounded-graphics-stage.log)。
+
