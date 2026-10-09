@@ -1,0 +1,28 @@
+{
+  "label": "allocator-implementation-dependencies",
+  "started_utc": "2026-10-09T20:19:15.211617+00:00",
+  "finished_utc": "2026-10-09T20:19:33.045360+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "sudo",
+    "apt-get",
+    "install",
+    "-y",
+    "gcc-aarch64-linux-gnu",
+    "gcc-arm-linux-gnueabihf",
+    "make",
+    "flex",
+    "bison",
+    "libssl-dev",
+    "libelf-dev",
+    "bc",
+    "device-tree-compiler"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T201915211617Z-allocator-implementation-dependencies.log",
+  "output_sha256": "2673da660af152dc48dc8441532da60ea55120e07c1c7946ffbd105cfca7f04f",
+  "action": "准备 ARM32/ARM64 工具链与内核依赖。",
+  "outcome": "本阶段命令完成；构建通过不代表旧 vendor 兼容或整机启动。",
+  "failure_note": "本阶段失败，已保存日志并停止，不伪造成功。",
+  "next_step": "核对研究报告、配置生效及未解决的 KGSL/显示/安全堆接口。"
+}
