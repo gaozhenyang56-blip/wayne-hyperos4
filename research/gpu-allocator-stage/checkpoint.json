@@ -40,5 +40,7 @@
     "usage_readback_available": false,
     "reserve_exactly_measured": false,
     "control": "bounded single stage; no new kernel build or indefinite retry"
-  }
+  },
+  "implementation_commit": "f40b63c",
+  "tracked_export_reproduction_passed": true
 }

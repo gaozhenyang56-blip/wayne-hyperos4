@@ -1,0 +1,18 @@
+{
+  "label": "verify-tracked-stage-reproduction",
+  "started_utc": "2026-10-09T19:56:16.261566+00:00",
+  "finished_utc": "2026-10-09T19:56:17.011851+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,tempfile,pathlib,tarfile,io; files=[\"tools/test_graphics_contract.py\",\"tools/audit_graphics_contract.py\",\"tools/extract_wayne_graphics_sample.py\",\"tools/inspect_ota.py\",\"tools/unpack_boot.py\",\"config/kernel-6.6-graphics-profile.json\",\"config/kernel-6.6-android.fragment\",\"research/gpu-allocator-stage/graphics-contract.json\",\"research/gpu-allocator-stage/kernel-uapi\"]; data=subprocess.check_output([\"git\",\"archive\",\"HEAD\",\"--\",*files]); folder=tempfile.TemporaryDirectory(); p=pathlib.Path(folder.name); tarfile.open(fileobj=io.BytesIO(data)).extractall(p,filter=\"data\"); subprocess.run([\"python3\",str(p/\"tools/test_graphics_contract.py\"),\"-v\"],cwd=p,check=True); folder.cleanup()"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T195616261566Z-verify-tracked-stage-reproduction.log",
+  "output_sha256": "f027862315a112f76520690dd8f568c281983a07a3cf95c3a693ed47e9831bba",
+  "action": "同步阶段源码与证据后，使用仅含已提交文件的临时导出检查离线复现。",
+  "outcome": "源码和研究证据已推送；8 项测试在临时导出中通过，不依赖忽略的 vendor 二进制或旧源码缓存。原始 OTA metadata 的空格填充通过属性保留，不改证据字节。",
+  "failure_note": "仅已提交文件的复现失败，先补齐依赖/证据再交付。",
+  "next_step": "核对 GitHub 文件哈希与保留成果，保存同步完成记录后暂停。"
+}

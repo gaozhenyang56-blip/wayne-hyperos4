@@ -1,0 +1,14 @@
+test_actual_sample_rejects_all_three_legacy_abis (__main__.ContractTests.test_actual_sample_rejects_all_three_legacy_abis) ... ok
+test_empty_sample_is_not_accepted (__main__.ContractTests.test_empty_sample_is_not_accepted) ... ok
+test_hash_tamper_is_rejected (__main__.ContractTests.test_hash_tamper_is_rejected) ... ok
+test_modern_paths_do_not_imply_hardware_success (__main__.ContractTests.test_modern_paths_do_not_imply_hardware_success) ... ok
+test_native_ion_and_heap_uapi_are_not_interchangeable (__main__.ContractTests.test_native_ion_and_heap_uapi_are_not_interchangeable) ... ION=0xc0184900 DMA_HEAP=0xc0184800 ion_fd=16 heap_fd=8
+ok
+test_pinned_allocator_kconfig_before_after_and_dependency (__main__.ContractTests.test_pinned_allocator_kconfig_before_after_and_dependency) ... ok
+test_sparse_restore_matches_full_zero_filled_image (__main__.ContractTests.test_sparse_restore_matches_full_zero_filled_image) ... ok
+test_sparse_restore_rejects_overlaps (__main__.ContractTests.test_sparse_restore_rejects_overlaps) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.196s
+
+OK

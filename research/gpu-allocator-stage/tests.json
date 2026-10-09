@@ -11,5 +11,7 @@
   "kconfig_scope": "pinned allocator subtree only, explicit external dependencies; not full olddefconfig",
   "full_kernel_compiled_this_stage": false,
   "hardware_tested": false,
-  "log": "logs/20261009T195155000793Z-test-bounded-graphics-stage.log"
+  "log": "logs/20261009T195155000793Z-test-bounded-graphics-stage.log",
+  "tracked_export_exit_code": 0,
+  "tracked_export_log": "logs/20261009T195616261566Z-verify-tracked-stage-reproduction.log"
 }
