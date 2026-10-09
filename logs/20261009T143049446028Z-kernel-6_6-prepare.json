@@ -1,0 +1,18 @@
+{
+  "label": "kernel-6.6-prepare",
+  "started_utc": "2026-10-09T14:30:49.446028+00:00",
+  "finished_utc": "2026-10-09T14:30:56.170106+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "sudo",
+    "apt-get",
+    "update"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T143049446028Z-kernel-6_6-prepare.log",
+  "output_sha256": "858474067abcd701a299688d1a133d87acb52317075478955247c1b0fd45897a",
+  "action": "更新临时云端编译环境。",
+  "outcome": "本阶段命令完成；编译结果不代表整机启动通过。",
+  "failure_note": "本阶段失败，已保存日志，停止后续构建。",
+  "next_step": "根据日志检查结果和未验证的厂商驱动接口。"
+}
