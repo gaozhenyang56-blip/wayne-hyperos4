@@ -50,3 +50,15 @@ UTC 起始：2026-10-09T19:43:53.722878+00:00；结束：2026-10-09T19:43:54.313
 
 证据：[原始日志](../../logs/20261009T194353722878Z-restore-wayne-sample-readonly.log)。
 
+## 2026-10-09T12:48:42.900733-07:00 — implement-bounded-graphics-fix
+
+UTC 起始：2026-10-09T19:48:42.900733+00:00；结束：2026-10-09T19:48:43.025789+00:00。
+
+做了什么：建立非 Miku 图形接口审计与拒绝检查，补齐后续 6.6 DMA-BUF heaps/sync 配置并纠正目标基线声明。
+
+发生了什么：已识别 KGSL、ION、厂商 framebuffer 三类阻碍，6.6 配置请求新增 system/CMA heaps 和 sync；当前旧内核产物保持不变。目标明确为国行 6X、独立项目，Miku 只记为历史第三方样本。已有 Artifact 下载仍返回 403，实际旧 .config 未独立读回。
+
+下一步：完成 native UAPI、Kconfig 子树与样本拒绝/篡改离线测试；记录可复现路径和剩余 SELinux 问题。
+
+证据：[原始日志](../../logs/20261009T194842900733Z-implement-bounded-graphics-fix.log)。
+
