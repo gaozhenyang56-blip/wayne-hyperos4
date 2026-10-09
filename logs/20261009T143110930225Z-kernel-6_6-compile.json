@@ -1,0 +1,18 @@
+{
+  "label": "kernel-6.6-compile",
+  "started_utc": "2026-10-09T14:31:10.930225+00:00",
+  "finished_utc": "2026-10-09T14:38:22.148383+00:00",
+  "cwd": "/home/runner/work/wayne-hyperos4/wayne-hyperos4",
+  "command": [
+    "/usr/bin/python3",
+    "/home/runner/work/wayne-hyperos4/wayne-hyperos4/tools/ci_kernel_66_probe.py",
+    "--build"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261009T143110930225Z-kernel-6_6-compile.log",
+  "output_sha256": "8125738ec6824ddbb1b0591084acb7fa3d65205bcd4af33c5f1d70c42dbc1c12",
+  "action": "编译固定 SDM660 6.6.9 源码与实验 wayne DTB，核对 Android 配置。",
+  "outcome": "本阶段命令完成；编译结果不代表整机启动通过。",
+  "failure_note": "本阶段失败，已保存日志，停止后续构建。",
+  "next_step": "根据日志检查结果和未验证的厂商驱动接口。"
+}
