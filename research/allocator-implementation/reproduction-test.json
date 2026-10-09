@@ -20,5 +20,8 @@
   "outputs": [],
   "patch_applied": true,
   "baseline_commit": "f40b63c",
-  "patch_sha256": "e3275a61cdabc096b13a669097720ba402c29421a7a20d3566f6a8f1e867c59e"
+  "native_test_patch_sha256": "e3275a61cdabc096b13a669097720ba402c29421a7a20d3566f6a8f1e867c59e",
+  "final_patch_sha256": "33c87e6f3df7fa09ec91e9894e9797b84442b4e48d0e793aadff38bd489c7683",
+  "final_patch_apply_check_passed": true,
+  "only_post_build_patch_change": "include-hidden-files=true for future artifact uploads; source client C unchanged; no kernel rebuild"
 }

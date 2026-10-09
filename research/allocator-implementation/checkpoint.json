@@ -1,0 +1,101 @@
+{
+  "saved_utc": "2026-10-09T20:31:47.813952+00:00",
+  "stage": "bounded source-client allocator implementation and build verification",
+  "status": "completed_with_legacy_gpu_and_vendor_blockers",
+  "target": "China Xiaomi Mi 6X (wayne), stock static partition layout, not Mi A2 or Miku UI",
+  "implementation_commit": "0681027",
+  "baseline_commit": "f40b63c94ead88eb3b9b2daa6ac25a906c28ba2b",
+  "checkpoint_parent_commit": "f80413fe551220a307b29643ec02fca0343b10a8",
+  "workflow_run_id": 37986150560,
+  "workflow_conclusion": "success",
+  "kernel_release": "6.6.9-sdm660+",
+  "kernel_source_commit": "6a4e475000ecc7e864911959a1984a0664088464",
+  "kernel_config_verified": [
+    "ANDROID_BINDER_IPC",
+    "ANDROID_BINDERFS",
+    "SECURITY_SELINUX",
+    "FS_ENCRYPTION",
+    "EXT4_FS",
+    "EROFS_FS",
+    "DEVTMPFS",
+    "BLK_DEV_INITRD",
+    "COMPAT",
+    "DMABUF_HEAPS",
+    "DMABUF_HEAPS_SYSTEM",
+    "DMA_CMA",
+    "DMABUF_HEAPS_CMA",
+    "SYNC_FILE"
+  ],
+  "kernel_outputs": [
+    {
+      "path": "out/.config",
+      "sha256": "dc461bd202af705ab33a6082cb2bd0fc2fb4fe052706861505cb41e13dda6d36",
+      "size": 186251
+    },
+    {
+      "path": "out/arch/arm64/boot/Image.gz",
+      "sha256": "991311b91bf781bac57e8c2eaca96fe6b2786ea4b894f4eebbd2d06a9767f8aa",
+      "size": 8266726
+    },
+    {
+      "path": "out/arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dtb",
+      "sha256": "a13b5e4755921612c307009294a2899c6d95d1f3674713a656faaca5e6485dcd",
+      "size": 49676
+    }
+  ],
+  "cross_environment": "GNU/Linux, ARM64 and ARM32; not Android bionic-linked",
+  "native_tests": "mock syscall positive/negative and FD lifecycle; patch reproduction passed",
+  "legacy_pairing": {
+    "expected_exit_code": 2,
+    "actual_exit_code": 2,
+    "rejected": true
+  },
+  "historical_reports_unchanged": {
+    "artifacts/kernel-6.6-probe.json": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+    "artifacts/static-candidate-package.json": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c"
+  },
+  "patch_sha256": "33c87e6f3df7fa09ec91e9894e9797b84442b4e48d0e793aadff38bd489c7683",
+  "artifact": {
+    "id": 11643856340,
+    "name": "wayne-allocator-implementation-research-only",
+    "size": 8283043,
+    "sha256": "8dcd71edfd79bfc3cb12a0a1dee3fd9f62e4a5fd7901951980b8f8a999922c14",
+    "upload_verified": "Actions logs and API metadata",
+    "local_readback_verified": false,
+    "download_limitation": "signed blob download denied HTTP 403; no bypass attempted",
+    "config_caveat": "run used include-hidden-files=false; .config excluded from artifact; report records hash and checks; future workflow corrected without rerunning kernel"
+  },
+  "implemented_legacy_interfaces": {
+    "kgsl": false,
+    "ion_ioctl": false,
+    "msm_fb": false
+  },
+  "hardware_tested": false,
+  "bootable_verified": false,
+  "flashable_66_boot_created": false,
+  "remaining": [
+    "KGSL ioctls and legacy ION handle/OEM heap ABI",
+    "Android bionic/NDK linkage and native buffer handles",
+    "DMA_BUF_IOCTL_SYNC CPU cache protocol and fences",
+    "GPU DMA-BUF import, IOMMU and protected content",
+    "SELinux heap/HAL device labels and domains",
+    "wayne board-id/boot DT selection and first-stage static mounts",
+    "display panel, clocks, regulators and composer integration",
+    "camera and audio downstream driver/HAL ABI",
+    "ICE encryption and userdata unlock compatibility",
+    "init modules/firmware/VINTF boot contract"
+  ],
+  "next_checkpoint": [
+    "source-client DMA_BUF_IOCTL_SYNC/cache and fence semantics with negative tests",
+    "Android NDK/bionic ARM32/64 linkage and HAL/native_handle integration",
+    "choose full old-vendor KGSL/ION/MSM-FB port or source graphics DRM/Mesa replacement before claiming GPU compatibility",
+    "replace jasmine-inherited scaffold with verified wayne board/boot mapping; check EROFS first-stage mounts and ICE"
+  ],
+  "budget": {
+    "user_reported_five_hour_remaining_percent": 75,
+    "user_reported_weekly_remaining_percent": 58,
+    "requested_reserve_each_percent": 20,
+    "live_usage_readable": false,
+    "control": "one build run, 30-minute job limit; stop at bounded stage completion; no precise quota claim"
+  }
+}

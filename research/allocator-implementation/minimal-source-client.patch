@@ -1,9 +1,9 @@
 diff --git a/.github/workflows/allocator-implementation.yml b/.github/workflows/allocator-implementation.yml
 new file mode 100644
-index 0000000..7f270f0
+index 0000000..d820bdc
 --- /dev/null
 +++ b/.github/workflows/allocator-implementation.yml
-@@ -0,0 +1,38 @@
+@@ -0,0 +1,39 @@
 +name: Bounded wayne allocator implementation and 6.6 build
 +on:
 +  workflow_dispatch:
@@ -34,6 +34,7 @@ index 0000000..7f270f0
 +        uses: actions/upload-artifact@v4
 +        with:
 +          name: wayne-allocator-implementation-research-only
++          include-hidden-files: true
 +          path: |
 +            downloads/allocator-cross/
 +            research/allocator-implementation/cross-build.json

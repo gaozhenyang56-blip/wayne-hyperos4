@@ -28,6 +28,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: wayne-allocator-implementation-research-only
+          include-hidden-files: true
           path: |
             downloads/allocator-cross/
             research/allocator-implementation/cross-build.json
