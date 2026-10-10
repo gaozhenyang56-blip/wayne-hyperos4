@@ -1,0 +1,25 @@
+test_changed_property_evidence_rejected (test_camera_contract.CameraEvidenceTests.test_changed_property_evidence_rejected) ... ok
+test_complete_fixture_opens_gate_without_compatibility_claim (test_camera_contract.CameraEvidenceTests.test_complete_fixture_opens_gate_without_compatibility_claim) ... ok
+test_properties_service_and_each_missing_category_rejected (test_camera_contract.CameraEvidenceTests.test_properties_service_and_each_missing_category_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.002s
+
+OK
+{
+  "selected_inventory": {
+    "camera_hal": [],
+    "camera_config": []
+  },
+  "missing_evidence_categories": [
+    "camera_hal",
+    "camera_config"
+  ],
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "camera_verified": false,
+  "recording_verified": false,
+  "scope": "Filename presence only, not HAL version, XML semantics, ioctl or media graph. Alternate naming requires inventory review."
+}
+3 tests passed; actual sample gate exit 2; prior evidence unchanged

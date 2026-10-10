@@ -1,0 +1,16 @@
+{
+  "label": "camera-contract-tests",
+  "started_utc": "2026-10-10T06:46:31.373640+00:00",
+  "finished_utc": "2026-10-10T06:46:31.735516+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_camera_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T064631373640Z-camera-contract-tests.log",
+  "output_sha256": "cfa29d3a9a651e263195d8e624799b9d27f4131c0e5b5901c693987fa80bc6c0",
+  "action": "实现相机材料完整性拒绝检查，核验本地样本哈希，运行三项正反例及实际样本CLI检查，保存原有内核材料哈希。",
+  "outcome": "三项测试通过；缺HAL/配置的样本按预期退出2。属性不能代替HAL/拓扑证据；未证明具体接口矛盾，原有内核材料不变。",
+  "next_step": "保存待采集命令与断点，同步后暂停；不移植相机栈，不推测节点或传感器。"
+}
