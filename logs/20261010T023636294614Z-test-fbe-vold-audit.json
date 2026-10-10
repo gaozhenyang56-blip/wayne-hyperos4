@@ -1,0 +1,20 @@
+{
+  "label": "test-fbe-vold-audit",
+  "started_utc": "2026-10-10T02:36:36.294614+00:00",
+  "finished_utc": "2026-10-10T02:36:36.370257+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "py_compile",
+    "tools/audit_fbe_vold_config.py",
+    "tools/test_static_fbe_dependency.py",
+    "tools/static_wayne_layout.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T023636294614Z-test-fbe-vold-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "修复metadata密钥目录依赖检查缺口，记录fstab/vold与内核能力证据边界。",
+  "outcome": "5项定向与4项历史回归通过；旧代码会输出引用已删除metadata挂载的keydirectory，新代码拒绝相同样例。真实现有转换结果逐字节不变，未改加密算法或路径。4.19 defconfig声明和6.6 FS_ENCRYPTION前置项不升级为ICE能力证明。",
+  "next_step": "保存最小补丁、来源、只读采集项与下一断点，短阶段结束后暂停。"
+}
