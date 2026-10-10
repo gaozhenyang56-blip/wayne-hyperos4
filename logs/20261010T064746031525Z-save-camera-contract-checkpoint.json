@@ -1,0 +1,17 @@
+{
+  "label": "save-camera-contract-checkpoint",
+  "started_utc": "2026-10-10T06:47:46.031525+00:00",
+  "finished_utc": "2026-10-10T06:47:46.085067+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/camera-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"actual_sample_gate_exit\"]==2; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_5ad1636\"] for x in c[\"preservation\"]); assert a[\"inventory\"][\"evidence_gate_rejected\"] and not a[\"inventory\"][\"camera_verified\"]; print(\"Checkpoint consistent: 3 passing tests; expected refusal 2; 5 prior evidence files preserved; hardware unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T064746031525Z-save-camera-contract-checkpoint.log",
+  "output_sha256": "adaef4729deb0423cefdfbe6cc3afda11c420f7cd0a7529903a3dd013a8cfdc4",
+  "action": "保存相机材料门禁、三项测试原始日志、证据和只读采集命令，复核断点后结束本轮。",
+  "outcome": "最小新增审计与验证工具已就绪；实际材料拒绝返回2，三项测试通过，五项既有证据未变。没有真实HAL/配置/DTB/日志就不推断相机或录像能力；未读取实时额度，也不假定额度已重置。",
+  "next_step": "同步源码及断点到GitHub后暂停；下一轮依真实wayne材料继续，不扩展整套相机移植。"
+}
