@@ -1,0 +1,7 @@
+test_actual_sample_rejects_all_three_legacy_abis (test_graphics_contract.ContractTests.test_actual_sample_rejects_all_three_legacy_abis) ... ok
+test_modern_paths_do_not_imply_hardware_success (test_graphics_contract.ContractTests.test_modern_paths_do_not_imply_hardware_success) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+OK
