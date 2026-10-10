@@ -1,0 +1,17 @@
+{
+  "label": "save-bluetooth-contract-checkpoint",
+  "started_utc": "2026-10-10T08:31:59.247776+00:00",
+  "finished_utc": "2026-10-10T08:31:59.308838+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/bluetooth-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"sample_cli_exit\"]==2; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_471f71d\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"bluetooth_verified\"]; print(\"Checkpoint consistent: 3 passing tests; expected refusal 2; 5 existing evidence files preserved; Bluetooth unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T083159247776Z-save-bluetooth-contract-checkpoint.log",
+  "output_sha256": "f11a7f80df46cae7c06a9290f064df850e67cf06e34de2171e1dae49bd54cc06",
+  "action": "保存最小蓝牙门禁、测试日志、来源及只读取证断点，复核后暂停本阶段。",
+  "outcome": "三项测试通过，真实清单拒绝退出2；五项原有证据保留。实际UART/HCI或共享传输、固件交付仍未知，无真机验证，实时额度不可读取。",
+  "next_step": "同步源码及报告到GitHub后停止；下轮先获取真实wayne蓝牙HAL/配置、DTB、绑定及AVC日志。"
+}
