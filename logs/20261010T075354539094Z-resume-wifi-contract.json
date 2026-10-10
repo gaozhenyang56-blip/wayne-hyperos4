@@ -1,0 +1,17 @@
+{
+  "label": "resume-wifi-contract",
+  "started_utc": "2026-10-10T07:53:54.539094+00:00",
+  "finished_utc": "2026-10-10T07:53:54.558208+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T075354539094Z-resume-wifi-contract.log",
+  "output_sha256": "e19aeac2ab9ef2b35032a44960ec40708df64a6620b9fd2c969014fd59e625ff",
+  "action": "检查4e2c24b后的工作区、diff、最近结果和Wi-Fi参考材料。",
+  "outcome": "无开发差异，只有原有空MD；参考init有明确路径/属性，但清单没有Wi-Fi HAL、配置或固件材料。6.6未构建模块不等于不存在内建驱动，4.19历史配置不是当前基线。",
+  "next_step": "补齐缺材料拒绝检查及内建/模块区分测试，保留未知状态。"
+}
