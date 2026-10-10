@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-10-10T08:31:05.202142+00:00",
+  "baseline": "471f71d",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 3,
+  "sample_cli_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_471f71d": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_471f71d": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_471f71d": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_471f71d": true
+    },
+    {
+      "path": "research/wifi-contract-stage/checkpoint.json",
+      "sha256": "8a2b0f1dfe8c0eb3983a6346545f1330f91b8f5d9fc3b4599714c32032328532",
+      "unchanged_from_471f71d": true
+    }
+  ],
+  "historical_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "lines": [
+      {
+        "line": 1430,
+        "text": "CONFIG_BT=y"
+      },
+      {
+        "line": 1446,
+        "text": "# CONFIG_BT_HCIUART is not set"
+      },
+      {
+        "line": 1453,
+        "text": "CONFIG_MSM_BT_POWER=y"
+      }
+    ],
+    "meaning": "Not proof of active HCI/UART transport or runtime conflict"
+  },
+  "kernel_6_6": "modules_built=false and early modules/firmware loading not integrated; actual Bluetooth configuration/transport unknown, builtin or userspace path not ruled out",
+  "hardware_tested": false,
+  "full_kernel_rebuilt": false,
+  "flashable_package_created": false,
+  "next": "Collect actual current HAL/config and dependencies, firmware delivery, module/builtin inventory, DTB, transport binding and Bluetooth/AVC logs",
+  "quota": "Realtime usage unavailable; user snapshot 88%/35%; no precise control claim"
+}
