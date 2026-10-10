@@ -1,0 +1,16 @@
+{
+  "label": "wifi-contract-tests",
+  "started_utc": "2026-10-10T07:54:44.146766+00:00",
+  "finished_utc": "2026-10-10T07:54:44.496115+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_wifi_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T075444146766Z-wifi-contract-tests.log",
+  "output_sha256": "0efba7c88775b71c367593accf0fe4fedc6c81067add94f251045b751f115543",
+  "action": "补齐Wi-Fi材料门禁和明确的内建/模块交付区分，核验样本哈希，执行三个正反例及实际拒绝测试。",
+  "outcome": "三个测试通过，实际清单按预期退出2；未知驱动交付不能放行，内建驱动不要求模块清单，字符串证据标志被拒绝。既有五项证据未变，无硬件验证。",
+  "next_step": "保存准确的参考路径及待采集命令，同步源码和断点后暂停。"
+}

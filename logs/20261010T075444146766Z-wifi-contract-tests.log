@@ -1,0 +1,24 @@
+test_builtin_fixture_needs_no_module_but_is_not_verified (test_wifi_contract.WifiEvidenceTests.test_builtin_fixture_needs_no_module_but_is_not_verified) ... ok
+test_missing_files_firmware_or_string_flags_rejected (test_wifi_contract.WifiEvidenceTests.test_missing_files_firmware_or_string_flags_rejected) ... ok
+test_unknown_or_module_without_inventory_rejected (test_wifi_contract.WifiEvidenceTests.test_unknown_or_module_without_inventory_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+OK
+{
+  "missing_evidence": [
+    "wifi_hal",
+    "wifi_config",
+    "driver_delivery_and_actual_kernel_config",
+    "firmware_inventory_and_load_requirements"
+  ],
+  "driver_delivery": "unknown",
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "wifi_verified": false,
+  "hotspot_verified": false,
+  "scope": "Candidate filename inventory and explicit evidence claims only; no HAL/ioctl/firmware or runtime validation"
+}
+3 tests passed; sample exit 2; builtin/module distinction preserved; old evidence unchanged
