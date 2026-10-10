@@ -14,3 +14,15 @@ UTC 起始：2026-10-10T01:49:11.328012+00:00；结束：2026-10-10T01:49:11.339
 
 证据：[原始日志](../../logs/20261010T014911328012Z-resume-static-boot-audit.log)。
 
+## 2026-10-09T18:51:20.763435-07:00 — test-static-boot-audit
+
+UTC 起始：2026-10-10T01:51:20.763435+00:00；结束：2026-10-10T01:51:20.815690+00:00。
+
+做了什么：修复 static_cmdline 对super参数的错误依赖，完成静态boot/fstab/init与加密证据检查。
+
+发生了什么：4项定向正反例和4项既有转换回归通过；真实非Miku参考cmdline旧代码拒绝、新代码接受。既有静态boot摘要、ramdisk的fstab/init和静态cmdline只读检查通过。未发现data fstab悬空metadata密钥参数，但供体init有metadata路径，加密/持久性仍未知。
+
+下一步：记录header0/1限制、FDE/FBE参考差异及只读真机采集命令，保存补丁和断点后暂停。
+
+证据：[原始日志](../../logs/20261010T015120763435Z-test-static-boot-audit.log)。
+
