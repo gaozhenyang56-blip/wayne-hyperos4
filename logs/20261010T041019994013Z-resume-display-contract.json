@@ -1,0 +1,17 @@
+{
+  "label": "resume-display-contract",
+  "started_utc": "2026-10-10T04:10:19.994013+00:00",
+  "finished_utc": "2026-10-10T04:10:20.003933+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T041019994013Z-resume-display-contract.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查18d4c6b断点与非Miku显示库、节点和属性证据，限定短阶段契约审计。",
+  "outcome": "无开发差异。旧vendor依赖KGSL/ION/MSM-FB和MDP sysfs；6.6 profile未提供这些ABI。发现审计器用真值判断能力，字符串false会被当成已提供，存在明确拒绝检查缺口。",
+  "next_step": "要求ABI能力是显式布尔值，测试错误类型拒绝和真实参考配对拒绝，保存显示属性与来源证据。"
+}
