@@ -1,0 +1,17 @@
+{
+  "label": "resume-camera-contract",
+  "started_utc": "2026-10-10T06:45:47.579034+00:00",
+  "finished_utc": "2026-10-10T06:45:47.615521+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T064547579034Z-resume-camera-contract.log",
+  "output_sha256": "964ae7092b8815e9c9b549bee23bc8140740ba19d80161228a02afd169420f08",
+  "action": "检查5ad1636后的工作区、差异、最近结果和非Miku相机材料。",
+  "outcome": "仅有原有空MD未跟踪，无开发差异；参考清单没有相机HAL或配置，存在相机属性/init片段。4.19材料不是实际构建配置或用户基线，6.6报告明确相机ABI未验证。",
+  "next_step": "实现材料完整性拒绝检查并运行最小正反例；不推断HAL版本或节点拓扑。"
+}
