@@ -1,0 +1,17 @@
+{
+  "label": "resume-fbe-vold-audit",
+  "started_utc": "2026-10-10T02:34:50.652401+00:00",
+  "finished_utc": "2026-10-10T02:34:50.666328+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T023450652401Z-resume-fbe-vold-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查 dddc2f5 断点、fstab/vold及4.19和6.6加密配置证据。",
+  "outcome": "无开发差异。4.19保存配置是embedded defconfig而非实际构建配置；6.6已确认FS_ENCRYPTION但未确认ICE。static_fstab会去掉metadata而未拒绝保留的metadata密钥目录依赖，存在可复现检查缺口，现有data条目没有该引用。",
+  "next_step": "增加严格的metadata keydirectory拒绝检查，保留现有FBE/FDE参数并验证正反例。"
+}
