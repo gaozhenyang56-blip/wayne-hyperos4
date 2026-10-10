@@ -1,0 +1,17 @@
+{
+  "label": "resume-kgsl-dt-audit",
+  "started_utc": "2026-10-10T03:12:35.283953+00:00",
+  "finished_utc": "2026-10-10T03:12:35.293428+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T031235283953Z-resume-kgsl-dt-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查 a7b4140 断点、wayne设备树片段和非Miku vendor图形接口，限定短阶段审计。",
+  "outcome": "无开发差异。wayne下游片段include闭包不完整，不能把直接片段未见KGSL当全树缺失；6.6文件仍继承jasmine编译脚手架，不是wayne板级基线。既有非Miku vendor需要KGSL/ION/MSM-FB，而实验profile未提供这些ABI。",
+  "next_step": "增加include闭包证据检查与正反例，记录供电/时钟/IOMMU缺失来源，保存断点暂停。"
+}
