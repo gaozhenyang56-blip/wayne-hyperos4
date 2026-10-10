@@ -1,0 +1,233 @@
+{
+  "checked_utc": "2026-10-10T03:13:35.150088+00:00",
+  "target": "China wayne/SDM660, stock static partitions; not jasmine or Miku baseline",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+      "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+      "sha256": "e863e8aad69fafeae3e405f52d73fee17f1b90a99d37a1d38317a5f5c6bb0298",
+      "exact_sample_kernel_match": false,
+      "local_path": "research/allocator-implementation/sdm660-mtp-wayne.dts",
+      "used_as_downstream_wayne_input": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/sdm660-mtp-jasmine.dts",
+      "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+      "sha256": "f690fe1c334bd35ee489c9fe2315f5e05948caf94ab94e684cbd8f61de969c51",
+      "exact_sample_kernel_match": false,
+      "local_path": "research/allocator-implementation/sdm660-mtp-jasmine.dts",
+      "used_as_downstream_wayne_input": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/xiaomi/wayne.dtsi",
+      "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+      "sha256": "bb5f8bcd968a15266240a79b199ade6650d83097190519f1cd3df15bdc33671a",
+      "exact_sample_kernel_match": false,
+      "local_path": "research/allocator-implementation/wayne.dtsi",
+      "used_as_downstream_wayne_input": true
+    },
+    {
+      "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/xiaomi/jasmine.dtsi",
+      "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+      "sha256": "54b4612694ae6405ddd4664683640852b4ecc7240a825fe98478dbb0087f90d7",
+      "exact_sample_kernel_match": false,
+      "local_path": "research/allocator-implementation/jasmine.dtsi",
+      "used_as_downstream_wayne_input": false
+    },
+    {
+      "url": "https://raw.githubusercontent.com/LineageOS/android_kernel_xiaomi_sdm660/2e69f2ae550dcfbde1ffb6daa11492762b122191/arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+      "commit": "2e69f2ae550dcfbde1ffb6daa11492762b122191",
+      "sha256": "ee702adb37f5f806c5dc6fcea3af96e431f8e6bd5975351f534dbf86e1bbc596",
+      "exact_sample_kernel_match": false,
+      "local_path": "research/allocator-implementation/wayne-common-base.dtsi",
+      "used_as_downstream_wayne_input": true
+    }
+  ],
+  "downstream_wayne": {
+    "entry": "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+    "visited": [
+      "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/wayne.dtsi"
+    ],
+    "missing_includes": [
+      "arch/arm/boot/dts/qcom/sdm660-internal-codec.dtsi",
+      "arch/arm/boot/dts/qcom/sdm660-mtp.dtsi",
+      "arch/arm/boot/dts/qcom/sdm660.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/common/longcheer-sdm660-base.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866cos-3000mah.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866default-3000mah.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866sun-3000mah.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/sdm660-novatek-i2c_d2s.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-camera-sensor-mtp.dtsi",
+      "arch/arm/boot/dts/qcom/xiaomi/xiaomi-sdm660-common.dtsi"
+    ],
+    "cycles": [],
+    "textual_closure_complete": false,
+    "kgsl_text_seen": false,
+    "kgsl_absence_proven": false,
+    "kgsl_presence_scope": "not seen; absence not proven",
+    "unresolved_include_requests": [
+      {
+        "including_source": "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+        "include_token": "sdm660.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/sdm660.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+        "include_token": "sdm660-mtp.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/sdm660-mtp.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+        "include_token": "sdm660-internal-codec.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/sdm660-internal-codec.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/wayne.dtsi",
+        "include_token": "xiaomi-sdm660-common.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/xiaomi-sdm660-common.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/wayne.dtsi",
+        "include_token": "longcheer/common/longcheer-sdm660-base.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/common/longcheer-sdm660-base.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+        "include_token": "wayne-camera-sensor-mtp.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-camera-sensor-mtp.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+        "include_token": "sdm660-novatek-i2c_d2s.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/sdm660-novatek-i2c_d2s.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+        "include_token": "fg-gen3-batterydata-l8866sun-3000mah.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866sun-3000mah.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+        "include_token": "fg-gen3-batterydata-l8866cos-3000mah.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866cos-3000mah.dtsi",
+        "compiler_include_search_roots_verified": false
+      },
+      {
+        "including_source": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/wayne-common-base.dtsi",
+        "include_token": "fg-gen3-batterydata-l8866default-3000mah.dtsi",
+        "relative_candidate": "arch/arm/boot/dts/qcom/xiaomi/longcheer/wayne/fg-gen3-batterydata-l8866default-3000mah.dtsi",
+        "compiler_include_search_roots_verified": false
+      }
+    ],
+    "missing_paths_scope": "relative lookup candidates only, not proven original include-search locations",
+    "unscoped_property_witnesses": [
+      {
+        "source": "arch/arm/boot/dts/qcom/sdm660-mtp-wayne.dts",
+        "comment_stripped_line": 100,
+        "text": "vdd-io-supply= <&pm660_l8>;"
+      }
+    ],
+    "gpu_node_property_ownership_verified": false,
+    "cpp_dtc_or_phandle_resolution_performed": false
+  },
+  "mainline_scaffold": {
+    "entry": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dts",
+    "visited": [
+      "arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dts"
+    ],
+    "missing_includes": [
+      "arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts"
+    ],
+    "cycles": [],
+    "textual_closure_complete": false,
+    "kgsl_text_seen": false,
+    "kgsl_absence_proven": false,
+    "kgsl_presence_scope": "not seen; absence not proven",
+    "unresolved_include_requests": [
+      {
+        "including_source": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-wayne.dts",
+        "include_token": "sdm660-xiaomi-jasmine.dts",
+        "relative_candidate": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts",
+        "compiler_include_search_roots_verified": false
+      }
+    ],
+    "missing_paths_scope": "relative lookup candidates only, not proven original include-search locations",
+    "unscoped_property_witnesses": [],
+    "gpu_node_property_ownership_verified": false,
+    "cpp_dtc_or_phandle_resolution_performed": false
+  },
+  "scaffold_sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+  "mainline_wayne_board_validated": false,
+  "current_user_dtb_vendor_logs_available": false,
+  "vendor_source_role": "non-Miku wayne comparison sample only; not current user vendor",
+  "vendor_contract": {
+    "profile": "wayne-6.6-msm-drm-experiment",
+    "findings": [
+      {
+        "abi": "kgsl",
+        "files": [
+          "lib/libgsl.so",
+          "lib64/libgsl.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "ion",
+        "files": [
+          "lib/libgsl.so",
+          "lib/hw/gralloc.sdm660.so",
+          "lib64/libgsl.so",
+          "lib64/hw/gralloc.sdm660.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "msm_fb",
+        "files": [
+          "lib/libsdmcore.so",
+          "lib/libsdmutils.so",
+          "lib64/libsdmcore.so",
+          "lib64/libsdmutils.so"
+        ],
+        "status": "requires_port_or_replacement"
+      }
+    ],
+    "legacy_pairing_rejected": true,
+    "evidence_kind": "ELF strings and dynamic dependencies; no ioctl execution",
+    "compatible_verified": false,
+    "hardware_tested": false,
+    "remaining": [
+      "gralloc buffer-handle layout and modifiers",
+      "fences and cache coherency",
+      "secure/protected heaps",
+      "SELinux device and service policy",
+      "32/64-bit graphics loading",
+      "wayne-specific display/boot bringup"
+    ]
+  },
+  "remaining": [
+    "actual wayne GPU node and full matching include closure",
+    "regulator/clock/power-domain phandles and provider nodes",
+    "IOMMU attachment/context and matching bindings",
+    "matched kernel driver/ioctl ABI; a DT node cannot provide KGSL ioctls",
+    "firmware request names from matched driver/logs, not guesses",
+    "runtime node labels, GPU initialization and display integration"
+  ],
+  "hardware_values_applied": false,
+  "kernel_compiled": false,
+  "new_boot_created": false,
+  "gpu_verified": false,
+  "display_verified": false,
+  "bootable_verified": false,
+  "hardware_tested": false
+}

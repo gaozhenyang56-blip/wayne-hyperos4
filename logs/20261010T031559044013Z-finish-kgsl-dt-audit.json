@@ -1,0 +1,17 @@
+{
+  "label": "finish-kgsl-dt-audit",
+  "started_utc": "2026-10-10T03:15:59.044013+00:00",
+  "finished_utc": "2026-10-10T03:15:59.095098+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T031559044013Z-finish-kgsl-dt-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "保存KGSL include闭包审计工具、正反例、依赖阻塞清单和下一断点，结束短阶段。",
+  "outcome": "4项测试通过，现有配置/设备树/内核和实验包报告未变。当前真实DT/vendor/日志仍缺失；缺失include不能证明KGSL不存在，通用供电属性不能认定GPU归属，旧vendor配对继续拒绝。未填硬件参数、未下载供体、未编译内核或生成可刷包。",
+  "next_step": "暂停；按清单采集匹配wayne的实际DTB、完整include/bindings、provider和初始化日志，再做定向依赖验证。"
+}

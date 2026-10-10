@@ -1,0 +1,58 @@
+{
+  "saved_utc": "2026-10-10T03:14:26.290781+00:00",
+  "baseline": "a7b4140",
+  "status": "bounded KGSL device tree/interface audit saved and paused",
+  "target": "China Xiaomi Mi6X wayne/SDM660, original static partitions",
+  "repair": "include-aware text audit prevents direct-fragment absence being promoted to full-tree KGSL absence; unscoped supply/clock/IOMMU witnesses never asserted GPU-owned",
+  "tests": {
+    "checked_utc": "2026-10-10T03:14:26.257426+00:00",
+    "test_methods_passed": 4,
+    "positive": "complete synthetic include fixture records KGSL text without hardware claim",
+    "negative": [
+      "missing includes cannot prove KGSL absence",
+      "include cycle is not complete",
+      "commented includes/GPU nodes are ignored"
+    ],
+    "actual_wayne_unresolved_requests": 10,
+    "actual_legacy_vendor_pairing_rejected": true,
+    "dtc_or_hardware_tested": false,
+    "kernel_recompiled": false
+  },
+  "preserved_reports_and_configurations": {
+    "artifacts/kernel-6.6-probe.json": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+    "artifacts/kernel-6.6-allocator-probe.json": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+    "artifacts/static-candidate-package.json": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+    "config/sdm660-xiaomi-wayne-6.6.dts": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+    "config/kernel-6.6-graphics-profile.json": "308c21bee82e363cab2e526478e79fbb18fe4ae9bacf4396194b779feb00529e",
+    "research/gpu-allocator-stage/graphics-contract.json": "45affec67197bc9f96732b943c71c5535c4ec47d6bd18ed52c4d66e0e19ef941",
+    "research/fbe-vold-stage/checkpoint.json": "748b3451531083d2a0ccf75fa7d38f4ecfd704417ba4b1de604bb2024a3dafda"
+  },
+  "current_user_dtb_vendor_logs_available": false,
+  "remaining": [
+    "actual wayne GPU node and full matching include closure",
+    "regulator/clock/power-domain phandles and provider nodes",
+    "IOMMU attachment/context and matching bindings",
+    "matched kernel driver/ioctl ABI; a DT node cannot provide KGSL ioctls",
+    "firmware request names from matched driver/logs, not guesses",
+    "runtime node labels, GPU initialization and display integration"
+  ],
+  "next": [
+    "Obtain current boot and live DT plus matched driver source and complete include/search paths",
+    "Resolve actual GPU node regulator/clock/power-domain/IOMMU phandles against matching provider/binding definitions",
+    "Collect KGSL initialization, IOMMU/regulator/clock and firmware-request logs before naming or editing hardware resources",
+    "Keep unsupported legacy vendor pairing rejected until real driver/ioctl port or source graphics replacement is proven"
+  ],
+  "kernel_recompiled": false,
+  "new_flashable_package": false,
+  "hardware_tested": false,
+  "gpu_verified": false,
+  "display_verified": false,
+  "bootable_verified": false,
+  "budget": {
+    "user_reported_5h_remaining_percent": 75,
+    "user_reported_week_remaining_percent": 43,
+    "reserve_each_percent": 20,
+    "live_usage_tool_available": false,
+    "action": "short bounded audit then pause; no precise usage claim"
+  }
+}

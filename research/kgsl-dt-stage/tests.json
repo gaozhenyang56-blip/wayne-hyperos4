@@ -1,0 +1,14 @@
+{
+  "checked_utc": "2026-10-10T03:14:26.257426+00:00",
+  "test_methods_passed": 4,
+  "positive": "complete synthetic include fixture records KGSL text without hardware claim",
+  "negative": [
+    "missing includes cannot prove KGSL absence",
+    "include cycle is not complete",
+    "commented includes/GPU nodes are ignored"
+  ],
+  "actual_wayne_unresolved_requests": 10,
+  "actual_legacy_vendor_pairing_rejected": true,
+  "dtc_or_hardware_tested": false,
+  "kernel_recompiled": false
+}
