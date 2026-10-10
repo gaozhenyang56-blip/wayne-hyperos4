@@ -1,0 +1,17 @@
+{
+  "label": "resume-audio-contract",
+  "started_utc": "2026-10-10T04:56:16.220198+00:00",
+  "finished_utc": "2026-10-10T04:56:16.229877+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T045616220198Z-resume-audio-contract.log",
+  "output_sha256": "563458568ad2cee040a8cb7fb13f3b4f894abb1c7f83cab94a0a1636ebd8defb",
+  "action": "检查0630572后的工作区、git差异、最近测试及已有非Miku vendor材料。",
+  "outcome": "工作区无开发差异，仅保留原有空MD；找到音频属性，但音频HAL、mixer_paths和audio_platform_info未进入现有提取清单。6.6报告明确音频ABI未验证；4.19历史嵌入配置不是实际构建配置，也不是用户当前基线。",
+  "next_step": "补齐音频材料完整性fail-fast检查，缺少材料时拒绝契约审计，不推断设备无音频。"
+}
