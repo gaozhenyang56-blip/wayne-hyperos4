@@ -1,0 +1,17 @@
+{
+  "label": "save-gnss-contract-checkpoint",
+  "started_utc": "2026-10-10T09:57:35.092177+00:00",
+  "finished_utc": "2026-10-10T09:57:35.181215+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/gnss-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"sample_cli_exit\"]==2 and \"77%/34%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_36be91a\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"gnss_verified\"]; print(\"Checkpoint consistent: 3 passing tests, refusal 2, 5 prior evidence files preserved; positioning unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T095735092177Z-save-gnss-contract-checkpoint.log",
+  "output_sha256": "3cde254da6bb12623eb17063bab4f0306617c5140ff520c6c274b89d5369d67c",
+  "action": "保存GNSS材料门禁、三项测试日志、来源及只读采集断点，复核结果后暂停。",
+  "outcome": "测试通过，实际材料拒绝退出2，五项既有证据保留；缺少真实HAL/配置/固件/DTB/日志，不能证明定位链路或具体接口矛盾。实时额度不可读取。",
+  "next_step": "同步源码和报告后停止；下一轮先取真实wayne定位HAL、配置、驱动绑定和AVC证据。"
+}
