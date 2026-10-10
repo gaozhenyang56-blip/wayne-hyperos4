@@ -1,0 +1,17 @@
+{
+  "label": "resume-static-boot-audit",
+  "started_utc": "2026-10-10T01:49:11.328012+00:00",
+  "finished_utc": "2026-10-10T01:49:11.339252+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T014911328012Z-resume-static-boot-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "检查 f3cb6fc 工作区与已有 boot/init/fstab/FBE 证据，限定短阶段离线审计。",
+  "outcome": "无开发差异；真实当前boot/vendor和GPT未取得。非Miku wayne参考boot是header0、无super参数；现有static_cmdline却强制要求super参数，证明转换工具仍错误依赖动态样本。保留历史来源与成果，不作为当前设备基线。",
+  "next_step": "修复静态cmdline输入的错误前置条件，核对本地既有产物和加密风险并运行正反例。"
+}
