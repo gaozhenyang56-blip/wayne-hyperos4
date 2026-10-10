@@ -1,0 +1,16 @@
+{
+  "label": "display-contract-tests",
+  "started_utc": "2026-10-10T04:12:40.773662+00:00",
+  "finished_utc": "2026-10-10T04:12:41.475452+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/audit_display_contract.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T041240773662Z-display-contract-tests.log",
+  "output_sha256": "1fffa334e4cd93211902f6ea65e98cd6bf3192a763b66d86bb6fe57a5a5a73e9",
+  "action": "实现显式布尔值校验；复现旧版字符串 false 绕过，核验本地参考 vendor 哈希、节点和显示属性，并运行四项测试与实际配对拒绝检查。",
+  "outcome": "四项测试通过；旧版绕过已复现并被修复；参考 vendor 配对按预期返回 2。配置与已保存内核能力声明一致，但不证明运行时能力。",
+  "next_step": "保存最小补丁、证据与采集断点；同步 GitHub 后暂停，不扩展显示移植。"
+}
