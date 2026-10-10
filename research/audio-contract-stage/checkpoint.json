@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-10-10T04:56:54.782211+00:00",
+  "baseline": "0630572",
+  "target": "China wayne/SDM660 stock static partitions",
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_0630572": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_0630572": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_0630572": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_0630572": true
+    },
+    {
+      "path": "config/kernel-6.6-graphics-profile.json",
+      "sha256": "308c21bee82e363cab2e526478e79fbb18fe4ae9bacf4396194b779feb00529e",
+      "unchanged_from_0630572": true
+    }
+  ],
+  "actual_sample_gate_exit": 2,
+  "tests_passed": 3,
+  "kernel_4_19": "Historical embedded defconfig only, not generated .config or user ROM; generic SND/PCM/SOC declarations not audio validation",
+  "kernel_6_6": "Saved reports explicitly mark downstream audio ABI unverified; no audited ALSA card/PCM/codec mapping",
+  "next": "Collect current vendor primary HAL and dependencies, mixer_paths/audio_platform_info variants, actual DTB and ALSA/AudioFlinger/AVC logs",
+  "hardware_tested": false,
+  "full_kernel_rebuilt": false,
+  "flashable_package_created": false,
+  "quota": "Realtime quota unavailable; user snapshot 50%/39%; no precise usage claim"
+}

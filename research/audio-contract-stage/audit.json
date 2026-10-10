@@ -1,0 +1,380 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current user vendor unknown",
+  "inventory": {
+    "selected_inventory": {
+      "audio_hal": [],
+      "mixer_paths": [],
+      "audio_platform_info": []
+    },
+    "missing_evidence_categories": [
+      "audio_hal",
+      "mixer_paths",
+      "audio_platform_info"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "audio_verified": false,
+    "calls_verified": false,
+    "scope": "Selected-file presence only, not ELF/XML semantics, ALSA mapping, HAL version or runtime compatibility"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 28,
+          "text": "vendor.audio_hal.period_size=240"
+        },
+        {
+          "line": 29,
+          "text": "ro.vendor.audio.sdk.fluencetype=fluence"
+        },
+        {
+          "line": 30,
+          "text": "persist.vendor.audio.fluence.voicecall=true"
+        },
+        {
+          "line": 31,
+          "text": "persist.vendor.audio.fluence.voicerec=true"
+        },
+        {
+          "line": 32,
+          "text": "persist.vendor.audio.fluence.speaker=true"
+        },
+        {
+          "line": 33,
+          "text": "vendor.audio.tunnel.encode=false"
+        },
+        {
+          "line": 34,
+          "text": "persist.vendor.audio.ras.enabled=false"
+        },
+        {
+          "line": 35,
+          "text": "vendor.audio.offload.buffer.size.kb=64"
+        },
+        {
+          "line": 36,
+          "text": "audio.offload.min.duration.secs=30"
+        },
+        {
+          "line": 37,
+          "text": "audio.offload.video=true"
+        },
+        {
+          "line": 38,
+          "text": "vendor.audio.offload.track.enable=true"
+        },
+        {
+          "line": 39,
+          "text": "audio.deep_buffer.media=true"
+        },
+        {
+          "line": 41,
+          "text": "vendor.audio.offload.multiaac.enable=true"
+        },
+        {
+          "line": 42,
+          "text": "vendor.audio.dolby.ds2.enabled=false"
+        },
+        {
+          "line": 43,
+          "text": "vendor.audio.dolby.ds2.hardbypass=false"
+        },
+        {
+          "line": 44,
+          "text": "vendor.audio.offload.multiple.enabled=false"
+        },
+        {
+          "line": 45,
+          "text": "vendor.audio.offload.passthrough=false"
+        },
+        {
+          "line": 46,
+          "text": "ro.vendor.audio.sdk.ssr=false"
+        },
+        {
+          "line": 47,
+          "text": "vendor.audio.offload.gapless.enabled=true"
+        },
+        {
+          "line": 48,
+          "text": "vendor.audio.safx.pbe.enabled=false"
+        },
+        {
+          "line": 49,
+          "text": "vendor.audio.parser.ip.buffer.size=262144"
+        },
+        {
+          "line": 50,
+          "text": "vendor.audio.flac.sw.decoder.24bit=true"
+        },
+        {
+          "line": 51,
+          "text": "vendor.audio.use.sw.alac.decoder=true"
+        },
+        {
+          "line": 52,
+          "text": "vendor.audio.use.sw.ape.decoder=true"
+        },
+        {
+          "line": 53,
+          "text": "vendor.audio.hw.aac.encoder=true"
+        },
+        {
+          "line": 54,
+          "text": "audio.sys.noisy.broadcast.delay=600"
+        },
+        {
+          "line": 55,
+          "text": "audio.sys.offload.pstimeout.secs=3"
+        },
+        {
+          "line": 56,
+          "text": "persist.vendor.audio.hifi.int_codec=true"
+        },
+        {
+          "line": 58,
+          "text": "vendor.audio.volume.headset.gain.depcal=true"
+        },
+        {
+          "line": 59,
+          "text": "vendor.audio.spkr_prot.tx.sampling_rate=48000"
+        },
+        {
+          "line": 60,
+          "text": "vendor.audio.feature.afe_proxy.enable=true"
+        },
+        {
+          "line": 61,
+          "text": "vendor.audio.feature.anc_headset.enable=true"
+        },
+        {
+          "line": 62,
+          "text": "vendor.audio.feature.battery_listener.enable=false"
+        },
+        {
+          "line": 63,
+          "text": "vendor.audio.feature.compr_cap.enable=false"
+        },
+        {
+          "line": 64,
+          "text": "vendor.audio.feature.compress_in.enable=false"
+        },
+        {
+          "line": 65,
+          "text": "vendor.audio.feature.compress_meta_data.enable=true"
+        },
+        {
+          "line": 66,
+          "text": "vendor.audio.feature.compr_voip.enable=true"
+        },
+        {
+          "line": 67,
+          "text": "vendor.audio.feature.concurrent_capture.enable=false"
+        },
+        {
+          "line": 68,
+          "text": "vendor.audio.feature.custom_stereo.enable=true"
+        },
+        {
+          "line": 69,
+          "text": "vendor.audio.feature.display_port.enable=true"
+        },
+        {
+          "line": 70,
+          "text": "vendor.audio.feature.dsm_feedback.enable=false"
+        },
+        {
+          "line": 71,
+          "text": "vendor.audio.feature.dynamic_ecns.enable=false"
+        },
+        {
+          "line": 72,
+          "text": "vendor.audio.feature.ext_hw_plugin.enable=false"
+        },
+        {
+          "line": 73,
+          "text": "vendor.audio.feature.external_dsp.enable=false"
+        },
+        {
+          "line": 74,
+          "text": "vendor.audio.feature.external_speaker.enable=false"
+        },
+        {
+          "line": 75,
+          "text": "vendor.audio.feature.external_speaker_tfa.enable=false"
+        },
+        {
+          "line": 76,
+          "text": "vendor.audio.feature.fluence.enable=true"
+        },
+        {
+          "line": 77,
+          "text": "vendor.audio.feature.fm.enable=true"
+        },
+        {
+          "line": 78,
+          "text": "vendor.audio.feature.hdmi_edid.enable=true"
+        },
+        {
+          "line": 79,
+          "text": "vendor.audio.feature.hdmi_passthrough.enable=true"
+        },
+        {
+          "line": 80,
+          "text": "vendor.audio.feature.hfp.enable=true"
+        },
+        {
+          "line": 81,
+          "text": "vendor.audio.feature.hifi_audio.enable=true"
+        },
+        {
+          "line": 82,
+          "text": "vendor.audio.feature.hwdep_cal.enable=false"
+        },
+        {
+          "line": 83,
+          "text": "vendor.audio.feature.incall_music.enable=false"
+        },
+        {
+          "line": 84,
+          "text": "vendor.audio.feature.multi_voice_session.enable=true"
+        },
+        {
+          "line": 85,
+          "text": "vendor.audio.feature.keep_alive.enable=false"
+        },
+        {
+          "line": 86,
+          "text": "vendor.audio.feature.kpi_optimize.enable=false"
+        },
+        {
+          "line": 87,
+          "text": "vendor.audio.feature.maxx_audio.enable=false"
+        },
+        {
+          "line": 88,
+          "text": "vendor.audio.feature.ras.enable=true"
+        },
+        {
+          "line": 89,
+          "text": "vendor.audio.feature.record_play_concurency.enable=false"
+        },
+        {
+          "line": 90,
+          "text": "vendor.audio.feature.src_trkn.enable=true"
+        },
+        {
+          "line": 91,
+          "text": "vendor.audio.feature.spkr_prot.enable=true"
+        },
+        {
+          "line": 92,
+          "text": "vendor.audio.feature.ssrec.enable=true"
+        },
+        {
+          "line": 93,
+          "text": "vendor.audio.feature.usb_offload.enable=true"
+        },
+        {
+          "line": 94,
+          "text": "vendor.audio.feature.usb_offload_burst_mode.enable=false"
+        },
+        {
+          "line": 95,
+          "text": "vendor.audio.feature.usb_offload_sidetone_volume.enable=false"
+        },
+        {
+          "line": 96,
+          "text": "vendor.audio.feature.deepbuffer_as_primary.enable=false"
+        },
+        {
+          "line": 97,
+          "text": "vendor.audio.feature.vbat.enable=true"
+        },
+        {
+          "line": 98,
+          "text": "vendor.audio.feature.wsa.enable=false"
+        },
+        {
+          "line": 99,
+          "text": "vendor.audio.feature.audiozoom.enable=false"
+        },
+        {
+          "line": 100,
+          "text": "vendor.audio.feature.snd_mon.enable=true"
+        },
+        {
+          "line": 103,
+          "text": "vendor.audio.adm.buffering.ms=6"
+        },
+        {
+          "line": 156,
+          "text": "debug.stagefright.omx_default_rank.sw-audio=1"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 265,
+          "text": "    # Create directory used by audio subsystem"
+        },
+        {
+          "line": 266,
+          "text": "    mkdir /data/vendor/audio 0770 audio audio"
+        },
+        {
+          "line": 268,
+          "text": "    # Create directory for audio delta files"
+        },
+        {
+          "line": 269,
+          "text": "    mkdir /data/vendor/audio/acdbdata 0770 media audio"
+        },
+        {
+          "line": 270,
+          "text": "    mkdir /data/vendor/audio/acdbdata/delta 0770 media audio"
+        },
+        {
+          "line": 406,
+          "text": "    chown media audio /sys/kernel/wdsp0/boot"
+        },
+        {
+          "line": 407,
+          "text": "    chown media audio /sys/kernel/wcd_cpe0/fw_name"
+        },
+        {
+          "line": 520,
+          "text": "    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log"
+        },
+        {
+          "line": 527,
+          "text": "    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log"
+        },
+        {
+          "line": 583,
+          "text": "service vendor.audio-hal /vendor/bin/hw/android.hardware.audio.service"
+        },
+        {
+          "line": 586,
+          "text": "    user audioserver"
+        },
+        {
+          "line": 588,
+          "text": "    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock"
+        },
+        {
+          "line": 592,
+          "text": "    onrestart restart audioserver"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; not proof of absent files in full vendor or unavailable hardware"
+}

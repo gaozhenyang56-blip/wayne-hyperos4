@@ -1,0 +1,14 @@
+{
+  "executed_command": "PYTHONPATH=tools python3 -m unittest -v test_audio_contract",
+  "tests_run": 3,
+  "failures": 0,
+  "errors": 0,
+  "cases": [
+    "test_minimal_inventory_opens_only_evidence_gate",
+    "test_properties_and_service_are_not_hal_or_routes",
+    "test_each_missing_category_refuses_contract_review"
+  ],
+  "actual_sample_cli_exit": 2,
+  "runtime_or_hardware_validation": false,
+  "output_note": "Unit test output was observed in the execution tool; this is its result summary, not a fabricated raw transcript."
+}

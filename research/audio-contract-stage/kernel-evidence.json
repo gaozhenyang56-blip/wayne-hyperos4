@@ -1,0 +1,26 @@
+{
+  "historical_source": "research/base-miku-a15/kernel.config",
+  "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+  "actual_build_configuration": false,
+  "target_baseline": false,
+  "lines": [
+    {
+      "line": 3724,
+      "text": "CONFIG_SOUND=y"
+    },
+    {
+      "line": 3725,
+      "text": "CONFIG_SND=y"
+    },
+    {
+      "line": 3727,
+      "text": "CONFIG_SND_PCM=y"
+    },
+    {
+      "line": 3824,
+      "text": "CONFIG_SND_SOC=y"
+    }
+  ],
+  "meaning": "Generic declarations only; not card, port, codec, routing or hardware proof",
+  "kernel_6_6_audio_mapping": "Not recorded in saved probe reports; downstream audio ABI unverified"
+}
