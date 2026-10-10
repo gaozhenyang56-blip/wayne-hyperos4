@@ -1,0 +1,17 @@
+{
+  "label": "save-audio-contract-checkpoint",
+  "started_utc": "2026-10-10T04:58:09.602312+00:00",
+  "finished_utc": "2026-10-10T04:58:09.648514+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/audio-contract-stage\"); a=json.loads((p/\"audit.json\").read_text()); c=json.loads((p/\"checkpoint.json\").read_text()); t=json.loads((p/\"tests.json\").read_text()); assert a[\"inventory\"][\"evidence_gate_rejected\"] and c[\"actual_sample_gate_exit\"]==2 and t[\"tests_run\"]==3 and t[\"failures\"]==0; assert all(x[\"unchanged_from_0630572\"] for x in c[\"preservation\"]); print(\"Saved results: 3 passing tests, actual sample refusal exit 2, 5 prior evidence files unchanged; hardware unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T045809602312Z-save-audio-contract-checkpoint.log",
+  "output_sha256": "ec928d389f885079be637a401270a19765217f3fc4a4682a25b653c8ebaf9bd6",
+  "action": "保存音频证据、三项已执行测试结果与下一断点，复核现有样本缺材料拒绝及内核材料保留情况。",
+  "outcome": "三个材料类别均未提取，CLI按预期返回2；三项测试通过。4.19通用配置与6.6音频未验证记录不能推出声卡/路由，未发现可证明的具体映射矛盾；未改内核、配置或实验包。",
+  "next_step": "同步GitHub后暂停；下一轮先采集真实wayne音频HAL、配置、ALSA清单、DTB、服务及AVC日志。"
+}
