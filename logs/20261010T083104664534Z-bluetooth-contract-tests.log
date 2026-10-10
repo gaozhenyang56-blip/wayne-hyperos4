@@ -1,0 +1,23 @@
+test_complete_fixture_opens_gate_without_runtime_claim (test_bluetooth_contract.BluetoothEvidenceTests.test_complete_fixture_opens_gate_without_runtime_claim) ... ok
+test_each_missing_category_and_string_flags_rejected (test_bluetooth_contract.BluetoothEvidenceTests.test_each_missing_category_and_string_flags_rejected) ... ok
+test_init_paths_cannot_substitute_hal_or_transport (test_bluetooth_contract.BluetoothEvidenceTests.test_init_paths_cannot_substitute_hal_or_transport) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+{
+  "missing_evidence": [
+    "bluetooth_hal_or_vendor_library",
+    "bluetooth_configuration",
+    "actual_transport_driver_binding_and_kernel_evidence",
+    "firmware_delivery_inventory_and_requirements"
+  ],
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "bluetooth_verified": false,
+  "calls_verified": false,
+  "scope": "Candidate filenames and explicit evidence claims only; no HAL version, transport, ioctl or runtime validation"
+}
+3 tests passed; sample refusal 2; prior evidence preserved
