@@ -1,0 +1,17 @@
+{
+  "label": "save-wifi-contract-checkpoint",
+  "started_utc": "2026-10-10T07:55:58.955911+00:00",
+  "finished_utc": "2026-10-10T07:55:59.154937+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/wifi-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"sample_cli_exit\"]==2; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_4e2c24b\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"driver_delivery\"]==\"unknown\" and a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"wifi_verified\"]; print(\"Checkpoint consistent: 3 passing tests; refusal 2; 5 old evidence files preserved; Wi-Fi hardware unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T075558955911Z-save-wifi-contract-checkpoint.log",
+  "output_sha256": "a0d9c425b3b29268140dfa44c84cfc70ea1322b159865d8998c62cb0b744b487",
+  "action": "保存Wi-Fi材料门禁、测试原始日志、参考路径边界及只读采集断点，复核后结束本轮。",
+  "outcome": "三项测试通过，实际门禁拒绝退出2；五项原有证据未变，尚无足够材料证明具体接口矛盾。内建/模块交付和firmware要求保持未知，无硬件验证；实时额度不可读取。",
+  "next_step": "同步GitHub后暂停；下一轮先获取真实wayne HAL/配置、固件和模块/内建清单、DTB及无线服务/AVC日志。"
+}
