@@ -1,0 +1,17 @@
+{
+  "label": "resume-bluetooth-contract",
+  "started_utc": "2026-10-10T08:30:22.975921+00:00",
+  "finished_utc": "2026-10-10T08:30:22.990375+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T083022975921Z-resume-bluetooth-contract.log",
+  "output_sha256": "ae0cc4661789005edb4cfd60c6dc4f3f65a5ce0b79b9e31427da9f4b294f1be8",
+  "action": "检查471f71d后的工作区、git差异、最近执行结果及非Miku蓝牙参考材料。",
+  "outcome": "无开发差异，仅原有空MD；参考文本有蓝牙属性和多种权限请求，但提取清单没有蓝牙HAL/配置。历史4.19不是实际构建配置或当前用户基线，6.6传输链路未验证。",
+  "next_step": "补齐HAL/配置与实际传输绑定、固件交付材料拒绝检查，执行最小正反例后暂停。"
+}
