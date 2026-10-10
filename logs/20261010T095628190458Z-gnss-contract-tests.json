@@ -1,0 +1,16 @@
+{
+  "label": "gnss-contract-tests",
+  "started_utc": "2026-10-10T09:56:28.190458+00:00",
+  "finished_utc": "2026-10-10T09:56:28.690024+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_gnss_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T095628190458Z-gnss-contract-tests.log",
+  "output_sha256": "7896c7342c7cbd515571e71a447fd09cd949bb052aa635434e333b94c4ba8483",
+  "action": "新增GNSS HAL/配置及传输绑定、固件交付材料门禁，核验本地样本哈希，执行三项正反例和实际材料拒绝检查。",
+  "outcome": "三项测试通过，实际材料按预期退出2；目录/服务不能替代HAL或链路绑定，字符串标志被拒绝。五项既有证据保留，无真机验证。",
+  "next_step": "保存精确只读取证命令与断点，同步后停止。"
+}
