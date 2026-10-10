@@ -1,0 +1,38 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current vendor unknown",
+  "contract": {
+    "candidate_inventory": {
+      "power_hal": [],
+      "thermal_hal": [],
+      "powerhint_config": [],
+      "thermal_config": []
+    },
+    "missing_evidence": [
+      "power_hal",
+      "thermal_hal",
+      "powerhint_config",
+      "thermal_config",
+      "actual_sysfs_thermal_cpufreq_devfreq_binding"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "performance_verified": false,
+    "thermal_verified": false,
+    "battery_life_verified": false,
+    "scope": "Candidate filenames and explicit binding claim only; no HAL version, config semantics or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": []
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": []
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; no claim of absent full-vendor files or unavailable hardware"
+}

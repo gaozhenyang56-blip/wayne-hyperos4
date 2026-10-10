@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-10-10T11:36:25.418779+00:00",
+  "baseline": "b954749",
+  "tests_passed": 2,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    }
+  ],
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Obtain actual wayne Power/Thermal HAL/config/DTB and read-only node/service/AVC evidence",
+  "quota": "Realtime unavailable; user snapshot 61%/31%; no precise control claim"
+}
