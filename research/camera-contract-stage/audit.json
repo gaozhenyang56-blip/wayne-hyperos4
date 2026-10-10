@@ -1,0 +1,99 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current user vendor unknown",
+  "inventory": {
+    "selected_inventory": {
+      "camera_hal": [],
+      "camera_config": []
+    },
+    "missing_evidence_categories": [
+      "camera_hal",
+      "camera_config"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "camera_verified": false,
+    "recording_verified": false,
+    "scope": "Filename presence only, not HAL version, XML semantics, ioctl or media graph. Alternate naming requires inventory review."
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 107,
+          "text": "persist.vendor.camera.preview.ubwc=0"
+        },
+        {
+          "line": 109,
+          "text": "persist.vendor.camera.HAL3.enabled=1"
+        },
+        {
+          "line": 110,
+          "text": "persist.vendor.camera.depth.focus.cb=0"
+        },
+        {
+          "line": 111,
+          "text": "persist.vendor.camera.exif.make=Xiaomi"
+        },
+        {
+          "line": 112,
+          "text": "persist.vendor.camera.expose.aux=1"
+        },
+        {
+          "line": 113,
+          "text": "persist.vendor.camera.imglib.usefdlite=1"
+        },
+        {
+          "line": 114,
+          "text": "persist.vendor.camera.isp.clock.optmz=0"
+        },
+        {
+          "line": 115,
+          "text": "persist.vendor.camera.isp.turbo=1"
+        },
+        {
+          "line": 116,
+          "text": "persist.vendor.camera.linkpreview=0"
+        },
+        {
+          "line": 117,
+          "text": "persist.vendor.camera.preview.ubwc=0"
+        },
+        {
+          "line": 118,
+          "text": "persist.vendor.camera.stats.test=0"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 151,
+          "text": "    #enable camera read sensors data"
+        },
+        {
+          "line": 152,
+          "text": "    setprop persist.camera.gyro.disable 0"
+        },
+        {
+          "line": 240,
+          "text": "    #Create folder of camera"
+        },
+        {
+          "line": 241,
+          "text": "    mkdir /data/vendor/camera 0770 camera camera"
+        },
+        {
+          "line": 588,
+          "text": "    group audio camera drmrpc inet media mediadrm net_bt net_bt_admin net_bw_acct oem_2901 wakelock"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted, not absent from full vendor or proof of unavailable hardware",
+  "device_node_requirements": "Not established without HAL/configuration/runtime evidence"
+}

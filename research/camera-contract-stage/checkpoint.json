@@ -1,0 +1,71 @@
+{
+  "created_utc": "2026-10-10T06:46:31.717873+00:00",
+  "baseline": "5ad1636",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 3,
+  "actual_sample_gate_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_5ad1636": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_5ad1636": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_5ad1636": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_5ad1636": true
+    },
+    {
+      "path": "research/audio-contract-stage/checkpoint.json",
+      "sha256": "e5e9ade64e761bb1a8e672de170be2d51a319098207e639792e50fba639f5f7f",
+      "unchanged_from_5ad1636": true
+    }
+  ],
+  "kernel_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "historical_embedded_config_only": true,
+    "lines": [
+      {
+        "line": 3276,
+        "text": "CONFIG_MEDIA_SUPPORT=y"
+      },
+      {
+        "line": 3281,
+        "text": "CONFIG_MEDIA_CAMERA_SUPPORT=y"
+      },
+      {
+        "line": 3287,
+        "text": "CONFIG_MEDIA_CONTROLLER=y"
+      },
+      {
+        "line": 3289,
+        "text": "CONFIG_VIDEO_DEV=y"
+      },
+      {
+        "line": 3290,
+        "text": "CONFIG_VIDEO_V4L2_SUBDEV_API=y"
+      },
+      {
+        "line": 3403,
+        "text": "CONFIG_MSM_CAMERA=y"
+      }
+    ]
+  },
+  "kernel_6_6": "Saved reports explicitly mark downstream camera ABI unverified; no audited media/video/subdev topology",
+  "hardware_tested": false,
+  "full_kernel_rebuilt": false,
+  "flashable_package_created": false,
+  "next": "Obtain actual current wayne vendor HAL/config and dependencies, DTB, node labels and media graph, camera service and AVC logs",
+  "quota": "Realtime usage unavailable; user snapshot 44%/38%; no precise control or assumed reset"
+}
