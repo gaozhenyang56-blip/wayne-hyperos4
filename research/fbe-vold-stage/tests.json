@@ -1,0 +1,13 @@
+{
+  "checked_utc": "2026-10-10T02:36:36.206272+00:00",
+  "targeted_test_methods_passed": 5,
+  "historical_regression_test_methods_passed": 4,
+  "baseline": "dddc2f5",
+  "old_code_emitted_removed_metadata_keydirectory": true,
+  "new_code_rejects_same_fixture": true,
+  "existing_transformed_fstab_byte_identical": true,
+  "encryption_flags_rewritten": false,
+  "scope": "host fstab guard and source witnesses only; not vold execution/crypto/hardware",
+  "kernel_recompiled": false,
+  "image_created": false
+}

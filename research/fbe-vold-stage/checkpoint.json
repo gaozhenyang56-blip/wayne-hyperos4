@@ -1,0 +1,54 @@
+{
+  "saved_utc": "2026-10-10T02:37:12.463132+00:00",
+  "baseline": "dddc2f5",
+  "stage": "bounded static FBE/vold/ICE evidence audit, saved and paused",
+  "target": "China wayne/SDM660, stock static partitions; no jasmine/Miku baseline",
+  "repair": "reject explicit keydirectory=/metadata or /metadata/... in retained fstab entries after metadata mount removal",
+  "tests": {
+    "checked_utc": "2026-10-10T02:36:36.206272+00:00",
+    "targeted_test_methods_passed": 5,
+    "historical_regression_test_methods_passed": 4,
+    "baseline": "dddc2f5",
+    "old_code_emitted_removed_metadata_keydirectory": true,
+    "new_code_rejects_same_fixture": true,
+    "existing_transformed_fstab_byte_identical": true,
+    "encryption_flags_rewritten": false,
+    "scope": "host fstab guard and source witnesses only; not vold execution/crypto/hardware",
+    "kernel_recompiled": false,
+    "image_created": false
+  },
+  "minimal_patch_apply_check_passed": true,
+  "patch_sha256": "2a470c35651dc3da2dee7cd768ac015ef404c96256d429083c5c67338716566e",
+  "existing_outputs_unchanged": true,
+  "immutable_reports": {
+    "artifacts/kernel-6.6-probe.json": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+    "artifacts/kernel-6.6-allocator-probe.json": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+    "artifacts/static-candidate-package.json": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+    "research/boot-static-stage/checkpoint.json": "c0c2189badbdd85ed494272bf742880752664737f0bcd9b00d56210d774be894",
+    "config/kernel-6.6-android.fragment": "e91991852ec20cb073bc08794accc87050a549e1079593816e1bb98269e0e07a",
+    "config/wayne-stock-static.json": "db7c34c300501505cafe56576f328380bb7336ed272216aa1521526e2dc47eb5",
+    "research/base-miku-a15/kernel.config": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+    "research/base-miku-a15/kernel-config.json": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18"
+  },
+  "current_vendor_gpt_logs_available": false,
+  "metadata_layout_or_key_path_assumed": false,
+  "ice_hardware_verified": false,
+  "decryption_verified": false,
+  "bootable_verified": false,
+  "hardware_tested": false,
+  "new_image_created": false,
+  "kernel_recompiled": false,
+  "next": [
+    "Collect current fstab, mounted filesystems, ro.crypto properties and vold/fs_mgr logs",
+    "Acquire actual kernel config if exported, preserving embedded-defconfig vs generated-config distinction",
+    "Obtain matched vold/fs_mgr parser and current keymaster/TEE versions; validate legacy ice semantics",
+    "Establish persistent metadata/checkpoint/APEX design with real partition and init evidence; never guess a key directory or format userdata"
+  ],
+  "budget": {
+    "user_reported_five_hour_remaining_percent": 85,
+    "user_reported_week_remaining_percent": 44,
+    "reserve_each_percent": 20,
+    "live_usage_tool_available": false,
+    "action": "finite short stage then pause; no precise quota claim"
+  }
+}

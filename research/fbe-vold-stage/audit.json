@@ -1,0 +1,386 @@
+{
+  "checked_utc": "2026-10-10T02:35:59.269353+00:00",
+  "target": "China wayne/SDM660, original static layout; no jasmine or Miku baseline",
+  "sources_role": "fixed wayne config + non-Miku reference + historical artifact inputs ONLY; not current user vendor",
+  "inputs": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "lines": [
+        {
+          "line": 815,
+          "text": "CONFIG_BLK_INLINE_ENCRYPTION=y"
+        },
+        {
+          "line": 816,
+          "text": "CONFIG_BLK_INLINE_ENCRYPTION_FALLBACK=y"
+        },
+        {
+          "line": 1900,
+          "text": "CONFIG_DM_DEFAULT_KEY=y"
+        },
+        {
+          "line": 5544,
+          "text": "CONFIG_EXT4_FS=y"
+        },
+        {
+          "line": 5548,
+          "text": "CONFIG_EXT4_ENCRYPTION=y"
+        },
+        {
+          "line": 5561,
+          "text": "CONFIG_F2FS_FS=y"
+        },
+        {
+          "line": 5567,
+          "text": "CONFIG_F2FS_FS_ENCRYPTION=y"
+        },
+        {
+          "line": 5576,
+          "text": "CONFIG_FS_ENCRYPTION=y"
+        },
+        {
+          "line": 5577,
+          "text": "CONFIG_FS_ENCRYPTION_ALGS=y"
+        },
+        {
+          "line": 5578,
+          "text": "CONFIG_FS_ENCRYPTION_INLINE_CRYPT=y"
+        },
+        {
+          "line": 5967,
+          "text": "CONFIG_CRYPTO_DEV_QCOM_ICE=y"
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "lines": [
+        {
+          "line": 8,
+          "text": "  \"actual_build_configuration\": false,"
+        },
+        {
+          "line": 9,
+          "text": "  \"provenance_warning\": \"kernel/Makefile embeds arch/arm64/configs/vendor/sdm660-perf-full_defconfig, not the generated build .config\","
+        }
+      ]
+    },
+    {
+      "path": "config/kernel-6.6-android.fragment",
+      "sha256": "e91991852ec20cb073bc08794accc87050a549e1079593816e1bb98269e0e07a",
+      "lines": [
+        {
+          "line": 11,
+          "text": "CONFIG_FS_ENCRYPTION=y"
+        },
+        {
+          "line": 12,
+          "text": "CONFIG_EXT4_FS=y"
+        }
+      ]
+    },
+    {
+      "path": "research/gpu-allocator-stage/kernel-uapi/sdm660_defconfig",
+      "sha256": "8748d513a68c2f82cfcc370b6dc32e2c933e40a3ecf65cfa40c263c82665bbfb",
+      "lines": [
+        {
+          "line": 599,
+          "text": "CONFIG_EXT4_FS=y"
+        },
+        {
+          "line": 603,
+          "text": "CONFIG_F2FS_FS=y"
+        }
+      ]
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "lines": [
+        {
+          "line": 7,
+          "text": "  \"android_config_prerequisites_verified\": ["
+        },
+        {
+          "line": 11,
+          "text": "    \"FS_ENCRYPTION\","
+        },
+        {
+          "line": 24,
+          "text": "  \"hardware_tested\": false,"
+        },
+        {
+          "line": 45,
+          "text": "      \"path\": \"out/.config\","
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/ramdisk/fstab.qcom",
+      "sha256": "996b26bcf040a7bad1dba483b7c211a674866f84ce85a9e89563d5c0f1dbfa93",
+      "lines": [
+        {
+          "line": 22,
+          "text": "/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier                             wait,fileencryption=ice,quota"
+        },
+        {
+          "line": 23,
+          "text": "/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,fileencryption=ice,quota"
+        },
+        {
+          "line": 29,
+          "text": "/dev/block/by-name/rawdump                               /metadata            ext4    noatime,nosuid,nodev,discard                                                                    wait,check,formattable,first_stage_mount"
+        }
+      ]
+    },
+    {
+      "path": "research/static-wayne/android_device_xiaomi_wayne-rootdir_etc_fstab.qcom",
+      "sha256": "7bd47e219e7dd4b9b5104b4a5db0bc3c37c52c02d553b89cb2f22e4683abeba6",
+      "lines": [
+        {
+          "line": 12,
+          "text": "/dev/block/bootdevice/by-name/userdata                   /data                f2fs    nosuid,nodev,noatime,background_gc=off,fsync_mode=nobarrier                                     wait,check,fileencryption=ice,quota"
+        },
+        {
+          "line": 13,
+          "text": "/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,noatime,lazytime,errors=panic                            wait,check,fileencryption=ice,quota"
+        }
+      ]
+    },
+    {
+      "path": "research/gpu-allocator-stage/lineage-wayne/selected-vendor/etc/fstab.qcom",
+      "sha256": "2637d1bf22d629dac1ae9facfde79d93ca1a8d82b031ff934daa3e68e845df35",
+      "lines": [
+        {
+          "line": 14,
+          "text": "/dev/block/bootdevice/by-name/userdata                   /data                ext4    nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic                    wait,check,encryptable=ice,quota"
+        }
+      ]
+    },
+    {
+      "path": "research/candidates/mi8937-os4/system/system/etc/init/vold.rc",
+      "sha256": "655dabdfc2899115be32ff7ca923070c76443caced6923996fb0a07d42e2097b",
+      "lines": [
+        {
+          "line": 1,
+          "text": "service vold /system/bin/vold \\"
+        },
+        {
+          "line": 2,
+          "text": "        --blkid_context=u:r:blkid:s0 --blkid_untrusted_context=u:r:blkid_untrusted:s0 \\"
+        },
+        {
+          "line": 3,
+          "text": "        --fsck_context=u:r:fsck:s0 --fsck_untrusted_context=u:r:fsck_untrusted:s0"
+        },
+        {
+          "line": 4,
+          "text": "    class core"
+        },
+        {
+          "line": 9,
+          "text": "    user root"
+        }
+      ]
+    },
+    {
+      "path": "research/candidates/mi8937-os4/system/system/etc/init/hw/init.rc",
+      "sha256": "40277b3c46beb95a6379bf61828574c5bd2cede072c95d5de806287ff97f3ec5",
+      "lines": [
+        {
+          "line": 106,
+          "text": "    # Fix permissions before apexd reads /metadata"
+        },
+        {
+          "line": 107,
+          "text": "    restorecon /metadata"
+        },
+        {
+          "line": 718,
+          "text": "    # Once metadata has been mounted, we'll need vold to deal with userdata checkpointing"
+        },
+        {
+          "line": 719,
+          "text": "    start vold"
+        },
+        {
+          "line": 727,
+          "text": "    exec - system system -- /system/bin/vdc checkpoint markBootAttempt"
+        },
+        {
+          "line": 811,
+          "text": "    restorecon_recursive /metadata"
+        },
+        {
+          "line": 812,
+          "text": "    mkdir /metadata/vold"
+        },
+        {
+          "line": 813,
+          "text": "    chmod 0700 /metadata/vold"
+        },
+        {
+          "line": 814,
+          "text": "    mkdir /metadata/password_slots 0771 root system"
+        },
+        {
+          "line": 815,
+          "text": "    mkdir /metadata/bootstat 0750 system log"
+        },
+        {
+          "line": 816,
+          "text": "    mkdir /metadata/ota 0750 root system"
+        },
+        {
+          "line": 817,
+          "text": "    mkdir /metadata/ota/snapshots 0750 root system"
+        },
+        {
+          "line": 818,
+          "text": "    mkdir /metadata/watchdog 0770 root system"
+        },
+        {
+          "line": 819,
+          "text": "    mkdir /metadata/tradeinmode 0770 root system"
+        },
+        {
+          "line": 820,
+          "text": "    mkdir /metadata/prefetch 0770 root system"
+        },
+        {
+          "line": 822,
+          "text": "    mkdir /metadata/apex 0700 root system"
+        },
+        {
+          "line": 823,
+          "text": "    mkdir /metadata/apex/sessions 0700 root system"
+        },
+        {
+          "line": 824,
+          "text": "    mkdir /metadata/apex/images 0700 root system"
+        },
+        {
+          "line": 825,
+          "text": "    mkdir /metadata/apex/config 0700 root system"
+        },
+        {
+          "line": 826,
+          "text": "    # On some devices we see a weird behaviour in which /metadata/apex doesn't"
+        },
+        {
+          "line": 828,
+          "text": "    # on /metadata/apex. For most of the boot sequences /metadata/apex will"
+        },
+        {
+          "line": 831,
+          "text": "    restorecon_recursive /metadata/apex"
+        },
+        {
+          "line": 833,
+          "text": "    mkdir /metadata/staged-install 0770 root system"
+        },
+        {
+          "line": 904,
+          "text": "    # Start checkpoint before we touch data"
+        },
+        {
+          "line": 905,
+          "text": "    exec - system system -- /system/bin/vdc checkpoint prepareCheckpoint"
+        },
+        {
+          "line": 1199,
+          "text": "    # Mkdir and set SELinux security contexts for shutdown-checkpoints."
+        },
+        {
+          "line": 1201,
+          "text": "    mkdir /data/system/shutdown-checkpoints 0755 system system"
+        },
+        {
+          "line": 1202,
+          "text": "    restorecon_recursive /data/system/shutdown-checkpoints"
+        },
+        {
+          "line": 1368,
+          "text": "on property:vold.checkpoint_committed=1"
+        },
+        {
+          "line": 1369,
+          "text": "    trigger post-fs-data-checkpointed"
+        },
+        {
+          "line": 1396,
+          "text": "    # Flush data and checkpoint more aggressively to prepare sudden power cuts"
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/vintf/manifest.xml",
+      "sha256": "d6a757a59afa08dfc7134dc07e8a597098f19da4145af49dbfb6ef414038c31f",
+      "lines": [
+        {
+          "line": 37,
+          "text": "        <name>android.hardware.keymaster</name>"
+        },
+        {
+          "line": 39,
+          "text": "        <fqname>@3.0::IKeymasterDevice/default</fqname>"
+        }
+      ]
+    }
+  ],
+  "preserved_data_rows": [
+    [
+      "/dev/block/bootdevice/by-name/userdata",
+      "/data",
+      "f2fs",
+      "nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier",
+      "wait,fileencryption=ice,quota"
+    ],
+    [
+      "/dev/block/bootdevice/by-name/userdata",
+      "/data",
+      "ext4",
+      "nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic",
+      "wait,check,fileencryption=ice,quota"
+    ]
+  ],
+  "kernel_419": {
+    "source_kind": "embedded historical defconfig",
+    "actual_build_configuration": false,
+    "ice_config_declaration": "CONFIG_CRYPTO_DEV_QCOM_ICE=y",
+    "hardware_ice_verified": false
+  },
+  "kernel_66": {
+    "fs_encryption_compile_prerequisite_verified": true,
+    "full_generated_config_available_locally": false,
+    "ice_inline_crypto_dm_default_key_verified": false,
+    "fstab_ice_parsing_verified": false,
+    "hardware_ice_verified": false
+  },
+  "metadata": {
+    "fstab_keydirectory_dependency_present": false,
+    "data_metadata_encryption_flag_present": false,
+    "donor_init_metadata_paths_present": true,
+    "persistent_storage_verified": false
+  },
+  "vold": {
+    "rc_arguments_are_security_contexts_not_cipher_selection": true,
+    "matching_vold_fs_mgr_source_available": false,
+    "keymaster_tee_integration_verified": false
+  },
+  "fix": "refuse explicit keydirectory rooted at /metadata when static conversion removes that mount; do not rewrite key paths",
+  "remaining": [
+    "current userdata FDE/FBE mode and fscrypt policy",
+    "matched vold/fs_mgr legacy ice parser",
+    "actual 4.19 build config and full 6.6 crypto configuration",
+    "persistent metadata/APEX/checkpoint design",
+    "current keymaster/TEE, ICE device-tree/runtime evidence and SELinux"
+  ],
+  "configuration_consistency_verified": false,
+  "decryption_verified": false,
+  "hardware_tested": false,
+  "bootable_verified": false,
+  "new_image_created": false
+}

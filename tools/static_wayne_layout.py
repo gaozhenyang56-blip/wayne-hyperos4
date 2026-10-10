@@ -17,6 +17,10 @@ def static_fstab(source):
             seen.add(mount)
         if 'logical' in flags.split(',') or 'formattable' in flags.split(','):
             raise ValueError('Unexpected logical or formattable mount')
+        for flag in flags.split(','):
+            key,separator,value=flag.partition('=')
+            if key=='keydirectory' and separator and (value=='/metadata' or value.startswith('/metadata/')):
+                raise ValueError('Keydirectory depends on removed /metadata mount; explicit persistent storage evidence required')
         output.append(' '.join((device,mount,fs,options,flags)))
     if seen!={'/system','/vendor'}:raise ValueError('Expected system/vendor EROFS mounts')
     return '\n'.join(output)+'\n'

@@ -5,3 +5,4 @@ research/allocator-implementation/*.dtsi -whitespace
 research/allocator-implementation/*.patch -whitespace
 research/selinux-allocator-stage/*.patch -whitespace
 research/boot-static-stage/*.patch -whitespace
+research/fbe-vold-stage/*.patch -whitespace

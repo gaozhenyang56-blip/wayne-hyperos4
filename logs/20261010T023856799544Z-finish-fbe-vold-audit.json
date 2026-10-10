@@ -1,0 +1,17 @@
+{
+  "label": "finish-fbe-vold-audit",
+  "started_utc": "2026-10-10T02:38:56.799544+00:00",
+  "finished_utc": "2026-10-10T02:38:56.810603+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T023856799544Z-finish-fbe-vold-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "保存FBE/vold/ICE审计证据、最小依赖拒绝补丁、测试结果和下一断点并暂停。",
+  "outcome": "9项检查通过，补丁在dddc2f5独立worktree应用检查通过。既有转换输出、4.19保存配置、6.6与静态实验报告不变。本地完整6.6配置确实缺失；未推断metadata分区/密钥路径或ICE能力，没有可刷包或内核重编。无实时额度工具，不作精确额度声明。",
+  "next_step": "暂停；先采集当前fstab/挂载/实际配置和vold日志，取得匹配fs_mgr与keymaster证据，再做定向加密适配。"
+}
