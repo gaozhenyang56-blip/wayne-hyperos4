@@ -1,0 +1,76 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current vendor unknown",
+  "contract": {
+    "missing_evidence": [
+      "gnss_hal_or_vendor_library",
+      "gnss_configuration",
+      "actual_transport_driver_binding_and_kernel_evidence",
+      "firmware_delivery_inventory_and_requirements"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "gnss_verified": false,
+    "position_verified": false,
+    "scope": "Candidate filenames and explicit evidence claims only; no HAL version, transport, ioctl or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": []
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 132,
+          "text": "    # This location is used by QCRIL to host UNIX domain"
+        },
+        {
+          "line": 299,
+          "text": "    #Create directories for Location services"
+        },
+        {
+          "line": 300,
+          "text": "    mkdir /data/vendor/location 0770 gps gps"
+        },
+        {
+          "line": 301,
+          "text": "    mkdir /data/vendor/location/mq 0770 gps gps"
+        },
+        {
+          "line": 302,
+          "text": "    mkdir /data/vendor/location/xtwifi 0770 gps gps"
+        },
+        {
+          "line": 303,
+          "text": "    mkdir /dev/socket/location 0770 gps gps"
+        },
+        {
+          "line": 304,
+          "text": "    mkdir /dev/socket/location/mq 0770 gps gps"
+        },
+        {
+          "line": 305,
+          "text": "    mkdir /dev/socket/location/xtra 0770 gps gps"
+        },
+        {
+          "line": 479,
+          "text": "service loc_launcher /system/vendor/bin/loc_launcher"
+        },
+        {
+          "line": 481,
+          "text": "    user gps"
+        },
+        {
+          "line": 482,
+          "text": "    group gps"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; not proof of absent full-vendor files or hardware",
+  "active_transport": "unknown; location directories/services do not select a serial/QMI/RPMSG path"
+}

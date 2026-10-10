@@ -1,0 +1,59 @@
+{
+  "created_utc": "2026-10-10T09:56:28.674354+00:00",
+  "baseline": "36be91a",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 3,
+  "sample_cli_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_36be91a": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_36be91a": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_36be91a": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_36be91a": true
+    },
+    {
+      "path": "research/bluetooth-contract-stage/checkpoint.json",
+      "sha256": "d72696405de8919a494618064de14e04f5ad63f27483feed1fe7f46b0cca09bb",
+      "unchanged_from_36be91a": true
+    }
+  ],
+  "historical_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "lines": [
+      {
+        "line": 1405,
+        "text": "CONFIG_QRTR=y"
+      },
+      {
+        "line": 4918,
+        "text": "CONFIG_RPMSG=y"
+      },
+      {
+        "line": 4965,
+        "text": "CONFIG_QCOM_QMI_HELPERS=y"
+      }
+    ],
+    "meaning": "Not proof of active GNSS serial/QMI/RPMSG transport or runtime conflict"
+  },
+  "kernel_6_6": "modules_built=false and early modules/firmware loading not integrated; actual GNSS configuration/transport unknown, builtin or userspace path not ruled out",
+  "hardware_tested": false,
+  "full_kernel_rebuilt": false,
+  "flashable_package_created": false,
+  "next": "Collect actual current HAL/config and dependencies, firmware delivery, module/builtin inventory, DTB, transport binding and GNSS/AVC logs",
+  "quota": "Realtime usage unavailable; user snapshot 77%/34%; no precise control claim"
+}
