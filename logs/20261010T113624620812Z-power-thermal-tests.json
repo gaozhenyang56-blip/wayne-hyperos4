@@ -1,0 +1,19 @@
+{
+  "label": "power-thermal-tests",
+  "started_utc": "2026-10-10T11:36:24.620812+00:00",
+  "finished_utc": "2026-10-10T11:36:25.527384+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "env",
+    "PYTHONPATH=tools",
+    "python3",
+    "-c",
+    "import unittest,subprocess,sys,json,pathlib,hashlib,datetime; r=unittest.TextTestRunner(verbosity=2).run(unittest.defaultTestLoader.loadTestsFromName(\"test_power_thermal_contract\")); assert r.wasSuccessful(); x=subprocess.run([sys.executable,\"tools/audit_power_thermal_contract.py\"]); assert x.returncode==2; checks=[]\nfor p in (\"research/base-miku-a15/kernel.config\",\"research/base-miku-a15/kernel-config.json\",\"artifacts/kernel-6.6-allocator-probe.json\",\"artifacts/kernel-6.6-probe.json\"):\n d=pathlib.Path(p).read_bytes(); assert d==subprocess.check_output([\"git\",\"show\",\"b954749:\"+p]); checks.append({\"path\":p,\"sha256\":hashlib.sha256(d).hexdigest(),\"unchanged\":True})\np=pathlib.Path(\"research/power-thermal-stage/checkpoint.json\"); p.write_text(json.dumps({\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"b954749\",\"tests_passed\":r.testsRun,\"sample_exit\":x.returncode,\"preservation\":checks,\"hardware_tested\":False,\"kernel_rebuilt\":False,\"new_flashable_package\":False,\"next\":\"Obtain actual wayne Power/Thermal HAL/config/DTB and read-only node/service/AVC evidence\",\"quota\":\"Realtime unavailable; user snapshot 61%/31%; no precise control claim\"},indent=2)+\"\\n\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T113624620812Z-power-thermal-tests.log",
+  "output_sha256": "fd6e9bbd7e43db8bb1234d5677a86e48faad1041755bd27da3522c7bc9ce19fa",
+  "action": "检查b954749后断点与空差异，新增Power/Thermal材料和节点绑定门禁，执行两项正反例及实际清单拒绝检查。",
+  "outcome": "两项测试通过，实际样本按预期退出2；HAL、powerhint、thermal配置及节点绑定缺证据，不宣称兼容。既有内核材料不变，未改任何调度或温控参数。",
+  "next_step": "保存只读取证命令和断点，立即同步GitHub后暂停。"
+}
