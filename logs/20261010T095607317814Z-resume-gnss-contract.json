@@ -1,0 +1,17 @@
+{
+  "label": "resume-gnss-contract",
+  "started_utc": "2026-10-10T09:56:07.317814+00:00",
+  "finished_utc": "2026-10-10T09:56:07.332854+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T095607317814Z-resume-gnss-contract.log",
+  "output_sha256": "b713adf3332f282d69776b0ccaff86d3343ce844637a590568b269a032b389e9",
+  "action": "检查36be91a后的工作区、差异、最近执行结果及非Miku定位材料。",
+  "outcome": "无开发差异，仅原有空MD；参考init只有定位目录和loc_launcher服务证据，提取清单无GNSS HAL/配置，实际传输及固件交付未知。",
+  "next_step": "补齐材料缺口拒绝检查和最小正反例，保存后暂停。"
+}
