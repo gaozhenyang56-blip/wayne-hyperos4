@@ -1,0 +1,17 @@
+{
+  "label": "save-sensors-contract-checkpoint",
+  "started_utc": "2026-10-10T10:12:39.716456+00:00",
+  "finished_utc": "2026-10-10T10:12:39.781570+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/sensors-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"sample_cli_exit\"]==2 and \"70%/33%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_a8b13e8\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"sensors_verified\"]; print(\"Checkpoint consistent; Sensors hardware unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T101239716456Z-save-sensors-contract-checkpoint.log",
+  "output_sha256": "c961d06fed24a5be192ae6ecd9b456b3173078d4348348eafa3475d76ca6f3df",
+  "action": "保存传感器门禁、测试日志、来源和只读采集断点，结束本阶段。",
+  "outcome": "三项测试通过，实际清单拒绝退出2，五项原有证据不变；接口和校准要求未知，无真机验证，实时额度不可读取。",
+  "next_step": "同步源码和报告后暂停，下一轮先取真实wayne HAL/配置、绑定、校准来源与AVC证据。"
+}
