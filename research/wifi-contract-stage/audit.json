@@ -1,0 +1,115 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current user vendor unknown",
+  "contract": {
+    "missing_evidence": [
+      "wifi_hal",
+      "wifi_config",
+      "driver_delivery_and_actual_kernel_config",
+      "firmware_inventory_and_load_requirements"
+    ],
+    "driver_delivery": "unknown",
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "wifi_verified": false,
+    "hotspot_verified": false,
+    "scope": "Candidate filename inventory and explicit evidence claims only; no HAL/ioctl/firmware or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 163,
+          "text": "ro.telephony.iwlan_operation_mode=legacy"
+        },
+        {
+          "line": 168,
+          "text": "persist.vendor.data.iwlan.enable=true"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 147,
+          "text": "    setprop wifi.interface wlan0"
+        },
+        {
+          "line": 253,
+          "text": "    mkdir /data/vendor/wifi 0770 wifi wifi"
+        },
+        {
+          "line": 254,
+          "text": "    mkdir /data/vendor/wifi/sockets 0770 wifi wifi"
+        },
+        {
+          "line": 255,
+          "text": "    mkdir /data/vendor/wifi/hostapd 0770 wifi wifi"
+        },
+        {
+          "line": 256,
+          "text": "    mkdir /data/vendor/wifi/hostapd/ctrl 0770 wifi wifi"
+        },
+        {
+          "line": 257,
+          "text": "    mkdir /data/vendor/wifi/wpa_supplicant 0770 wifi wifi"
+        },
+        {
+          "line": 258,
+          "text": "    mkdir /data/vendor/wifi/wpa 0770 wifi wifi"
+        },
+        {
+          "line": 259,
+          "text": "    mkdir /data/vendor/wifi/wpa/sockets 0770 wifi wifi"
+        },
+        {
+          "line": 283,
+          "text": "    chown system system /persist/WCNSS_qcom_wlan_nv.bin"
+        },
+        {
+          "line": 297,
+          "text": "    #symlink /data/misc/wifi/wpa_supplicant /data/system/wpa_supplicant"
+        },
+        {
+          "line": 302,
+          "text": "    mkdir /data/vendor/location/xtwifi 0770 gps gps"
+        },
+        {
+          "line": 307,
+          "text": "    #Create directories for wifihal services"
+        },
+        {
+          "line": 308,
+          "text": "    mkdir /dev/socket/wifihal 0770 wifi wifi"
+        },
+        {
+          "line": 309,
+          "text": "    chmod 2770 /dev/socket/wifihal"
+        },
+        {
+          "line": 469,
+          "text": "service cnss-daemon /system/vendor/bin/cnss-daemon -n -l"
+        },
+        {
+          "line": 472,
+          "text": "    group system inet net_admin wifi"
+        },
+        {
+          "line": 476,
+          "text": "    write /sys/kernel/shutdown_wlan/shutdown 1"
+        },
+        {
+          "line": 477,
+          "text": "    stop cnss-daemon"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; no claim of missing full-vendor files or hardware absence",
+  "module_note": "modules_built=false cannot establish absence of builtin driver",
+  "kernel_6_6_delivery": "unknown"
+}
