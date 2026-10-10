@@ -1,0 +1,17 @@
+{
+  "label": "finish-static-boot-audit",
+  "started_utc": "2026-10-10T01:55:10.947620+00:00",
+  "finished_utc": "2026-10-10T01:55:10.957166+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "diff",
+    "--check"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261010T015510947620Z-finish-static-boot-audit.log",
+  "output_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "action": "保存静态启动/加密审计、最小修复、测试结果与采集断点并结束本轮。",
+  "outcome": "旧4.19/6.6和静态发布报告逐字节不变，实际本地boot摘要匹配已保留发布清单。首次保留核验误把忽略的本地metadata当Git文件，已改用发布清单校验。无容量猜测、无新可刷包、无内核重编。header、metadata持久性、vold/ICE解密和当前设备状态仍待真机证据。",
+  "next_step": "暂停；下轮先收集当前boot/fstab/GPT/mountinfo和不含密钥的加密日志，再确定定向适配，不格式化userdata。"
+}

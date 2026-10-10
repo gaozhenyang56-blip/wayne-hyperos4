@@ -1,0 +1,61 @@
+{
+  "saved_utc": "2026-10-10T01:54:42.280082+00:00",
+  "baseline": "f3cb6fc",
+  "status": "short offline boot/encryption audit saved and paused",
+  "target": "China wayne SDM660, static partitions, no Miku/jasmine baseline",
+  "fix": "remove dynamic super-token prerequisite from static cmdline normalization; reject missing/conflicting Qualcomm hardware declaration",
+  "patch_sha256": "09f389b7d0b645f976c0517f67f4bdbefaef355c3345188186c848d2833651d3",
+  "tests": {
+    "checked_utc": "2026-10-10T01:51:20.674636+00:00",
+    "baseline": "f3cb6fc",
+    "targeted_tests_passed": 4,
+    "historical_conversion_regression_tests_passed": 4,
+    "native_sample_old_rejection": "Reference super partition cmdline missing",
+    "native_sample_fixed_success": true,
+    "idempotent": true,
+    "current_cmdline_equals_previous_conversion": true,
+    "negative_cases": [
+      "empty cmdline",
+      "missing hardware declaration",
+      "unknown hardware",
+      "duplicate hardware declaration",
+      "conflicting hardware declarations"
+    ],
+    "test_scope": "host string transformation and local read-only boot structure, not hardware or decryption",
+    "kernel_compiled": false,
+    "image_created": false,
+    "header_refusal_test_methods_passed": 1,
+    "header_refusal_fixture_count": 7,
+    "patch_apply_check_passed": true
+  },
+  "existing_boot_sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd",
+  "existing_boot_matches_preserved_release_manifest": true,
+  "immutable_tracked_reports": {
+    "artifacts/kernel-6.6-probe.json": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+    "artifacts/kernel-6.6-allocator-probe.json": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+    "artifacts/static-candidate-package.json": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+    "research/selinux-allocator-stage/checkpoint.json": "49fd106ea1f95942654f8c0baba004a17da6d6af0415d8f3bc65245157fc1655",
+    "research/static-wayne/boot-check.json": "a02a70c539228a5eb46addf727c7799bd19cb1a706066a93967acb79c6e9751a",
+    "config/wayne-stock-static.json": "db7c34c300501505cafe56576f328380bb7336ed272216aa1521526e2dc47eb5"
+  },
+  "local_boot_metadata": "ignored local file, not a baseline Git blob; validated against preserved release manifest instead",
+  "capacity_source": "unchanged existing config reference, not actual GPT; no new sizes guessed",
+  "next": [
+    "Collect current wayne boot/header/ramdisk, actual partition symlinks/capacities and fstab/mountinfo",
+    "Determine current userdata filesystem, FDE/FBE mode, fscrypt policy and keymaster/TEE version without exposing keys",
+    "Inspect persistent metadata/checkpoint/APEX assumptions in matching init/vold source and actual logs",
+    "Only after matched boot/crypto evidence, decide a narrowly scoped integration change; do not switch encryption flags or format userdata"
+  ],
+  "new_flashable_package": false,
+  "kernel_recompiled": false,
+  "hardware_tested": false,
+  "bootable_verified": false,
+  "decryption_verified": false,
+  "budget": {
+    "user_reported_5h_remaining_percent": 95,
+    "user_reported_week_remaining_percent": 46,
+    "reserve_each_percent": 20,
+    "live_usage_readable": false,
+    "control": "short bounded audit, save/pause; no precise quota claim"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "checked_utc": "2026-10-10T01:51:20.674636+00:00",
+  "baseline": "f3cb6fc",
+  "targeted_tests_passed": 4,
+  "historical_conversion_regression_tests_passed": 4,
+  "native_sample_old_rejection": "Reference super partition cmdline missing",
+  "native_sample_fixed_success": true,
+  "idempotent": true,
+  "current_cmdline_equals_previous_conversion": true,
+  "negative_cases": [
+    "empty cmdline",
+    "missing hardware declaration",
+    "unknown hardware",
+    "duplicate hardware declaration",
+    "conflicting hardware declarations"
+  ],
+  "test_scope": "host string transformation and local read-only boot structure, not hardware or decryption",
+  "kernel_compiled": false,
+  "image_created": false,
+  "header_refusal_test_methods_passed": 1,
+  "header_refusal_fixture_count": 7,
+  "patch_apply_check_passed": true
+}

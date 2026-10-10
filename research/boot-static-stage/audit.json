@@ -1,0 +1,131 @@
+{
+  "checked_utc": "2026-10-10T01:52:19.747443+00:00",
+  "target": "China Xiaomi Mi6X wayne/SDM660, stock static partitions",
+  "native_sample_role": "non-Miku wayne comparison, not user current boot",
+  "native_sample_boot": {
+    "path": "research/gpu-allocator-stage/lineage-wayne/boot.img",
+    "sha256": "66100487915cec9c69d16a2860d611329cde697814314cdf7d75736a4a49beba",
+    "size": 15958016,
+    "header_version": 0,
+    "page_size": 4096,
+    "kernel_size": 14600381,
+    "ramdisk_size": 1348550,
+    "second_size": 0,
+    "recovery_dtbo_size": 0,
+    "avb_footer_present": false,
+    "ramdisk_compression": "gzip",
+    "cmdline": "console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 androidboot.init_fatal_reboot_target=recovery buildvariant=userdebug",
+    "ramdisk_files": [
+      "TRAILER!!!",
+      "debug_ramdisk",
+      "dev",
+      "init",
+      "metadata",
+      "mnt",
+      "proc",
+      "second_stage_resources",
+      "sys",
+      "system",
+      "system/etc",
+      "system/etc/ramdisk",
+      "system/etc/ramdisk/build.prop"
+    ],
+    "fstab": ""
+  },
+  "preserved_historical_static_boot": {
+    "path": "artifacts/experimental/static/boot.img",
+    "sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd",
+    "size": 18755584,
+    "header_version": 1,
+    "page_size": 4096,
+    "kernel_size": 17278888,
+    "ramdisk_size": 1469091,
+    "second_size": 0,
+    "recovery_dtbo_size": 0,
+    "avb_footer_present": false,
+    "ramdisk_compression": "gzip",
+    "cmdline": "androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 printk.devkmsg=on usbcore.autosuspend=7 androidboot.boot_devices=soc/c0c4000.sdhci androidboot.dynamic_partitions=false androidboot.dynamic_partitions_retrofit=false",
+    "ramdisk_files": [
+      "TRAILER!!!",
+      "debug_ramdisk",
+      "dev",
+      "fstab.qcom",
+      "init",
+      "metadata",
+      "mnt",
+      "proc",
+      "second_stage_resources",
+      "sys",
+      "system",
+      "system/etc",
+      "system/etc/ramdisk",
+      "system/etc/ramdisk/build.prop"
+    ],
+    "fstab": "# wayne stock-size static layout; system/product/system_ext are merged.\n/dev/block/bootdevice/by-name/system /system erofs ro wait,first_stage_mount\n/dev/block/bootdevice/by-name/vendor /vendor erofs ro wait,first_stage_mount\n/dev/block/bootdevice/by-name/userdata /data f2fs nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier wait,fileencryption=ice,quota\n/dev/block/bootdevice/by-name/userdata /data ext4 nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic wait,check,fileencryption=ice,quota\n/dev/block/bootdevice/by-name/misc /misc emmc defaults defaults\n/dev/block/bootdevice/by-name/modem /vendor/firmware_mnt vfat ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0 wait\n/dev/block/bootdevice/by-name/bluetooth /vendor/bt_firmware vfat ro,shortname=lower,uid=1002,gid=3002,dmask=227,fmask=337,context=u:object_r:bt_firmware_file:s0 wait\n/devices/platform/soc/*.ssusb/*.dwc3/xhci-hcd.*.auto* /storage/usbotg vfat nosuid,nodev wait,voldmanaged=usbotg:auto\n/dev/block/bootdevice/by-name/dsp /vendor/dsp ext4 ro,nosuid,nodev,barrier=1 wait\n/dev/block/bootdevice/by-name/cache /cache f2fs nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier wait,quota\n/dev/block/bootdevice/by-name/cache /cache ext4 nosuid,nodev,noatime,barrier=1 wait\n/dev/block/bootdevice/by-name/persist /mnt/vendor/persist ext4 nosuid,nodev,barrier=1,noatime wait,check\n/dev/block/bootdevice/by-name/boot /boot emmc defaults defaults\n/dev/block/bootdevice/by-name/recovery /recovery emmc defaults recoveryonly\n"
+  },
+  "historical_role": "existing third-party artifact provenance ONLY, not device baseline",
+  "data_rows_preserved": [
+    [
+      "/dev/block/bootdevice/by-name/userdata",
+      "/data",
+      "f2fs",
+      "nosuid,nodev,noatime,discard,background_gc=off,fsync_mode=nobarrier",
+      "wait,fileencryption=ice,quota"
+    ],
+    [
+      "/dev/block/bootdevice/by-name/userdata",
+      "/data",
+      "ext4",
+      "nosuid,nodev,barrier=1,noauto_da_alloc,discard,noatime,lazytime,errors=panic",
+      "wait,check,fileencryption=ice,quota"
+    ]
+  ],
+  "dangling_fstab_metadata_references": [],
+  "sources": [
+    {
+      "path": "research/static-wayne/android_device_xiaomi_wayne-rootdir_etc_fstab.qcom",
+      "sha256": "7bd47e219e7dd4b9b5104b4a5db0bc3c37c52c02d553b89cb2f22e4683abeba6",
+      "size": 3318
+    },
+    {
+      "path": "research/gpu-allocator-stage/lineage-wayne/selected-vendor/etc/fstab.qcom",
+      "sha256": "2637d1bf22d629dac1ae9facfde79d93ca1a8d82b031ff934daa3e68e845df35",
+      "size": 3173
+    },
+    {
+      "path": "research/base-miku-a15/ramdisk/fstab.qcom",
+      "sha256": "996b26bcf040a7bad1dba483b7c211a674866f84ce85a9e89563d5c0f1dbfa93",
+      "size": 5098
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/hw/init.target.rc",
+      "sha256": "9864024b7a0f81a8c92f3b4a5ed1a17026f2b37ec47b5c97bc6f087ad88dc9f5",
+      "size": 14875
+    },
+    {
+      "path": "research/candidates/mi8937-os4/system/system/etc/init/hw/init.rc",
+      "sha256": "40277b3c46beb95a6379bf61828574c5bd2cede072c95d5de806287ff97f3ec5",
+      "size": 79632
+    },
+    {
+      "path": "research/candidates/mi8937-os4/system/system/etc/init/vold.rc",
+      "sha256": "655dabdfc2899115be32ff7ca923070c76443caced6923996fb0a07d42e2097b",
+      "size": 377
+    }
+  ],
+  "boot_builder_constraints": "explicit static mode required; builder v1/4096 only, no second/recovery DTBO/AVB footer; native sample v0 remains unsupported for rebuilding",
+  "encryption_notes": [
+    "FBE fileencryption=ice present in fixed wayne config and preserved historical candidate",
+    "non-Miku vendor sample uses encryptable=ice instead; never infer current userdata mode",
+    "no metadata_encryption/keydirectory flag in preserved data rows; donor init still creates /metadata/vold and /metadata/apex paths",
+    "persistent metadata/checkpoint/APEX behavior and legacy ice parsing unverified",
+    "keymaster/TEE, fscrypt policy and rollback compatibility unverified; never format userdata as an audit fix"
+  ],
+  "partition_capacities_verified": false,
+  "bootloader_header_acceptance_verified": false,
+  "init_runtime_verified": false,
+  "vold_decryption_verified": false,
+  "new_image_created": false,
+  "hardware_tested": false,
+  "bootable_verified": false
+}

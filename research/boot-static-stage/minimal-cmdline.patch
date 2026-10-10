@@ -1,0 +1,18 @@
+diff --git a/tools/static_wayne_layout.py b/tools/static_wayne_layout.py
+index ff045b5..5433d9a 100644
+--- a/tools/static_wayne_layout.py
++++ b/tools/static_wayne_layout.py
+@@ -24,8 +24,11 @@ def static_fstab(source):
+ 
+ def static_cmdline(source):
+     parts=source.split()
+-    if not any(p.startswith('androidboot.super_partition=') for p in parts):
+-        raise ValueError('Reference super partition cmdline missing')
++    # Native static wayne references have no super token. Require an explicit
++    # Qualcomm hardware declaration, not a dynamic-layout input baseline.
++    hardware=[p for p in parts if p.startswith('androidboot.hardware=')]
++    if hardware!=['androidboot.hardware=qcom']:
++        raise ValueError('Expected one explicit Qualcomm hardware declaration')
+     parts=[p for p in parts if not p.startswith(('androidboot.super_partition=',
+                'androidboot.dynamic_partitions=','androidboot.dynamic_partitions_retrofit='))]
+     parts+=['androidboot.dynamic_partitions=false','androidboot.dynamic_partitions_retrofit=false']
