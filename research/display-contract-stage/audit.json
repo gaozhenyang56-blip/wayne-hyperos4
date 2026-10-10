@@ -1,0 +1,183 @@
+{
+  "created_utc": "2026-10-10T04:12:41.453767+00:00",
+  "baseline": "18d4c6b",
+  "target": "China wayne/SDM660 stock static partitions",
+  "sample_role": "non-Miku wayne comparison only; user current vendor unknown",
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 133,
+          "text": "ro.surface_flinger.force_hwc_copy_for_virtual_displays=true"
+        },
+        {
+          "line": 134,
+          "text": "ro.surface_flinger.max_virtual_display_dimension=4096"
+        },
+        {
+          "line": 135,
+          "text": "ro.surface_flinger.use_color_management=true"
+        },
+        {
+          "line": 136,
+          "text": "ro.surface_flinger.vsync_event_phase_offset_ns=2000000"
+        },
+        {
+          "line": 137,
+          "text": "ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000"
+        },
+        {
+          "line": 138,
+          "text": "ro.vendor.display.cabl=0"
+        },
+        {
+          "line": 139,
+          "text": "vendor.display.disable_skip_validate=1"
+        },
+        {
+          "line": 140,
+          "text": "vendor.display.enable_default_color_mode=1"
+        },
+        {
+          "line": 141,
+          "text": "vendor.gralloc.enable_fb_ubwc=1"
+        },
+        {
+          "line": 142,
+          "text": "ro.hardware.egl=adreno"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/android.hardware.graphics.allocator@2.0-service.rc",
+      "sha256": "a139a3fd898f2c8404efbb51646814a2ec5cb848f8135bbc63d1b829c142037d",
+      "lines": [
+        {
+          "line": 1,
+          "text": "service vendor.gralloc-2-0 /vendor/bin/hw/android.hardware.graphics.allocator@2.0-service"
+        },
+        {
+          "line": 2,
+          "text": "    interface android.hardware.graphics.allocator@2.0::IAllocator default"
+        },
+        {
+          "line": 4,
+          "text": "    interface android.hardware.graphics.allocator@2.0::IAllocator default"
+        },
+        {
+          "line": 5,
+          "text": "    user system"
+        },
+        {
+          "line": 6,
+          "text": "    group graphics drmrpc"
+        },
+        {
+          "line": 8,
+          "text": "    onrestart restart surfaceflinger"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/android.hardware.graphics.composer@2.1-service.rc",
+      "sha256": "2272ae38541f35caa05f7ca426f690e32b92c930622317e925e7796a29708bfa",
+      "lines": [
+        {
+          "line": 1,
+          "text": "service vendor.hwcomposer-2-1 /vendor/bin/hw/android.hardware.graphics.composer@2.1-service"
+        },
+        {
+          "line": 2,
+          "text": "    interface android.hardware.graphics.composer@2.1::IComposer default"
+        },
+        {
+          "line": 4,
+          "text": "    user system"
+        },
+        {
+          "line": 5,
+          "text": "    group graphics drmrpc"
+        },
+        {
+          "line": 7,
+          "text": "    onrestart restart surfaceflinger"
+        },
+        {
+          "line": 8,
+          "text": "    writepid /dev/cpuset/system-background/tasks"
+        }
+      ]
+    }
+  ],
+  "profile_matches_saved_kernel_claims": true,
+  "contract": {
+    "profile": "wayne-6.6-msm-drm-experiment",
+    "findings": [
+      {
+        "abi": "kgsl",
+        "files": [
+          "lib/libgsl.so",
+          "lib64/libgsl.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "ion",
+        "files": [
+          "lib/libgsl.so",
+          "lib/hw/gralloc.sdm660.so",
+          "lib64/libgsl.so",
+          "lib64/hw/gralloc.sdm660.so"
+        ],
+        "status": "requires_port_or_replacement"
+      },
+      {
+        "abi": "msm_fb",
+        "files": [
+          "lib/libsdmcore.so",
+          "lib/libsdmutils.so",
+          "lib64/libsdmcore.so",
+          "lib64/libsdmutils.so"
+        ],
+        "status": "requires_port_or_replacement"
+      }
+    ],
+    "legacy_pairing_rejected": true,
+    "evidence_kind": "ELF strings and dynamic dependencies; no ioctl execution",
+    "compatible_verified": false,
+    "hardware_tested": false,
+    "remaining": [
+      "gralloc buffer-handle layout and modifiers",
+      "fences and cache coherency",
+      "secure/protected heaps",
+      "SELinux device and service policy",
+      "32/64-bit graphics loading",
+      "wayne-specific display/boot bringup"
+    ]
+  },
+  "tests": {
+    "passed": 4,
+    "baseline_false_string_bypass_reproduced": true,
+    "fixed_malformed_flags_rejected": true,
+    "actual_sample_refusal_exit": 2
+  },
+  "hardware_tested": false,
+  "display_verified": false,
+  "boot_verified": false,
+  "next_evidence": [
+    "Current wayne vendor binaries and 32/64-bit dependency inventory with hashes",
+    "Actual wayne DTB and display/power/clock/IOMMU dependencies",
+    "Device nodes, DAC/SELinux labels, service registrations and properties",
+    "SurfaceFlinger/HWC logs, buffer handles, modifiers, sync/fence and relevant AVC evidence"
+  ],
+  "remaining": [
+    "SELinux",
+    "display/GPU",
+    "camera",
+    "audio",
+    "encryption",
+    "boot"
+  ]
+}

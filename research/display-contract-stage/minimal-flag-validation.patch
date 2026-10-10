@@ -1,0 +1,21 @@
+diff --git a/tools/audit_graphics_contract.py b/tools/audit_graphics_contract.py
+index 7e31bac..46bfff9 100644
+--- a/tools/audit_graphics_contract.py
++++ b/tools/audit_graphics_contract.py
+@@ -31,11 +31,15 @@ def collect(root, manifest):
+ 
+ 
+ def assess(rows, profile):
++    capabilities=profile.get('provided_legacy_abis')
++    if not isinstance(capabilities,dict) or any(type(capabilities.get(abi)) is not bool
++                                              for abi in ('kgsl','ion','msm_fb')):
++        raise ValueError('KGSL/ION/MSM-FB capabilities must all be explicit JSON booleans')
+     findings = []
+     patterns = {'kgsl': 'kgsl', 'ion': '/dev/ion', 'msm_fb': 'graphics/fb'}
+     for abi, pattern in patterns.items():
+         witnesses = [r['path'] for r in rows if any(pattern in x for x in r['device_path_strings'])]
+-        if witnesses and not profile['provided_legacy_abis'].get(abi, False):
++        if witnesses and not capabilities[abi]:
+             findings.append({'abi': abi, 'files': witnesses, 'status': 'requires_port_or_replacement'})
+     return {'profile': profile['id'], 'findings': findings,
+             'legacy_pairing_rejected': bool(findings),

@@ -1,0 +1,33 @@
+{
+  "created_utc": "2026-10-10T04:13:18.801066+00:00",
+  "stage": "display contract fail-fast only",
+  "baseline": "18d4c6b",
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "unchanged_from_18d4c6b": true,
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201"
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "unchanged_from_18d4c6b": true,
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6"
+    },
+    {
+      "path": "config/kernel-6.6-graphics-profile.json",
+      "unchanged_from_18d4c6b": true,
+      "sha256": "308c21bee82e363cab2e526478e79fbb18fe4ae9bacf4396194b779feb00529e"
+    },
+    {
+      "path": "research/gpu-allocator-stage/graphics-contract.json",
+      "unchanged_from_18d4c6b": true,
+      "sha256": "45affec67197bc9f96732b943c71c5535c4ec47d6bd18ed52c4d66e0e19ef941"
+    }
+  ],
+  "next": "Collect real China wayne current vendor/DTB/node labels/HWC logs before display implementation",
+  "full_kernel_rebuilt": false,
+  "new_flashable_package_created": false,
+  "hardware_tested": false,
+  "quota": "No realtime account usage API available; user stated 62%/41%; no claim of precise control",
+  "minimal_patch_applies_to_baseline_and_reproduces_current_source": true
+}
