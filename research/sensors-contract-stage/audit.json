@@ -1,0 +1,201 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current vendor unknown",
+  "contract": {
+    "missing_evidence": [
+      "sensors_hal_or_vendor_library",
+      "sensors_configuration",
+      "actual_transport_driver_binding_and_kernel_evidence",
+      "calibration_inventory_and_requirements"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "sensors_verified": false,
+    "sensors_function_verified": false,
+    "scope": "Candidate filenames and explicit evidence claims only; no HAL version, transport, ioctl or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 180,
+          "text": "# Sensor"
+        },
+        {
+          "line": 181,
+          "text": "ro.vendor.sdk.sensors.gestures=false"
+        },
+        {
+          "line": 182,
+          "text": "ro.vendor.sensors.cmc=false"
+        },
+        {
+          "line": 183,
+          "text": "ro.vendor.sensors.facing=false"
+        },
+        {
+          "line": 184,
+          "text": "ro.vendor.sensors.dev_ori=true"
+        },
+        {
+          "line": 185,
+          "text": "ro.vendor.sensors.pmd=true"
+        },
+        {
+          "line": 186,
+          "text": "ro.vendor.sensors.sta_detect=true"
+        },
+        {
+          "line": 187,
+          "text": "ro.vendor.sensors.mot_detect=true"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 71,
+          "text": "    write /sys/kernel/boot_slpi/boot 1"
+        },
+        {
+          "line": 76,
+          "text": "    chown system system /persist/sensors"
+        },
+        {
+          "line": 77,
+          "text": "    chown system system /persist/sensors/registry"
+        },
+        {
+          "line": 78,
+          "text": "    chown system system /persist/sensors/registry/registry"
+        },
+        {
+          "line": 79,
+          "text": "    chown system system /persist/sensors/registry/registry/sensors_registry"
+        },
+        {
+          "line": 80,
+          "text": "    chown system system /persist/sensors/sensors_settings"
+        },
+        {
+          "line": 81,
+          "text": "    chown system system /persist/sensors/registry/config"
+        },
+        {
+          "line": 82,
+          "text": "    chmod 0664 /persist/sensors/sensors_settings"
+        },
+        {
+          "line": 84,
+          "text": "    chown system system /mnt/vendor/persist/sensors"
+        },
+        {
+          "line": 85,
+          "text": "    chown system system /mnt/vendor/persist/sensors/sns.reg"
+        },
+        {
+          "line": 86,
+          "text": "    chown system system /mnt/vendor/persist/sensors/sensors_list.txt"
+        },
+        {
+          "line": 87,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry"
+        },
+        {
+          "line": 88,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry/registry"
+        },
+        {
+          "line": 89,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry/registry/sensors_registry"
+        },
+        {
+          "line": 90,
+          "text": "    chown system system /mnt/vendor/persist/sensors/sensors_settings"
+        },
+        {
+          "line": 91,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_config"
+        },
+        {
+          "line": 92,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry/sns_reg_version"
+        },
+        {
+          "line": 93,
+          "text": "    chown system system /mnt/vendor/persist/sensors/registry/config"
+        },
+        {
+          "line": 94,
+          "text": "    chmod 0664 /mnt/vendor/persist/sensors/sensors_settings"
+        },
+        {
+          "line": 112,
+          "text": "    chown system system /sys/kernel/boot_slpi/ssr"
+        },
+        {
+          "line": 151,
+          "text": "    #enable camera read sensors data"
+        },
+        {
+          "line": 192,
+          "text": "    # Allow access to sensors device attributes"
+        },
+        {
+          "line": 193,
+          "text": "    chown system system /sys/class/sensors/MPU6050-accel/enable"
+        },
+        {
+          "line": 194,
+          "text": "    chown system system /sys/class/sensors/MPU6050-accel/poll_delay"
+        },
+        {
+          "line": 195,
+          "text": "    chown system system /sys/class/sensors/MPU6050-gyro/enable"
+        },
+        {
+          "line": 196,
+          "text": "    chown system system /sys/class/sensors/MPU6050-gyro/poll_delay"
+        },
+        {
+          "line": 197,
+          "text": "    chown system system /sys/class/sensors/apds9930-light/enable"
+        },
+        {
+          "line": 198,
+          "text": "    chown system system /sys/class/sensors/apds9930-light/poll_delay"
+        },
+        {
+          "line": 199,
+          "text": "    chown system system /sys/class/sensors/apds9930-proximity/enable"
+        },
+        {
+          "line": 200,
+          "text": "    chown system system /sys/class/sensors/apds9930-proximity/poll_delay"
+        },
+        {
+          "line": 214,
+          "text": "    #sensors log dir"
+        },
+        {
+          "line": 215,
+          "text": "    mkdir /data/vendor/sensors"
+        },
+        {
+          "line": 216,
+          "text": "    chown system system /data/vendor/sensors"
+        },
+        {
+          "line": 456,
+          "text": "service vendor.sensors.qti /vendor/bin/sensors.qti"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; not proof of absent full-vendor files or hardware",
+  "active_transport": "unknown; init requests do not select an IIO/input/sensor-hub binding"
+}
