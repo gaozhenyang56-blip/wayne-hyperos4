@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-10-11T07:38:34.343225+00:00",
+  "baseline": "b936d04",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 2,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_b936d04": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_b936d04": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_b936d04": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_b936d04": true
+    },
+    {
+      "path": "research/fingerprint-contract-stage/checkpoint.json",
+      "sha256": "a8dbf1f18a43c279d6fe9aacc99a9dacf795d288a4d1c8b98945d80856f9ac60",
+      "unchanged_from_b936d04": true
+    }
+  ],
+  "historical_4_19": "Embedded defconfig only, not generated .config or current user baseline",
+  "kernel_6_6": "No audited actual USB/charging HAL-to-node binding; compiled prerequisites do not establish hardware bringup",
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Obtain missing imported configs plus actual vendor health/USB HAL, charging config, DTB, nodes and boot/cable/AVC logs",
+  "quota": "Realtime unavailable; user snapshot 75%/96%; no precise control claim"
+}
