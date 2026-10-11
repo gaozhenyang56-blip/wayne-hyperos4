@@ -1,0 +1,17 @@
+{
+  "label": "resume-dt-gate-integration",
+  "started_utc": "2026-10-11T11:19:25.113257+00:00",
+  "finished_utc": "2026-10-11T11:19:25.135615+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T111925113257Z-resume-dt-gate-integration.log",
+  "output_sha256": "e06ce895172f74d851b09a295efa5bd6c77a2f53c87193da1282662d759cd7dc",
+  "action": "检查b11efe4断点、差异和既有报告，定位真实6.6内核probe与allocator入口。",
+  "outcome": "无开发差异，仅原有空MD；两个workflow分别调用ci_kernel_66_probe与ci_allocator_implementation，共用build函数，可在副作用之前接入门禁。",
+  "next_step": "最小接入主入口和build，提供只读preflight命令并测试拒绝时没有构建副作用。"
+}
