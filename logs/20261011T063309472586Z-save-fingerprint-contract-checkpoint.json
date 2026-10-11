@@ -1,0 +1,17 @@
+{
+  "label": "save-fingerprint-contract-checkpoint",
+  "started_utc": "2026-10-11T06:33:09.472586+00:00",
+  "finished_utc": "2026-10-11T06:33:09.528972+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/fingerprint-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==3 and c[\"sample_exit\"]==2 and \"81%/97%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_4efaf4c\"] for x in c[\"preservation\"]); assert a[\"excluded_metadata\"] and a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"unlock_verified\"]; print(\"Checkpoint consistent: 3 passing tests, refusal 2, build identifier excluded, 5 prior files preserved; fingerprint unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T063309472586Z-save-fingerprint-contract-checkpoint.log",
+  "output_sha256": "453c51ab91246546c629863bdd2834966a563fdbd46c74520425b926497d189d",
+  "action": "保存指纹材料门禁、构建标识负例、来源和只读取证断点，复核结果后暂停。",
+  "outcome": "三项测试通过，实际门禁拒绝返回2，五项既有材料不变；实际指纹身份、TEE协议及节点/策略仍未知，无真机验证，实时额度不可读取。",
+  "next_step": "同步代码及报告后立即停止；下一轮先取得真实国行wayne指纹HAL/服务、DTB、TEE交付和DAC/SELinux/AVC证据。"
+}
