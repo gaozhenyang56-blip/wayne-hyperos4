@@ -1,0 +1,17 @@
+{
+  "label": "resume-input-contract",
+  "started_utc": "2026-10-11T08:24:48.609205+00:00",
+  "finished_utc": "2026-10-11T08:24:48.629578+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T082448609205Z-resume-input-contract.log",
+  "output_sha256": "5a471248d0ac223bf9b34656c2ba8ffeae836f29918333b01b9959ae50cc7d57",
+  "action": "检查c077544后的工作区、diff、最近结果及非Miku输入材料。",
+  "outcome": "无开发差异，仅原有空MD；参考清单无keylayout/input配置，ueventd未提取。历史驱动选项不能证明真实触摸IC或event绑定。",
+  "next_step": "补齐布局及真实设备/event/策略/固件绑定材料门禁，测试通用回退和缺证据拒绝。"
+}
