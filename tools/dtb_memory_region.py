@@ -20,7 +20,13 @@ def decode_memory_region(blob, source_path, property_name='memory-region'):
     """All-or-nothing tuple for one explicitly requested list, bounded to 65536 edges."""
     if property_name != 'memory-region':
         raise ValueError('unsupported reference property: ' + str(property_name))
-    tree = read_tree(blob)
+    return _decode_tree(read_tree(blob), source_path, property_name)
+
+
+def _decode_tree(tree, source_path, property_name='memory-region'):
+    """Internal reuse of one freshly validated snapshot."""
+    if property_name != 'memory-region':
+        raise ValueError('unsupported reference property: ' + str(property_name))
     index = _index_tree(tree)
     if not isinstance(source_path, str) or source_path not in tree['nodes']:
         raise ValueError('source node missing or noncanonical: ' + str(source_path))
