@@ -1,0 +1,66 @@
+{
+  "created_utc": "2026-10-11T04:57:13.274191+00:00",
+  "baseline": "1858697",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 2,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_1858697": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_1858697": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_1858697": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_1858697": true
+    },
+    {
+      "path": "research/power-thermal-stage/checkpoint.json",
+      "sha256": "f1702e7c7c65423fdda4ca0776d239a58bdd72b83427743230c2e5882103c5a9",
+      "unchanged_from_1858697": true
+    }
+  ],
+  "historical_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "lines": [
+      {
+        "line": 1405,
+        "text": "CONFIG_QRTR=y"
+      },
+      {
+        "line": 1406,
+        "text": "CONFIG_QRTR_SMD=y"
+      },
+      {
+        "line": 2111,
+        "text": "CONFIG_RMNET=y"
+      },
+      {
+        "line": 4748,
+        "text": "CONFIG_IPA=y"
+      },
+      {
+        "line": 4749,
+        "text": "CONFIG_RMNET_IPA=y"
+      }
+    ]
+  },
+  "kernel_6_6": "No audited current Radio/vendor/modem binding; modules_built=false does not exclude builtin drivers; early module/firmware delivery not integrated",
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Collect actual China wayne vendor HAL/RIL/config, modem delivery and partition inventory, actual DTB and boot/radio/AVC evidence",
+  "quota": "Realtime unavailable; user snapshot 93%/99%; no precise control claim"
+}

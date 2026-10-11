@@ -1,0 +1,279 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current China vendor unknown",
+  "contract": {
+    "missing_evidence": [
+      "radio_hal_or_ril_binary",
+      "ril_configuration",
+      "current_china_wayne_vendor_provenance",
+      "modem_delivery_and_actual_partition_inventory",
+      "actual_rmnet_ipa_qrtr_remoteproc_or_other_binding"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "calls_verified": false,
+    "sms_verified": false,
+    "data_verified": false,
+    "volte_verified": false,
+    "scope": "Candidate filenames and explicit evidence claims only; no HAL version, modem ABI or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": [
+        {
+          "line": 166,
+          "text": "# Radio"
+        },
+        {
+          "line": 167,
+          "text": "persist.radio.multisim.config=dsds"
+        },
+        {
+          "line": 171,
+          "text": "persist.vendor.radio.apm_sim_not_pwdn=1"
+        },
+        {
+          "line": 172,
+          "text": "persist.vendor.radio.atfwd.start=true"
+        },
+        {
+          "line": 173,
+          "text": "persist.vendor.radio.custom_ecc=1"
+        },
+        {
+          "line": 174,
+          "text": "persist.vendor.radio.data_con_rprt=1"
+        },
+        {
+          "line": 175,
+          "text": "persist.vendor.radio.mt_sms_ack=30"
+        },
+        {
+          "line": 176,
+          "text": "persist.vendor.radio.rat_on=combine"
+        },
+        {
+          "line": 177,
+          "text": "persist.vendor.radio.sib16_support=1"
+        }
+      ]
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 66,
+          "text": "    # Allow subsystem (modem etc) debugging"
+        },
+        {
+          "line": 113,
+          "text": "    chown system system /sys/module/radio_iris_transport/parameters/fmsmd_set"
+        },
+        {
+          "line": 116,
+          "text": "    chmod 0660 /sys/module/radio_iris_transport/parameters/fmsmd_set"
+        },
+        {
+          "line": 132,
+          "text": "    # This location is used by QCRIL to host UNIX domain"
+        },
+        {
+          "line": 133,
+          "text": "    # socket files used for internal IPC within QCRIL"
+        },
+        {
+          "line": 135,
+          "text": "    mkdir /dev/socket/qmux_radio 0770 radio radio"
+        },
+        {
+          "line": 136,
+          "text": "    chmod 2770 /dev/socket/qmux_radio"
+        },
+        {
+          "line": 262,
+          "text": "    mkdir /data/vendor/connectivity 0771 radio radio"
+        },
+        {
+          "line": 263,
+          "text": "    chown radio radio /data/vendor/connectivity"
+        },
+        {
+          "line": 272,
+          "text": "    # Create directory for radio"
+        },
+        {
+          "line": 273,
+          "text": "    mkdir /data/vendor/radio 0770 system radio"
+        },
+        {
+          "line": 274,
+          "text": "    rm /data/vendor/radio/shmbus"
+        },
+        {
+          "line": 276,
+          "text": "    # Create directory for modem_config"
+        },
+        {
+          "line": 277,
+          "text": "    mkdir /data/vendor/modem_config 0570 radio root"
+        },
+        {
+          "line": 323,
+          "text": "    write /data/vendor/radio/copy_complete 0"
+        },
+        {
+          "line": 324,
+          "text": "    chown radio radio /data/vendor/radio/copy_complete"
+        },
+        {
+          "line": 325,
+          "text": "    chmod 0660 /data/vendor/radio/copy_complete"
+        },
+        {
+          "line": 327,
+          "text": "    # copy prebuilt qcril.db files always"
+        },
+        {
+          "line": 328,
+          "text": "    copy /vendor/radio/qcril_database/qcril.db /data/vendor/radio/qcril_prebuilt.db"
+        },
+        {
+          "line": 329,
+          "text": "    chown radio radio /data/vendor/radio/qcril_prebuilt.db"
+        },
+        {
+          "line": 330,
+          "text": "    chmod 0660 /data/vendor/radio/qcril_prebuilt.db"
+        },
+        {
+          "line": 331,
+          "text": "    # File flags for prebuilt ril db file"
+        },
+        {
+          "line": 332,
+          "text": "    write /data/vendor/radio/prebuilt_db_support 1"
+        },
+        {
+          "line": 333,
+          "text": "    chown radio radio /data/vendor/radio/prebuilt_db_support"
+        },
+        {
+          "line": 334,
+          "text": "    chmod 0400 /data/vendor/radio/prebuilt_db_support"
+        },
+        {
+          "line": 335,
+          "text": "    write /data/vendor/radio/db_check_done 0"
+        },
+        {
+          "line": 336,
+          "text": "    chown radio radio /data/vendor/radio/db_check_done"
+        },
+        {
+          "line": 337,
+          "text": "    chmod 0660 /data/vendor/radio/db_check_done"
+        },
+        {
+          "line": 380,
+          "text": "on property:persist.sys.modem_auth_timeout=*"
+        },
+        {
+          "line": 381,
+          "text": "    write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}"
+        },
+        {
+          "line": 409,
+          "text": "on property:persist.vendor.radio.atfwd.start=false"
+        },
+        {
+          "line": 412,
+          "text": "on property:vendor.radio.atfwd.start=false"
+        },
+        {
+          "line": 433,
+          "text": "#    setprop persist.radio.data_no_toggle 1"
+        },
+        {
+          "line": 435,
+          "text": "service vendor.qrtr-ns /vendor/bin/qrtr-ns -f"
+        },
+        {
+          "line": 437,
+          "text": "    user vendor_qrtr"
+        },
+        {
+          "line": 438,
+          "text": "    group vendor_qrtr"
+        },
+        {
+          "line": 491,
+          "text": "    group root system radio"
+        },
+        {
+          "line": 504,
+          "text": "on property:ro.vendor.ril.mbn_copy_completed=1"
+        },
+        {
+          "line": 505,
+          "text": "    write /data/vendor/radio/copy_complete 1"
+        },
+        {
+          "line": 510,
+          "text": "    group system radio"
+        },
+        {
+          "line": 516,
+          "text": "service vendor.ril-daemon2 /vendor/bin/hw/rild -c 2"
+        },
+        {
+          "line": 518,
+          "text": "    user radio"
+        },
+        {
+          "line": 520,
+          "text": "    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log"
+        },
+        {
+          "line": 523,
+          "text": "service vendor.ril-daemon3 /vendor/bin/hw/rild -c 3"
+        },
+        {
+          "line": 525,
+          "text": "    user radio"
+        },
+        {
+          "line": 527,
+          "text": "    group radio cache inet misc audio sdcard_r sdcard_rw diag oem_2901 log"
+        },
+        {
+          "line": 556,
+          "text": "# Set vendor-ril lib path based on Meta version"
+        },
+        {
+          "line": 557,
+          "text": "on property:vendor.rild.libpath=*"
+        },
+        {
+          "line": 558,
+          "text": "    setprop rild.libpath ${vendor.rild.libpath}"
+        },
+        {
+          "line": 560,
+          "text": "on property:ro.vendor.radio.noril=*"
+        },
+        {
+          "line": 561,
+          "text": "    setprop ro.radio.noril ${ro.vendor.radio.noril}"
+        },
+        {
+          "line": 587,
+          "text": "    # media gid needed for /dev/fm (radio) and for /data/misc/media (tee)"
+        }
+      ]
+    }
+  ],
+  "absence_meaning": "Not selected/extracted; not proof of absent full-vendor files or unsupported hardware"
+}
