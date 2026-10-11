@@ -1,0 +1,16 @@
+{
+  "label": "firstboot-6-6-tests",
+  "started_utc": "2026-10-11T10:17:48.047869+00:00",
+  "finished_utc": "2026-10-11T10:17:48.266862+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_6_6_firstboot_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T101748047869Z-firstboot-6-6-tests.log",
+  "output_sha256": "f7d7f3e2525afe4f860cf227b14028e10c94bf0d633f4ad70b82428242a0e6c9",
+  "action": "新增6.6板级来源与DTB/源DTS哈希绑定检查，运行两个正反例和当前实验拒绝检查。",
+  "outcome": "两项测试通过，当前jasmine继承/缺真实wayne绑定按预期退出2；模拟正例只放行来源门禁，不证明DT语义或启动。八项既有文件不变，未编译或打包。",
+  "next_step": "保存首启差距、真实取证命令及断点，同步后暂停。"
+}
