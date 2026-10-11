@@ -1,0 +1,17 @@
+{
+  "label": "save-usb-charging-checkpoint",
+  "started_utc": "2026-10-11T07:39:40.233200+00:00",
+  "finished_utc": "2026-10-11T07:39:40.321029+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/usb-charging-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==2 and c[\"sample_exit\"]==2 and \"75%/96%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_b936d04\"] for x in c[\"preservation\"]); assert len(a[\"contract\"][\"missing_or_unresolved_imports\"])==2 and not a[\"contract\"][\"charging_verified\"]; print(\"Checkpoint consistent: 2 passing tests, refusal 2, 2 missing imports, 5 prior files preserved; USB/charging unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T073940233200Z-save-usb-charging-checkpoint.log",
+  "output_sha256": "8ecd4fb8954bc28b030c536dfd7e02cf58436ace0b757c581489a82bce46128f",
+  "action": "保存USB导入缺口、健康/充电剩余证据、测试日志与只读取证断点，复核后停止本阶段。",
+  "outcome": "两项测试通过，实际拒绝退出2，两个已观察导入未提取，五项既有证据保留；实际UDC/充电/角色接口未知，无真机验证，实时额度不可读取。",
+  "next_step": "同步代码及报告后立即暂停；下一轮先取得实际国行wayne USB/健康HAL、完整导入配置、DTB、节点和启动/插线/AVC日志。"
+}
