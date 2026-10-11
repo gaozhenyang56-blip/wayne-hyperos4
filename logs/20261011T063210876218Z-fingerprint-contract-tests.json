@@ -1,0 +1,16 @@
+{
+  "label": "fingerprint-contract-tests",
+  "started_utc": "2026-10-11T06:32:10.876218+00:00",
+  "finished_utc": "2026-10-11T06:32:11.330144+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_fingerprint_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T063210876218Z-fingerprint-contract-tests.log",
+  "output_sha256": "ed77f6351d555d4fb490a656e68bd6d0892f7b9309cca45b93a48af64ab552c4",
+  "action": "新增指纹HAL/服务、真实设备及节点策略/TEE交付证据门禁，核验样本哈希并运行三个正反例和实际拒绝检查。",
+  "outcome": "三项测试通过，真实参考样本拒绝返回2；构建fingerprint排除为传感器证据，缺服务或绑定不能放行。五项既有材料保留，无硬件验证。",
+  "next_step": "保存来源边界及只读采集命令，同步后立即暂停。"
+}

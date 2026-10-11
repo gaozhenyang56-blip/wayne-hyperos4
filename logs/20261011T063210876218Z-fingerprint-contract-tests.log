@@ -1,0 +1,25 @@
+test_build_fingerprint_is_not_sensor_evidence (test_fingerprint_contract.FingerprintEvidenceTests.test_build_fingerprint_is_not_sensor_evidence) ... ok
+test_complete_fixture_opens_material_gate_only (test_fingerprint_contract.FingerprintEvidenceTests.test_complete_fixture_opens_material_gate_only) ... ok
+test_missing_material_binding_or_string_flags_refused (test_fingerprint_contract.FingerprintEvidenceTests.test_missing_material_binding_or_string_flags_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.000s
+
+OK
+{
+  "missing_evidence": [
+    "fingerprint_hal",
+    "fingerprint_service_declaration",
+    "current_china_wayne_and_sensor_identity",
+    "actual_irq_input_spi_power_node_dac_selinux_binding",
+    "actual_tee_delivery_and_protocol_requirements"
+  ],
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "enrollment_verified": false,
+  "recognition_verified": false,
+  "unlock_verified": false,
+  "scope": "Candidate filenames and explicit evidence claims only; no HAL version, TEE protocol or runtime validation"
+}
+3 tests passed; sample refusal 2; 5 prior evidence files preserved
