@@ -1,0 +1,18 @@
+{
+  "label": "dtb-memory-region-tests",
+  "started_utc": "2026-10-11T21:13:02.781720+00:00",
+  "finished_utc": "2026-10-11T21:13:04.956711+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_dtb_memory_region\",\"test_dtb_phandle\",\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\")); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"e6ffcac\",\"new_tests_passed\":8,\"existing_regressions_passed\":18,\"tests_passed\":r.testsRun,\"supported_reference_properties\":[\"memory-region\"],\"edge_limit_per_requested_list\":65536,\"reserved_memory_semantics_implemented\":False,\"remoteproc_classification_implemented\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review next explicitly bounded evidence layer separately; no provider args, memory numerics or build authorization\",\"quota\":\"Realtime unavailable; user snapshot 85%/74%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-phandle-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-memory-region-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T211302781720Z-dtb-memory-region-tests.log",
+  "output_sha256": "e19952ef45d2bda0ea93d6efa98d20e71131478bfc21b0f66b4627058d0c5d14",
+  "action": "检查e6ffcac断点与工作区；同一不可变树快照新增memory-region纯phandle列表解码，冻结边结果，保留重复与顺序，显式拒绝未支持属性。",
+  "outcome": "八项新二进制测试和十八项既有回归通过；实际65536边接受、65537拒绝；两个真实preflight仍返回2，五项保留哈希未变。",
+  "failure_note": "检查失败，保留日志，不宣称通过。",
+  "next_step": "保存只读纯列表基础层、实际测试和下一断点，同步暂停；不扩展provider参数或reserved-memory语义。"
+}

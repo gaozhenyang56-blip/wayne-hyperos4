@@ -27,7 +27,11 @@ class PhandleIndex:
 
 def build_phandle_index(blob):
     """Validate the entire immutable snapshot before publishing any index."""
-    tree = read_tree(blob)
+    return _index_tree(read_tree(blob))
+
+
+def _index_tree(tree):
+    """Internal helper for a tree freshly validated from the same snapshot."""
     targets = {}
     for path, node in tree['nodes'].items():
         declarations = []
