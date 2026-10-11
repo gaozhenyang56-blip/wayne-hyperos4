@@ -1,0 +1,16 @@
+{
+  "label": "boot-contract-audit",
+  "started_utc": "2026-10-11T13:57:37.089943+00:00",
+  "finished_utc": "2026-10-11T13:57:39.768542+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_6_6_boot_contract_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T135737089943Z-boot-contract-audit.log",
+  "output_sha256": "3e079c0bf8e561fa46de289533abde2945a85fb51107b13465a02b03e9b6437f",
+  "action": "检查8b1a43a现状与boot相关入口；读取既有参考头部并保存6.6 boot契约差距，不打包、不解除DTB门禁。",
+  "outcome": "既有门禁集成与boot头部拒绝测试通过；两个真实preflight仍退出2，五项保留哈希未变。没有6.6打包入口，也没有真实当前国行boot参数，不能继承旧参考默认值。",
+  "next_step": "采集当前真实boot与分区容量、启动和签名策略证据；明确kernel/DTB交付契约后再设计未来打包preflight，本轮保存同步暂停。"
+}

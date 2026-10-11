@@ -1,0 +1,109 @@
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+test_invalid_headers_rejected (test_static_boot_header.StaticBootHeaderTests.test_invalid_headers_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 1.562s
+
+OK
+{
+  "created_utc": "2026-10-11T13:57:39.025641+00:00",
+  "baseline": "8b1a43a",
+  "tests_passed": 4,
+  "reference_boots": [
+    {
+      "path": "research/gpu-allocator-stage/lineage-wayne/boot.img",
+      "available": true,
+      "role": "comparison or preserved historical experiment, NOT current user boot",
+      "sha256": "66100487915cec9c69d16a2860d611329cde697814314cdf7d75736a4a49beba",
+      "size": 15958016,
+      "header_version": 0,
+      "pagesize": 4096,
+      "kernel_size": 14600381,
+      "ramdisk_size": 1348550,
+      "second_size": 0,
+      "kernel_file_offset": 4096,
+      "ramdisk_file_offset": 14606336,
+      "load_addresses": {
+        "kernel": 32768,
+        "ramdisk": 16777216,
+        "second": 0,
+        "tags": 256
+      },
+      "base_and_offsets_verified": false,
+      "kernel_prefix_hex": "1f8b0800",
+      "kernel_compression": "gzip",
+      "ramdisk_prefix_hex": "1f8b0800",
+      "cmdline": "console=ttyMSM0,115200n8 androidboot.console=ttyMSM0 earlycon=msm_serial_dm,0xc170000 androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_power_aware=1 service_locator.enable=1 swiotlb=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 androidboot.init_fatal_reboot_target=recovery buildvariant=userdebug",
+      "avb_footer_magic_observed": false,
+      "signature_policy_verified": false,
+      "dtb_layout_verified": false
+    },
+    {
+      "path": "artifacts/experimental/static/boot.img",
+      "available": true,
+      "role": "comparison or preserved historical experiment, NOT current user boot",
+      "sha256": "895a4079f913947c1c16a60562ed141c190619ed9451f10130ae415b8782bcbd",
+      "size": 18755584,
+      "header_version": 1,
+      "pagesize": 4096,
+      "kernel_size": 17278888,
+      "ramdisk_size": 1469091,
+      "second_size": 0,
+      "kernel_file_offset": 4096,
+      "ramdisk_file_offset": 17285120,
+      "load_addresses": {
+        "kernel": 32768,
+        "ramdisk": 16777216,
+        "second": 0,
+        "tags": 256
+      },
+      "base_and_offsets_verified": false,
+      "kernel_prefix_hex": "1f8b0800",
+      "kernel_compression": "gzip",
+      "ramdisk_prefix_hex": "1f8b0800",
+      "cmdline": "androidboot.hardware=qcom user_debug=31 msm_rtb.filter=0x37 ehci-hcd.park=3 lpm_levels.sleep_disabled=1 sched_enable_hmp=1 sched_enable_power_aware=1 service_locator.enable=1 androidboot.configfs=true androidboot.usbcontroller=a800000.dwc3 loop.max_part=7 printk.devkmsg=on usbcore.autosuspend=7 androidboot.boot_devices=soc/c0c4000.sdhci androidboot.dynamic_partitions=false androidboot.dynamic_partitions_retrofit=false",
+      "avb_footer_magic_observed": false,
+      "signature_policy_verified": false,
+      "dtb_layout_verified": false
+    }
+  ],
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    }
+  ],
+  "priority_gap": "No actual-current-wayne boot contract or 6.6 packaging integration; separate Image.gz/DTB cannot inherit old kernel payload packaging",
+  "current_device_boot_parameters_verified": false,
+  "hardware_tested": false,
+  "new_image_created": false,
+  "next": "Collect actual-current boot/header and partition size, signing/bootloader evidence; resolve DTB binding independently before any future packaging",
+  "quota": "Realtime unavailable; user snapshot 57%/87%, no precise control claim"
+}
