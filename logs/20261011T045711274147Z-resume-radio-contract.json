@@ -1,0 +1,17 @@
+{
+  "label": "resume-radio-contract",
+  "started_utc": "2026-10-11T04:57:11.274147+00:00",
+  "finished_utc": "2026-10-11T04:57:11.296026+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T045711274147Z-resume-radio-contract.log",
+  "output_sha256": "424db4e12e2cc3c519091fa5b60e886684fab3bdfa0fb4ea958f5e4da588397d",
+  "action": "检查1858697后的工作区、diff、最近测试与非Miku Radio参考材料。",
+  "outcome": "无开发差异，仅原有空MD；有QCRIL目录/数据库复制及qrtr-ns服务请求，但现有清单无Radio HAL、RIL配置或modem交付材料。",
+  "next_step": "补齐真实国行vendor来源、HAL/配置、modem分区交付和接口绑定门禁，运行最小正反例后保存。"
+}
