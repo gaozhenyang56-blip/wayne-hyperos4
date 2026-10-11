@@ -1,6 +1,6 @@
 # 本地板级证据入口
 
-时间：2026-10-11T12:57:00+00:00；基线38f41da。目标仅国行wayne/SDM660、原版静态分区；不以jasmine或Miku UI为目标。
+时间：2026-10-11T12:56:09.194889+00:00；基线38f41da。目标仅国行wayne/SDM660、原版静态分区；不以jasmine或Miku UI为目标。
 
 做了什么：新增tools/import_wayne_board_evidence.py，只读检查清单中的来源说明、带时区采集时间、采集命令、机型/区域/布局声明、文件SHA256及可解析身份字段。最小格式参见tests/fixtures/wayne-evidence/manifest.json，明确标注synthetic_fixture，不能冒充真机材料。真实导入使用actual_device_capture，来源声明仍须人工核实。getprop核对device/model及其他产品device，DTB由fdtget解析根model/compatible。文件缺失、路径越界、哈希错误、来源不明、jasmine身份、model或compatible不一致及缺解析工具均拒绝。boot参数、DTBO和分区表格式本轮尚未实现，提交这些kind将拒绝。
 
