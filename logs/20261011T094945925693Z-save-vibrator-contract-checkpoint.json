@@ -1,0 +1,17 @@
+{
+  "label": "save-vibrator-contract-checkpoint",
+  "started_utc": "2026-10-11T09:49:45.925693+00:00",
+  "finished_utc": "2026-10-11T09:49:45.972637+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/vibrator-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==2 and c[\"sample_exit\"]==2 and \"98%/94%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_4f45447\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"backend_claim\"]==\"unknown\" and a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"vibration_verified\"]; print(\"Checkpoint consistent: 2 passing tests, refusal 2, backend unknown, 5 prior files preserved; haptics unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T094945925693Z-save-vibrator-contract-checkpoint.log",
+  "output_sha256": "1b75b44b0f2db7b36a30355708d02bcdf1f7f4868559f8bb9316900decdde349",
+  "action": "保存振动后端材料门禁、替代路径正反例、来源及只读取证断点，复核后停止。",
+  "outcome": "两项测试通过，实际拒绝退出2，五项既有材料保留；真实后端/驱动/服务策略绑定仍未知，无硬件验证，实时额度不可读取。",
+  "next_step": "同步代码及报告后立即暂停；下一轮先取真实国行wayne Vibrator HAL或旧库、DTB、驱动节点、DAC/SELinux/AVC及既有日志。"
+}
