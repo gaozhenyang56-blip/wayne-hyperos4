@@ -1,0 +1,368 @@
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.003s
+
+OK
+{
+  "created_utc": "2026-10-11T16:18:03.446241+00:00",
+  "baseline": "9cc0173",
+  "tests_passed": 3,
+  "priority_gap": "Saved defconfig declares modular remoteproc/IPA dependencies while build delivers no modules; final config, firmware and actual wayne binding still absent",
+  "sources": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 1520,
+          "text": "CONFIG_FW_LOADER=y"
+        },
+        {
+          "line": 1521,
+          "text": "CONFIG_EXTRA_FIRMWARE=\"\""
+        },
+        {
+          "line": 1522,
+          "text": "CONFIG_FW_LOADER_USER_HELPER=y"
+        },
+        {
+          "line": 1523,
+          "text": "CONFIG_FW_LOADER_USER_HELPER_FALLBACK=y"
+        },
+        {
+          "line": 4913,
+          "text": "# CONFIG_REMOTEPROC is not set"
+        },
+        {
+          "line": 4918,
+          "text": "CONFIG_RPMSG=y"
+        },
+        {
+          "line": 4919,
+          "text": "CONFIG_RPMSG_CHAR=y"
+        },
+        {
+          "line": 4920,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_NATIVE=y"
+        },
+        {
+          "line": 4921,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_RPM=y"
+        },
+        {
+          "line": 4922,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_SMEM=y"
+        },
+        {
+          "line": 4923,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_SPSS=y"
+        },
+        {
+          "line": 4924,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_SPI=y"
+        },
+        {
+          "line": 4925,
+          "text": "CONFIG_RPMSG_QCOM_SMD=y"
+        },
+        {
+          "line": 4926,
+          "text": "# CONFIG_RPMSG_VIRTIO is not set"
+        },
+        {
+          "line": 4969,
+          "text": "CONFIG_QCOM_SMEM=y"
+        },
+        {
+          "line": 4975,
+          "text": "CONFIG_QCOM_SMEM_STATE=y"
+        },
+        {
+          "line": 4978,
+          "text": "# CONFIG_QCOM_WCNSS_CTRL is not set"
+        },
+        {
+          "line": 4979,
+          "text": "CONFIG_MSM_PIL_MSS_QDSP6V5=y"
+        },
+        {
+          "line": 4988,
+          "text": "CONFIG_MSM_SUBSYSTEM_RESTART=y"
+        },
+        {
+          "line": 4989,
+          "text": "CONFIG_MSM_PIL=y"
+        },
+        {
+          "line": 4991,
+          "text": "CONFIG_MSM_PIL_SSR_GENERIC=y"
+        },
+        {
+          "line": 5014,
+          "text": "CONFIG_QCOM_GLINK=y"
+        },
+        {
+          "line": 5015,
+          "text": "CONFIG_QCOM_GLINK_PKT=y"
+        }
+      ]
+    },
+    {
+      "path": "research/higher-kernel/6.6/arch/arm64/configs/sdm660_defconfig",
+      "sha256": "8748d513a68c2f82cfcc370b6dc32e2c933e40a3ecf65cfa40c263c82665bbfb",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 184,
+          "text": "CONFIG_FW_LOADER_USER_HELPER=y"
+        },
+        {
+          "line": 185,
+          "text": "CONFIG_FW_LOADER_COMPRESS=y"
+        },
+        {
+          "line": 186,
+          "text": "CONFIG_FW_LOADER_COMPRESS_ZSTD=y"
+        },
+        {
+          "line": 273,
+          "text": "CONFIG_QCOM_IPA=m"
+        },
+        {
+          "line": 373,
+          "text": "CONFIG_RPMSG_TTY=m"
+        },
+        {
+          "line": 526,
+          "text": "CONFIG_REMOTEPROC=y"
+        },
+        {
+          "line": 527,
+          "text": "CONFIG_QCOM_Q6V5_MSS=m"
+        },
+        {
+          "line": 528,
+          "text": "CONFIG_QCOM_Q6V5_PAS=m"
+        },
+        {
+          "line": 529,
+          "text": "CONFIG_QCOM_Q6V5_WCSS=m"
+        },
+        {
+          "line": 531,
+          "text": "CONFIG_QCOM_WCNSS_PIL=m"
+        },
+        {
+          "line": 532,
+          "text": "CONFIG_RPMSG_CHAR=y"
+        },
+        {
+          "line": 533,
+          "text": "CONFIG_RPMSG_CTRL=y"
+        },
+        {
+          "line": 534,
+          "text": "CONFIG_RPMSG_NS=y"
+        },
+        {
+          "line": 535,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_RPM=y"
+        },
+        {
+          "line": 536,
+          "text": "CONFIG_RPMSG_QCOM_GLINK_SMEM=y"
+        },
+        {
+          "line": 537,
+          "text": "CONFIG_RPMSG_QCOM_SMD=y"
+        },
+        {
+          "line": 554,
+          "text": "CONFIG_QCOM_SMEM=y"
+        },
+        {
+          "line": 561,
+          "text": "CONFIG_QCOM_WCNSS_CTRL=m"
+        }
+      ]
+    },
+    {
+      "path": "research/higher-kernel/6.6/arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts",
+      "sha256": "45260f93f552a861d88b01a6857754a8624de9af6d1c3867913547822b9df6cc",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 190,
+          "text": "\t\tfirmware-name = \"qcom/a512_zap.mdt\";"
+        },
+        {
+          "line": 195,
+          "text": "\tfirmware-name = \"qcom/adsp.mdt\";"
+        },
+        {
+          "line": 200,
+          "text": "\tfirmware-name = \"qcom/venus-4.4/venus.mdt\";"
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/ueventd.rc",
+      "sha256": "4cd3836d0d4d029b4d9643fc099a50e1602f6834b64b5404582d413e1d890073",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 31,
+          "text": "firmware_directories /vendor/firmware_mnt/image/"
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/system/system/etc/ueventd.rc",
+      "sha256": "9e857b38faaa3df9c7b93dd34ca8db828406f909b260b194257c90c8c2f6d751",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 4,
+          "text": "firmware_directories /etc/firmware/ /odm/firmware/ /vendor/firmware/ /firmware/image/"
+        }
+      ]
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/hw/init.target.rc",
+      "sha256": "9864024b7a0f81a8c92f3b4a5ed1a17026f2b37ec47b5c97bc6f087ad88dc9f5",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 49,
+          "text": "    write /sys/kernel/boot_adsp/boot 1"
+        },
+        {
+          "line": 51,
+          "text": "    mkdir /mnt/vendor/dsp 0770 root root"
+        },
+        {
+          "line": 52,
+          "text": "    copy /vendor/dsp/cdsp/fastrpc_shell_3 /mnt/vendor/dsp/fastrpc_shell_3"
+        },
+        {
+          "line": 53,
+          "text": "    chmod 0644 /mnt/vendor/dsp/fastrpc_shell_3"
+        },
+        {
+          "line": 54,
+          "text": "    mount none /mnt/vendor/dsp/fastrpc_shell_3 /vendor/dsp/cdsp/fastrpc_shell_3 bind"
+        }
+      ]
+    },
+    {
+      "path": "research/gpu-allocator-stage/lineage-wayne/selected-vendor/etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 68,
+          "text": "    write /sys/kernel/boot_adsp/boot 1"
+        },
+        {
+          "line": 71,
+          "text": "    write /sys/kernel/boot_slpi/boot 1"
+        },
+        {
+          "line": 112,
+          "text": "    chown system system /sys/kernel/boot_slpi/ssr"
+        },
+        {
+          "line": 375,
+          "text": "    write /sys/module/subsystem_restart/parameters/enable_debug ${persist.sys.ssr.enable_debug}"
+        },
+        {
+          "line": 378,
+          "text": "    write /sys/module/pil_msa/parameters/pbl_mba_boot_timeout_ms ${persist.sys.mba_boot_timeout}"
+        },
+        {
+          "line": 381,
+          "text": "    write /sys/module/pil_msa/parameters/modem_auth_timeout_ms ${persist.sys.modem_auth_timeout}"
+        },
+        {
+          "line": 384,
+          "text": "    write /sys/module/peripheral_loader/parameters/proxy_timeout_ms ${persist.sys.pil_proxy_timeout}"
+        },
+        {
+          "line": 387,
+          "text": "    write /sys/module/subsystem_restart/parameters/enable_ramdumps 1"
+        },
+        {
+          "line": 391,
+          "text": "    write /sys/module/subsystem_restart/parameters/enable_ramdumps 0"
+        }
+      ]
+    },
+    {
+      "path": "research/gpu-allocator-stage/lineage-wayne/selected-vendor/etc/fstab.qcom",
+      "sha256": "2637d1bf22d629dac1ae9facfde79d93ca1a8d82b031ff934daa3e68e845df35",
+      "scope": "saved source/reference only, NOT actual user board/runtime",
+      "matches": [
+        {
+          "line": 16,
+          "text": "/dev/block/bootdevice/by-name/modem                      /vendor/firmware_mnt vfat    ro,shortname=lower,uid=1000,gid=1000,dmask=227,fmask=337,context=u:object_r:firmware_file:s0    wait"
+        },
+        {
+          "line": 19,
+          "text": "/dev/block/bootdevice/by-name/dsp                        /vendor/dsp          ext4    ro,nosuid,nodev,barrier=1                                                                       wait"
+        }
+      ]
+    }
+  ],
+  "pin_comparison": [
+    {
+      "path": "arch/arm64/configs/sdm660_defconfig",
+      "matches_pinned_input": true,
+      "sha256": "8748d513a68c2f82cfcc370b6dc32e2c933e40a3ecf65cfa40c263c82665bbfb"
+    },
+    {
+      "path": "arch/arm64/boot/dts/qcom/sdm660-xiaomi-jasmine.dts",
+      "matches_pinned_input": true,
+      "sha256": "45260f93f552a861d88b01a6857754a8624de9af6d1c3867913547822b9df6cc"
+    }
+  ],
+  "modules_built_recorded": false,
+  "actual_board_firmware_verified": false,
+  "hardware_tested": false,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    }
+  ],
+  "next": "Collect real current DTB, firmware inventory/paths, generated config and remoteproc runtime/logs; do not translate foreign firmware-name into wayne requirements",
+  "quota": "Realtime unavailable; user snapshot 67%/82%; no precise control claim"
+}

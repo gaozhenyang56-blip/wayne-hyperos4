@@ -1,0 +1,16 @@
+{
+  "label": "remoteproc-audit",
+  "started_utc": "2026-10-11T16:18:03.168889+00:00",
+  "finished_utc": "2026-10-11T16:18:03.805831+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_remoteproc_contract_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T161803168889Z-remoteproc-audit.log",
+  "output_sha256": "ad7b5bbb5229f41eb9ff52753c7e095228aff1e311049f7d767036286a5624c7",
+  "action": "检查9cc0173断点与工作区；只读核对保存的固件/remoteproc配置、init/uevent路径及固定源码哈希，记录模块交付缺口。",
+  "outcome": "三项既有门禁测试通过；两个真实preflight仍拒绝2，五项保留哈希不变。源码defconfig模块声明不能替代实际生成配置；外国板级固件名不作为wayne要求，没有真实启动链证据。",
+  "next_step": "保存证据矩阵与只读采集命令并同步暂停；后续取得真实wayne DTB/固件和日志后核实驱动、路径与早期模块加载。"
+}
