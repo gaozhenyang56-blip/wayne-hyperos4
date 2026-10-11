@@ -1,0 +1,17 @@
+{
+  "label": "save-radio-contract-checkpoint",
+  "started_utc": "2026-10-11T04:58:06.907802+00:00",
+  "finished_utc": "2026-10-11T04:58:06.943989+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import json,pathlib; p=pathlib.Path(\"research/radio-contract-stage\"); c=json.loads((p/\"checkpoint.json\").read_text()); a=json.loads((p/\"audit.json\").read_text()); assert c[\"tests_passed\"]==2 and c[\"sample_exit\"]==2 and \"93%/99%\" in c[\"quota\"]; assert len(c[\"preservation\"])==5 and all(x[\"unchanged_from_1858697\"] for x in c[\"preservation\"]); assert a[\"contract\"][\"evidence_gate_rejected\"] and not a[\"contract\"][\"calls_verified\"]; print(\"Checkpoint consistent: 2 passing tests, refusal 2, 5 old evidence files preserved; Radio unverified\")"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T045806907802Z-save-radio-contract-checkpoint.log",
+  "output_sha256": "ea784f9b8c1f18cb418a039d5282a4816100e98006800dec18fed62a7098e0eb",
+  "action": "保存Radio材料门禁、测试日志、来源边界和真实国行取证断点，复核后结束本阶段。",
+  "outcome": "两项测试通过，实际拒绝退出2，五项既有证据不变；缺真实vendor/modem/分区/DTB及日志，不证明蜂窝接口或功能。未重编内核，实时额度不可读取。",
+  "next_step": "同步代码与报告后立即暂停；下一轮先获得真实国行wayne Radio/RIL及modem加载、接口绑定、AVC证据。"
+}
