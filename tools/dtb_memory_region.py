@@ -23,11 +23,11 @@ def decode_memory_region(blob, source_path, property_name='memory-region'):
     return _decode_tree(read_tree(blob), source_path, property_name)
 
 
-def _decode_tree(tree, source_path, property_name='memory-region'):
+def _decode_tree(tree, source_path, property_name='memory-region', index=None):
     """Internal reuse of one freshly validated snapshot."""
     if property_name != 'memory-region':
         raise ValueError('unsupported reference property: ' + str(property_name))
-    index = _index_tree(tree)
+    index = _index_tree(tree) if index is None else index
     if not isinstance(source_path, str) or source_path not in tree['nodes']:
         raise ValueError('source node missing or noncanonical: ' + str(source_path))
     prop = tree['nodes'][source_path]['properties'].get(property_name)

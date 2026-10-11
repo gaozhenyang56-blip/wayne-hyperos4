@@ -18,8 +18,11 @@ class ReservedTarget:
 
 def decode_reserved_memory(blob, source_path):
     """All-or-nothing frozen evidence on the same validated immutable byte snapshot."""
-    tree = read_tree(blob)
-    edges = _decode_tree(tree, source_path)
+    return _decode_reserved_tree(read_tree(blob), source_path)
+
+
+def _decode_reserved_tree(tree, source_path, index=None, cache=None):
+    edges = _decode_tree(tree, source_path, index=index)
     parent = tree['nodes'].get('/reserved-memory')
     if parent is None:
         raise ValueError('/reserved-memory missing')
@@ -36,7 +39,8 @@ def decode_reserved_memory(blob, source_path):
     if 'ranges' not in props or props['ranges']['length'] != 0:
         raise ValueError('/reserved-memory:ranges must exist and be empty')
     stride = (ac + sc) * 4
-    cache = {}; results = []
+    cache = {} if cache is None else cache
+    results = []
     for edge in edges:
         path = edge.target_path
         if path.rsplit('/', 1)[0] != '/reserved-memory':

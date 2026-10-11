@@ -1,0 +1,18 @@
+{
+  "label": "dtb-consumer-tests",
+  "started_utc": "2026-10-11T23:46:14.403664+00:00",
+  "finished_utc": "2026-10-11T23:46:17.347247+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); names=(\"test_dtb_consumer_evidence\",\"test_dtb_reserved_memory\",\"test_dtb_memory_region\",\"test_dtb_phandle\",\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in names); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"3e3e71f\",\"new_tests_passed\":5,\"existing_regressions_passed\":32,\"tests_passed\":r.testsRun,\"generic_consumer_composition_implemented\":True,\"aggregate_reference_limit\":65536,\"consumer_limit\":65536,\"inherited_node_limit\":16384,\"remoteproc_classification_implemented\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review evidence export/identity provenance integration separately; no classification or build authorization\",\"quota\":\"Realtime unavailable; user snapshot 62%/70%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-reserved-memory-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-consumer-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T234614403664Z-dtb-consumer-tests.log",
+  "output_sha256": "7a9e40943a6c6d360a64ecd2f4bb51cb3e531d7de949f1a20fdb900ac8b353b0",
+  "action": "检查3e3e71f断点与工作区；同一快照组合显式memory-region消费者证据，复用唯一索引/边/reg，共享只读解码内部缓存，实施累计边数限制。",
+  "outcome": "五项新二进制测试与三十二项既有回归通过；累计65536边接受、65537拒绝，实际更紧节点边界覆盖；两个真实preflight仍返回2，五项旧材料哈希不变。",
+  "failure_note": "测试失败，保存日志，不宣称通过。",
+  "next_step": "保存冻结消费者证据层、实际结果与断点，同步暂停；不分类remoteproc或扩大引用支持。"
+}
