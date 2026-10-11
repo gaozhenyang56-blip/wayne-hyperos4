@@ -1,0 +1,17 @@
+{
+  "label": "dtb-remoteproc-design-checks",
+  "started_utc": "2026-10-11T16:59:38.627885+00:00",
+  "finished_utc": "2026-10-11T16:59:39.177491+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\")); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"b941ebe\",\"existing_regression_tests_passed\":r.testsRun,\"new_extractor_implemented\":False,\"new_extraction_binary_fixtures_tested\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review bounded shared structural walker and typed phandle/reg binding design before implementation; no evidence-to-build gate connection\",\"quota\":\"Realtime unavailable; user snapshot 57%/80%; no precise control claim\"}; old=json.loads(Path(\"research/remoteproc-contract-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-remoteproc-design-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T165938627885Z-dtb-remoteproc-design-checks.log",
+  "output_sha256": "d605c4ba28e2e2cf87a88bb1031e14f31c244286f6d37dfd1524bdc54b894d80",
+  "action": "检查b941ebe报告/断点与受限v17解析器；确认子节点属性被丢弃、无phandle/cell语义索引，选择保存精确设计和测试向量，不提交半成品提取器。",
+  "outcome": "复核既有解析/导入与门禁测试；仍未实现remoteproc/reserved-memory提取及其新二进制fixtures，不把设计向量当测试通过或wayne事实。",
+  "next_step": "保存设计字段、引用语义边界、真实采集命令及下一断点，同步后立即暂停。"
+}

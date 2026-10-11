@@ -1,0 +1,76 @@
+{
+  "scope": "DESIGN ONLY; binary fixtures and extractor NOT implemented in this stage",
+  "device_facts": false,
+  "vectors": [
+    {
+      "id": "positive",
+      "construction": "synthetic v17 tree: explicitly defined cell widths, unique phandles, memory-region to direct reserved-memory child, valid reg and zero-length no-map, string-list compatible/firmware-name",
+      "expected": "extract raw paths/bytes/hash, all verification claims false"
+    },
+    {
+      "id": "jasmine_masquerade",
+      "construction": "root model MI 6X but compatible contains xiaomi,jasmine",
+      "expected": "identity rejection before extraction"
+    },
+    {
+      "id": "missing_phandle",
+      "construction": "memory-region points to nonexistent phandle",
+      "expected": "reject with property path and value"
+    },
+    {
+      "id": "invalid_phandle",
+      "construction": "phandle 0/0xffffffff, duplicate IDs or phandle/linux,phandle conflict",
+      "expected": "reject"
+    },
+    {
+      "id": "cycle",
+      "construction": "supported dependency graph self-reference or A -> B -> A",
+      "expected": "reject bounded iterative traversal, no recursion overflow"
+    },
+    {
+      "id": "out_of_range",
+      "construction": "memory-region malformed cell count or resolved target outside reserved-memory",
+      "expected": "reject"
+    },
+    {
+      "id": "reg_width",
+      "construction": "missing cell widths, unsupported widths, reg not integral address+size tuples",
+      "expected": "reject typed extraction, preserve raw error context"
+    },
+    {
+      "id": "boolean_conflict",
+      "construction": "no-map/reusable coexist or nonzero payload",
+      "expected": "reject"
+    },
+    {
+      "id": "truncation",
+      "construction": "truncate every byte boundary of smallest binary positive",
+      "expected": "reject; no success/partial authorization"
+    },
+    {
+      "id": "malformed",
+      "construction": "magic/overlap/token/name offset/NUL/duplicate nodes or properties corruption",
+      "expected": "reject via shared structural walker"
+    },
+    {
+      "id": "unknown_binding",
+      "construction": "unrecognized GLINK/RPMSG/SMEM property or provider argument layout",
+      "expected": "raw evidence only; unresolved flag and nonzero qualified-extraction exit"
+    },
+    {
+      "id": "bounds",
+      "construction": "node/property/reference limits, long chain or many fanout edges",
+      "expected": "bounded reject"
+    },
+    {
+      "id": "optional_absent",
+      "construction": "no firmware-name/status or no matching candidate node",
+      "expected": "record absent, do not invent firmware/default operational state or claim subsystem absent"
+    },
+    {
+      "id": "existing_tool_failure",
+      "construction": "fdtget available but fails; file changes between read and external access",
+      "expected": "reject; no fallback masking or hash mismatch acceptance"
+    }
+  ]
+}
