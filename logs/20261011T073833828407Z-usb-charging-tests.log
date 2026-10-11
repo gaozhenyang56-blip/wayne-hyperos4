@@ -1,0 +1,46 @@
+test_literal_import_closure_never_claims_hardware (test_usb_charging_contract.UsbImportTests.test_literal_import_closure_never_claims_hardware) ... ok
+test_missing_dynamic_or_unobserved_import_refused (test_usb_charging_contract.UsbImportTests.test_missing_dynamic_or_unobserved_import_refused) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+{
+  "usb_imports": [
+    {
+      "line": 28,
+      "import": "/vendor/etc/init/hw/init.qcom.usb.rc",
+      "selected_path": "etc/init/hw/init.qcom.usb.rc",
+      "available": false
+    },
+    {
+      "line": 29,
+      "import": "/vendor/etc/init/hw/init.msm.usb.configfs.rc",
+      "selected_path": "etc/init/hw/init.msm.usb.configfs.rc",
+      "available": false
+    }
+  ],
+  "missing_or_unresolved_imports": [
+    {
+      "line": 28,
+      "import": "/vendor/etc/init/hw/init.qcom.usb.rc",
+      "selected_path": "etc/init/hw/init.qcom.usb.rc",
+      "available": false
+    },
+    {
+      "line": 29,
+      "import": "/vendor/etc/init/hw/init.msm.usb.configfs.rc",
+      "selected_path": "etc/init/hw/init.msm.usb.configfs.rc",
+      "available": false
+    }
+  ],
+  "evidence_gate_rejected": true,
+  "scope": "Direct USB init import availability only; not recursive runtime imports or HAL/kernel compatibility",
+  "contract_verified": false,
+  "hardware_tested": false,
+  "charging_verified": false,
+  "usb_data_verified": false,
+  "adb_verified": false,
+  "otg_verified": false
+}
+2 tests passed; sample refusal 2; 5 prior evidence files preserved

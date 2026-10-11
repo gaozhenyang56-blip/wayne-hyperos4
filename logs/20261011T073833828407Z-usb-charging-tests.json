@@ -1,0 +1,16 @@
+{
+  "label": "usb-charging-tests",
+  "started_utc": "2026-10-11T07:38:33.828407+00:00",
+  "finished_utc": "2026-10-11T07:38:34.383316+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_usb_charging_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T073833828407Z-usb-charging-tests.log",
+  "output_sha256": "b46d8a605a8010595d84f9cf216e56376463ccc0396722b479514ded765d24b7",
+  "action": "新增直接USB init导入材料闭包检查，核验样本哈希并运行两个正反例及实际拒绝检查。",
+  "outcome": "两项测试通过，实际导入缺材料按预期退出2；动态/通配符导入不猜测解析，闭包齐全也不证明硬件。五项既有证据保留，无运行验证。",
+  "next_step": "保存缺失导入精确路径、健康HAL和节点取证命令，同步后暂停。"
+}
