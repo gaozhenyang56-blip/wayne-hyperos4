@@ -1,0 +1,25 @@
+test_generic_layout_or_kernel_flags_do_not_prove_binding (test_input_contract.InputEvidenceTests.test_generic_layout_or_kernel_flags_do_not_prove_binding) ... ok
+test_verified_fallback_without_idc_opens_material_gate_only (test_input_contract.InputEvidenceTests.test_verified_fallback_without_idc_opens_material_gate_only) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+{
+  "keylayout_candidates": [],
+  "optional_idc_kcm_candidates": [],
+  "missing_evidence": [
+    "actual_keylayout_or_verified_system_fallback_inventory",
+    "current_china_wayne_and_actual_touch_identity",
+    "actual_event_input_name_to_config_and_dtb_binding",
+    "actual_node_dac_selinux_and_firmware_requirements"
+  ],
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "touch_verified": false,
+  "keys_verified": false,
+  "gestures_verified": false,
+  "scope": "Candidate inventory and explicit binding claims only; no layout semantics, coordinates, sensor identity or runtime validation"
+}
+2 tests passed; sample refusal 2; 5 prior evidence files preserved
