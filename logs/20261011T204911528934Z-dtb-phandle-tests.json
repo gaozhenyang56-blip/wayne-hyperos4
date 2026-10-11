@@ -1,0 +1,18 @@
+{
+  "label": "dtb-phandle-tests",
+  "started_utc": "2026-10-11T20:49:11.528934+00:00",
+  "finished_utc": "2026-10-11T20:49:13.169443+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_dtb_phandle\",\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\")); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"50b5bc6\",\"new_tests_passed\":5,\"existing_regressions_passed\":13,\"tests_passed\":r.testsRun,\"phandle_index_implemented\":True,\"reference_edges_decoded\":False,\"remoteproc_semantics_implemented\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review typed reference scope separately; keep index out of build authorization and retain actual-wayne evidence block\",\"quota\":\"Realtime unavailable; user snapshot 93%/75%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-tree-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-phandle-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T204911528934Z-dtb-phandle-tests.log",
+  "output_sha256": "bf38dc311fe6fcf8457c958362d93cf255f21bee002bafe7d4df819c21168f64",
+  "action": "检查50b5bc6断点与工作区；复用不可变完整树读取新增phandle/linux,phandle唯一索引与单次查询API，实际二进制fixture验证，不解析引用。",
+  "outcome": "五项新测试与十三项既有回归通过；两个真实preflight仍退出2，五项保留材料哈希未变。根身份API未修改，jasmine伪装仍由既有导入拒绝。",
+  "failure_note": "测试或保留检查失败，保存日志，不宣称验证通过。",
+  "next_step": "保存索引基础层、实际测试与下一断点并同步暂停；有类型引用及remoteproc语义留待下一独立阶段。"
+}
