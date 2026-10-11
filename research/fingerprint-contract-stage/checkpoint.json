@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-10-11T06:32:11.315782+00:00",
+  "baseline": "4efaf4c",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 3,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_4efaf4c": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_4efaf4c": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_4efaf4c": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_4efaf4c": true
+    },
+    {
+      "path": "research/radio-contract-stage/checkpoint.json",
+      "sha256": "555eecce59120b253c1848a60e8ee49e4db3be4b9ec1847ffd7ce419bc5661e2",
+      "unchanged_from_4efaf4c": true
+    }
+  ],
+  "historical_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "lines": [
+      {
+        "line": 1720,
+        "text": "CONFIG_QSEECOM=y"
+      },
+      {
+        "line": 2346,
+        "text": "CONFIG_INPUT_EVDEV=y"
+      },
+      {
+        "line": 2710,
+        "text": "CONFIG_SPI=y"
+      }
+    ]
+  },
+  "kernel_6_6": "No audited fingerprint/TEE/device binding; generic configs or module absence do not establish sensor compatibility",
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Collect actual China wayne HAL/service, sensor identity and DTB, DAC/SELinux/AVC and TEE delivery requirements",
+  "quota": "Realtime unavailable; user snapshot 81%/97%; no precise control claim"
+}

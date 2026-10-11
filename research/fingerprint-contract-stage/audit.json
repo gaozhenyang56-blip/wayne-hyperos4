@@ -1,0 +1,49 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current China vendor unknown",
+  "contract": {
+    "missing_evidence": [
+      "fingerprint_hal",
+      "fingerprint_service_declaration",
+      "current_china_wayne_and_sensor_identity",
+      "actual_irq_input_spi_power_node_dac_selinux_binding",
+      "actual_tee_delivery_and_protocol_requirements"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "enrollment_verified": false,
+    "recognition_verified": false,
+    "unlock_verified": false,
+    "scope": "Candidate filenames and explicit evidence claims only; no HAL version, TEE protocol or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": []
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": [
+        {
+          "line": 237,
+          "text": "    # Create directory for apps access via QTEEConnector"
+        },
+        {
+          "line": 238,
+          "text": "    mkdir /data/vendor/qtee 0770 system system"
+        }
+      ]
+    }
+  ],
+  "excluded_metadata": [
+    {
+      "path": "build.prop",
+      "line": 15,
+      "reason": "Build identifier, not biometric sensor evidence"
+    }
+  ],
+  "generic_tee_context": "QTEE/QSEE text is not fingerprint binding or protocol proof",
+  "absence_meaning": "Not extracted; not proof of absent full-vendor files or unsupported hardware"
+}
