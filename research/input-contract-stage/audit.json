@@ -1,0 +1,34 @@
+{
+  "sample_role": "Non-Miku wayne comparison only; current China vendor and touch identity unknown",
+  "contract": {
+    "keylayout_candidates": [],
+    "optional_idc_kcm_candidates": [],
+    "missing_evidence": [
+      "actual_keylayout_or_verified_system_fallback_inventory",
+      "current_china_wayne_and_actual_touch_identity",
+      "actual_event_input_name_to_config_and_dtb_binding",
+      "actual_node_dac_selinux_and_firmware_requirements"
+    ],
+    "evidence_gate_rejected": true,
+    "contract_verified": false,
+    "hardware_tested": false,
+    "touch_verified": false,
+    "keys_verified": false,
+    "gestures_verified": false,
+    "scope": "Candidate inventory and explicit binding claims only; no layout semantics, coordinates, sensor identity or runtime validation"
+  },
+  "text_evidence": [
+    {
+      "path": "build.prop",
+      "sha256": "daed1ced7737068c38c536d9c5d732f87db2ff4592fea0124497ed93eb399973",
+      "lines": []
+    },
+    {
+      "path": "etc/init/hw/init.qcom.rc",
+      "sha256": "a89e563c2b496d16fc37bc4ad735342885d0c5ee7dba4b3e1a3f06eb5f44fa14",
+      "lines": []
+    }
+  ],
+  "absence_meaning": "Not extracted; configurations may reside in system/product/odm/vendor; no claim of unsupported hardware",
+  "optional_config_note": "Missing IDC/KCM alone is not a compatibility failure; actual Android fallback and binding require evidence"
+}
