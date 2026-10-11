@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-10-11T18:17:23.727696+00:00",
+  "baseline": "8ef2641",
+  "tests_passed": 13,
+  "tree_index_implemented": true,
+  "semantic_extraction_implemented": false,
+  "reference_edges_decoded": false,
+  "hardware_tested": false,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    }
+  ],
+  "next": "Review typed phandle/reference design; no semantic qualification or build gate connection",
+  "quota": "Realtime unavailable; user snapshot 48%/79%; no precise control claim"
+}

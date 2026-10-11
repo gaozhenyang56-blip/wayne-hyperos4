@@ -1,0 +1,18 @@
+{
+  "label": "dtb-tree-retest",
+  "started_utc": "2026-10-11T18:17:21.989102+00:00",
+  "finished_utc": "2026-10-11T18:17:24.102260+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\")); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"8ef2641\",\"tests_passed\":r.testsRun,\"tree_index_implemented\":True,\"semantic_extraction_implemented\":False,\"reference_edges_decoded\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review typed phandle/reference design; no semantic qualification or build gate connection\",\"quota\":\"Realtime unavailable; user snapshot 48%/79%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-remoteproc-design-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-tree-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T181721989102Z-dtb-tree-retest.log",
+  "output_sha256": "03909b223eea5bc6514ce00226e8cbcc27ea281b4768f527ec4c6d73479f9a13",
+  "action": "修正边界fixture生成器空字符串块；解析器保持原拒绝规则，重新执行真实二进制边界与既有回归。",
+  "outcome": "十三项测试通过；两个真实preflight仍退出2，五项保留材料哈希未变。",
+  "failure_note": "复测失败，保留日志，不宣称测试通过。",
+  "next_step": "保存基础层结果与未实现语义断点，同步GitHub后暂停。"
+}
