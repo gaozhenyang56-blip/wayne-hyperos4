@@ -1,0 +1,53 @@
+{
+  "created_utc": "2026-10-11T10:17:48.257094+00:00",
+  "baseline": "bb6dba9",
+  "tests_passed": 2,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "config/kernel-6.6-experiment.json",
+      "sha256": "7ae398df339d02af9a96154fe0cc11c4e84a3db58820853487a1f7f28e9f1948",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "config/wayne-stock-static.json",
+      "sha256": "db7c34c300501505cafe56576f328380bb7336ed272216aa1521526e2dc47eb5",
+      "unchanged_from_bb6dba9": true
+    },
+    {
+      "path": "research/boot-static-stage/audit.json",
+      "sha256": "b38de08c6767520d34e8033f4801be50624e45d1a9b4e66a3023ff155fd84232",
+      "unchanged_from_bb6dba9": true
+    }
+  ],
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Obtain actual China wayne DTB/partition/boot/vendor provenance, then board-specific DT differences before packaging; no register guesses",
+  "quota": "Realtime unavailable; user snapshot 89%/93%; no precise control claim"
+}
