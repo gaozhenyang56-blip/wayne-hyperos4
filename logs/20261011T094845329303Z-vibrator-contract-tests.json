@@ -1,0 +1,16 @@
+{
+  "label": "vibrator-contract-tests",
+  "started_utc": "2026-10-11T09:48:45.329303+00:00",
+  "finished_utc": "2026-10-11T09:48:45.694690+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_vibrator_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T094845329303Z-vibrator-contract-tests.log",
+  "output_sha256": "ae7c47faa62a9b4a84583c7f97bc02bd648bf91f520452fb31b73d4018b6fb34",
+  "action": "新增振动HAL及明确后端/真实驱动/服务策略材料门禁，核验样本哈希，执行两个正反例和实际拒绝检查。",
+  "outcome": "两项测试通过，实际样本拒绝退出2；四种替代后端各自可进入材料复核，不要求接口全有，未知/缺证据/字符串标志被拒绝。五项既有材料不变，无运行验证。",
+  "next_step": "保存来源和只读采集命令、断点，同步后暂停。"
+}
