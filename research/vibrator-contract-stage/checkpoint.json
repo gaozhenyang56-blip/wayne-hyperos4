@@ -1,0 +1,58 @@
+{
+  "created_utc": "2026-10-11T09:48:45.681313+00:00",
+  "baseline": "4f45447",
+  "target": "China wayne/SDM660 stock static partitions",
+  "tests_passed": 2,
+  "sample_exit": 2,
+  "preservation": [
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged_from_4f45447": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel-config.json",
+      "sha256": "b975861115772b1992938175329dfa59145ae685320455c3bab07e336d391b18",
+      "unchanged_from_4f45447": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged_from_4f45447": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged_from_4f45447": true
+    },
+    {
+      "path": "research/input-contract-stage/checkpoint.json",
+      "sha256": "ed4b2f28bdae61bca5f3c91c2d75188847f9e359d9548ead2688b9a6fe767fa3",
+      "unchanged_from_4f45447": true
+    }
+  ],
+  "historical_4_19": {
+    "actual_build_configuration": false,
+    "user_target_baseline": false,
+    "lines": [
+      {
+        "line": 2336,
+        "text": "# CONFIG_INPUT_FF_MEMLESS is not set"
+      },
+      {
+        "line": 4380,
+        "text": "CONFIG_LEDS_CLASS=y"
+      },
+      {
+        "line": 4697,
+        "text": "CONFIG_ANDROID_TIMED_OUTPUT=y"
+      }
+    ]
+  },
+  "kernel_6_6": "No audited actual vibrator HAL/backend/service-policy binding; generic configuration or module absence not hardware proof",
+  "hardware_tested": false,
+  "kernel_rebuilt": false,
+  "new_flashable_package": false,
+  "next": "Collect actual China wayne vibrator HAL/service, driver/DTB/nodes and DAC/SELinux plus boot/call/AVC evidence without issuing haptic requests",
+  "quota": "Realtime unavailable; user snapshot 98%/94%; no precise control claim"
+}
