@@ -1,0 +1,33 @@
+test_bad_paths_properties_tokens (test_dtb_tree.TreeTests.test_bad_paths_properties_tokens) ... ok
+test_nested_snapshot_offsets (test_dtb_tree.TreeTests.test_nested_snapshot_offsets) ... ok
+test_real_limits (test_dtb_tree.TreeTests.test_real_limits) ... ERROR
+test_truncation_nul_and_immutability (test_dtb_tree.TreeTests.test_truncation_nul_and_immutability) ... ok
+test_actual_binary_identity_rejection (test_dtb_identity.DTBTests.test_actual_binary_identity_rejection) ... ok
+test_binary_positive (test_dtb_identity.DTBTests.test_binary_positive) ... ok
+test_tool_failure_does_not_fallback (test_dtb_identity.DTBTests.test_tool_failure_does_not_fallback) ... ok
+test_truncation_and_malformed (test_dtb_identity.DTBTests.test_truncation_and_malformed) ... ok
+test_fixture_positive_never_unlocks (test_wayne_board_evidence.EvidenceTests.test_fixture_positive_never_unlocks) ... ok
+test_rejections (test_wayne_board_evidence.EvidenceTests.test_rejections) ... ok
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+======================================================================
+ERROR: test_real_limits (test_dtb_tree.TreeTests.test_real_limits)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/test_dtb_tree.py", line 57, in test_real_limits
+    read_tree(pack_tree([('begin','')]+[event for i in range(MAX_NODES-1) for event in [('begin','n'+str(i)),('end',None)]]+[('end',None)]))
+  File "/workspace/wayne-hyperos4/tools/read_dtb_identity.py", line 30, in read_tree
+    reject('block offsets/lengths invalid')
+  File "/workspace/wayne-hyperos4/tools/read_dtb_identity.py", line 18, in reject
+    raise ValueError('DTB: ' + message + ' context=' + str(context))
+ValueError: DTB: block offsets/lengths invalid context={'offset': 0, 'path': '/', 'property': None}
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.063s
+
+FAILED (errors=1)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+AssertionError

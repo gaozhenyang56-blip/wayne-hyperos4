@@ -1,12 +1,23 @@
-"""Bounded v17 FDT reader: root identity only, no board adaptation or overlays."""
+"""Bounded v17 FDT reader: raw tree index and root identity, no board adaptation or overlays."""
+import hashlib
+import re
 import struct
 
 MAX_SIZE = 8 * 1024 * 1024
+MAX_NODES = 16384
+MAX_PROPERTIES = 65536
+MAX_DEPTH = 128
+MAX_REFERENCE_EDGES = 65536  # Reserved for future typed-reference layer; no edges decoded.
+MAX_PROPERTY_SIZE = 1024 * 1024
 
 
-def read_identity(blob):
+def read_tree(blob):
+    """Return raw structural evidence only after the entire immutable snapshot validates."""
+    context = {'offset': 0, 'path': '/', 'property': None}
     def reject(message):
-        raise ValueError('DTB: ' + message)
+        raise ValueError('DTB: ' + message + ' context=' + str(context))
+    if not isinstance(blob, bytes):
+        reject('immutable bytes snapshot required')
     if not 40 <= len(blob) <= MAX_SIZE:
         reject('size outside supported bounds')
     magic, total, off_s, off_n, off_r, version, last, cpu, size_n, size_s = struct.unpack_from('>10I', blob)
@@ -36,7 +47,7 @@ def read_identity(blob):
         reject('overlapping blocks')
     strings = blob[off_n:off_n + size_n]
     stream = blob[off_s:off_s + size_s]
-    pos = 0; stack = []; seen_root = False; closed_root = False; props = {}; nodes = set()
+    pos = 0; stack = []; seen_root = False; closed_root = False; nodes = {}; property_count = 0
     def word():
         nonlocal pos
         if pos + 4 > len(stream): reject('truncated token/header')
@@ -48,6 +59,8 @@ def read_identity(blob):
         if end > len(stream) or any(stream[pos:end]): reject('invalid padding')
         pos = end
     while pos < len(stream):
+        context = {'offset': off_s + pos, 'path': stack[-1]['path'] if stack else '/', 'property': None}
+        token_offset = off_s + pos
         token = word()
         if token == 1:
             end = stream.find(b'\0', pos)
@@ -57,11 +70,14 @@ def read_identity(blob):
                 if seen_root or name: reject('invalid/multiple root')
                 seen_root = True
             else:
-                if not name or '/' in name: reject('invalid child name')
+                if name in ('', '.', '..') or not re.fullmatch(r'[A-Za-z0-9,._+@-]+', name): reject('invalid child name')
                 stack[-1]['child'] = True
             path = tuple(n['name'] for n in stack) + (name,)
-            if path in nodes or len(stack) >= 128: reject('duplicate node/depth exceeded')
-            nodes.add(path); stack.append({'name': name, 'props': set(), 'child': False})
+            canonical = '/' + '/'.join(path[1:])
+            if canonical in nodes or len(stack) >= MAX_DEPTH or len(nodes) >= MAX_NODES:
+                reject('duplicate node/depth/node count exceeded at ' + canonical)
+            nodes[canonical] = {'path': canonical, 'structure_offset': token_offset, 'properties': {}}
+            stack.append({'name': name, 'path': canonical, 'props': set(), 'child': False})
         elif token == 2:
             if not stack: reject('unbalanced END_NODE')
             stack.pop()
@@ -69,15 +85,21 @@ def read_identity(blob):
         elif token == 3:
             if not stack or stack[-1]['child']: reject('property outside node/after child')
             length = word(); offset = word()
+            if length > MAX_PROPERTY_SIZE or property_count >= MAX_PROPERTIES:
+                reject('property size/count exceeded at ' + stack[-1]['path'])
+            property_count += 1
             if offset >= len(strings) or (offset and strings[offset - 1] != 0): reject('invalid property name offset')
             end = strings.find(b'\0', offset)
             if end < 0: reject('unterminated property name')
             name = strings[offset:end].decode('ascii')
-            if not name or name in stack[-1]['props']: reject('empty/duplicate property')
+            context['property'] = name
+            if not re.fullmatch(r'[A-Za-z0-9,._+*#?-]+', name) or name in stack[-1]['props']:
+                reject('invalid/duplicate property at ' + stack[-1]['path'])
             stack[-1]['props'].add(name)
             if pos + length > len(stream): reject('truncated property')
+            value_offset = off_s + pos
             value = stream[pos:pos + length]; pos += length; align()
-            if len(stack) == 1 and name in ('model', 'compatible'): props[name] = value
+            nodes[stack[-1]['path']]['properties'][name] = {'structure_offset': token_offset, 'value_offset': value_offset, 'length': length, 'hex': value.hex()}
         elif token == 4:
             continue
         elif token == 9:
@@ -87,6 +109,19 @@ def read_identity(blob):
             reject('unknown token')
     else:
         reject('missing END')
+    return {'sha256': hashlib.sha256(blob).hexdigest(), 'size': len(blob),
+            'dtb_header': {'version': version, 'last_comp_version': last, 'totalsize': total, 'boot_cpuid_phys': cpu},
+            'nodes': nodes, 'property_count': property_count,
+            'reference_edges': None, 'reference_edge_limit_reserved': MAX_REFERENCE_EDGES,
+            'semantic_extraction_implemented': False, 'build_gate_authorization': False}
+
+
+def read_identity(blob):
+    """Preserve the root identity API; this is not device provenance authentication."""
+    tree = read_tree(blob)
+    props = {name: bytes.fromhex(prop['hex']) for name, prop in tree['nodes']['/']['properties'].items() if name in ('model', 'compatible')}
+    def reject(message):
+        raise ValueError('DTB: ' + message)
     values = {}
     for name in ('model', 'compatible'):
         value = props.get(name, b'')
@@ -96,5 +131,5 @@ def read_identity(blob):
         decoded = [p.decode('ascii') for p in parts]
         if any(any(ord(c) < 32 or ord(c) > 126 for c in p) for p in decoded): reject('invalid identity characters')
         values[name] = decoded[0].strip() if name == 'model' else decoded
-    values['dtb_header'] = {'version': version, 'last_comp_version': last, 'totalsize': total, 'boot_cpuid_phys': cpu}
+    values['dtb_header'] = tree['dtb_header']
     return values

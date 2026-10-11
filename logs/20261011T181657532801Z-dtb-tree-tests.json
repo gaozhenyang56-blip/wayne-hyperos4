@@ -1,0 +1,17 @@
+{
+  "label": "dtb-tree-tests",
+  "started_utc": "2026-10-11T18:16:57.532801+00:00",
+  "finished_utc": "2026-10-11T18:16:57.875525+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); suite=unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\")); r=unittest.TextTestRunner(verbosity=2).run(suite); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"8ef2641\",\"tests_passed\":r.testsRun,\"tree_index_implemented\":True,\"semantic_extraction_implemented\":False,\"reference_edges_decoded\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Review typed phandle/reference design; no semantic qualification or build gate connection\",\"quota\":\"Realtime unavailable; user snapshot 48%/79%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-remoteproc-design-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-tree-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261011T181657532801Z-dtb-tree-tests.log",
+  "output_sha256": "c0faabfba1240ccd4bec3ab80942949d305f12e9389b57f23ad79222df9191c2",
+  "action": "将v17 walker拆分为同一不可变bytes快照的通用树索引，保存路径/偏移/长度/hex与哈希；修正新fixture生成器的未知token编码错误后复核。",
+  "outcome": "新树基础测试与根身份/导入/构建门禁回归通过；只实现结构层，引用边仅预留上限，remoteproc与数值语义未实现，未解除门禁。",
+  "next_step": "保存实际测试、保留哈希和下一断点并同步暂停，后续才审阅有类型引用索引。"
+}
