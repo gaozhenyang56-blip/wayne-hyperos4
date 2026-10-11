@@ -1,0 +1,245 @@
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.004s
+
+OK
+{
+  "created_utc": "2026-10-11T15:42:53.967283+00:00",
+  "baseline": "5b20e27",
+  "tests_passed": 3,
+  "priority_gap": "No actual-current-wayne module inventory/vermagic/symbol CRC/signature evidence; 6.6 modules not built and ABI not established",
+  "historical_config_declarations": {
+    "MODULES": [
+      "CONFIG_MODULES=y"
+    ],
+    "MODVERSIONS": [
+      "CONFIG_MODVERSIONS=y"
+    ],
+    "MODULE_SIG": [
+      "CONFIG_MODULE_SIG=y"
+    ],
+    "MODULE_SIG_FORCE": [
+      "CONFIG_MODULE_SIG_FORCE=y"
+    ],
+    "MODULE_SIG_ALL": [
+      "CONFIG_MODULE_SIG_ALL=y"
+    ],
+    "MODULE_SIG_HASH": [
+      "CONFIG_MODULE_SIG_HASH=\"sha512\""
+    ],
+    "MODULE_SIG_KEY": [
+      "CONFIG_MODULE_SIG_KEY=\"certs/signing_key.pem\""
+    ],
+    "LOCALVERSION": [
+      "CONFIG_LOCALVERSION=\"-perf\""
+    ]
+  },
+  "historical_config_provenance": {
+    "source": "research/base-miku-a15/boot.img",
+    "kernel_sha256": "9aae8717994722a6b71bb2e3b481714ebc1a70e9663dd3b871fad82cfcd826f9",
+    "config_sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+    "bytes": 169235,
+    "marker_offset": 22566052,
+    "config": "research/base-miku-a15/kernel.config",
+    "actual_build_configuration": false,
+    "provenance_warning": "kernel/Makefile embeds arch/arm64/configs/vendor/sdm660-perf-full_defconfig, not the generated build .config",
+    "matches_hardcoded_defconfig": true,
+    "erofs_binary_evidence": [
+      "erofs_fill_super",
+      "erofs_load_compr_cfgs",
+      "erofs_superblock_csum_verify"
+    ]
+  },
+  "historical_config_is_actual_build_config": false,
+  "kernel_66_release_recorded": "6.6.9-sdm660+",
+  "kernel_66_modules_built_recorded": false,
+  "kernel_66_local_generated_config_available": false,
+  "kernel_66_local_symvers_available": false,
+  "inventories": {
+    "research/base-miku-a15": {
+      "scope": "local extracted material only, not full actual-device vendor",
+      "module_files": [],
+      "dependency_files": []
+    },
+    "research/gpu-allocator-stage/lineage-wayne/selected-vendor": {
+      "scope": "local extracted material only, not full actual-device vendor",
+      "module_files": [],
+      "dependency_files": []
+    }
+  },
+  "historical_load_requests": [
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 16,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules rmnet_ctl",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 17,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules rmnet_core",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 18,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki rmnet_ctl",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 19,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki rmnet_core",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 48,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules rmnet_shs",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 49,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki rmnet_shs",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 52,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules rmnet_shs",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 53,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules/5.4-gki rmnet_shs",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 56,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -d /vendor/lib/modules rmnet_perf rmnet_perf_ingress_deag=N",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 57,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -d /vendor/lib/modules/5.4-gki rmnet_perf rmnet_perf_ingress_deag=N",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 60,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -d /vendor/lib/modules rmnet_perf rmnet_perf_opt_mode=\"udp\"",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 61,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -d /vendor/lib/modules/5.4-gki rmnet_perf rmnet_perf_opt_mode=\"udp\"",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 64,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules rmnet_perf",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 65,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki rmnet_perf",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 68,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules rmnet_perf",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 69,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules/5.4-gki rmnet_perf",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 72,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules rmnet_offload",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 73,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -a -d /vendor/lib/modules/5.4-gki rmnet_offload",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 76,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules rmnet_offload",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/netmgrd.rc",
+      "line": 77,
+      "text": "exec u:r:vendor_modprobe:s0 -- /vendor/bin/modprobe -r -d /vendor/lib/modules/5.4-gki rmnet_offload",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/hw/init.target.rc",
+      "line": 151,
+      "text": "insmod /vendor/lib/modules/wlan.ko",
+      "runtime_execution_verified": false
+    },
+    {
+      "path": "research/base-miku-a15/vendor/etc/init/hw/init.qcom.rc",
+      "line": 529,
+      "text": "insmod /system/lib/modules/pronto/pronto_wlan.ko con_mode=5",
+      "runtime_execution_verified": false
+    }
+  ],
+  "actual_user_vendor_available": false,
+  "vendor_dlkm_actual_presence": "unknown; no actual mount/partition inventory",
+  "gki_kmi_qualified": false,
+  "module_abi_verified": false,
+  "hardware_tested": false,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    }
+  ],
+  "next": "Collect actual-device UTS/config/modules/dep/symbols/signature and loader logs; keep DTB block and boot-contract gap unresolved",
+  "quota": "Realtime unavailable; user snapshot 89%/85%; no precise control claim"
+}

@@ -1,0 +1,16 @@
+{
+  "label": "vendor-module-audit",
+  "started_utc": "2026-10-11T15:42:53.382713+00:00",
+  "finished_utc": "2026-10-11T15:42:54.401860+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_vendor_module_contract_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T154253382713Z-vendor-module-audit.log",
+  "output_sha256": "fafd80b64dc0b90f55b2cf5f3cc96ad24c3c2ef9854b00092808b6edfb2761b7",
+  "action": "检查5b20e27工作区和断点；只读核对历史配置声明、模块文件、加载路径、6.6产物及构建入口，保存ABI证据矩阵。",
+  "outcome": "三项既有门禁测试通过；两个真实preflight仍退出2，五项旧材料哈希未变。6.6未构建模块，无实际用户模块/vermagic/CRC/签名证据；历史配置不是实际生成配置，历史GKI路径不能作为目标基线。",
+  "next_step": "采集实际国行wayne UTS/config、模块与依赖、符号和签名/加载日志；本轮保存同步暂停，不复制模块。"
+}
