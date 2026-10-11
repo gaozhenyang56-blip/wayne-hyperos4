@@ -7,6 +7,7 @@ import subprocess
 import sys
 import json
 from ci_build_candidate import sync_progress,run
+from ci_kernel_66_probe import require_board_preflight
 
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 KERNEL_REPORT=ROOT/'artifacts/kernel-6.6-allocator-probe.json'
@@ -14,6 +15,7 @@ REPORT=ROOT/'research/allocator-implementation/cross-build.json'
 
 
 def main():
+    require_board_preflight()
     os.chdir(ROOT)
     steps=[('prepare',['sudo','apt-get','update'],'更新独立 allocator 构建环境。'),
       ('dependencies',['sudo','apt-get','install','-y','gcc-aarch64-linux-gnu','gcc-arm-linux-gnueabihf',
@@ -48,5 +50,6 @@ if __name__=='__main__':
     if sys.argv[1:]==['--kernel']:
         from ci_kernel_66_probe import build
         build(KERNEL_REPORT)
+    elif sys.argv[1:]==['--preflight']:require_board_preflight()
     elif not sys.argv[1:]:main()
     else:raise SystemExit('Unknown argument')

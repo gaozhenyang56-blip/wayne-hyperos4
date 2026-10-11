@@ -23,7 +23,15 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def require_board_preflight():
+    """Reject incomplete board evidence before dependencies, network or builds."""
+    result = subprocess.run([sys.executable, str(ROOT / "tools/audit_6_6_firstboot.py")], cwd=ROOT)
+    if result.returncode:
+        raise SystemExit(result.returncode)
+
+
 def build(report_path=None):
+    require_board_preflight()
     report_path = report_path or REPORT
     lock = json.loads((ROOT / 'config/kernel-6.6-experiment.json').read_text())
     SOURCE.mkdir(parents=True, exist_ok=True)
@@ -89,6 +97,7 @@ def build(report_path=None):
 
 
 def main():
+    require_board_preflight()
     os.chdir(ROOT)
     from ci_build_candidate import sync_progress
     steps = [('prepare', ['sudo', 'apt-get', 'update'], '更新临时云端编译环境。'),
@@ -121,7 +130,9 @@ def main():
 if __name__ == '__main__':
     if sys.argv[1:] == ['--build']:
         build()
+    elif sys.argv[1:] == ['--preflight']:
+        require_board_preflight()
     elif sys.argv[1:]:
-        raise SystemExit('Only --build is supported')
+        raise SystemExit('Only --build or --preflight is supported')
     else:
         main()
