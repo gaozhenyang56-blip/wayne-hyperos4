@@ -1,0 +1,16 @@
+{
+  "label": "radio-contract-tests",
+  "started_utc": "2026-10-11T04:57:12.919163+00:00",
+  "finished_utc": "2026-10-11T04:57:13.288660+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_radio_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T045712919163Z-radio-contract-tests.log",
+  "output_sha256": "0f143e6226ff4ddf530f7d4a0f66c2967f5cfba5665bb14ebb6d19eff980571c",
+  "action": "新增Radio材料及真实国行vendor来源门禁，校验样本哈希，运行两个正反例和实际拒绝检查。",
+  "outcome": "两项测试通过，实际样本按预期退出2；参考vendor不能作为当前国行来源，缺modem交付/分区或接口绑定不能放行。五项既有证据不变，无运行验证。",
+  "next_step": "保存来源和只读采集命令、断点，同步后立即暂停。"
+}

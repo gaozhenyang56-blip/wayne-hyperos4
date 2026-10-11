@@ -1,0 +1,25 @@
+test_complete_fixture_opens_material_gate_only (test_radio_contract.RadioEvidenceTests.test_complete_fixture_opens_material_gate_only) ... ok
+test_reference_vendor_or_missing_material_cannot_pass (test_radio_contract.RadioEvidenceTests.test_reference_vendor_or_missing_material_cannot_pass) ... ok
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.000s
+
+OK
+{
+  "missing_evidence": [
+    "radio_hal_or_ril_binary",
+    "ril_configuration",
+    "current_china_wayne_vendor_provenance",
+    "modem_delivery_and_actual_partition_inventory",
+    "actual_rmnet_ipa_qrtr_remoteproc_or_other_binding"
+  ],
+  "evidence_gate_rejected": true,
+  "contract_verified": false,
+  "hardware_tested": false,
+  "calls_verified": false,
+  "sms_verified": false,
+  "data_verified": false,
+  "volte_verified": false,
+  "scope": "Candidate filenames and explicit evidence claims only; no HAL version, modem ABI or runtime validation"
+}
+2 tests passed; sample refusal 2; 5 prior evidence files preserved
