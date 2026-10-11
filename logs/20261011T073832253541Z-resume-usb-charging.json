@@ -1,0 +1,17 @@
+{
+  "label": "resume-usb-charging",
+  "started_utc": "2026-10-11T07:38:32.253541+00:00",
+  "finished_utc": "2026-10-11T07:38:32.307142+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "git",
+    "status",
+    "--short"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T073832253541Z-resume-usb-charging.log",
+  "output_sha256": "84177ea22392805d305855ca29184793d8509ef70825a873caa3101fa57cbf2c",
+  "action": "检查b936d04后的工作区、diff、最近结果及USB/充电参考材料。",
+  "outcome": "无开发差异，仅原有空MD；参考init导入两份未提取USB配置，存在charger服务但无健康HAL/充电配置和实际绑定证据。",
+  "next_step": "补齐USB导入材料闭包拒绝检查，运行正反例，记录充电及真实节点剩余证据。"
+}
