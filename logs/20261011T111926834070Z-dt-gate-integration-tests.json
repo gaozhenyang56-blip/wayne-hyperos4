@@ -1,0 +1,16 @@
+{
+  "label": "dt-gate-integration-tests",
+  "started_utc": "2026-10-11T11:19:26.834070+00:00",
+  "finished_utc": "2026-10-11T11:19:27.313171+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/verify_6_6_gate_integration.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T111926834070Z-dt-gate-integration-tests.log",
+  "output_sha256": "ff834906c2cbc17b070520e0b5883714065457e1efee67bfd8522221c2bb7ce0",
+  "action": "接入两个6.6主入口及共用build，增加仅门禁模式，运行三项集成检查、两项既有门禁正反例和两个真实preflight拒绝检查。",
+  "outcome": "五项测试通过，两个真实preflight均返回2；拒绝发生在chdir、依赖安装、fetch和编译前，五项旧材料不变。未启动workflow或长编译。",
+  "next_step": "保存集成点、缺证据矩阵和命令，同步后立即暂停。"
+}
