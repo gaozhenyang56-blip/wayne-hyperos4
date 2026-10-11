@@ -1,0 +1,3 @@
+[ro.product.device]: [wayne]
+[ro.product.model]: [MI 6X]
+[ro.product.vendor.device]: [wayne]

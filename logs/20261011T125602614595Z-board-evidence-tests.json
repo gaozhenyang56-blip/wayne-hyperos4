@@ -1,0 +1,16 @@
+{
+  "label": "board-evidence-tests",
+  "started_utc": "2026-10-11T12:56:02.614595+00:00",
+  "finished_utc": "2026-10-11T12:56:03.055341+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "tools/test_wayne_board_evidence.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T125602614595Z-board-evidence-tests.log",
+  "output_sha256": "82e6aa80926086b192e1c363d80225ddd8ee1f1e21f5575a3d491df9fd1b6bfd",
+  "action": "检查38f41da工作区、diff和上一断点；新增本地getprop/DTB证据清单校验及明确标注的合成fixture，不接入构建放行。",
+  "outcome": "正例与七类拒绝检查通过；两个真实preflight仍退出2，五项既有材料哈希未变。缺fdtget和真实国行板级证据；compatible负例仅为解析器mock，不是真实DTB验证。",
+  "next_step": "采集真实设备getprop/live DTB及来源时间命令哈希；只读核对板级绑定后再考虑门禁接入，本轮保存同步即暂停。"
+}

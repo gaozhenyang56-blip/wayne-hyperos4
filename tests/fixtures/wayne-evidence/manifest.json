@@ -1,0 +1,18 @@
+{
+  "role": "synthetic_fixture",
+  "source": {
+    "description": "Synthetic parser fixture, NOT captured from hardware",
+    "collection_command": "fixture generation; actual collection: adb shell getprop",
+    "collected_at": "2026-10-11T12:54:00+00:00",
+    "device": "wayne",
+    "region": "China",
+    "partition_layout": "stock_static"
+  },
+  "files": [
+    {
+      "kind": "getprop",
+      "path": "getprop.txt",
+      "sha256": "17de3c21ada863fc88b2466a18139e350637f83112dfc1aa15f428550942b8a2"
+    }
+  ]
+}
