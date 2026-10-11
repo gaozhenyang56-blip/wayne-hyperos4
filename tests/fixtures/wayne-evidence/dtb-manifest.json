@@ -1,0 +1,18 @@
+{
+  "role": "synthetic_fixture",
+  "source": {
+    "description": "Synthetic binary format fixture; no hardware capture or board bindings",
+    "collection_command": "Generated with tools/test_dtb_identity.py make_dtb; not an actual collection",
+    "collected_at": "2026-10-11T12:54:00+00:00",
+    "device": "wayne",
+    "region": "China",
+    "partition_layout": "stock_static"
+  },
+  "files": [
+    {
+      "kind": "dtb",
+      "path": "identity-positive.dtb",
+      "sha256": "3dc8f1d6dcaa015735f75f07becdd730253f4e6d3be7e8c2a4f4e45b6c49e57e"
+    }
+  ]
+}

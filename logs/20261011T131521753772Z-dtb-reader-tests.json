@@ -1,0 +1,22 @@
+{
+  "label": "dtb-reader-tests",
+  "started_utc": "2026-10-11T13:15:21.753772+00:00",
+  "finished_utc": "2026-10-11T13:15:21.959553+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools",
+    "-p",
+    "test_*identity.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261011T131521753772Z-dtb-reader-tests.log",
+  "output_sha256": "120fcf1e1b1ef6883b716f1b33b4fbea79c7089f1d1ff950e98c9608d82abb42",
+  "action": "检查580cfc9断点与工作区；补只读受限v17 DTB回退和真实二进制合成fixture，移除旧身份解析结果mock负例。",
+  "outcome": "四项DTB测试和两项入口回归通过；包括每个截断长度、畸形头/token/NUL/重复属性、jasmine与model冲突拒绝。工具存在但失败不回退；未取得实物板级证据。",
+  "next_step": "保存两个真实preflight拒绝结果与五项保留哈希；记录工具路径尚无实工具验证，再同步暂停。"
+}

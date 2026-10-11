@@ -8,6 +8,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+from read_dtb_identity import MAX_SIZE, read_identity
 
 
 def validate(manifest):
@@ -31,7 +32,15 @@ def validate(manifest):
         path = (manifest.parent / item['path']).resolve()
         if not path.is_relative_to(manifest.parent) or not path.is_file():
             raise ValueError('missing file or path escapes evidence directory')
-        blob = path.read_bytes()
+        if item["kind"] == "dtb" and path.stat().st_size > MAX_SIZE:
+            raise ValueError("DTB exceeds bounded size")
+        if item["kind"] == "dtb":
+            with path.open("rb") as stream:
+                blob = stream.read(MAX_SIZE + 1)
+            if len(blob) > MAX_SIZE:
+                raise ValueError("DTB exceeds bounded size")
+        else:
+            blob = path.read_bytes()
         digest = hashlib.sha256(blob).hexdigest()
         if not blob or item.get('sha256') != digest:
             raise ValueError('empty file or hash mismatch')
@@ -54,12 +63,14 @@ def validate(manifest):
                     raise ValueError('inconsistent product device identities')
         elif item['kind'] == 'dtb':
             tool = shutil.which('fdtget')
-            if not tool:
-                raise ValueError('required tool unavailable: fdtget')
-            def prop(name):
-                result = subprocess.run([tool, '-t', 's', str(path), '/', name], capture_output=True, text=True, check=True)
-                return result.stdout.strip()
-            fields = {'model': prop('model'), 'compatible': prop('compatible').split()}
+            if tool:
+                def prop(name):
+                    result = subprocess.run([tool, '-t', 's', str(path), '/', name], capture_output=True, text=True, check=True, timeout=5)
+                    return result.stdout.strip()
+                fields = {'model': prop('model'), 'compatible': prop('compatible').split(), 'identity_reader': 'fdtget'}
+            else:
+                fields = read_identity(blob)
+                fields['identity_reader'] = 'bounded_python_v17'
             model = fields['model']
             if 'xiaomi,wayne' not in fields['compatible'] or 'qcom,sdm660' not in fields['compatible'] or any('jasmine' in c.lower() for c in fields['compatible']):
                 raise ValueError('compatible mismatch/foreign identity')
