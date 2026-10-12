@@ -1,0 +1,18 @@
+{
+  "label": "shallow-fingerprint-tests",
+  "started_utc": "2026-10-12T09:50:04.809519+00:00",
+  "finished_utc": "2026-10-12T09:50:41.100110+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from shallow_patch_fingerprints import generate,validate; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_patch_fingerprints\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); previous=json.loads(Path(\"research/shallow-review-stage/checkpoint.json\").read_text()); inv=Path(\"research/shallow-inventory-stage/inventory.json\").read_bytes(); queue=Path(\"research/shallow-review-stage/queue.json\").read_bytes(); args=(inv,queue,previous[\"inventory_sha256\"],previous[\"queue_sha256\"],Path(\"downloads/history-probe-73e35d6/fork\")); raw=generate(*args); assert validate(raw,*args)==raw; root=Path(\"research/shallow-fingerprint-stage\"); (root/\"fingerprints.json\").write_bytes(raw); data=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"4186999\",\"tests_passed\":r.testsRun,\"success_count\":data[\"success_count\"],\"null_reason_counts\":data[\"null_reason_counts\"],\"fingerprints_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Missing local blob content cannot be replaced with tree/subject guesses; no upstream matching or carry decisions yet\",\"quota\":\"Realtime unavailable; user snapshot 73%/51%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/shallow-review-stage/queue.json\\\",\\\"tools/shallow_review_queue.py\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"4186999:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T095004809519Z-shallow-fingerprint-tests.log",
+  "output_sha256": "258242b59d067bd006e5fe6aa3e61d83c131c62c8c5b62a406ac78569e31b5e0",
+  "action": "检查4186999工作区和清单/队列；新增本地单父补丁指纹，禁自动补取。修正首次测试发现unified参数令numstat混入补丁的问题，固定分离统计参数后复测。",
+  "outcome": "四项合成指纹测试与三项门禁测试通过；实际缺blob则objects_unavailable、浅边界不生成差分指纹，不下载补齐；输入哈希/规范参数/未审状态保存。",
+  "failure_note": "复测或对象审计失败，保存日志，不给伪指纹。",
+  "next_step": "保存指纹成功/缺失原因统计与断点，同步后暂停，不联网/更新。"
+}
