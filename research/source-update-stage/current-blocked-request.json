@@ -1,0 +1,10 @@
+{
+  "schema_version": "wayne.source-update-request.v1",
+  "current_url": "https://github.com/sdm660-mainline/linux.git",
+  "candidate_url": "https://github.com/sdm660-mainline/linux.git",
+  "current_commit": "6a4e475000ecc7e864911959a1984a0664088464",
+  "candidate_commit": null,
+  "upstream_base_commit": null,
+  "patch_policy": "unverified",
+  "evidence_sha256": {}
+}

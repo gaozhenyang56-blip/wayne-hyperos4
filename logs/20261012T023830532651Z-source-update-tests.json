@@ -1,0 +1,18 @@
+{
+  "label": "source-update-tests",
+  "started_utc": "2026-10-12T02:38:30.532651+00:00",
+  "finished_utc": "2026-10-12T02:38:32.181568+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from check_source_update import assess; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_source_update\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); lock=json.loads(Path(\"config/kernel-6.6-experiment.json\").read_text()); raw=Path(\"research/source-update-stage/current-blocked-request.json\").read_bytes(); Path(\"research/source-update-stage/blocked-report.json\").write_bytes(assess(raw,Path(\"sources/kernel-6.6-probe\"),lock)); old=json.loads(Path(\"research/dtb-provenance-stage/checkpoint.json\").read_text()); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"09dbede\",\"tests_passed\":r.testsRun,\"preflight\":{},\"preservation\":[],\"source_updated\":False,\"hardware_tested\":False,\"next\":\"Obtain exact candidate metadata/full relationship evidence and reviewed patch membership/carry policy; no eligible route yet\",\"quota\":\"Realtime unavailable; user snapshot 81%/64%; no precise control claim\"}; exec(\"for e in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"config/kernel-6.6-experiment.json\\\",\\\"sources.lock.json\\\",\\\"tools/bind_dtb_provenance.py\\\",\\\"tools/export_dtb_consumers.py\\\",\\\"docs/dtb-provenance-binding.md\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"09dbede:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); b=Path(\"research/higher-kernel/6.6/Makefile\").read_bytes(); expected=next(e[\"sha256\"] for e in lock[\"files\"] if e[\"path\"]==\"Makefile\"); assert hashlib.sha256(b).hexdigest()==expected; out[\"saved_makefile\"]={\"version\":\"6.6.9\",\"sha256\":expected,\"command\":[\"sha256sum\",\"research/higher-kernel/6.6/Makefile\"]}; Path(\"research/source-update-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T023830532651Z-source-update-tests.log",
+  "output_sha256": "f42d12cb116b242a3cd47aa09a421651fa22de5688bf0c3ea47befcd35f208e4",
+  "action": "检查09dbede工作区、6.6源码锁、sources.lock及版本证据；新增严格JSON离线更新关系检查器，首次资格层始终blocked，不修改源码或provenance。",
+  "outcome": "四项合成Git历史测试与三项既有构建门禁测试通过；缺完整fork历史、固定候选与已审补丁策略，真实报告保持blocked，两个构建preflight仍退出2。",
+  "failure_note": "检查失败，保留日志，不宣称通过。",
+  "next_step": "保存当前版本/来源哈希、实际拒绝报告、保留检查和下一断点，同步后暂停；以后先取得小规模精确候选元数据，不直接更新源码。"
+}
