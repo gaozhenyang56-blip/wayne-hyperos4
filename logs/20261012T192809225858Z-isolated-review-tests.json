@@ -1,0 +1,18 @@
+{
+  "label": "isolated-review-tests",
+  "started_utc": "2026-10-12T19:28:09.225858+00:00",
+  "finished_utc": "2026-10-12T19:28:10.837934+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from isolated_blob_review import audit,validate; from export_dtb_consumers import _write_payload; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_isolated_blob_review\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); raw=audit(); assert validate(raw,audit())==raw; root=Path(\"research/isolated-blob-review-stage\"); _write_payload(raw,root/\"review.json\"); d=json.loads(raw); previous=json.loads(Path(\"research/next-three-blob-stage/checkpoint.json\").read_text()); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"50bb7d7\",\"tests_passed\":r.testsRun,\"verified_objects\":len(d[\"objects\"]),\"verified_payload_bytes\":d[\"verified_payload_bytes\"],\"unresolved_objects\":len(d[\"objects\"]),\"review_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Read-only object audit candidates only; exact path/commit/candidate binding unresolved. Stop, no network or scope expansion\",\"quota\":\"Realtime unavailable; user snapshot 97%/29%; especially weekly budget preserve about20%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/next-three-blob-stage/batch.json\\\",\\\"tools/next_three_blob_probe.py\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"50bb7d7:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T192809225858Z-isolated-review-tests.log",
+  "output_sha256": "ff26386d9c417a186eb079fe61ca543e76e03faa693ff811b3726d0cb49c4a60",
+  "action": "检查50bb7d7现状；复用单对象/增量链校验，离线重核8对象及全局顺序和隔离边界，检查主Git/fork库无这8对象；未解路径/提交/候选历史全部unresolved。",
+  "outcome": "三项纯离线synthetic审阅测试与三项门禁通过；8个blob链/OID/type/size/SHA及隔离边界重核，未联网，两个入口仍退出2。",
+  "failure_note": "证据漂移或污染/测试失败，保存日志，不给审阅通过结论。",
+  "next_step": "保存极小审阅清单/未证关系/保留结果与断点，同步后立即暂停，不扩更多获取或迁移。"
+}
