@@ -23,11 +23,15 @@ def plan(manifest,msha,previous,psha,synthetic=False):
 
 def run(manifest,msha,previous,psha,root,synthetic=False,url=None,timeout=60):
     oids,initial=plan(manifest,msha,previous,psha,synthetic)
+    return _run_selected(msha,psha,oids,initial,root,CAP,True,'wayne.four-blob-batch.v1',synthetic,url,timeout)
+
+
+def _run_selected(msha,psha,oids,initial,root,cap,include_initial,schema,synthetic=False,url=None,timeout=60):
     if not synthetic and (url not in (None,URL) or timeout!=60):raise ValueError('remote/timeout drift')
     root=Path(root);root.mkdir(parents=True,exist_ok=False)
     items=[];total=initial;batch=0;requests=0;stop=None
     for pos,oid in enumerate(oids):
-        if stop is None and total>=CAP:stop='payload_limit'
+        if stop is None and (total if include_initial else batch)>=cap:stop='payload_limit'
         if stop:
             items.append({'position':pos,'oid':oid,'request_count':0,'result':'not_attempted','object':None,'probe':None});continue
         repo=root/str(pos)
@@ -36,23 +40,27 @@ def run(manifest,msha,previous,psha,root,synthetic=False,url=None,timeout=60):
         items.append({'position':pos,'oid':oid,'request_count':1,'result':child['result'],'object':child['object'],'probe':child})
         if child['result']!='success':stop='object_failure'
         else:batch+=child['object']['bytes'];total+=child['object']['bytes']
-    return canonical({'schema_version':'wayne.four-blob-batch.v1','evidence_scope':'synthetic' if synthetic else 'actual_remote_probe','manifest_sha256':msha,'single_probe_sha256':psha,'source_url':'synthetic-local-git-service' if synthetic else URL,'selected_oids':oids,'initial_verified_payload_bytes':initial,'payload_limit_bytes':CAP,'batch_verified_payload_bytes':batch,'cumulative_verified_payload_bytes':total,'request_count':requests,'stop_reason':stop or 'completed','items':items,'history_complete':False,'upstream_membership_verified':False,'carry_strategy_reviewed':False,'eligible':False,'hardware_tested':False})
+    return canonical({'schema_version':schema,'evidence_scope':'synthetic' if synthetic else 'actual_remote_probe','manifest_sha256':msha,'single_probe_sha256':psha,'source_url':'synthetic-local-git-service' if synthetic else URL,'selected_oids':oids,'initial_verified_payload_bytes':initial,'payload_limit_bytes':cap,'batch_verified_payload_bytes':batch,'cumulative_verified_payload_bytes':total,'request_count':requests,'stop_reason':stop or 'completed','items':items,'history_complete':False,'upstream_membership_verified':False,'carry_strategy_reviewed':False,'eligible':False,'hardware_tested':False})
 
 
 def validate(raw,manifest,msha,previous,psha,root,synthetic=False):
+    oids,initial=plan(manifest,msha,previous,psha,synthetic)
+    return _validate_selected(raw,msha,psha,root,oids,initial,CAP,True,'wayne.four-blob-batch.v1',synthetic)
+
+
+def _validate_selected(raw,msha,psha,root,oids,initial,cap,include_initial,schema,synthetic=False):
     if len(raw)>262144:raise ValueError('batch evidence size limit')
     d=json.loads(raw.decode(),object_pairs_hook=pairs,parse_constant=reject_constant)
     keys={'schema_version','evidence_scope','manifest_sha256','single_probe_sha256','source_url','selected_oids','initial_verified_payload_bytes','payload_limit_bytes','batch_verified_payload_bytes','cumulative_verified_payload_bytes','request_count','stop_reason','items','history_complete','upstream_membership_verified','carry_strategy_reviewed','eligible','hardware_tested'}
-    oids,initial=plan(manifest,msha,previous,psha,synthetic)
-    if type(d) is not dict or set(d)!=keys or d['schema_version']!='wayne.four-blob-batch.v1':raise ValueError('unknown fields/schema')
+    if type(d) is not dict or set(d)!=keys or d['schema_version']!=schema:raise ValueError('unknown fields/schema')
     if d['manifest_sha256']!=msha or d['single_probe_sha256']!=psha or d['selected_oids']!=oids or d['source_url']!=('synthetic-local-git-service' if synthetic else URL) or d['evidence_scope']!=('synthetic' if synthetic else 'actual_remote_probe'):raise ValueError('binding/selection/source/scope drift')
-    if d['payload_limit_bytes']!=CAP or d['initial_verified_payload_bytes']!=initial or len(d['items'])!=4 or any(d[k] is not False for k in ('history_complete','upstream_membership_verified','carry_strategy_reviewed','eligible','hardware_tested')):raise ValueError('limit/claims drift')
+    if d['payload_limit_bytes']!=cap or d['initial_verified_payload_bytes']!=initial or len(d['items'])!=len(oids) or any(d[k] is not False for k in ('history_complete','upstream_membership_verified','carry_strategy_reviewed','eligible','hardware_tested')):raise ValueError('limit/claims drift')
     for field in ('initial_verified_payload_bytes','payload_limit_bytes','batch_verified_payload_bytes','cumulative_verified_payload_bytes','request_count'):
         if type(d[field]) is not int or d[field]<0:raise ValueError('nonnegative integer counter required')
     total=initial;batch=requests=0;stop=None
     for pos,(item,oid) in enumerate(zip(d['items'],oids)):
         if type(item) is not dict or set(item)!={'position','oid','request_count','result','object','probe'} or type(item['position']) is not int or item['position']!=pos or item['oid']!=oid:raise ValueError('duplicate/OID/order/item fields drift')
-        if stop is None and total>=CAP:stop='payload_limit'
+        if stop is None and (total if include_initial else batch)>=cap:stop='payload_limit'
         if stop:
             if type(item['request_count']) is not int or item['request_count']!=0 or item['result']!='not_attempted' or item['object'] is not None or item['probe'] is not None:raise ValueError('request/metadata after stop')
             continue
