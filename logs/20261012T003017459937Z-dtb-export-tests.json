@@ -1,0 +1,18 @@
+{
+  "label": "dtb-export-tests",
+  "started_utc": "2026-10-12T00:30:17.459937+00:00",
+  "finished_utc": "2026-10-12T00:30:20.382543+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); names=(\"test_dtb_export\",\"test_dtb_consumer_evidence\",\"test_dtb_reserved_memory\",\"test_dtb_memory_region\",\"test_dtb_phandle\",\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\"); r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in names)); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"d50c23a\",\"new_tests_passed\":5,\"existing_regressions_passed\":37,\"tests_passed\":r.testsRun,\"schema_version\":\"wayne.consumer-evidence.v1\",\"physical_source_authenticated\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Collect and authenticate actual-device provenance separately; keep canonical identity-bound export out of build authorization\",\"quota\":\"Realtime unavailable; user snapshot 50%/68%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-consumer-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-export-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T003017459937Z-dtb-export-tests.log",
+  "output_sha256": "eac990d43e117a1cfad10d6393a39552dd1741f00bcd8ae7e99f5180e00bc3a5",
+  "action": "检查d50c23a断点与工作区；新增同一不可变DTB快照上wayne根身份先验的版本化规范JSON，原子不覆盖文件输出，所有非确定时间信息仅在运行记录。",
+  "outcome": "五项新导出测试与三十七项既有回归通过；stdout/文件同字节、身份/解析失败不写、已有不匹配文件拒绝、临时写/重命名失败清理；两个真实preflight仍返回2，五项保留哈希未变。",
+  "failure_note": "测试失败，保存日志，不宣称通过。",
+  "next_step": "保存确定性导出与证据边界、测试和断点并同步暂停；真实来源认证仍缺，不分类硬件、不接构建放行。"
+}
