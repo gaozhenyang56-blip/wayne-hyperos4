@@ -1,0 +1,133 @@
+test_output_conflict_failure_cleanup (test_missing_object_manifest.AcquisitionTests.test_output_conflict_failure_cleanup) ... ok
+test_present_contradiction_and_hash_drift (test_missing_object_manifest.AcquisitionTests.test_present_contradiction_and_hash_drift) ... ok
+test_stable_boundary_and_known_missing (test_missing_object_manifest.AcquisitionTests.test_stable_boundary_and_known_missing) ... ok
+test_unknown_duplicates_reasons_and_sort (test_missing_object_manifest.AcquisitionTests.test_unknown_duplicates_reasons_and_sort) ... ok
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 3.296s
+
+OK
+{
+  "created_utc": "2026-10-12T10:46:27.773877+00:00",
+  "baseline": "f76306d",
+  "tests_passed": 7,
+  "reason_counts": {
+    "missing_local_object": 63,
+    "shallow_boundary": 1
+  },
+  "distinct_missing_blob_oids": 162,
+  "manifest_sha256": "009b810703be74bb37a1f12ce29f489898c0463c2ff7f05a5ced3eeef8094379",
+  "eligible": false,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    },
+    {
+      "path": "config/kernel-6.6-experiment.json",
+      "sha256": "7ae398df339d02af9a96154fe0cc11c4e84a3db58820853487a1f7f28e9f1948",
+      "unchanged": true
+    },
+    {
+      "path": "sources.lock.json",
+      "sha256": "47242fdc5b8e7b5cfd74e0ca70ca264f70e21f498c2814e0fe865567ba2163b9",
+      "unchanged": true
+    },
+    {
+      "path": "tools/bind_dtb_provenance.py",
+      "sha256": "9fcbc6996be469f30d55feec8e86877f99e3a471447e063a02170ed488786e1a",
+      "unchanged": true
+    },
+    {
+      "path": "tools/export_dtb_consumers.py",
+      "sha256": "cb0174f2a92def13342ba19e676740b9edefdff0df67f94068a18e41b0ebcdc0",
+      "unchanged": true
+    },
+    {
+      "path": "docs/dtb-provenance-binding.md",
+      "sha256": "f6d7e891e3e19ee948620fb4dd1a6671d62a65bd680e11d82f12d5f1d8e7a34e",
+      "unchanged": true
+    },
+    {
+      "path": "tools/check_source_update.py",
+      "sha256": "92aa8a73bb242fc13314ad0a4d483312d14c111dddd7ea21b51b5a39106755bf",
+      "unchanged": true
+    },
+    {
+      "path": "research/source-update-stage/blocked-report.json",
+      "sha256": "c9404c7a3ce67823ae02a2b8daa67d7477c132ebe72127d8052911ecf3420272",
+      "unchanged": true
+    },
+    {
+      "path": "research/candidate-metadata-stage/candidate-lock.json",
+      "sha256": "5ac58f0b9b02bedab9524d767bca9091b0d5d0943a969c638d4f1a81e37cbf5d",
+      "unchanged": true
+    },
+    {
+      "path": "tools/bind_dtb_provenance.py",
+      "sha256": "9fcbc6996be469f30d55feec8e86877f99e3a471447e063a02170ed488786e1a",
+      "unchanged": true
+    },
+    {
+      "path": "research/shallow-inventory-stage/inventory.json",
+      "sha256": "4be982d379dc87a1b87cf64a15a49dbc2bed7c989789fe6891f87f0ca2042ff7",
+      "unchanged": true
+    },
+    {
+      "path": "tools/shallow_patch_inventory.py",
+      "sha256": "39c96d571f27d1ddf602abc77ddb15f9fb0bb77f23b8f8c6e7e73161ea333f97",
+      "unchanged": true
+    },
+    {
+      "path": "research/shallow-review-stage/queue.json",
+      "sha256": "46f44ee5d307fd7bfbc85d9678dbb325481fe44b07737a82cd708101c7d6b456",
+      "unchanged": true
+    },
+    {
+      "path": "tools/shallow_review_queue.py",
+      "sha256": "0933b2a11a4e944ada2d330d94924ddaee7f306ddce1b16588f7792119f9342e",
+      "unchanged": true
+    },
+    {
+      "path": "research/shallow-fingerprint-stage/fingerprints.json",
+      "sha256": "998ed441f5b61507cd58a2f6f4029ac2a5871da0cc9eef057a04071cc0390b6e",
+      "unchanged": true
+    },
+    {
+      "path": "tools/shallow_patch_fingerprints.py",
+      "sha256": "ead410ec0724c0fc80efaeae5def9c7ea25a4edd01a6dfabeaa403fec0aa853e",
+      "unchanged": true
+    }
+  ],
+  "hardware_tested": false,
+  "next": "Manifest authorizes no network action; independently review exact-blob bounded acquisition source and shallow completeness route",
+  "quota": "Realtime unavailable; user snapshot 54%/48%; no precise control claim"
+}

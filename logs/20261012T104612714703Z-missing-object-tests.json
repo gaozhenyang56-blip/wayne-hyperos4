@@ -1,0 +1,18 @@
+{
+  "label": "missing-object-tests",
+  "started_utc": "2026-10-12T10:46:12.714703+00:00",
+  "finished_utc": "2026-10-12T10:46:29.589958+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from missing_object_manifest import build,validate,canonical; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_missing_object_manifest\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); previous=json.loads(Path(\"research/shallow-fingerprint-stage/checkpoint.json\").read_text()); qcheck=json.loads(Path(\"research/shallow-review-stage/checkpoint.json\").read_text()); hashes={\"inventory\":qcheck[\"inventory_sha256\"],\"review_queue\":qcheck[\"queue_sha256\"],\"fingerprints\":previous[\"fingerprints_sha256\"]}; args=(Path(\"downloads/history-probe-73e35d6/fork\"),Path(\"research/shallow-inventory-stage/inventory.json\").read_bytes(),Path(\"research/shallow-review-stage/queue.json\").read_bytes(),Path(\"research/shallow-fingerprint-stage/fingerprints.json\").read_bytes(),hashes); raw=build(*args); assert validate(raw,*args)==raw; root=Path(\"research/missing-object-stage\"); (root/\"manifest.json\").write_bytes(raw); (root/\"input-hashes.json\").write_bytes(canonical(hashes)); data=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"f76306d\",\"tests_passed\":r.testsRun,\"reason_counts\":data[\"reason_counts\"],\"distinct_missing_blob_oids\":len({v[\"oid\"] for i in data[\"items\"] for v in i[\"missing_objects\"] or []}),\"manifest_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Manifest authorizes no network action; independently review exact-blob bounded acquisition source and shallow completeness route\",\"quota\":\"Realtime unavailable; user snapshot 54%/48%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/shallow-fingerprint-stage/fingerprints.json\\\",\\\"tools/shallow_patch_fingerprints.py\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"f76306d:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T104612714703Z-missing-object-tests.log",
+  "output_sha256": "673b1f805b16f7df18471655257154911f62a6d56b0f90540d2b4074e2c0d956",
+  "action": "检查f76306d现状；新增离线缺对象manifest，绑定三份规范输入，在已有树中识别差分blob并批量本地检查缺失。修正合成fixture首次未删掉第二差分实际所需blob的问题。",
+  "outcome": "四项合成测试与三项构建门禁通过；实际63条内容对象缺失需求与1条浅边界隔离，未知来源/深度为null，未执行获取，两个入口仍退出2。",
+  "failure_note": "验证或材料不足，保存日志，不生成伪获取证据。",
+  "next_step": "保存精确缺失对象、计数、保留哈希与断点，同步暂停；后续获取须独立审阅/授权，不据清单放行。"
+}
