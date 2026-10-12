@@ -54,6 +54,11 @@ def _publish_no_replace(temp, output):
 
 def export(blob, output=None):
     payload = canonical_bytes(blob) # no filesystem write or stdout before complete validation
+    return _write_payload(payload, output)
+
+
+def _write_payload(payload, output=None):
+    """Publish already validated canonical bytes without replacing other evidence."""
     if output is None: return payload
     output = Path(output)
     if output.is_symlink(): raise ValueError('symlink output refused')

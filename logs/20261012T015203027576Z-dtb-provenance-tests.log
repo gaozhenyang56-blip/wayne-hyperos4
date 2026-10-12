@@ -1,0 +1,95 @@
+test_full_and_claim_only_deterministic (test_dtb_provenance.ProvenanceTests.test_full_and_claim_only_deterministic) ... ok
+test_hashes_ranges_and_container (test_dtb_provenance.ProvenanceTests.test_hashes_ranges_and_container) ... ok
+test_output_mismatch_and_failure_cleanup (test_dtb_provenance.ProvenanceTests.test_output_mismatch_and_failure_cleanup) ... ok
+test_strict_fields_identity_time_json (test_dtb_provenance.ProvenanceTests.test_strict_fields_identity_time_json) ... ok
+test_canonical_schema_and_stability (test_dtb_export.ExportTests.test_canonical_schema_and_stability) ... ok
+test_existing_mismatch_and_concurrent_creation (test_dtb_export.ExportTests.test_existing_mismatch_and_concurrent_creation) ... ok
+test_identity_and_consumer_rejection_no_output (test_dtb_export.ExportTests.test_identity_and_consumer_rejection_no_output) ... ok
+test_stdout_file_identical_and_idempotent (test_dtb_export.ExportTests.test_stdout_file_identical_and_idempotent) ... ok
+test_temp_write_failure_cleanup (test_dtb_export.ExportTests.test_temp_write_failure_cleanup) ... ok
+test_actual_aggregate_limits (test_dtb_consumer_evidence.ConsumerTests.test_actual_aggregate_limits) ... ok
+test_bad_optional_all_or_nothing (test_dtb_consumer_evidence.ConsumerTests.test_bad_optional_all_or_nothing) ... ok
+test_dangling_and_invalid_reserved (test_dtb_consumer_evidence.ConsumerTests.test_dangling_and_invalid_reserved) ... ok
+test_multiple_order_raw_and_immutable (test_dtb_consumer_evidence.ConsumerTests.test_multiple_order_raw_and_immutable) ... ok
+test_single_absent_and_empty_enumeration (test_dtb_consumer_evidence.ConsumerTests.test_single_absent_and_empty_enumeration) ... ok
+test_bad_reg_boolean_and_no_partial_results (test_dtb_reserved_memory.ReservedTests.test_bad_reg_boolean_and_no_partial_results) ... ok
+test_cell_counts_and_ranges (test_dtb_reserved_memory.ReservedTests.test_cell_counts_and_ranges) ... ok
+test_inherited_phandle_conflict_and_truncation (test_dtb_reserved_memory.ReservedTests.test_inherited_phandle_conflict_and_truncation) ... ok
+test_one_cell_multi_targets_flags_and_zero_size (test_dtb_reserved_memory.ReservedTests.test_one_cell_multi_targets_flags_and_zero_size) ... ok
+test_targets_outside_direct_layer_and_missing_parent (test_dtb_reserved_memory.ReservedTests.test_targets_outside_direct_layer_and_missing_parent) ... ok
+test_two_cells_unsigned_max_and_order (test_dtb_reserved_memory.ReservedTests.test_two_cells_unsigned_max_and_order) ... ok
+test_bad_lengths (test_dtb_memory_region.MemoryRegionTests.test_bad_lengths) ... ok
+test_edge_limit_actual_binary (test_dtb_memory_region.MemoryRegionTests.test_edge_limit_actual_binary) ... ok
+test_inherited_conflict (test_dtb_memory_region.MemoryRegionTests.test_inherited_conflict) ... ok
+test_invalid_cells_and_all_or_nothing (test_dtb_memory_region.MemoryRegionTests.test_invalid_cells_and_all_or_nothing) ... ok
+test_missing_source_property_and_unsupported (test_dtb_memory_region.MemoryRegionTests.test_missing_source_property_and_unsupported) ... ok
+test_multiple_forward_duplicates_offsets_and_frozen (test_dtb_memory_region.MemoryRegionTests.test_multiple_forward_duplicates_offsets_and_frozen) ... ok
+test_single (test_dtb_memory_region.MemoryRegionTests.test_single) ... ok
+test_truncated (test_dtb_memory_region.MemoryRegionTests.test_truncated) ... ok
+test_conflicts_and_duplicates (test_dtb_phandle.PhandleTests.test_conflicts_and_duplicates) ... ok
+test_endianness_and_queries (test_dtb_phandle.PhandleTests.test_endianness_and_queries) ... ok
+test_positive_aliases_and_forward_lookup (test_dtb_phandle.PhandleTests.test_positive_aliases_and_forward_lookup) ... ok
+test_reserved_and_bad_lengths (test_dtb_phandle.PhandleTests.test_reserved_and_bad_lengths) ... ok
+test_truncation_and_empty_index (test_dtb_phandle.PhandleTests.test_truncation_and_empty_index) ... ok
+test_bad_paths_properties_tokens (test_dtb_tree.TreeTests.test_bad_paths_properties_tokens) ... ok
+test_nested_snapshot_offsets (test_dtb_tree.TreeTests.test_nested_snapshot_offsets) ... ok
+test_real_limits (test_dtb_tree.TreeTests.test_real_limits) ... ok
+test_truncation_nul_and_immutability (test_dtb_tree.TreeTests.test_truncation_nul_and_immutability) ... ok
+test_actual_binary_identity_rejection (test_dtb_identity.DTBTests.test_actual_binary_identity_rejection) ... ok
+test_binary_positive (test_dtb_identity.DTBTests.test_binary_positive) ... ok
+test_tool_failure_does_not_fallback (test_dtb_identity.DTBTests.test_tool_failure_does_not_fallback) ... ok
+test_truncation_and_malformed (test_dtb_identity.DTBTests.test_truncation_and_malformed) ... ok
+test_fixture_positive_never_unlocks (test_wayne_board_evidence.EvidenceTests.test_fixture_positive_never_unlocks) ... ok
+test_rejections (test_wayne_board_evidence.EvidenceTests.test_rejections) ... ok
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+----------------------------------------------------------------------
+Ran 46 tests in 3.037s
+
+OK
+{
+  "created_utc": "2026-10-12T01:52:06.379765+00:00",
+  "baseline": "93bf21a",
+  "new_tests_passed": 4,
+  "existing_regressions_passed": 42,
+  "tests_passed": 46,
+  "manifest_schema": "wayne.provenance-manifest.v1",
+  "envelope_schema": "wayne.provenance-envelope.v1",
+  "physical_source_authenticated": false,
+  "hardware_tested": false,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation": [
+    {
+      "path": "artifacts/kernel-6.6-probe.json",
+      "sha256": "59b541d3ba470c3699240ea714688b77ac11d825b661a2895c4f40fb507ffcb6",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/kernel-6.6-allocator-probe.json",
+      "sha256": "53c9874335b3a3e2661acd10af4807d0991ccbc4547fdd0429ba8c9698c0b201",
+      "unchanged": true
+    },
+    {
+      "path": "artifacts/static-candidate-package.json",
+      "sha256": "4d3e3d71f15371275585f1f485e558bf8e0e7055f033a6b22326e3108ca3e20c",
+      "unchanged": true
+    },
+    {
+      "path": "config/sdm660-xiaomi-wayne-6.6.dts",
+      "sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+      "unchanged": true
+    },
+    {
+      "path": "research/base-miku-a15/kernel.config",
+      "sha256": "b6b71de0665982d3f05d4ad859463c0ba4cd8065dc7a7edf0bfe089e0fbefb8f",
+      "unchanged": true
+    }
+  ],
+  "next": "Obtain actual captures and immutable acquisition logs; format/hash checks cannot authenticate physical origin; no build authorization",
+  "quota": "Realtime unavailable; user snapshot 97%/66%; no precise control claim"
+}

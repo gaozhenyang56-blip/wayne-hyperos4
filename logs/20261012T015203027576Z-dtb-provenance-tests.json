@@ -1,0 +1,18 @@
+{
+  "label": "dtb-provenance-tests",
+  "started_utc": "2026-10-12T01:52:03.027576+00:00",
+  "finished_utc": "2026-10-12T01:52:06.722214+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,datetime,subprocess; from pathlib import Path; sys.path.insert(0,\"tools\"); names=(\"test_dtb_provenance\",\"test_dtb_export\",\"test_dtb_consumer_evidence\",\"test_dtb_reserved_memory\",\"test_dtb_memory_region\",\"test_dtb_phandle\",\"test_dtb_tree\",\"test_dtb_identity\",\"test_wayne_board_evidence\",\"test_6_6_gate_integration\"); r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in names)); assert r.wasSuccessful(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"93bf21a\",\"new_tests_passed\":4,\"existing_regressions_passed\":42,\"tests_passed\":r.testsRun,\"manifest_schema\":\"wayne.provenance-manifest.v1\",\"envelope_schema\":\"wayne.provenance-envelope.v1\",\"physical_source_authenticated\":False,\"hardware_tested\":False,\"preflight\":{},\"preservation\":[],\"next\":\"Obtain actual captures and immutable acquisition logs; format/hash checks cannot authenticate physical origin; no build authorization\",\"quota\":\"Realtime unavailable; user snapshot 97%/66%; no precise control claim\"}; old=json.loads(Path(\"research/dtb-export-stage/checkpoint.json\").read_text()); exec(\"for item in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(item[\\\"path\\\"]).read_bytes()).hexdigest()==item[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(item)\\nfor tool in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n result=subprocess.run([sys.executable,\\\"tools/\\\"+tool,\\\"--preflight\\\"],capture_output=True,text=True)\\n assert result.returncode==2\\n out[\\\"preflight\\\"][tool]=result.returncode\"); Path(\"research/dtb-provenance-stage/checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T015203027576Z-dtb-provenance-tests.log",
+  "output_sha256": "f408e03d9b9807f2b693c8ae2c79c916d7706881c3bbe2e0a0741a3bb336b731",
+  "action": "检查93bf21a工作区、sources.lock历史来源、导入/身份/导出与断点；新增版本化provenance manifest严格验证和独立确定性哈希绑定envelope，仅提交明确合成fixture。",
+  "outcome": "四项新测试与四十二项既有回归通过；容器实际切片核对或无容器声明降级均不认证实物；两个真实preflight仍退出2，五项保留哈希不变，规范consumer schema未改。",
+  "failure_note": "测试失败，保留日志，不宣称通过。",
+  "next_step": "保存绑定层、实际测试、限制与下一断点并同步暂停，不增加签名信任链或构建放行。"
+}
