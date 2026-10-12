@@ -1,0 +1,18 @@
+{
+  "label": "shallow-review-tests",
+  "started_utc": "2026-10-12T08:30:26.206052+00:00",
+  "finished_utc": "2026-10-12T08:30:27.025699+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from shallow_review_queue import generate,validate; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_shallow_review_queue\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); source=Path(\"research/shallow-inventory-stage/inventory.json\").read_bytes(); previous=json.loads(Path(\"research/shallow-inventory-stage/checkpoint.json\").read_text()); sha=previous[\"inventory_sha256\"]; raw=generate(source,sha); assert validate(raw,source,sha)==raw; root=Path(\"research/shallow-review-stage\"); (root/\"queue.json\").write_bytes(raw); data=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"12c94df\",\"tests_passed\":r.testsRun,\"queue_count\":len(data[\"items\"]),\"class_counts\":data[\"class_counts\"],\"queue_sha256\":hashlib.sha256(raw).hexdigest(),\"inventory_sha256\":sha,\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"All entries unreviewed; raw keyword hints do not establish upstream membership or carry strategy; no remote actions\",\"quota\":\"Realtime unavailable; user snapshot 85%/53%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/shallow-inventory-stage/inventory.json\\\",\\\"tools/shallow_patch_inventory.py\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"12c94df:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T083026206052Z-shallow-review-tests.log",
+  "output_sha256": "6584c22edcc8516a65329d455b589631ebe346226e334241064092a40e6f416d",
+  "action": "检查12c94df工作区与规范清单；新增严格绑定inventory哈希的离线复核队列，机械多重分类与原始subject/path信号，保持unreviewed/undetermined。",
+  "outcome": "四项新合成队列测试与三项既有门禁测试通过；实际64条记录全部未复核，边界无路径信号，通用/jasmine不升级成wayne，两个入口仍退出2。",
+  "failure_note": "检查失败，保留日志，不宣称通过。",
+  "next_step": "保存类别计数/未复核队列/哈希与断点并同步暂停，归属与携带审阅仍未完成，不联网或更新。"
+}
