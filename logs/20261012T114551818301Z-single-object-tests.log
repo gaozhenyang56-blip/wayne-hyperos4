@@ -1,0 +1,30 @@
+test_local_service_success_and_rejection (test_single_object_probe.ProbeTests.test_local_service_success_and_rejection) ... ok
+test_real_local_timeout (test_single_object_probe.ProbeTests.test_real_local_timeout) ... ok
+test_strict_validator_and_output (test_single_object_probe.ProbeTests.test_strict_validator_and_output) ... ok
+test_type_oid_and_binding_tamper (test_single_object_probe.ProbeTests.test_type_oid_and_binding_tamper) ... ERROR
+test_all_python_entries_reject_before_side_effects (test_6_6_gate_integration.GateIntegrationTests.test_all_python_entries_reject_before_side_effects) ... ok
+test_real_rejection_propagates_exit_two (test_6_6_gate_integration.GateIntegrationTests.test_real_rejection_propagates_exit_two) ... ok
+test_successful_preflight_calls_only_audit (test_6_6_gate_integration.GateIntegrationTests.test_successful_preflight_calls_only_audit) ... ok
+
+======================================================================
+ERROR: test_type_oid_and_binding_tamper (test_single_object_probe.ProbeTests.test_type_oid_and_binding_tamper)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/wayne-hyperos4/tools/test_single_object_probe.py", line 26, in test_type_oid_and_binding_tamper
+    target=self.server/'objects'/self.oid[:2]/self.oid[2:];target.write_bytes(zlib.compress(b'blob 5\0other'))
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1036, in write_bytes
+    with self.open(mode='wb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 13] Permission denied: '/tmp/tmpgwtw3ith/server/objects/37/455c8e8295296d94948753ce8d3a412ba640a7'
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.510s
+
+FAILED (errors=1)
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+AssertionError

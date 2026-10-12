@@ -1,0 +1,18 @@
+{
+  "label": "single-object-tests",
+  "started_utc": "2026-10-12T11:45:51.818301+00:00",
+  "finished_utc": "2026-10-12T11:45:53.062887+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from single_object_probe import validate; from export_dtb_consumers import _write_payload; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_single_object_probe\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); root=Path(\"research/single-object-stage\"); previous=json.loads(Path(\"research/missing-object-stage/checkpoint.json\").read_text()); manifest=Path(\"research/missing-object-stage/manifest.json\").read_bytes(); raw=(root/\"probe.json\").read_bytes(); assert validate(raw,manifest,previous[\"manifest_sha256\"],Path(\"downloads/single-blob-probe-20c9575\"))==raw; (root/\"probe.json\").unlink(); _write_payload(raw,root/\"probe.json\"); data=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"20c9575\",\"tests_passed\":r.testsRun,\"actual_probe_result\":data[\"result\"],\"selected_oid\":data[\"selected_oid\"],\"object\":data[\"object\"],\"probe_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"One isolated blob verified only; no bulk acquisition, main-object integration, upstream membership or carry decision\",\"quota\":\"Realtime unavailable; user snapshot 44%/46%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/missing-object-stage/manifest.json\\\",\\\"config/kernel-6.6-experiment.json\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"20c9575:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 1,
+  "output": "logs/20261012T114551818301Z-single-object-tests.log",
+  "output_sha256": "02fc7d43120f33bc0915a9de9d6d61c28cdb28485f36c0a888e4c65537ae925e",
+  "action": "检查20c9575及清单/固定fork；按OID排序选第一个blob，仅在新隔离裸库发一次精确OID请求，60秒硬超时，无回退/递归补取。真实对象已验证type/size及重算Git OID。",
+  "outcome": "四项合成本地Git/超时/对象篡改/输出测试和三项构建门禁通过；真实blob 17271字节，仅留隔离库，manifest绑定和规范哈希已核对，两个6.6入口仍退出2。",
+  "failure_note": "检查失败，保留日志，不伪造探针成功。",
+  "next_step": "保存真实探针非敏感证据、时间记录/测试/保留哈希与断点，同步暂停；不扩展为162对象获取或构建输入。"
+}
