@@ -1,0 +1,18 @@
+{
+  "label": "four-blob-tests",
+  "started_utc": "2026-10-12T14:09:05.222062+00:00",
+  "finished_utc": "2026-10-12T14:09:13.074083+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from four_blob_batch_probe import validate; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_four_blob_batch\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); root=Path(\"research/four-blob-stage\"); raw=(root/\"batch.json\").read_bytes(); m=Path(\"research/missing-object-stage/manifest.json\").read_bytes(); ms=json.loads(Path(\"research/missing-object-stage/checkpoint.json\").read_text())[\"manifest_sha256\"]; p=Path(\"research/single-object-stage/probe.json\").read_bytes(); previous=json.loads(Path(\"research/single-object-stage/checkpoint.json\").read_text()); ps=previous[\"probe_sha256\"]; assert validate(raw,m,ms,p,ps,Path(\"downloads/four-blob-probe-b299a3c\"))==raw; d=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"b299a3c\",\"tests_passed\":r.testsRun,\"request_count\":d[\"request_count\"],\"stop_reason\":d[\"stop_reason\"],\"batch_verified_payload_bytes\":d[\"batch_verified_payload_bytes\"],\"cumulative_verified_payload_bytes\":d[\"cumulative_verified_payload_bytes\"],\"batch_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Exactly four objects remain isolated; no bulk acquisition/main-object integration/upstream classification or carry decision\",\"quota\":\"Realtime unavailable; user snapshot 95%/43%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor path in (\\\"tools/single_object_probe.py\\\",\\\"research/single-object-stage/probe.json\\\",\\\"research/missing-object-stage/manifest.json\\\"):\\n b=Path(path).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"b299a3c:\\\"+path])\\n out[\\\"preservation\\\"].append({\\\"path\\\":path,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T140905222062Z-four-blob-tests.log",
+  "output_sha256": "3403f89769df424f69567e7d526871f5e73a5d3c4a0239544d6c581921f3127f",
+  "action": "检查b299a3c/旧manifest/固定远端；排除前次验证OID，只对后续四个规范排序对象各独立裸库一次精确请求；累计阈值含前次17271字节，未接入主库。",
+  "outcome": "四项本地synthetic服务批次测试与三项门禁通过；实际四次均成功，新增payload167738字节、累计185009字节，小于2MiB，类型/OID/SHA256均核对。两个入口仍退出2。",
+  "failure_note": "检查失败，保存日志，不宣称批次通过。",
+  "next_step": "保存严格批次证据、停止规则/未尝试项、测试与断点并同步暂停；不扩为剩余对象或构建输入。"
+}
