@@ -1,0 +1,15 @@
+{
+  "command": [
+    "git",
+    "ls-remote",
+    "--tags",
+    "https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git",
+    "refs/tags/v6.6.*"
+  ],
+  "started_utc": "2026-10-12T03:49:34.607459+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "014dbfc5174589cbbdc67052d88265f529dc78ff5008e1e958f8367789081535",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "bytes": 19218,
+  "complete": true
+}

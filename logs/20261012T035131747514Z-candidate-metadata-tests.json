@@ -1,0 +1,18 @@
+{
+  "label": "candidate-metadata-tests",
+  "started_utc": "2026-10-12T03:51:31.747514+00:00",
+  "finished_utc": "2026-10-12T03:51:33.285062+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from candidate_metadata import validate_metadata; root=Path(\"research/candidate-metadata-stage\"); r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_candidate_metadata\",\"test_source_update\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); assert validate_metadata((root/\"candidate-lock.json\").read_bytes(),(root/\"official.stdout\").read_bytes())==(root/\"candidate-lock.json\").read_bytes(); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"8a4ae07\",\"tests_passed\":r.testsRun,\"candidate_tag\":\"v6.6.158\",\"update_status\":\"blocked\",\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Separate complete-history and reviewed patch-membership/carry audit; candidate metadata alone never qualifies update\",\"quota\":\"Realtime unavailable; user snapshot 64%/61%; no precise control claim\"}; old=json.loads(Path(\"research/source-update-stage/checkpoint.json\").read_text()); exec(\"for e in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"tools/check_source_update.py\\\",\\\"research/source-update-stage/blocked-report.json\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"8a4ae07:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T035131747514Z-candidate-metadata-tests.log",
+  "output_sha256": "648428bac1aafd23243dbfd89af7dd2cfdffa4e1109570b9c0b3ea9355b757c7",
+  "action": "检查8a4ae07断点；一批受限只读ls-remote对官方与fork各查询一次，保存原始字节/命令/时间及哈希，新增严格候选metadata校验与锁，不改当前源码锁。",
+  "outcome": "官方最高数值标签v6.6.158的对象与peeled commit固定；fork当前分支直接指向锁定6a4e475；五项新测试、四项既有更新审计和三项构建门禁通过，更新资格仍blocked。",
+  "failure_note": "检查失败，保留原始日志，不宣称通过。",
+  "next_step": "保存候选/原始证据/测试与断点并同步暂停；完整历史、成员关系和补丁携带审阅留待后续独立阶段。"
+}

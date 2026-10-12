@@ -1,0 +1,17 @@
+{
+  "command": [
+    "git",
+    "ls-remote",
+    "--heads",
+    "--tags",
+    "https://github.com/sdm660-mainline/linux.git",
+    "refs/heads/qcom-sdm660-6.6.y",
+    "refs/tags/v6.6.*"
+  ],
+  "started_utc": "2026-10-12T03:49:34.608014+00:00",
+  "exit_code": 0,
+  "stdout_sha256": "3c28e39f614b08dcf22b465cd0b917b0a68e1bb2317cbf01ab9e37daff315e3e",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "bytes": 350,
+  "complete": true
+}
