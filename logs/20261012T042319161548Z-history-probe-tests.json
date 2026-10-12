@@ -1,0 +1,18 @@
+{
+  "label": "history-probe-tests",
+  "started_utc": "2026-10-12T04:23:19.161548+00:00",
+  "finished_utc": "2026-10-12T04:23:22.653851+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,json,hashlib,unittest,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from history_probe import probe,validate_fetch; root=Path(\"research/history-probe-stage\"); lab=Path(\"downloads/history-probe-73e35d6\"); r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_history_probe\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); fork=\"6a4e475000ecc7e864911959a1984a0664088464\"; candidate=\"a91a6aa9253c64936f0bd8273a2a3c11522ec9c3\"; exec(\"for name,url,ref in ((\\\"fork\\\",\\\"https://github.com/sdm660-mainline/linux.git\\\",fork),(\\\"official\\\",\\\"https://git.kernel.org/pub/scm/linux/kernel/git/stable/linux.git\\\",\\\"refs/tags/v6.6.158\\\")):\\n validate_fetch((root/(name+\\\"-fetch.json\\\")).read_bytes(),lab/name,url,ref)\"); (root/\"relationship.json\").write_bytes(probe(lab/\"fork\",fork,candidate)); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"73e35d6\",\"tests_passed\":r.testsRun,\"update_status\":\"blocked\",\"relationship\":\"undetermined\",\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"Candidate graph unavailable because filter unsupported; fork shallow64. Plan an independently authorized bounded completeness route, no retry/deepen in this stage\",\"quota\":\"Realtime unavailable; user snapshot 47%/59%; no precise control claim\"}; old=json.loads(Path(\"research/candidate-metadata-stage/checkpoint.json\").read_text()); exec(\"for e in old[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T042319161548Z-history-probe-tests.log",
+  "output_sha256": "6e3b7ee5f150abac7bae8355d7ae8b134c1c1264ecc87d9c2e10254db27c4dba",
+  "action": "检查73e35d6断点；隔离裸仓库对两个远端各一次depth64/blob:none受限获取，20秒/16MiB对象限制；官方过滤不支持即停止，fork有浅边界，不假报无共同历史。",
+  "outcome": "三项新离线探测测试及四项复用Git测试、三项构建门禁测试通过；官方未取得候选图，fork获取2904740字节，真实关系不可判定且更新blocked，两个6.6入口仍退出2。",
+  "failure_note": "检查失败，保留日志，不宣称通过。",
+  "next_step": "保存精确命令/OID/浅边界/对象哈希与断点，同步暂停；后续需支持过滤的候选来源及独立完整性方案，不自动加深。"
+}
