@@ -1,0 +1,18 @@
+{
+  "label": "single-object-retest",
+  "started_utc": "2026-10-12T11:46:45.382505+00:00",
+  "finished_utc": "2026-10-12T11:46:47.966217+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import sys,unittest,json,hashlib,subprocess,datetime; from pathlib import Path; sys.path.insert(0,\"tools\"); from single_object_probe import validate; from export_dtb_consumers import _write_payload; r=unittest.TextTestRunner(verbosity=2).run(unittest.TestSuite(unittest.defaultTestLoader.loadTestsFromName(n) for n in (\"test_single_object_probe\",\"test_6_6_gate_integration\"))); assert r.wasSuccessful(); root=Path(\"research/single-object-stage\"); previous=json.loads(Path(\"research/missing-object-stage/checkpoint.json\").read_text()); manifest=Path(\"research/missing-object-stage/manifest.json\").read_bytes(); raw=(root/\"probe.json\").read_bytes(); assert validate(raw,manifest,previous[\"manifest_sha256\"],Path(\"downloads/single-blob-probe-20c9575\"))==raw; (root/\"probe.json\").unlink(); _write_payload(raw,root/\"probe.json\"); data=json.loads(raw); out={\"created_utc\":datetime.datetime.now(datetime.timezone.utc).isoformat(),\"baseline\":\"20c9575\",\"tests_passed\":r.testsRun,\"actual_probe_result\":data[\"result\"],\"selected_oid\":data[\"selected_oid\"],\"object\":data[\"object\"],\"probe_sha256\":hashlib.sha256(raw).hexdigest(),\"eligible\":False,\"preflight\":{},\"preservation\":[],\"hardware_tested\":False,\"next\":\"One isolated blob verified only; no bulk acquisition, main-object integration, upstream membership or carry decision\",\"quota\":\"Realtime unavailable; user snapshot 44%/46%; no precise control claim\"}; exec(\"for e in previous[\\\"preservation\\\"]:\\n assert hashlib.sha256(Path(e[\\\"path\\\"]).read_bytes()).hexdigest()==e[\\\"sha256\\\"]\\n out[\\\"preservation\\\"].append(e)\\nfor p in (\\\"research/missing-object-stage/manifest.json\\\",\\\"config/kernel-6.6-experiment.json\\\"):\\n b=Path(p).read_bytes()\\n assert b==subprocess.check_output([\\\"git\\\",\\\"show\\\",\\\"20c9575:\\\"+p])\\n out[\\\"preservation\\\"].append({\\\"path\\\":p,\\\"sha256\\\":hashlib.sha256(b).hexdigest(),\\\"unchanged\\\":True})\\nfor t in (\\\"ci_kernel_66_probe.py\\\",\\\"ci_allocator_implementation.py\\\"):\\n x=subprocess.run([sys.executable,\\\"tools/\\\"+t,\\\"--preflight\\\"],capture_output=True)\\n assert x.returncode==2\\n out[\\\"preflight\\\"][t]=x.returncode\"); (root/\"checkpoint.json\").write_text(json.dumps(out,indent=2)+\"\\n\"); print(json.dumps(out,indent=2))"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261012T114645382505Z-single-object-retest.log",
+  "output_sha256": "4e5e1d877cf7f6415fdf49c80d51b4c0fa3f54ffbaffa3bcbbfd15eed24cc065",
+  "action": "修正合成Git对象篡改测试的只读文件权限；仅重跑本地测试与已有真实结果离线校验，不再请求远端。",
+  "outcome": "七项测试通过；真实单blob类型/OID/SHA256核对、原子发布与保留检查通过，两个6.6入口仍拒绝2。",
+  "failure_note": "本地复测失败，保留日志，不宣称通过。",
+  "next_step": "保存最终测试/探针与断点，同步暂停；对象仍不作源码/构建输入。"
+}
