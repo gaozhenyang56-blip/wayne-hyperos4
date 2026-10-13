@@ -1,0 +1,17 @@
+{
+  "label": "xiaomi-official-entry-verification",
+  "started_utc": "2026-10-13T12:34:12.842982+00:00",
+  "finished_utc": "2026-10-13T12:34:14.321544+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/xiaomi-official-entry-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T123412842982Z-xiaomi-official-entry-verification.log",
+  "output_sha256": "3d60244eacc4bb5f8b85ab249acfe33adff2c32fd53e6b305f2b00b720fa8dfe",
+  "action": "检查8c94125工作区、上轮测试及现有文档/锁；未找到已固定官方入口，针对已知小米MiCode开源主体的唯一官方仓库做一次wayne前缀heads元数据查询，60秒截止、不重试、不取源码。",
+  "outcome": "查询退出0但匹配引用为0，未固定官方wayne source-entry；不能据此宣称所有官方入口不存在。六项离线测试通过，两个6.6入口退出2，target_association与资格门禁保持未决/false。",
+  "failure_note": "发现或离线测试失败，保留unresolved并保存错误。",
+  "next_step": "保存真实空响应、查询范围、来源未决及带时区断点，同步GitHub后暂停，不扩大搜索或下载源码。"
+}

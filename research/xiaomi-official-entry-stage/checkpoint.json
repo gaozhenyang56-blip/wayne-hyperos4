@@ -1,0 +1,18 @@
+{
+  "baseline": "8c94125",
+  "recorded_utc": "2026-10-13T12:34:14.290467+00:00",
+  "discovery_sha256": "40b32ed4763cf6fd1e660a47a1f3f643c56428359bdac6592738bfaf04545d6e",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "metadata_queries": 1,
+  "query_exit_code": 0,
+  "matching_refs": 0,
+  "source_entry": null,
+  "target_association": "unresolved",
+  "preservation_verified": true,
+  "next": "Single official-namespace wayne-prefixed heads query returned no match. No pinned release entry; do not infer global absence. Further official release/table/tag evidence requires separately bounded scope; no retry or source import this stage.",
+  "eligible": false
+}
