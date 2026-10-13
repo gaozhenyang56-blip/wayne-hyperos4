@@ -1,0 +1,18 @@
+{
+  "baseline": "a091e75",
+  "recorded_utc": "2026-10-13T07:45:49.392820+00:00",
+  "evidence_sha256": "4bffb03e56a8e1de10d6b5caf352bc088322cb912165fd732cc04ee6452beffe",
+  "tests_passed": 7,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "remote_requests": 1,
+  "remote_result": "success",
+  "object_store_bytes": 2807933,
+  "preservation_verified": true,
+  "relationship_status": "unresolved",
+  "unique_introducing_commit": null,
+  "next": "Same blob already exists at parent 6fbaeffc3a92b4a32b8e320e486cf644ff30d240. Its recorded parent 50ae1c470491481328363639c227020691469f29 remains outside this one-request scope; no further request authorized in this stage.",
+  "eligible": false
+}

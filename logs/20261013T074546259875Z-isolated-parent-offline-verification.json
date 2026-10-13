@@ -1,0 +1,17 @@
+{
+  "label": "isolated-parent-offline-verification",
+  "started_utc": "2026-10-13T07:45:46.259875+00:00",
+  "finished_utc": "2026-10-13T07:45:49.404017+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/isolated-parent-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T074546259875Z-isolated-parent-offline-verification.log",
+  "output_sha256": "4eacf1201037933264653c5ee64744bb553b8578e68e40aeb5f6a145f9b64843",
+  "action": "检查a091e75工作区、上轮测试和规范链；仅对既定缺失父提交执行一次60秒上限、depth=1/blob:none的精确请求，随后只读核验隔离commit/tree和同一精确路径。",
+  "outcome": "请求退出0，取得且验证父commit；父子精确路径仍是同一个blob，不能证明引入转换或全历史唯一，保持unresolved。七项离线测试通过，两个实际6.6入口退出2，旧锁与成果保留。",
+  "failure_note": "补证或离线测试失败，保持阻断并保存错误。",
+  "next_step": "保存真实请求结果、隔离边界、带时区记录和下一断点，同步GitHub后暂停，不继续请求更早父提交。"
+}
