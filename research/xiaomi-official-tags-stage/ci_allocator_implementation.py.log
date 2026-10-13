@@ -1,0 +1,17 @@
+{
+  "priority_blocker": "Actual wayne board DT binding before boot packaging",
+  "foreign_includes": [
+    "sdm660-xiaomi-jasmine.dts"
+  ],
+  "source_dts_sha256": "b28bf6dc31cf4351543cd4add21e4ba47f7300474b2bbdc58869a90ba1249329",
+  "reasons": [
+    "Direct jasmine board inheritance remains; compatible rename is not wayne binding evidence",
+    "No artifact-bound current China wayne board/reference evidence"
+  ],
+  "evidence_gate_rejected": true,
+  "compiled_claim": true,
+  "scope": "Direct include and artifact/reference provenance checks only; not full DTS/DTB semantics",
+  "hardware_tested": false,
+  "boot_verified": false,
+  "flashable_qualified": false
+}

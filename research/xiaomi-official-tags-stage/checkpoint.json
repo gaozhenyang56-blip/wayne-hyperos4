@@ -1,0 +1,19 @@
+{
+  "baseline": "6e0419f",
+  "recorded_utc": "2026-10-13T13:41:06.750083+00:00",
+  "discovery_sha256": "1c0f2477e5eeee54db927c3a0228ba586c3f189c2de45deea04144bd21615a9f",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "metadata_queries": 1,
+  "query_exit_code": 0,
+  "matching_tags": 0,
+  "source_entry": null,
+  "release_api_queried": false,
+  "target_association": "unresolved",
+  "preservation_verified": true,
+  "next": "Single official repository tag-pattern query had no matches. No global absence claim; release descriptions or other naming remain outside scope. Stop without heads repeat, API fallback, retry or source import.",
+  "eligible": false
+}

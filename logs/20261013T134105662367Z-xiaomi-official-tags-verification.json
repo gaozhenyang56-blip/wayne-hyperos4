@@ -1,0 +1,17 @@
+{
+  "label": "xiaomi-official-tags-verification",
+  "started_utc": "2026-10-13T13:41:05.662367+00:00",
+  "finished_utc": "2026-10-13T13:41:06.763091+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/xiaomi-official-tags-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T134105662367Z-xiaomi-official-tags-verification.log",
+  "output_sha256": "a438b672992aa203a8b2d6bce0257421abbf6f7f389d2e13c91a0d8ceaa00513",
+  "action": "检查6e0419f工作区、实际查询证据及断点并离线确认同一官方仓库，只对wayne/MI6X/小米6X限定拼写做一次tags引用查询，60秒截止，无分支重复查询或回退。",
+  "outcome": "实际标签查询退出0但无匹配；未固定source-entry，不外推其他官方发布入口不存在。六项离线测试通过，两个实际6.6入口退出2，关联和资格继续unresolved/false，源码与锁未改。",
+  "failure_note": "标签发现或测试失败，保存错误并保持未决。",
+  "next_step": "保存真实空响应、标签查询范围与未查询release说明的缺口，同步GitHub后暂停，不补查或下载源码。"
+}
