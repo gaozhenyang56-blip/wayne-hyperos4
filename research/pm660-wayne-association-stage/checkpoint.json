@@ -1,0 +1,16 @@
+{
+  "baseline": "1296e39",
+  "recorded_utc": "2026-10-13T11:55:07.189439+00:00",
+  "association_sha256": "ef611cd087c79a384e3ae0b3447d8cbb861980c87157820b963de093b78292a7",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "network_requests": 0,
+  "other_blobs_processed": false,
+  "preservation_verified": true,
+  "target_association": "unresolved",
+  "next": "Pinned third-party wayne-named entry directly includes jasmine. No independently admissible actual China-wayne board baseline or same-commit include-chain proof. Stop; do not join 7.x reference with 6.6 jasmine, fetch another source, or resume blob ancestry.",
+  "eligible": false
+}

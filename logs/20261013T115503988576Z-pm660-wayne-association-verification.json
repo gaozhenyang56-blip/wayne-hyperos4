@@ -1,0 +1,17 @@
+{
+  "label": "pm660-wayne-association-verification",
+  "started_utc": "2026-10-13T11:55:03.988576+00:00",
+  "finished_utc": "2026-10-13T11:55:07.201132+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/pm660-wayne-association-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T115503988576Z-pm660-wayne-association-verification.log",
+  "output_sha256": "90ccaa469a7a9188893c9f5c1dcf66270865fd33f0c0038bc47fedace4f58e0c",
+  "action": "检查1296e39工作区、测试和断点，只核验pm660候选blob与现有板级来源记录。重算候选OID/类型/哈希并验证精确快照树链，核对已固定第三方wayne入口文件及其直接include。",
+  "outcome": "pm660候选对象和快照关系通过；现有固定wayne名称源码入口继承jasmine，不能替代真实国行板级基线，也不能跨提交拼接包含链。target_association仍unresolved，未联网。六项离线测试通过，两个6.6入口退出2，旧锁/成果保留。",
+  "failure_note": "关联审阅或测试失败，保留门禁并记录错误。",
+  "next_step": "保存已记录来源与不可采信原因、精确包含链断点及带时区记录，同步GitHub后暂停，不处理其他blob或恢复历史追踪。"
+}
