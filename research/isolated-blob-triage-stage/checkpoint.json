@@ -1,0 +1,40 @@
+{
+  "baseline": "a5a84d5",
+  "recorded_utc": "2026-10-13T10:23:19.836666+00:00",
+  "triage_sha256": "39bcf6c733169d5ff620572db8b493ada03e79118fb4fcdbac788d7b5b1158b0",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "network_requests": 0,
+  "fourth_layer_requested": false,
+  "preservation_verified": true,
+  "classification_counts": {
+    "target_relevance_supported": 0,
+    "other_soc_or_device_path": 5,
+    "insufficient_target_evidence": 3
+  },
+  "selected_next_target": {
+    "oid": "0509c0e69da28fa0693258ddc6bf249e349ba3da",
+    "path": "arch/arm64/boot/dts/qcom/pm660.dtsi",
+    "status": "conditional_evidence_review_only_not_device_adaptation",
+    "blocked_reason": "actual_wayne_board_evidence_missing",
+    "scope": "independent_wayne_pmic_dependency_evidence_not_parent_history",
+    "minimum_evidence": [
+      "verified_existing_pm660_blob_and_snapshot_chain",
+      "actual_wayne_DTB_or_authenticated_board_source_with_explicit_pmic_relationship",
+      "existing_fail_fast_identity_and_source_evidence_checks"
+    ],
+    "stop_conditions": [
+      "no_actual_wayne_board_evidence_keep_unresolved",
+      "jasmine_only_or_foreign_source_do_not_substitute",
+      "ambiguous_pmic_relationship_stop",
+      "no_network_or_history_expansion_without_separate_scope"
+    ],
+    "network_request_planned": false,
+    "executed_this_stage": false
+  },
+  "next": "Stop first-blob ancestry. Conditional next review: existing pm660 blob versus independent actual wayne board evidence. That evidence is absent; keep blocked, no network or next-target execution this stage.",
+  "eligible": false
+}

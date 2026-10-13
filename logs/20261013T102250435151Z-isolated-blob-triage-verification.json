@@ -1,0 +1,17 @@
+{
+  "label": "isolated-blob-triage-verification",
+  "started_utc": "2026-10-13T10:22:50.435151+00:00",
+  "finished_utc": "2026-10-13T10:23:19.847041+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/isolated-blob-triage-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T102250435151Z-isolated-blob-triage-verification.log",
+  "output_sha256": "c5f24acdc7bb563f571fa22d3c20d85849127947ece2e90944600e7c409a7ab9",
+  "action": "检查a5a84d5工作区、三层补证与实际测试；停止首blob追踪，仅用现有八对象及manifest上下文的本地commit/tree证据核对路径，建立分流和条件式下一目标。",
+  "outcome": "五项属于其他SoC/设备路径，三项目标关联证据不足，零项有真实wayne目标关联支持。选择pm660作为独立板级关联补证候选，jasmine继承链不能放行，真实材料缺失仍阻断；六项离线测试通过，两个6.6入口退出2。无网络或第四层请求。",
+  "failure_note": "分流或离线测试失败，保留阻断并保存错误。",
+  "next_step": "保存排序规则、证据缺口、带时区记录及断点，同步GitHub后暂停；不执行条件目标或继续父历史。"
+}
