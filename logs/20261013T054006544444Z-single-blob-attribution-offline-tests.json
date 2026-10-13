@@ -1,0 +1,18 @@
+{
+  "label": "single-blob-attribution-offline-tests",
+  "started_utc": "2026-10-13T05:40:06.544444+00:00",
+  "finished_utc": "2026-10-13T05:40:07.909094+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess; subprocess.run(['python3','tools/test_isolated_blob_attribution.py'],check=True); subprocess.run(['python3','-m','unittest','discover','-s','tools','-p','test_6_6_gate_integration.py','-v'],check=True); subprocess.run(['python3','tools/isolated_blob_attribution.py','--check','research/isolated-blob-attribution-stage/attribution.json'],check=True)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T054006544444Z-single-blob-attribution-offline-tests.log",
+  "output_sha256": "58c1851582a0ba19f947a87b480ce5c3503e64485e58409c4351e394b4f41ad0",
+  "action": "从84180b3检查工作区与既有断点；仅选择首个未解决blob，复核八对象隔离证据，并用已有父/当前提交及树对象建立精确快照路径证据。",
+  "outcome": "最小离线测试通过；路径快照有证据，唯一引入提交和官方候选历史仍unresolved。实际两个入口退出2，旧锁与成果哈希保持不变；无网络获取。",
+  "failure_note": "测试未通过，保留阻断并修复后重测。",
+  "next_step": "保存规范证据、已排除范围和下一断点，同步GitHub后停止；不得以此路径关系放行更新或构建。"
+}

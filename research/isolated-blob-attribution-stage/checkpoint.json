@@ -1,0 +1,15 @@
+{
+  "baseline": "84180b3",
+  "created_utc": "2026-10-13T05:39:02.153168+00:00",
+  "attribution_sha256": "f33243501d2f0adb94e9ead9b6ea62e5b4f058e1461782f4ae73aa7899ec4fb2",
+  "tests_passed": 6,
+  "network_requests": 0,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "preservation_verified": true,
+  "relationship_status": "unresolved",
+  "next": "Exact parent snapshot path witnessed. Unique introducing commit and official candidate history remain unproven; stop without additional objects or network.",
+  "eligible": false
+}
