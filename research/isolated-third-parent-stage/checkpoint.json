@@ -1,0 +1,25 @@
+{
+  "baseline": "f530131",
+  "recorded_utc": "2026-10-13T09:45:00.442532+00:00",
+  "evidence_sha256": "76216cb62d4ac3e1234536ddc780bf1ee154ee5b2ccb27bdadae49e25e64f1cd",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "remote_requests": 1,
+  "remote_result": "success",
+  "object_store_bytes": 2808314,
+  "preservation_verified": true,
+  "relationship_status": "unresolved",
+  "unique_introducing_commit": null,
+  "information_gain_review": {
+    "new_direct_edge_verified": true,
+    "unique_origin_resolved": false,
+    "continued_layer_requests_recommended": false,
+    "assessment": "third_same_blob_edge_only_marginal_information_gain_stop",
+    "fourth_layer_authorized": false
+  },
+  "next": "Same blob at 9a6ed4ea985ac4b7a566faddeb16271b8ea54d36. Recorded parent add8973e3de6a3557ef5fd0ecc317b24fc6efe6e not acquired. Three layers show no introduction transition; recommend stop incremental requests. No fourth layer authorized or attempted.",
+  "eligible": false
+}

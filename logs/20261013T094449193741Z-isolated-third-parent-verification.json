@@ -1,0 +1,17 @@
+{
+  "label": "isolated-third-parent-verification",
+  "started_utc": "2026-10-13T09:44:49.193741+00:00",
+  "finished_utc": "2026-10-13T09:45:00.453560+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/isolated-third-parent-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T094449193741Z-isolated-third-parent-verification.log",
+  "output_sha256": "08f395517ff53f805d95f42e8465071b64154d7d502ba6875874b269806334ba",
+  "action": "检查f530131工作区、上轮测试及规范链；从实际50ae1c提交对象解析唯一直接父，仅对该父请求一次，复用旧受限引擎核验隔离对象与精确路径。",
+  "outcome": "9a6ed4e父请求退出0，类型/OID/父链/树链通过，同路径仍引用首blob；六项离线测试通过，两个6.6实际入口退出2。三层只推进已存在见证，仍unresolved，建议停止逐层获取。",
+  "failure_note": "补证或离线测试失败，保留门禁并保存错误。",
+  "next_step": "保存第三层规范证据、信息增益评估和断点，同步GitHub后暂停，不自动获取第四层。"
+}
