@@ -1,0 +1,30 @@
+{
+  "baseline": "1f2a896",
+  "recorded_utc": "2026-10-13T15:43:33.969722+00:00",
+  "discovery_sha256": "65ecaae06443def1c3b733e9d2d429f97faea09859483f612dc8341d80a23984",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "release_requests": 1,
+  "http_status": 200,
+  "returned_releases": 0,
+  "response_scope": {
+    "page": 1,
+    "per_page": 20,
+    "returned_releases": 0,
+    "body_bytes": 5,
+    "content_length": 5,
+    "transfer_complete": true,
+    "has_pagination_link": false,
+    "pagination_link": null,
+    "additional_pages_requested": false,
+    "attachments_downloaded": false
+  },
+  "source_entry": null,
+  "target_association": "unresolved",
+  "preservation_verified": true,
+  "next": "Stop release queries. A separately bounded review of this official repository product release index/README mapping is a feasible higher-information next step; require explicit Mi6X/wayne labeling and pinned file/object identity, never substitute jasmine board evidence. No request in this stage.",
+  "eligible": false
+}

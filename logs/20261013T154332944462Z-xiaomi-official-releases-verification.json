@@ -1,0 +1,17 @@
+{
+  "label": "xiaomi-official-releases-verification",
+  "started_utc": "2026-10-13T15:43:32.944462+00:00",
+  "finished_utc": "2026-10-13T15:43:33.981505+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/xiaomi-official-releases-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T154332944462Z-xiaomi-official-releases-verification.log",
+  "output_sha256": "5566010b86fb1506ff3179b247a8e8ec5e558dc84b4e67420e8a82c34fae2d79",
+  "action": "检查1f2a896工作区、前序分支/标签证据与断点，离线确认同一官方仓库，仅请求release第一页一次（每页20项、60秒、1MiB上限），不分页或取附件。",
+  "outcome": "HTTP200返回完整空列表，5字节与Content-Length一致，无Link分页头；无匹配发布且未固定source-entry，不能外推官方源码不存在。六项离线测试通过，两个6.6入口退出2，旧锁/成果保持不变。",
+  "failure_note": "请求或测试未完成，保留未决并保存错误。",
+  "next_step": "保存这次完整响应及范围，下一可行高信息增益目标为同官方仓库产品发布索引/README映射的独立有界核验；本轮不执行，同步GitHub后暂停。"
+}
