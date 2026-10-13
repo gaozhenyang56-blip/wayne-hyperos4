@@ -1,0 +1,17 @@
+{
+  "label": "isolated-next-parent-verification",
+  "started_utc": "2026-10-13T08:20:32.323344+00:00",
+  "finished_utc": "2026-10-13T08:20:40.736460+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "research/isolated-next-parent-stage/verify_stage.py"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T082032323344Z-isolated-next-parent-verification.log",
+  "output_sha256": "67c3c8929f01c876b4e85dd4e5b2719687ad3cf2a04c9df877d540080a3ebb73",
+  "action": "检查7ed2ee3工作区和上轮实际测试；从已保存6fbaeff提交对象读取唯一直接父OID，只请求该父一次，复用既有受限请求/树链校验引擎并保持旧证据不变。",
+  "outcome": "50ae1c父提交请求退出0，类型/OID/树链核验通过，同一路径仍引用首个blob，唯一引入继续unresolved。六项离线测试通过，两个实际6.6入口退出2；对象只在新隔离库。",
+  "failure_note": "补证或离线测试失败，保持门禁并保存错误。",
+  "next_step": "保存规范增量证据、带时区记录及明确断点，同步GitHub后暂停，不获取下一层父或其他blob。"
+}

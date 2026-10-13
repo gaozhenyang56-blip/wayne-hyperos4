@@ -1,0 +1,18 @@
+{
+  "baseline": "7ed2ee3",
+  "recorded_utc": "2026-10-13T08:20:40.715296+00:00",
+  "evidence_sha256": "820394a642cfc14b1e9d5f3deaaa33d76d4ce7664fe48b927543750a80ad669a",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "remote_requests": 1,
+  "remote_result": "success",
+  "object_store_bytes": 2808402,
+  "preservation_verified": true,
+  "relationship_status": "unresolved",
+  "unique_introducing_commit": null,
+  "next": "Same blob proven at 50ae1c470491481328363639c227020691469f29; its recorded parent 9a6ed4ea985ac4b7a566faddeb16271b8ea54d36 is outside this stage. Stop; no recursive request or second blob.",
+  "eligible": false
+}
