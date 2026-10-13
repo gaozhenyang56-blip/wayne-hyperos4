@@ -1,0 +1,16 @@
+{
+  "baseline": "492912f",
+  "recorded_utc": "2026-10-13T06:52:56.419930+00:00",
+  "boundary_sha256": "9406c5f892761afe9418ce4f2eb30f451d37c591f663713dc486688ec0dc7e2c",
+  "tests_passed": 6,
+  "preflight": {
+    "ci_kernel_66_probe.py": 2,
+    "ci_allocator_implementation.py": 2
+  },
+  "network_requests": 0,
+  "preservation_verified": true,
+  "relationship_status": "unresolved",
+  "unique_introducing_commit": null,
+  "next": "Blob exists at shallow boundary 71c631a9fb211df4ea5a59ac68a310c5854f07f1; earlier ancestry unavailable. No unique introducer proven. Stop without network or another blob.",
+  "eligible": false
+}

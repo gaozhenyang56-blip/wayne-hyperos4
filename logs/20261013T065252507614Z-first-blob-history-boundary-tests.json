@@ -1,0 +1,18 @@
+{
+  "label": "first-blob-history-boundary-tests",
+  "started_utc": "2026-10-13T06:52:52.507614+00:00",
+  "finished_utc": "2026-10-13T06:52:56.430816+00:00",
+  "cwd": "/workspace/wayne-hyperos4",
+  "command": [
+    "python3",
+    "-c",
+    "import subprocess,json,hashlib,datetime; from pathlib import Path; subprocess.run(['python3','tools/test_isolated_blob_history_boundary.py'],check=True); subprocess.run(['python3','-m','unittest','discover','-s','tools','-p','test_6_6_gate_integration.py','-v'],check=True); p=Path('research/isolated-blob-history-boundary-stage'); codes={}; [(codes.update({t:(r:=subprocess.run(['python3','tools/'+t,'--preflight'],capture_output=True)).returncode}), (p/(t+'.log')).write_bytes(r.stdout+r.stderr)) for t in ('ci_kernel_66_probe.py','ci_allocator_implementation.py')]; assert all(v==2 for v in codes.values()),codes; previous=json.loads(Path('research/isolated-blob-review-stage/checkpoint.json').read_bytes()); assert all(hashlib.sha256(Path(i['path']).read_bytes()).hexdigest()==i['sha256'] for i in previous['preservation']); raw=(p/'boundary.json').read_bytes(); p.joinpath('checkpoint.json').write_text(json.dumps({'baseline':'492912f','recorded_utc':datetime.datetime.now(datetime.timezone.utc).isoformat(),'boundary_sha256':hashlib.sha256(raw).hexdigest(),'tests_passed':6,'preflight':codes,'network_requests':0,'preservation_verified':True,'relationship_status':'unresolved','unique_introducing_commit':None,'next':'Blob exists at shallow boundary 71c631a9fb211df4ea5a59ac68a310c5854f07f1; earlier ancestry unavailable. No unique introducer proven. Stop without network or another blob.','eligible':False},indent=2)+'\\n'); print(codes)"
+  ],
+  "exit_code": 0,
+  "output": "logs/20261013T065252507614Z-first-blob-history-boundary-tests.log",
+  "output_sha256": "af114056b00b97db28d18af829d8256953dce5d616e2ae34c459a70630232915",
+  "action": "检查492912f后的工作区、断点和上轮测试；仅复核首个隔离blob，沿现有可见父链核对精确路径的提交和树差异，并保存只读历史边界证据。",
+  "outcome": "三项本地历史/严格拒绝/原子冲突测试与三项既有门禁测试通过；路径在12个祖先快照中连续存在直到浅边界，不能证明唯一引入，保持unresolved。两个实际6.6入口仍退出2；无网络请求、对象迁移、编译或打包。",
+  "failure_note": "离线检查未完成或失败，保留门禁并保存错误。",
+  "next_step": "保存最近可证明的浅边界、未枚举的更早候选范围与明确断点；同步GitHub后暂停，不补取对象或处理第二个blob。"
+}
