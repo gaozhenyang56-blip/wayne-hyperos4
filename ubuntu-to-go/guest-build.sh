@@ -3,6 +3,18 @@ set -Eeuo pipefail
 export DEBIAN_FRONTEND=noninteractive
 exec > >(tee -a /var/log/ubuntu-to-go-build.log /dev/ttyS0) 2>&1
 trap 'echo BUILD_FAILED:$LINENO >/dev/ttyS0; sync; poweroff -f' ERR
+# Provisioning must survive desktop services restarting systemd-resolved.
+rm -f /etc/resolv.conf
+printf 'nameserver 10.0.2.3\noptions timeout:3 attempts:5\n' >/etc/resolv.conf
+apt_retry() {
+  local attempt
+  for attempt in 1 2 3; do
+    if command apt-get "$@"; then return 0; fi
+    sleep 5
+  done
+  return 1
+}
+
 cat >/etc/apt/sources.list.d/ubuntu.sources <<'EOF'
 Types: deb
 URIs: https://archive.ubuntu.com/ubuntu
@@ -17,19 +29,19 @@ Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 EOF
 printf 'Acquire::Retries "3";\nAcquire::Languages "zh_CN;zh;en";\n' >/etc/apt/apt.conf.d/80-to-go
-apt-get update
-apt-get install -y --no-install-recommends curl ca-certificates gnupg pciutils
+apt_retry update
+apt_retry install -y --no-install-recommends curl ca-certificates gnupg pciutils
 install -d -m 0755 /etc/apt/keyrings
 curl --fail --location --retry 3 https://packages.mozilla.org/apt/repo-signing-key.gpg -o /etc/apt/keyrings/packages.mozilla.org.asc
 fingerprint=$(gpg --show-keys --with-colons /etc/apt/keyrings/packages.mozilla.org.asc | awk -F: '$1=="fpr" {print $10;exit}')
 [[ "$fingerprint" == 35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3 ]]
 printf 'deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc] https://packages.mozilla.org/apt mozilla main\n' >/etc/apt/sources.list.d/mozilla.list
 printf 'Package: *\nPin: origin packages.mozilla.org\nPin-Priority: 1000\n' >/etc/apt/preferences.d/mozilla
-apt-get update
-apt-get install -y --no-install-recommends ubuntu-desktop-minimal gnome-terminal gnome-initial-setup network-manager network-manager-gnome linux-generic linux-firmware firmware-sof-signed intel-microcode ntfs-3g exfatprogs cryptsetup gvfs-backends gvfs-fuse udisks2 gnome-disk-utility language-pack-zh-hans language-pack-gnome-zh-hans fonts-noto-cjk fonts-noto-color-emoji ibus-libpinyin software-properties-gtk ubuntu-drivers-common nvidia-prime mesa-utils firefox firefox-l10n-zh-cn libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-gtk3 libreoffice-l10n-zh-cn libreoffice-help-zh-cn vlc file-roller p7zip-full unzip gnome-system-monitor gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libfuse2t64 libnss3 libxss1 libasound2t64 git git-lfs git-man build-essential gcc g++ gdb make cmake pkg-config python3 python3-pip python3-venv python3-dev python-is-python3 openjdk-21-jdk-headless shellcheck jq ripgrep fd-find wget zip rsync openssh-client libssl-dev bubblewrap
-apt-get clean
-apt-get install -y --no-install-recommends linux-modules-nvidia-580-generic nvidia-driver-580
-apt-get clean
+apt_retry update
+apt_retry install -y --no-install-recommends ubuntu-desktop-minimal gnome-terminal gnome-initial-setup network-manager network-manager-gnome linux-generic linux-firmware firmware-sof-signed intel-microcode ntfs-3g exfatprogs cryptsetup gvfs-backends gvfs-fuse udisks2 gnome-disk-utility language-pack-zh-hans language-pack-gnome-zh-hans fonts-noto-cjk fonts-noto-color-emoji ibus-libpinyin software-properties-gtk ubuntu-drivers-common nvidia-prime mesa-utils firefox firefox-l10n-zh-cn libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-gtk3 libreoffice-l10n-zh-cn libreoffice-help-zh-cn vlc file-roller p7zip-full unzip gnome-system-monitor gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libfuse2t64 libnss3 libxss1 libasound2t64 git git-lfs git-man build-essential gcc g++ gdb make cmake pkg-config python3 python3-pip python3-venv python3-dev python-is-python3 openjdk-21-jdk-headless shellcheck jq ripgrep fd-find wget zip rsync openssh-client libssl-dev bubblewrap
+apt_retry clean
+apt_retry install -y --no-install-recommends linux-modules-nvidia-580-generic nvidia-driver-580
+apt_retry clean
 # Configure PRIME on the physical hybrid laptop, where its GPUs can be detected.
 install -d /usr/local/sbin
 cat >/usr/local/sbin/ubuntu-to-go-prime <<'EOF'
@@ -57,7 +69,7 @@ mount -o ro -L cidata /mnt/buildseed
 cp /mnt/buildseed/qq.deb /tmp/qq.deb
 echo '436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e  /tmp/qq.deb' | sha256sum -c -
 sha256sum /tmp/qq.deb >/var/log/qq-package.sha256
-apt-get install -y /tmp/qq.deb
+apt_retry install -y /tmp/qq.deb
 # All three desktop packages were downloaded on the build runner and shipped
 # in the build ISO, so the VHD is preinstalled before the first local account.
 cp /mnt/buildseed/clash-verge.deb /tmp/clash-verge.deb
@@ -67,14 +79,14 @@ echo '035c83ed14b16df1dd397e5d710b34bedd5d27beb6678549ceaeeadf9bc167ed  /tmp/cla
 for item in clash-verge chatgpt vscode; do
   test "$(dpkg-deb -f "/tmp/$item.deb" Architecture)" = amd64
 done
-apt-get install -y /tmp/clash-verge.deb /tmp/chatgpt.deb /tmp/vscode.deb
-apt-get clean
+apt_retry install -y /tmp/clash-verge.deb /tmp/chatgpt.deb /tmp/vscode.deb
+apt_retry clean
 # Node.js 22 LTS from signed NodeSource repository, with npm for Codex CLI.
 curl --fail --location --retry 3 https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key -o /tmp/nodesource.key
 gpg --batch --yes --dearmor -o /etc/apt/keyrings/nodesource.gpg /tmp/nodesource.key
 echo 'deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_22.x nodistro main' >/etc/apt/sources.list.d/nodesource.list
-apt-get update
-apt-get install -y --no-install-recommends nodejs
+apt_retry update
+apt_retry install -y --no-install-recommends nodejs
 npm --version
 node --version
 npm install -g @openai/codex
@@ -169,13 +181,16 @@ rm -f /root/guest-build.sh /usr/local/share/ca-certificates/build-proxy.crt
 update-ca-certificates
 mkdir -p /etc/cloud
 touch /etc/cloud/cloud-init.disabled
-apt-get clean
+apt_retry clean
 npm cache clean --force || true
 rm -rf /tmp/vscode-preinstall-profile /root/.npm
 rm -f /tmp/chatgpt.deb /tmp/clash-verge.deb /tmp/vscode.deb /tmp/nodesource.key
 rm -f /tmp/qq.deb
 rm -rf /var/lib/apt/lists/*
 rm -f /var/lib/systemd/random-seed
+rm -f /etc/resolv.conf
+ln -s /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+systemctl enable systemd-resolved.service
 truncate -s0 /etc/machine-id
 sync
 df -B1 / >/var/log/ubuntu-to-go-free-space.txt
