@@ -18,7 +18,7 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 EOF
 printf 'Acquire::Retries "3";\nAcquire::Languages "zh_CN;zh;en";\n' >/etc/apt/apt.conf.d/80-to-go
 apt-get update
-apt-get install -y --no-install-recommends curl ca-certificates gnupg
+apt-get install -y --no-install-recommends curl ca-certificates gnupg pciutils
 install -d -m 0755 /etc/apt/keyrings
 curl --fail --location --retry 3 https://packages.mozilla.org/apt/repo-signing-key.gpg -o /etc/apt/keyrings/packages.mozilla.org.asc
 fingerprint=$(gpg --show-keys --with-colons /etc/apt/keyrings/packages.mozilla.org.asc | awk -F: '$1=="fpr" {print $10;exit}')
@@ -28,7 +28,28 @@ printf 'Package: *\nPin: origin packages.mozilla.org\nPin-Priority: 1000\n' >/et
 apt-get update
 apt-get install -y --no-install-recommends ubuntu-desktop-minimal gnome-terminal gnome-initial-setup network-manager network-manager-gnome linux-generic linux-firmware firmware-sof-signed intel-microcode ntfs-3g exfatprogs cryptsetup gvfs-backends gvfs-fuse udisks2 gnome-disk-utility language-pack-zh-hans language-pack-gnome-zh-hans fonts-noto-cjk fonts-noto-color-emoji ibus-libpinyin software-properties-gtk ubuntu-drivers-common nvidia-prime mesa-utils firefox firefox-l10n-zh-cn libreoffice-writer libreoffice-calc libreoffice-impress libreoffice-gtk3 libreoffice-l10n-zh-cn libreoffice-help-zh-cn vlc file-roller p7zip-full unzip gnome-system-monitor gstreamer1.0-libav gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly libfuse2t64 libnss3 libxss1 libasound2t64
 apt-get install -y --no-install-recommends linux-modules-nvidia-580-generic nvidia-driver-580
-prime-select on-demand
+# Configure PRIME on the physical hybrid laptop, where its GPUs can be detected.
+install -d /usr/local/sbin
+cat >/usr/local/sbin/ubuntu-to-go-prime <<'EOF'
+#!/bin/sh
+if lspci -n | grep -q '10de:' && lspci -n | grep -Eq '030[02]: 8086:'; then
+    prime-select on-demand
+fi
+EOF
+chmod 755 /usr/local/sbin/ubuntu-to-go-prime
+cat >/etc/systemd/system/ubuntu-to-go-prime.service <<'EOF'
+[Unit]
+Description=Configure hybrid graphics on first hardware boot
+After=systemd-udev-trigger.service
+Before=display-manager.service
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/ubuntu-to-go-prime
+RemainAfterExit=yes
+[Install]
+WantedBy=graphical.target
+EOF
+systemctl enable ubuntu-to-go-prime.service
 curl --fail --location --retry 3 'https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.35/release/1763096b/QQ_3.2.33_260902_amd64_01.deb' -o /tmp/qq.deb
 sha256sum /tmp/qq.deb >/var/log/qq-package.sha256
 apt-get install -y /tmp/qq.deb
