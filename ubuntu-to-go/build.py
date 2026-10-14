@@ -25,11 +25,26 @@ download('https://github.com/ventoy/vtoyboot/releases/download/v1.0.36/vtoyboot-
 assert sha('vtoyboot.iso')=='e0fd493014b57f2c72c7b1b45c53b3e7cd3b746fedee5a9f20b057811168267e'
 download('https://qqdl.gtimg.cn/qqfile/QQNT/9.9.36/beta/9ee04bef/linuxqq_3.2.34-53644_amd64.deb','qq.deb')
 assert sha('qq.deb')=='436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','QQ checksum mismatch'
+# Official x64 packages are embedded in the provisioning ISO, not downloaded
+# by a user at first boot. Clash is release/checksum pinned.
+download('https://github.com/clash-verge-rev/clash-verge-rev/releases/download/v2.5.2/Clash.Verge_2.5.2_amd64.deb','clash-verge.deb')
+assert sha('clash-verge.deb')=='035c83ed14b16df1dd397e5d710b34bedd5d27beb6678549ceaeeadf9bc167ed','Clash Verge checksum mismatch'
+download('https://persistent.oaistatic.com/codex-app-prod/linux/deb/latest/chatgpt_amd64.deb','chatgpt.deb')
+download('https://update.code.visualstudio.com/latest/linux-deb-x64/stable','vscode.deb')
+deb_versions={}
+for label,filename,package in [('clash-verge','clash-verge.deb',None),('chatgpt','chatgpt.deb','chatgpt'),('vscode','vscode.deb','code')]:
+    deb_name=subprocess.check_output(['dpkg-deb','--field',filename,'Package'],text=True).strip()
+    arch=subprocess.check_output(['dpkg-deb','--field',filename,'Architecture'],text=True).strip()
+    version=subprocess.check_output(['dpkg-deb','--field',filename,'Version'],text=True).strip()
+    if arch!='amd64' or (package and deb_name!=package):
+        raise RuntimeError(f'Unexpected {label} package: {deb_name} {arch}')
+    deb_versions[deb_name]=version
+    print('Package:',label,deb_name,version,arch,flush=True)
 run('qemu-img','resize','ubuntu.qcow2','20G')
 seed={'users':[],'disable_root':True,'locale':'zh_CN.UTF-8','timezone':'Asia/Shanghai','write_files':[{'path':'/root/guest-build.sh','permissions':'0700','content':(ROOT/'guest-build.sh').read_text()}],'runcmd':[['bash','/root/guest-build.sh']]}
 pathlib.Path('user-data').write_text('#cloud-config\n'+yaml.safe_dump(seed,allow_unicode=True))
 pathlib.Path('meta-data').write_text('instance-id: ubuntu-to-go-20g-01\nlocal-hostname: ubuntu-to-go\n')
-run('genisoimage','-output','seed.iso','-volid','cidata','-joliet','-rock','user-data','meta-data','qq.deb')
+run('genisoimage','-output','seed.iso','-volid','cidata','-joliet','-rock','user-data','meta-data','qq.deb','clash-verge.deb','chatgpt.deb','vscode.deb')
 accel='kvm' if os.access('/dev/kvm',os.R_OK|os.W_OK) else 'tcg,thread=multi'
 print('Acceleration:',accel,flush=True)
 code=pathlib.Path('/usr/share/OVMF/OVMF_CODE_4M.fd');var=pathlib.Path('/usr/share/OVMF/OVMF_VARS_4M.fd')
@@ -60,10 +75,11 @@ assert struct.unpack('>Q',footer[48:56])[0]==20*1024**3
 env=os.environ.copy();env['LIBGUESTFS_BACKEND']='direct'
 space=subprocess.check_output(['virt-cat','-a',NAME,'/var/log/ubuntu-to-go-free-space.txt'],env=env,text=True)
 pathlib.Path('磁盘空间.txt').write_text(space)
-report={'base_sha256':expected,'qq_version':'3.2.34-53644','qq_sha256':'436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','root_space_df':space,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
+report={'base_sha256':expected,'qq_version':'3.2.34-53644','qq_sha256':'436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','clash_verge_version':'2.5.2','clash_verge_sha256':sha('clash-verge.deb'),'chatgpt_sha256':sha('chatgpt.deb'),'vscode_sha256':sha('vscode.deb'),'new_package_versions':deb_versions,'root_space_df':space,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
 pathlib.Path('manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 run('python3',ROOT/'preview.py')
 # Archive zeros efficiently, split below GitHub's per-asset limit.
+# The three added .deb files are not distributed separately; they are installed inside the VHD.
 run('tar','-I','zstd -T2 -8','-cf',NAME+'.tar.zst',NAME)
 run('split','-b','1900000000','-d','-a','3',NAME+'.tar.zst',NAME+'.tar.zst.')
 assets=sorted(pathlib.Path('.').glob(NAME+'.tar.zst.[0-9][0-9][0-9]'))
