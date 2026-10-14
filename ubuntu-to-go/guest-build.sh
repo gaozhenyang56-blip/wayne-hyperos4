@@ -50,7 +50,10 @@ RemainAfterExit=yes
 WantedBy=graphical.target
 EOF
 systemctl enable ubuntu-to-go-prime.service
-curl --fail --location --retry 3 'https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.35/release/1763096b/QQ_3.2.33_260902_amd64_01.deb' -o /tmp/qq.deb
+mkdir -p /mnt/buildseed
+mount -o ro -L cidata /mnt/buildseed
+cp /mnt/buildseed/qq.deb /tmp/qq.deb
+echo '436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e  /tmp/qq.deb' | sha256sum -c -
 sha256sum /tmp/qq.deb >/var/log/qq-package.sha256
 apt-get install -y /tmp/qq.deb
 # Allow Electron's sandbox on Ubuntu 24.04 without disabling user-namespace protection globally.
@@ -113,7 +116,6 @@ done
 for pkg in gnome-shell gdm3 gnome-initial-setup firefox libreoffice-writer vlc linuxqq; do
   dpkg-query -W -f='${Status}\n' "$pkg" | grep -q 'install ok installed'
 done
-df -B1 / >/var/log/ubuntu-to-go-free-space.txt
 dpkg-query -W -f='${Package}\t${Version}\n' >/var/log/ubuntu-to-go-packages.tsv
 printf 'LANG=zh_CN.UTF-8\nLANGUAGE=zh_CN:zh\n' >/etc/default/locale
 # No published account, SSH key, proxy certificate, or build-time password.
@@ -131,5 +133,6 @@ rm -rf /var/lib/apt/lists/*
 rm -f /var/lib/systemd/random-seed
 truncate -s0 /etc/machine-id
 sync
+df -B1 / >/var/log/ubuntu-to-go-free-space.txt
 printf 'BUILD_COMPLETED\n' >/dev/ttyS0
 poweroff

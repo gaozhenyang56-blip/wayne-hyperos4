@@ -23,11 +23,13 @@ expected=next(x.split()[0] for x in pathlib.Path('base-SHA256SUMS').read_text().
 assert sha('ubuntu.qcow2')==expected,'Ubuntu checksum mismatch'
 download('https://github.com/ventoy/vtoyboot/releases/download/v1.0.36/vtoyboot-1.0.36.iso','vtoyboot.iso')
 assert sha('vtoyboot.iso')=='e0fd493014b57f2c72c7b1b45c53b3e7cd3b746fedee5a9f20b057811168267e'
+download('https://qqdl.gtimg.cn/qqfile/QQNT/9.9.36/beta/9ee04bef/linuxqq_3.2.34-53644_amd64.deb','qq.deb')
+assert sha('qq.deb')=='436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','QQ checksum mismatch'
 run('qemu-img','resize','ubuntu.qcow2','20G')
 seed={'users':[],'disable_root':True,'locale':'zh_CN.UTF-8','timezone':'Asia/Shanghai','write_files':[{'path':'/root/guest-build.sh','permissions':'0700','content':(ROOT/'guest-build.sh').read_text()}],'runcmd':[['bash','/root/guest-build.sh']]}
 pathlib.Path('user-data').write_text('#cloud-config\n'+yaml.safe_dump(seed,allow_unicode=True))
 pathlib.Path('meta-data').write_text('instance-id: ubuntu-to-go-20g-01\nlocal-hostname: ubuntu-to-go\n')
-run('genisoimage','-output','seed.iso','-volid','cidata','-joliet','-rock','user-data','meta-data')
+run('genisoimage','-output','seed.iso','-volid','cidata','-joliet','-rock','user-data','meta-data','qq.deb')
 accel='kvm' if os.access('/dev/kvm',os.R_OK|os.W_OK) else 'tcg,thread=multi'
 print('Acceleration:',accel,flush=True)
 code=pathlib.Path('/usr/share/OVMF/OVMF_CODE_4M.fd');var=pathlib.Path('/usr/share/OVMF/OVMF_VARS_4M.fd')
@@ -55,7 +57,10 @@ with open(NAME,'rb') as f:
     f.seek(-512,2);footer=f.read(512)
 assert footer[:8]==b'conectix' and struct.unpack('>I',footer[60:64])[0]==2
 assert struct.unpack('>Q',footer[48:56])[0]==20*1024**3
-report={'base_sha256':expected,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
+env=os.environ.copy();env['LIBGUESTFS_BACKEND']='direct'
+space=subprocess.check_output(['virt-cat','-a',NAME,'/var/log/ubuntu-to-go-free-space.txt'],env=env,text=True)
+pathlib.Path('磁盘空间.txt').write_text(space)
+report={'base_sha256':expected,'qq_version':'3.2.34-53644','qq_sha256':'436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','root_space_df':space,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
 pathlib.Path('manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 run('python3',ROOT/'preview.py')
 # Archive zeros efficiently, split below GitHub's per-asset limit.
