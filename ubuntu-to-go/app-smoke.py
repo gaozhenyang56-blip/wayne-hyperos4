@@ -1,7 +1,7 @@
 import json, os, pathlib, signal, subprocess, tempfile, time
 out=pathlib.Path.home()/'app-test-results';out.mkdir(exist_ok=True)
 results={'cli':{},'gui':{}}
-for name,cmd in {'python':['python3','--version'],'node':['node','--version'],'npm':['npm','--version'],'git':['git','--version'],'g++':['g++','--version'],'java':['java','-version'],'codex':['codex','--version'],'vscode':['code','--version'],'vscode_extensions':['code','--list-extensions']}.items():
+for name,cmd in {'timezone':['timedatectl','show','-p','Timezone','--value'],'python':['python3','--version'],'node':['node','--version'],'npm':['npm','--version'],'git':['git','--version'],'g++':['g++','--version'],'java':['java','-version'],'codex':['codex','--version'],'vscode':['code','--version'],'vscode_extensions':['code','--list-extensions']}.items():
  try:
   p=subprocess.run(cmd,capture_output=True,text=True,timeout=25)
   results['cli'][name]={'returncode':p.returncode,'output':(p.stdout+p.stderr)[:3000]}
@@ -18,6 +18,7 @@ for name,cmd in {'c_execution':[str(dev/'hello-c')],'cpp_execution':[str(dev/'he
   p=subprocess.run(cmd,capture_output=True,text=True,timeout=30)
   results['cli'][name]={'returncode':p.returncode,'output':p.stdout+p.stderr}
  except Exception as e:results['cli'][name]={'error':str(e)}
+assert results['cli']['timezone'].get('output','').strip()=='Asia/Shanghai','Unexpected system timezone'
 for name,cmd in {'qq':['qq'],'firefox':['firefox','about:blank'],'libreoffice':['libreoffice','--writer','--norestore'],'vlc':['vlc'],'clash-verge':['clash-verge'],'chatgpt':['chatgpt'],'vscode':['code','--new-window']}.items():
  try:
   f=open(out/(name+'.log'),'w');p=subprocess.Popen(cmd,stdout=f,stderr=subprocess.STDOUT,start_new_session=True)

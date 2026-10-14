@@ -89,6 +89,11 @@ pathlib.Path('磁盘空间.txt').write_text(space)
 report={'base_sha256':expected,'qq_version':'3.2.34-53644','qq_sha256':'436c65e1dd28422e128a21cbddb5fe4e2e6c079d7f27fec2541e014d38cc336e','clash_verge_version':'2.5.2','clash_verge_sha256':package_hashes['clash-verge'],'chatgpt_sha256':package_hashes['chatgpt'],'vscode_sha256':package_hashes['vscode'],'new_package_versions':deb_versions,'root_space_df':space,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
 pathlib.Path('manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 run('python3',ROOT/'preview.py')
+run('python3',ROOT.parent/'ubuntu-network-test/network-test.py',WORK)
+report['network_tests']=json.loads(pathlib.Path('network-test/NETWORK_TEST.json').read_text())
+report['software_tests']=json.loads(pathlib.Path('previews/software-tests.json').read_text())
+report['validation']='QEMU image consistency and fixed VHD footer; package/module checks; disposable UEFI GUI boots, CLI/compilation, GUI startup, NTFS read/write and DHCP/DNS/HTTPS tests. Physical ThinkPad and Ventoy boot chain not yet tested.'
+pathlib.Path('manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
 # Archive zeros efficiently, split below GitHub's per-asset limit.
 # The three added .deb files are not distributed separately; they are installed inside the VHD.
 run('tar','-I','zstd -T2 -8','-cf',NAME+'.tar.zst',NAME)

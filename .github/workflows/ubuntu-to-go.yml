@@ -2,7 +2,7 @@ name: Ubuntu To Go Chinese Desktop
 on:
   push:
     branches: [ubuntu-to-go]
-    paths: ['ubuntu-to-go/**', '.github/workflows/ubuntu-to-go.yml']
+    paths: ['ubuntu-to-go/**', 'ubuntu-network-test/**', '.github/workflows/ubuntu-to-go.yml']
 permissions:
   contents: write
 concurrency:
@@ -47,6 +47,8 @@ jobs:
             ubuntu-build/build-console.log
             ubuntu-build/manifest.json
             ubuntu-build/previews/*
+            ubuntu-build/network-test/*.log
+            ubuntu-build/network-test/NETWORK_TEST.json
           if-no-files-found: ignore
       - name: Publish experimental image
         env:
@@ -58,4 +60,4 @@ jobs:
           下载全部分卷后合并解压，将.vhd.vtoy复制到Ventoy数据分区。首次在本地设置账号与密码。
           实验预览：尚未在用户的ThinkPad E14真机或Ventoy链路上验证。检查范围见manifest.json和使用说明。
           EOF
-          gh release create "$tag" --target "$GITHUB_SHA" --title 'Ubuntu To Go 中文桌面 20GiB 实验预览' --notes-file /tmp/release-notes.txt --prerelease ubuntu-build/*.tar.zst.[0-9][0-9][0-9] ubuntu-build/SHA256SUMS ubuntu-build/manifest.json ubuntu-build/使用说明.txt ubuntu-build/previews/*
+          gh release create "$tag" --target "$GITHUB_SHA" --title 'Ubuntu To Go 中文桌面 20GiB 实验预览' --notes-file /tmp/release-notes.txt --prerelease ubuntu-build/*.tar.zst.[0-9][0-9][0-9] ubuntu-build/SHA256SUMS ubuntu-build/manifest.json ubuntu-build/使用说明.txt ubuntu-build/previews/* ubuntu-build/network-test/NETWORK_TEST.json

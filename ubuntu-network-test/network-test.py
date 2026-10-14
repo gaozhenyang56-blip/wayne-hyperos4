@@ -1,7 +1,8 @@
 import json, os, pathlib, shutil, subprocess, time
-ROOT=pathlib.Path.cwd(); work=ROOT/'network-test';work.mkdir(exist_ok=True)
-base=ROOT/'ubuntu-build/ubuntu.qcow2';assert base.exists(),'No completed installation checkpoint available'
-marker=json.loads((ROOT/'ubuntu-build/image-complete.json').read_text())
+ROOT=pathlib.Path(__import__('sys').argv[1]).resolve() if len(__import__('sys').argv)>1 else pathlib.Path('ubuntu-build').resolve()
+work=ROOT/'network-test';work.mkdir(exist_ok=True)
+base=ROOT/'ubuntu.qcow2';assert base.exists(),'No completed installation checkpoint available'
+marker=json.loads((ROOT/'image-complete.json').read_text())
 def run(*args):return subprocess.run(list(map(str,args)),check=True)
 overlay=work/'network.qcow2';run('qemu-img','create','-f','qcow2','-F','qcow2','-b',base,overlay)
 script=r'''#!/bin/bash
@@ -16,6 +17,9 @@ test "$(readlink /etc/resolv.conf)" = /run/systemd/resolve/stub-resolv.conf
 ip -4 address
 ip -4 route
 ip -4 route show default | grep -q '^default '
+iface=$(ip -o -4 route show default | awk '{print $5;exit}')
+uuid=$(nmcli -g GENERAL.CON-UUID device show "$iface")
+nmcli -g ipv4.method connection show "$uuid" | grep -qx auto
 nmcli -t -f DEVICE,TYPE,STATE device
 resolvectl status
 getent ahostsv4 archive.ubuntu.com

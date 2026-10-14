@@ -3,18 +3,30 @@ set -Eeuo pipefail
 export DEBIAN_FRONTEND=noninteractive
 exec > >(tee -a /var/log/ubuntu-to-go-build.log /dev/ttyS0) 2>&1
 trap 'echo BUILD_FAILED:$LINENO >/dev/ttyS0; sync; poweroff -f' ERR
-# Provisioning must survive desktop services restarting systemd-resolved.
-rm -f /etc/resolv.conf
-printf 'nameserver 10.0.2.3\noptions timeout:3 attempts:5\n' >/etc/resolv.conf
+# Isolate provisioning from desktop packages switching networking services.
+build_iface=$(ip -o -4 route show default | awk '{print $5;exit}')
+test -n "$build_iface"
+systemctl mask NetworkManager.service NetworkManager-dispatcher.service systemd-networkd.service systemd-networkd.socket systemd-resolved.service
+systemctl stop NetworkManager.service systemd-networkd.socket systemd-networkd.service systemd-resolved.service || true
+configure_build_network() {
+  ip link set "$build_iface" up
+  ip addr replace 10.0.2.15/24 dev "$build_iface"
+  ip route replace default via 10.0.2.2 dev "$build_iface"
+  rm -f /etc/resolv.conf
+  printf 'nameserver 10.0.2.3\noptions timeout:3 attempts:5\n' >/etc/resolv.conf
+  sed -i 's/^hosts:.*/hosts:          files dns/' /etc/nsswitch.conf
+}
+configure_build_network
 apt_retry() {
   local attempt
   for attempt in 1 2 3; do
+    configure_build_network
     if command apt-get "$@"; then return 0; fi
     sleep 5
   done
+  ip address; ip route; cat /etc/resolv.conf; grep '^hosts:' /etc/nsswitch.conf
   return 1
 }
-
 cat >/etc/apt/sources.list.d/ubuntu.sources <<'EOF'
 Types: deb
 URIs: https://archive.ubuntu.com/ubuntu
@@ -135,6 +147,8 @@ printf 'network:\n  version: 2\n  renderer: NetworkManager\n' >/etc/netplan/01-n
 chmod 600 /etc/netplan/01-network-manager-all.yaml
 mkdir -p /etc/NetworkManager/conf.d
 printf '[keyfile]\nunmanaged-devices=none\n' >/etc/NetworkManager/conf.d/10-globally-managed-devices.conf
+systemctl unmask NetworkManager.service NetworkManager-dispatcher.service systemd-networkd.service systemd-networkd.socket systemd-resolved.service
+systemctl disable systemd-networkd.service systemd-networkd.socket systemd-networkd-wait-online.service || true
 systemctl enable NetworkManager
 systemctl disable systemd-networkd-wait-online.service ssh.service ssh.socket || true
 systemctl set-default graphical.target

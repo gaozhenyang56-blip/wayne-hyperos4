@@ -1,8 +1,6 @@
 name: Ubuntu To Go Network Validation
 on:
-  push:
-    branches: [ubuntu-to-go]
-    paths: ['ubuntu-network-test/**', '.github/workflows/ubuntu-network-test.yml']
+  workflow_dispatch:
 permissions:
   contents: write
   actions: read
@@ -18,16 +16,6 @@ jobs:
           sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils ovmf libguestfs-tools linux-image-generic
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
           sudo env LIBGUESTFS_BACKEND=direct libguestfs-test-tool
-      - name: Wait for target installation checkpoint
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          for attempt in $(seq 1 75); do
-            state=$(gh run view 38598193677 --json status --jq .status)
-            if [ "$state" = completed ]; then exit 0; fi
-            sleep 45
-          done
-          exit 1
       - name: Restore installed image
         uses: actions/cache/restore@v4
         with:
@@ -44,15 +32,6 @@ jobs:
         with:
           name: ubuntu-network-validation
           path: |
-            network-test/console.log
-            network-test/NETWORK_TEST.json
+            ubuntu-build/network-test/console.log
+            ubuntu-build/network-test/NETWORK_TEST.json
           if-no-files-found: ignore
-      - name: Attach passed test report to the matching image release
-        env:
-          GH_TOKEN: ${{ github.token }}
-        run: |
-          number=$(gh run view 38598193677 --json number --jq .number)
-          tag="ubuntu-to-go-20g-$number"
-          if gh release view "$tag" >/dev/null 2>&1; then
-            gh release upload "$tag" network-test/NETWORK_TEST.json --clobber
-          fi
