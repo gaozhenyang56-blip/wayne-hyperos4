@@ -57,6 +57,7 @@ assert footer[:8]==b'conectix' and struct.unpack('>I',footer[60:64])[0]==2
 assert struct.unpack('>Q',footer[48:56])[0]==20*1024**3
 report={'base_sha256':expected,'vtoyboot':'1.0.36','vhd_size_bytes':os.path.getsize(NAME),'vhd_sha256':sha(NAME),'format':'fixed VHD','virtual_capacity_GiB':20,'language':'zh_CN.UTF-8','first_boot':'GNOME local user/password setup','validation':'guest package and kernel-module presence; fixed VHD footer; QEMU image check. Hardware and Ventoy boot require verification.'}
 pathlib.Path('manifest.json').write_text(json.dumps(report,ensure_ascii=False,indent=2))
+run('python3',ROOT/'preview.py')
 # Archive zeros efficiently, split below GitHub's per-asset limit.
 run('tar','-I','zstd -T2 -8','-cf',NAME+'.tar.zst',NAME)
 run('split','-b','1900000000','-d','-a','3',NAME+'.tar.zst',NAME+'.tar.zst.')

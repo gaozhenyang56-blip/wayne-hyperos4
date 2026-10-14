@@ -32,6 +32,16 @@ prime-select on-demand
 curl --fail --location --retry 3 'https://qqdl.gtimg.cn/qqfile/QQNTV2/9.9.35/release/1763096b/QQ_3.2.33_260902_amd64_01.deb' -o /tmp/qq.deb
 sha256sum /tmp/qq.deb >/var/log/qq-package.sha256
 apt-get install -y /tmp/qq.deb
+# Allow Electron's sandbox on Ubuntu 24.04 without disabling user-namespace protection globally.
+cat >/etc/apparmor.d/qq-to-go <<'EOF'
+abi <abi/4.0>,
+include <tunables/global>
+profile qq-to-go /opt/QQ/qq flags=(unconfined) {
+  userns,
+}
+EOF
+apparmor_parser -r /etc/apparmor.d/qq-to-go
+
 locale-gen zh_CN.UTF-8
 update-locale LANG=zh_CN.UTF-8 LANGUAGE=zh_CN:zh
 ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
@@ -63,6 +73,7 @@ systemctl enable NetworkManager
 systemctl disable systemd-networkd-wait-online.service ssh.service ssh.socket || true
 systemctl set-default graphical.target
 # GNOME creates the real user locally, with password confirmation, on first boot.
+sed -i '/^InitialSetupEnable=/d' /etc/gdm3/custom.conf
 sed -i '/^\[daemon\]/a InitialSetupEnable=true' /etc/gdm3/custom.conf
 mkdir -p /etc/gnome-initial-setup
 printf '[pages]\nskip=goa,privacy,software,ubuntu-report,livepatch\n' >/etc/gnome-initial-setup/vendor.conf
@@ -81,6 +92,7 @@ done
 for pkg in gnome-shell gdm3 gnome-initial-setup firefox libreoffice-writer vlc linuxqq; do
   dpkg-query -W -f='${Status}\n' "$pkg" | grep -q 'install ok installed'
 done
+df -B1 / >/var/log/ubuntu-to-go-free-space.txt
 dpkg-query -W -f='${Package}\t${Version}\n' >/var/log/ubuntu-to-go-packages.tsv
 printf 'LANG=zh_CN.UTF-8\nLANGUAGE=zh_CN:zh\n' >/etc/default/locale
 # No published account, SSH key, proxy certificate, or build-time password.
