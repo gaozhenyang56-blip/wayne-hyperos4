@@ -82,7 +82,8 @@ npm install -g @openai/codex
 # GNOME Initial Setup copies /etc/skel into the local account it creates.
 install -d -m 0755 /etc/skel/.vscode/extensions
 code --no-sandbox --user-data-dir /tmp/vscode-preinstall-profile \
-  --extensions-dir /etc/skel/.vscode/extensions --install-extension openai.chatgpt --force
+  --extensions-dir /etc/skel/.vscode/extensions --install-extension openai.chatgpt --install-extension MS-CEINTL.vscode-language-pack-zh-hans --force
+printf '{"locale":"zh-cn"}\n' > /etc/skel/.vscode/argv.json
 codex --version
 code --no-sandbox --user-data-dir /tmp/vscode-preinstall-profile --version
 # Allow Electron's sandbox on Ubuntu 24.04 without disabling user-namespace protection globally.
