@@ -17,11 +17,27 @@ jobs:
       - name: Install build tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils ovmf genisoimage python3-yaml python3-pil libguestfs-tools zstd
+          sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils ovmf genisoimage python3-yaml python3-pil libguestfs-tools linux-image-generic ntfs-3g zstd
           if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+          sudo env LIBGUESTFS_BACKEND=direct libguestfs-test-tool
           df -h .
+      - name: Restore completed Ubuntu installation
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            ubuntu-build/ubuntu.qcow2
+            ubuntu-build/image-complete.json
+          key: ubuntu-installed-v1-${{ hashFiles('ubuntu-to-go/guest-build.sh') }}
       - name: Build Ubuntu desktop VHD
         run: python3 ubuntu-to-go/build.py
+      - name: Preserve completed Ubuntu installation
+        if: always() && hashFiles('ubuntu-build/image-complete.json') != ''
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            ubuntu-build/ubuntu.qcow2
+            ubuntu-build/image-complete.json
+          key: ubuntu-installed-v1-${{ hashFiles('ubuntu-to-go/guest-build.sh') }}
       - name: Save build logs
         if: always()
         uses: actions/upload-artifact@v4
@@ -30,7 +46,7 @@ jobs:
           path: |
             ubuntu-build/build-console.log
             ubuntu-build/manifest.json
-            ubuntu-build/previews/*.png
+            ubuntu-build/previews/*
           if-no-files-found: ignore
       - name: Publish experimental image
         env:
@@ -38,8 +54,8 @@ jobs:
         run: |
           tag="ubuntu-to-go-20g-${GITHUB_RUN_NUMBER}"
           cat > /tmp/release-notes.txt <<'EOF'
-          Ubuntu 24.04 LTS 中文桌面，20GiB固定VHD，预装QQ/Firefox/LibreOffice/VLC，包含Intel与NVIDIA驱动包和vtoyboot。
+          Ubuntu 24.04 LTS 中文桌面，20GiB固定VHD，预装QQ/Firefox/LibreOffice/VLC、Clash Verge Rev、ChatGPT/Codex图形客户端、Codex CLI、VS Code/Codex 扩展及 Python/Node.js/Git/C++/Java 开发环境，包含Intel与NVIDIA驱动包和vtoyboot。
           下载全部分卷后合并解压，将.vhd.vtoy复制到Ventoy数据分区。首次在本地设置账号与密码。
           实验预览：尚未在用户的ThinkPad E14真机或Ventoy链路上验证。检查范围见manifest.json和使用说明。
           EOF
-          gh release create "$tag" --target "$GITHUB_SHA" --title 'Ubuntu To Go 中文桌面 20GiB 实验预览' --notes-file /tmp/release-notes.txt --prerelease ubuntu-build/*.tar.zst.[0-9][0-9][0-9] ubuntu-build/SHA256SUMS ubuntu-build/manifest.json ubuntu-build/使用说明.txt ubuntu-build/previews/*.png
+          gh release create "$tag" --target "$GITHUB_SHA" --title 'Ubuntu To Go 中文桌面 20GiB 实验预览' --notes-file /tmp/release-notes.txt --prerelease ubuntu-build/*.tar.zst.[0-9][0-9][0-9] ubuntu-build/SHA256SUMS ubuntu-build/manifest.json ubuntu-build/使用说明.txt ubuntu-build/previews/*
