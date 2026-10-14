@@ -38,7 +38,7 @@ jobs:
         run: |
           tag="ubuntu-to-go-20g-${GITHUB_RUN_NUMBER}"
           cat > /tmp/release-notes.txt <<'EOF'
-          Ubuntu 24.04 LTS 中文桌面，20GiB固定VHD，预装QQ/Firefox/LibreOffice/VLC、Clash Verge Rev、ChatGPT/Codex图形客户端、Codex CLI、VS Code/Codex 扩展及 Python/Node.js/Git/C++/Java 开发环境，包含Intel与NVIDIA驱动包和vtoyboot。
+          Ubuntu 24.04 LTS 中文桌面，20GiB固定VHD，预装QQ/Firefox/LibreOffice/VLC，包含Intel与NVIDIA驱动包和vtoyboot。
           下载全部分卷后合并解压，将.vhd.vtoy复制到Ventoy数据分区。首次在本地设置账号与密码。
           实验预览：尚未在用户的ThinkPad E14真机或Ventoy链路上验证。检查范围见manifest.json和使用说明。
           EOF

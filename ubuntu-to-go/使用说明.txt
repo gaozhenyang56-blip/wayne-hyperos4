@@ -11,9 +11,6 @@ Ubuntu 24.04 LTS 中文桌面 / ThinkPad E14 / Ventoy 固定 VHD
 7. 文件和软件保存在20GiB虚拟磁盘里。关机完成后再拔出U盘。
 
 已配置：Ubuntu GNOME简体中文、拼音输入法、Noto中文字体、Firefox中文、LibreOffice中文、VLC、QQ官方Linux 3.2.34、归档/磁盘/系统工具。
-新增预装：Clash Verge Rev 2.5.2 图形代理管理、ChatGPT Linux 图形预览客户端（内含Codex）、VS Code及Codex扩展、Codex CLI、Node.js 22 LTS/npm、Python3/pip/venv、Git/Git LFS、gcc/g++、GDB、CMake、Java21、bubblewrap等常见编译工具。
-首次使用：Clash Verge 打开后手动导入自己的配置；ChatGPT 图形客户端与 Codex CLI 首次运行时登录自己的账号；VS Code Codex扩展已预装在新账号的扩展目录。未在镜像中预填凭据。
-注意：新装图形客户端、CLI和驱动均需实验镜像构建成功后才能确认已真实安装。Codex Linux 预览版当前不提供 Computer Use。
 驱动：Ubuntu generic内核、Intel显卡/微码、无线/蓝牙与SOF音频固件、NVIDIA 580驱动及同版本预编译模块，混合显卡on-demand。
 无线网卡具体型号和指纹识别器未读取，不能保证所有可选硬件均可用。
 
