@@ -1,0 +1,44 @@
+name: Ubuntu To Go Chinese Desktop
+on:
+  push:
+    branches: [ubuntu-to-go]
+    paths: ['ubuntu-to-go/**', '.github/workflows/ubuntu-to-go.yml']
+permissions:
+  contents: write
+concurrency:
+  group: ubuntu-to-go-build
+  cancel-in-progress: false
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends qemu-system-x86 qemu-utils ovmf genisoimage python3-yaml zstd
+          if [ -e /dev/kvm ]; then sudo chmod a+rw /dev/kvm; fi
+          df -h .
+      - name: Build Ubuntu desktop VHD
+        run: python3 ubuntu-to-go/build.py
+      - name: Save build logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ubuntu-to-go-build-log
+          path: |
+            ubuntu-build/build-console.log
+            ubuntu-build/manifest.json
+          if-no-files-found: ignore
+      - name: Publish experimental image
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="ubuntu-to-go-20g-${GITHUB_RUN_NUMBER}"
+          cat > /tmp/release-notes.txt <<'EOF'
+          Ubuntu 24.04 LTS 中文桌面，20GiB固定VHD，预装QQ/Firefox/LibreOffice/VLC，包含Intel与NVIDIA驱动包和vtoyboot。
+          下载全部分卷后合并解压，将.vhd.vtoy复制到Ventoy数据分区。首次在本地设置账号与密码。
+          实验预览：尚未在用户的ThinkPad E14真机或Ventoy链路上验证。检查范围见manifest.json和使用说明。
+          EOF
+          gh release create "$tag" --target "$GITHUB_SHA" --title 'Ubuntu To Go 中文桌面 20GiB 实验预览' --notes-file /tmp/release-notes.txt --prerelease ubuntu-build/*.tar.zst.[0-9][0-9][0-9] ubuntu-build/SHA256SUMS ubuntu-build/manifest.json ubuntu-build/使用说明.txt
