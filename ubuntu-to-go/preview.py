@@ -55,7 +55,7 @@ cat >/home/preview/.config/autostart/preview-apps.desktop <<'EOF'
 [Desktop Entry]
 Type=Application
 Name=Preview apps
-Exec=/bin/bash -c "sleep 55; nautilus --new-window /home/preview; sleep 45; /opt/QQ/qq"
+Exec=/bin/bash -c "sleep 55; nautilus --new-window /home/preview & sleep 45; /opt/QQ/qq"
 X-GNOME-Autostart-enabled=true
 EOF
 chown -R preview:preview /home/preview
