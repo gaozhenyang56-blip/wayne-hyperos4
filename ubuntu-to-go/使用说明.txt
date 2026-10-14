@@ -1,0 +1,20 @@
+Ubuntu 24.04 LTS 中文桌面 / ThinkPad E14 / Ventoy 固定 VHD
+
+1. 下载本 Release 的全部 .tar.zst.000、.001 等分卷。只有一份时也按此操作。
+2. Windows 安装新版 7-Zip。先把分卷按编号合并成 .tar.zst，再解压 zst 和 tar，得到 .vhd.vtoy。
+   PowerShell：cmd /c copy /b Ubuntu-24.04-zh-CN-E14-20GiB.vhd.vtoy.tar.zst.* Ubuntu.tar.zst
+3. 将 .vhd.vtoy 原样复制到已安装 Ventoy 的U盘数据分区，不要写入 VTOYEFI 小分区。
+4. 保留 .vhd.vtoy 双后缀。文件超过4GB，U盘数据分区需为exFAT或NTFS等支持大文件的格式。
+5. 从U盘启动 Ventoy，选择镜像。首次在本地设置中文账号和两遍密码，镜像无预设个人账号。
+6. 打开“文件”→“其他位置”访问电脑内置磁盘。Windows没有BitLocker则无需密钥。
+   如Windows处于休眠/快速启动状态，只读访问或先在Windows完整关机；不要强制移除休眠文件。
+7. 文件和软件保存在20GiB虚拟磁盘里。关机完成后再拔出U盘。
+
+已配置：Ubuntu GNOME简体中文、拼音输入法、Noto中文字体、Firefox中文、LibreOffice中文、VLC、QQ官方Linux 3.2.33、归档/磁盘/系统工具。
+驱动：Ubuntu generic内核、Intel显卡/微码、无线/蓝牙与SOF音频固件、NVIDIA 580驱动及同版本预编译模块，混合显卡on-demand。
+无线网卡具体型号和指纹识别器未读取，不能保证所有可选硬件均可用。
+
+重要：此版本为实验预览。脚本与结构检查不等于ThinkPad真机或Ventoy完整启动已通过。
+Secure Boot与vtoyboot兼容性仍需真机验证；如启动被固件阻止，再检查安全启动配置。
+升级内核/驱动后建议 sudo bash /opt/vtoyboot/vtoyboot.sh（先 cd /opt/vtoyboot）。
+不要在公开Release中上传个人密码、恢复密钥或已登录QQ的个人镜像。
