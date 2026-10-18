@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 # V2RAY-GUARD-PROJECT (v2)
+V2_GUARD_LEGACY=${V2_GUARD_LEGACY:-0}
 V2_BIN=/usr/local/sbin/v2ray-guard
 V2_DIR=/etc/v2ray-guard
 V2_RUN=/run/v2ray-guard
