@@ -202,10 +202,24 @@ v2_check(){
  if ((V2_MEM<12 || V2_CPU>=85)); then v3_auto_candidate; fi
  v2_resource
 }
+# 统一把 systemd 状态转换成简洁的中文。
+v3_state(){
+ case "$1" in
+ active) printf '运行中';;
+ inactive) printf '未运行';;
+ failed) printf '异常';;
+ activating) printf '启动中';;
+ enabled) printf '已启用';;
+ disabled) printf '未启用';;
+ static) printf '静态服务';;
+ masked) printf '已屏蔽';;
+ *) printf '%s' "$1";;
+ esac
+}
 v2_status(){
  v2_root; v2_read
  printf 'V2Ray 守护 v2.2.0｜保护服务：%s｜运行状态：%s｜开机启动：%s\n' "$V2_TARGET" \
-  "$(systemctl is-active "$V2_TARGET" 2>/dev/null || :)" "$(systemctl is-enabled "$V2_TARGET" 2>/dev/null || :)"
+  "$(v3_state "$(systemctl is-active "$V2_TARGET" 2>/dev/null || :)")" "$(v3_state "$(systemctl is-enabled "$V2_TARGET" 2>/dev/null || :)")"
  printf '定时检测：%s｜端口：%s｜模式：%s｜后台服务：%s\n' \
   "$(systemctl is-active v2ray-guard-check.timer 2>/dev/null || :)" "$V2_PORT" "$V2_MODE" "$V2_BG"
  printf '自动资源优化：%s（仅限安全白名单）｜手动指定服务：%s\n' "$V3_AUTO" "${V2_BG:-none}"
@@ -391,7 +405,7 @@ select_service() {
   local candidate
   if [[ -n "$SERVICE" ]]; then
     validate_unit "$SERVICE"
-    is_loaded "$SERVICE" || fail "$SERVICE not found. Use systemctl list-unit-files | grep -Ei 'v2ray|xray'"
+    is_loaded "$SERVICE" || fail "$SERVICE 未找到；请通过 systemctl list-unit-files 查看服务名称"
     return
   fi
   if [[ -r "$STATE_FILE" ]]; then
@@ -403,7 +417,7 @@ select_service() {
   for candidate in v2ray.service 'v2ray@config.service' xray.service 'xray@config.service' 3x-ui.service x-ui.service; do
     if is_loaded "$candidate"; then SERVICE="$candidate"; return; fi
   done
-  fail "Couldn't find a systemd V2Ray/Xray service. Supply --service NAME.service. Docker installations aren't modified."
+  fail "未找到 V2Ray/Xray 的 systemd 服务，请通过 --service NAME.service 指定；不会更改 Docker 部署"
 }
 
 show_status() {
@@ -555,7 +569,7 @@ if systemctl is-active --quiet "$SERVICE"; then
 else
   say '服务尚未运行，正在尝试启动'
   if ! systemctl start "$SERVICE"; then
-    warn "Couldn't start $SERVICE. View errors: sudo journalctl -u $SERVICE -n 80 --no-pager"
+    warn "服务 $SERVICE 启动失败，请查看 sudo journalctl -u $SERVICE -n 80 --no-pager"
     exit 1
   fi
 fi
@@ -587,5 +601,5 @@ VGCMD
  else
   v2_msg '系统已存在 vg 命令，未覆盖；请使用 sudo v2ray-guard --menu 打开菜单'
  fi
- v2_msg 'v2.1 installed: automatic safe resource protection enabled; future upgrades: sudo v2ray-guard --upgrade'
+ v2_msg 'v2.2 中文版安装完成：输入 vg 打开菜单；自动安全资源优化已开启，可使用 sudo v2ray-guard --upgrade 更新'
 fi
