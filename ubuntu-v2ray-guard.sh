@@ -12,7 +12,7 @@ v2_bad(){ printf 'ERROR: %s\n' "$*" >&2; exit 1; }
 v2_root(){ ((EUID==0)) || v2_bad 'Run with sudo'; [[ -d /run/systemd/system ]] || v2_bad 'systemd required'; }
 v2_valid_unit(){ [[ "$1" =~ ^[a-zA-Z0-9_.@-]+\.service$ ]]; }
 v2_read(){
- V2_PORT=0 V2_MODE=tcp V2_BG='' V2_TARGET=''
+ V2_PORT=0 V2_MODE=tcp V2_BG='' V2_TARGET='' V3_AUTO=1
  if [[ -r "$V2_DIR/service" ]]; then V2_TARGET="$(head -n1 "$V2_DIR/service")"; fi
  if ! v2_valid_unit "$V2_TARGET"; then
    local u
@@ -27,6 +27,7 @@ v2_read(){
     PORT) [[ "$v" =~ ^[0-9]+$ ]] && V2_PORT="$v" || :;;
     MODE) [[ "$v" =~ ^(tcp|http|socks5)$ ]] && V2_MODE="$v" || :;;
     BG) [[ -z "$v" ]] || { v2_valid_unit "$v" && V2_BG="$v" || :; };;
+    AUTO) [[ "$v" == 0 || "$v" == 1 ]] && V3_AUTO="$v" || :;;
    esac
   done < "$V2_CFG"
  fi
@@ -39,7 +40,9 @@ v2_configure(){
    --port) V2_PORT="$2";;
    --mode) V2_MODE="$2";;
    --background-unit) V2_BG="$2";;
-   --disable-background) V2_BG='';;
+   --disable-background) V2_BG=''; V3_AUTO=0;;
+   --auto-on) V3_AUTO=1;;
+   --auto-off) V3_AUTO=0;;
    *) v2_bad "Invalid option $1";;
   esac
   shift 2
@@ -56,8 +59,8 @@ v2_configure(){
    esac
  fi
  install -d -m 0700 "$V2_DIR"
- (umask 077; printf 'PORT=%s\nMODE=%s\nBG=%s\n' "$V2_PORT" "$V2_MODE" "$V2_BG" > "$V2_CFG")
- v2_msg "Configured port=$V2_PORT type=$V2_MODE background=$V2_BG"
+ (umask 077; printf 'PORT=%s\nMODE=%s\nBG=%s\nAUTO=%s\n' "$V2_PORT" "$V2_MODE" "$V2_BG" "$V3_AUTO" > "$V2_CFG")
+ v2_msg "Configured port=$V2_PORT type=$V2_MODE background=$V2_BG auto-resource=$V3_AUTO"
 }
 v2_tcp(){
  ((V2_PORT>0)) || return 0
@@ -104,6 +107,34 @@ v2_restore(){
  rm -f "$V2_RUN/cpu.original"
  v2_msg "Restored background unit CPU settings $u"
 }
+# v2.1: Automatically choose only expendable maintenance/indexing units.
+v3_safe_unit(){
+ case "$1" in
+  apt-daily.service|apt-daily-upgrade.service|unattended-upgrades.service|packagekit.service|fwupd.service|man-db.service|plocate-updatedb.service|mlocate.service|tracker-miner-fs-3.service) return 0;;
+  *) return 1;;
+ esac
+}
+v3_auto_candidate(){
+ [[ "$V3_AUTO" == 1 && -z "$V2_BG" ]] || return 0
+ [[ -f /sys/fs/cgroup/cgroup.controllers ]] || return 0
+ local u mem best=0 winner='' old='' weight=''
+ if [[ -r "$V2_RUN/cpu.original" ]]; then
+   read -r old weight < "$V2_RUN/cpu.original" || :
+   if v3_safe_unit "$old" && systemctl is-active --quiet "$old"; then
+     V2_BG="$old"; return 0
+   fi
+ fi
+ for u in apt-daily.service apt-daily-upgrade.service unattended-upgrades.service packagekit.service fwupd.service man-db.service plocate-updatedb.service mlocate.service tracker-miner-fs-3.service; do
+   systemctl is-active --quiet "$u" || continue
+   [[ "$u" != "$V2_TARGET" ]] || continue
+   mem="$(systemctl show "$u" -p MemoryCurrent --value 2>/dev/null || :)"
+   [[ "$mem" =~ ^[0-9]+$ ]] || continue
+   ((mem>33554432)) || continue
+   if ((mem>best)); then winner="$u"; best="$mem"; fi
+ done
+ [[ -n "$winner" ]] && V2_BG="$winner"
+ return 0
+}
 v2_resource(){
  local former oldw w quota group path mem
  if [[ -r "$V2_RUN/cpu.original" ]]; then
@@ -118,9 +149,9 @@ v2_resource(){
     quota="$(systemctl show "$V2_BG" -p CPUQuotaPerSecUSec --value 2>/dev/null || :)"
     w="$(systemctl show "$V2_BG" -p CPUWeight --value 2>/dev/null || :)"
     if [[ "$quota" == infinity || "$quota" == '[not set]' ]] && [[ "$w" =~ ^[0-9]+$ ]] && ((w>=1&&w<=10000)); then
-     if systemctl set-property --runtime "$V2_BG" CPUWeight=20 CPUQuota=50% >/dev/null 2>&1; then
+     if systemctl set-property --runtime "$V2_BG" CPUWeight=20 CPUQuota=75% >/dev/null 2>&1; then
        printf '%s %s\n' "$V2_BG" "$w" > "$V2_RUN/cpu.original"
-       v2_msg "CPU pressure $V2_CPU%: throttled OPTIONAL $V2_BG to 50% of one CPU"
+       v2_msg "CPU pressure $V2_CPU%: throttled OPTIONAL $V2_BG to 75% of one CPU"
      fi
     fi
   fi
@@ -168,14 +199,16 @@ v2_check(){
  if ((V2_MEM<12 || V2_CPU>=85)) && v2_cool pressure; then
    v2_msg "Pressure: MemAvailable=$V2_MEM% CPU=$V2_CPU%; V2Ray never throttled"
  fi
+ if ((V2_MEM<12 || V2_CPU>=85)); then v3_auto_candidate; fi
  v2_resource
 }
 v2_status(){
  v2_root; v2_read
- printf 'V2Ray Guard 2.0.0 service=%s active=%s boot=%s\n' "$V2_TARGET" \
+ printf 'V2Ray Guard 2.1.0 service=%s active=%s boot=%s\n' "$V2_TARGET" \
   "$(systemctl is-active "$V2_TARGET" 2>/dev/null || :)" "$(systemctl is-enabled "$V2_TARGET" 2>/dev/null || :)"
  printf 'timer=%s port=%s mode=%s background=%s\n' \
   "$(systemctl is-active v2ray-guard-check.timer 2>/dev/null || :)" "$V2_PORT" "$V2_MODE" "$V2_BG"
+ printf 'resource auto=%s (safe allowlist only), explicit background=%s\n' "$V3_AUTO" "${V2_BG:-none}"
  systemctl show "$V2_TARGET" -p MainPID -p MemoryCurrent -p NRestarts || :
  awk '/^(MemTotal|MemAvailable|SwapTotal|SwapFree):/ {print}' /proc/meminfo
 }
@@ -207,7 +240,10 @@ v2_upgrade(){
 }
 v2_help(){
  cat <<'HELP'
-V2Ray Guard v2
+V2Ray Guard v2.1
+Automatic safe resource management: ON by default.
+Disable: sudo v2ray-guard --configure --auto-off yes
+Enable: sudo v2ray-guard --configure --auto-on yes
 Install/migrate: sudo bash ubuntu-v2ray-guard.sh
 Direct upgrade: sudo v2ray-guard --upgrade
 Probe: sudo v2ray-guard --configure --port 1080 --mode socks5
@@ -230,7 +266,7 @@ if [[ "$V2_GUARD_LEGACY" != 1 ]]; then
   --status|status) v2_status; exit $?;;
   --diagnose|diagnose) v2_diagnose; exit $?;;
   --check|check) v2_check; exit $?;;
-  --version|-V) echo 2.0.0; exit 0;;
+  --version|-V) echo 2.1.0; exit 0;;
   --help|-h|help) v2_help; exit 0;;
   --remove|remove)
    v2_root; install -d -m 0700 "$V2_RUN"; v2_restore || :
@@ -244,7 +280,7 @@ fi
 # Manages only an existing systemd service; never changes proxy configs/ports.
 set -Eeuo pipefail
 
-readonly VERSION='2.0.0'
+readonly VERSION='2.1.0'
 readonly STATE_DIR='/etc/v2ray-guard'
 readonly STATE_FILE="$STATE_DIR/service"
 readonly CHECKER='/usr/local/sbin/v2ray-guard-check'
@@ -374,6 +410,7 @@ RestartSec=10s
 # Prefer retaining the proxy over nonessential processes when memory is scarce.
 # This does not reserve memory or impose an arbitrary hard memory limit.
 OOMScoreAdjust=-300
+CPUWeight=250
 # Rate-limit log floods without suppressing ordinary diagnostic logs.
 LogRateLimitIntervalSec=30s
 LogRateLimitBurst=120
@@ -488,5 +525,5 @@ if [[ "$V2_GUARD_LEGACY" != 1 ]]; then
 exec /usr/local/sbin/v2ray-guard --check
 CHECK
  chmod 0755 /usr/local/sbin/v2ray-guard-check
- v2_msg 'v2 installed. Future direct upgrades: sudo v2ray-guard --upgrade'
+ v2_msg 'v2.1 installed: automatic safe resource protection enabled; future upgrades: sudo v2ray-guard --upgrade'
 fi
