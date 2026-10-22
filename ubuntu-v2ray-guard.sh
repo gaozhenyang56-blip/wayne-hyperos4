@@ -54,7 +54,7 @@ v2_configure(){
    v2_valid_unit "$V2_BG" && [[ "$V2_BG" != "$V2_TARGET" ]] || v2_bad '后台服务名称无效，或选择了正在保护的代理'
    [[ "$(systemctl show "$V2_BG" -p LoadState --value 2>/dev/null || :)" == loaded ]] || v2_bad '找不到指定的后台服务'
    case "$V2_BG" in
-    ssh.service|sshd.service|systemd-*.service|network*.service|NetworkManager.service|dbus.service|cron.service|docker.service|containerd.service|nginx.service|apache2.service|ufw.service|firewalld.service|v2ray*.service|xray*.service|x-ui.service|3x-ui.service)
+    astrbot*.service|AstrBot*.service|ssh.service|sshd.service|systemd-*.service|network*.service|NetworkManager.service|dbus.service|cron.service|docker.service|containerd.service|nginx.service|apache2.service|ufw.service|firewalld.service|v2ray*.service|xray*.service|x-ui.service|3x-ui.service)
        v2_bad '禁止对 SSH、网络、代理等关键服务限速';;
    esac
  fi
@@ -141,6 +141,12 @@ v2_resource(){
   read -r former oldw < "$V2_RUN/cpu.original" || :
   [[ "$former" == "$V2_BG" ]] || v2_restore || :
  fi
+ if [[ -r /etc/v2ray-guard/astrbot-target ]]; then
+    local astrbot_protected
+    astrbot_protected="$(head -n 1 /etc/v2ray-guard/astrbot-target)"
+    [[ "$astrbot_protected" == "systemd:$V2_BG" ]] && return 0
+ fi
+ case "$V2_BG" in astrbot*.service|AstrBot*.service) return 0;; esac
  [[ -n "$V2_BG" && "$V2_BG" != "$V2_TARGET" ]] || return 0
  [[ "$(systemctl show "$V2_BG" -p LoadState --value 2>/dev/null || :)" == loaded ]] || return 0
  if ((V2_CPU>=85)); then
@@ -201,6 +207,9 @@ v2_check(){
  fi
  if ((V2_MEM<12 || V2_CPU>=85)); then v3_auto_candidate; fi
  v2_resource
+ if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+   timeout 20 /usr/local/sbin/v2ray-guard-astrbot check || v2_msg 'AstrBot 守护检测异常，请查看日志'
+ fi
 }
 # 统一把 systemd 状态转换成简洁的中文。
 v3_state(){
@@ -218,16 +227,21 @@ v3_state(){
 }
 v2_status(){
  v2_root; v2_read
- printf 'V2Ray 守护 v2.2.0｜保护服务：%s｜运行状态：%s｜开机启动：%s\n' "$V2_TARGET" \
+ printf 'V2Ray 守护 v2.3.0｜保护服务：%s｜运行状态：%s｜开机启动：%s\n' "$V2_TARGET" \
   "$(v3_state "$(systemctl is-active "$V2_TARGET" 2>/dev/null || :)")" "$(v3_state "$(systemctl is-enabled "$V2_TARGET" 2>/dev/null || :)")"
  printf '定时检测：%s｜端口：%s｜模式：%s｜后台服务：%s\n' \
   "$(systemctl is-active v2ray-guard-check.timer 2>/dev/null || :)" "$V2_PORT" "$V2_MODE" "$V2_BG"
  printf '自动资源优化：%s（仅限安全白名单）｜手动指定服务：%s\n' "$V3_AUTO" "${V2_BG:-none}"
  systemctl show "$V2_TARGET" -p MainPID -p MemoryCurrent -p NRestarts || :
  awk '/^(MemTotal|MemAvailable|SwapTotal|SwapFree):/ {print}' /proc/meminfo
+ if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then /usr/local/sbin/v2ray-guard-astrbot status || :; fi
 }
 v2_diagnose(){
  v2_status; v2_read
+ if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+   printf '\n===== AstrBot 最近日志 =====\n'
+   /usr/local/sbin/v2ray-guard-astrbot logs || :
+ fi
  journalctl -u "$V2_TARGET" -n 20 --no-pager || :
  journalctl -t v2ray-guard -n 15 --no-pager || :
  if ((V2_PORT>0)); then
@@ -260,7 +274,7 @@ v3_menu(){
  while :; do
   v2_read
   printf '\n=======================================\n'
-  printf '       V2Ray 守护工具 v2.2.0\n'
+  printf '       V2Ray + AstrBot 双服务守护 v2.3.0\n'
   printf '=======================================\n'
   printf ' 当前服务：%s\n' "$V2_TARGET"
   printf ' 检测端口：%s     自动优化：%s\n' "$V2_PORT" "$V3_AUTO"
@@ -273,6 +287,9 @@ v3_menu(){
   printf '  6. 查看守护日志\n'
   printf '  7. 在线升级\n'
   printf '  8. 显示帮助\n'
+  printf '  9. 查看 AstrBot 状态和日志\n'
+  printf ' 10. 指定 AstrBot 服务或容器\n'
+  printf ' 11. 手动启动 AstrBot\n'
   printf '  0. 退出菜单\n'
   printf '=======================================\n'
   read -r -p '请输入选项数字：' choose || return 0
@@ -297,17 +314,34 @@ v3_menu(){
    6) journalctl -t v2ray-guard -n 60 --no-pager || : ;;
    7) v2_upgrade || :; printf '升级操作已结束，请退出后重新输入 vg 使用新版本菜单\n'; return 0 ;;
    8) v2_help ;;
+   9) if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+       /usr/local/sbin/v2ray-guard-astrbot status || :
+       /usr/local/sbin/v2ray-guard-astrbot logs || :
+      else printf 'AstrBot 守护模块未安装，请重新运行升级\n'; fi ;;
+   10)
+     printf '1 = systemd 服务，2 = Docker 容器\n'
+     read -r -p '选择部署方式：' mode || return 0
+     case "$mode" in 1) mode=systemd;; 2) mode=docker;; *) printf '无效选择\n'; continue;; esac
+     read -r -p '输入服务或容器名称：' yn || return 0
+     if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+       /usr/local/sbin/v2ray-guard-astrbot set "$mode" "$yn" || :
+     fi ;;
+   11) if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+          /usr/local/sbin/v2ray-guard-astrbot recover || :
+       fi ;;
    0) printf '已退出菜单，守护服务仍在后台运行\n'; return 0 ;;
-   *) printf '选项无效，请输入 0 到 8\n'; continue ;;
+   *) printf '选项无效，请输入 0 到 11\n'; continue ;;
   esac
   read -r -p '按回车键返回菜单……' yn || return 0
  done
 }
 v2_help(){
  cat <<'HELP'
-V2Ray 守护 v2.2.0（中文版）
+V2Ray + AstrBot 双服务守护 v2.3.0（中文版）
 
 输入 vg 打开中文交互式菜单，无需记忆复杂命令。
+自动保护 V2Ray 及 AstrBot（Docker、Compose、systemd）。
+如未识别 AstrBot，请在菜单第 10 项指定名称。
 自动安全资源管理默认开启，仅针对允许优化的后台维护服务。
 关闭自动优化：sudo v2ray-guard --configure --auto-off yes
 开启自动优化：sudo v2ray-guard --configure --auto-on yes
@@ -329,10 +363,14 @@ if [[ "$V2_GUARD_LEGACY" != 1 ]]; then
   --status|status) v2_status; exit $?;;
   --diagnose|diagnose) v2_diagnose; exit $?;;
   --check|check) v2_check; exit $?;;
-  --version|-V) echo 2.2.0; exit 0;;
+  --version|-V) echo 2.3.0; exit 0;;
   --help|-h|help) v2_help; exit 0;;
   --remove|remove)
    v2_root; install -d -m 0700 "$V2_RUN"; v2_restore || :
+   if [[ -x /usr/local/sbin/v2ray-guard-astrbot ]]; then
+     /usr/local/sbin/v2ray-guard-astrbot remove || :
+     rm -f /usr/local/sbin/v2ray-guard-astrbot
+   fi
    V2_GUARD_LEGACY=1 bash "$0" --remove
    rm -f "$V2_CFG"
    if [[ -f /usr/local/bin/vg ]] && grep -Fq "# Managed by ubuntu-v2ray-guard.sh" /usr/local/bin/vg; then rm -f /usr/local/bin/vg; fi
@@ -344,7 +382,7 @@ fi
 # 仅管理现有 systemd 服务，不修改节点配置和端口。
 set -Eeuo pipefail
 
-readonly VERSION='2.2.0'
+readonly VERSION='2.3.0'
 readonly STATE_DIR='/etc/v2ray-guard'
 readonly STATE_FILE="$STATE_DIR/service"
 readonly CHECKER='/usr/local/sbin/v2ray-guard-check'
