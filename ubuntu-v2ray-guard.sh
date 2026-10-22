@@ -53,6 +53,9 @@ v2_configure(){
  if [[ -n "$V2_BG" ]]; then
    v2_valid_unit "$V2_BG" && [[ "$V2_BG" != "$V2_TARGET" ]] || v2_bad '后台服务名称无效，或选择了正在保护的代理'
    [[ "$(systemctl show "$V2_BG" -p LoadState --value 2>/dev/null || :)" == loaded ]] || v2_bad '找不到指定的后台服务'
+   if [[ -r /etc/v2ray-guard/astrbot-target ]] && [[ "$(head -n 1 /etc/v2ray-guard/astrbot-target)" == "systemd:$V2_BG" ]]; then
+     v2_bad 'AstrBot 是受保护服务，不能对它限速或回收内存'
+   fi
    case "$V2_BG" in
     astrbot*.service|AstrBot*.service|ssh.service|sshd.service|systemd-*.service|network*.service|NetworkManager.service|dbus.service|cron.service|docker.service|containerd.service|nginx.service|apache2.service|ufw.service|firewalld.service|v2ray*.service|xray*.service|x-ui.service|3x-ui.service)
        v2_bad '禁止对 SSH、网络、代理等关键服务限速';;
@@ -545,7 +548,7 @@ After=network.target
 [Service]
 Type=oneshot
 ExecStart=/usr/local/sbin/v2ray-guard-check
-TimeoutStartSec=30s
+TimeoutStartSec=90s
 UNIT
 
 cat > "$TIMER_UNIT" <<'TIMER'
