@@ -639,5 +639,23 @@ VGCMD
  else
   v2_msg '系统已存在 vg 命令，未覆盖；请使用 sudo v2ray-guard --menu 打开菜单'
  fi
- v2_msg 'v2.2 中文版安装完成：输入 vg 打开菜单；自动安全资源优化已开启，可使用 sudo v2ray-guard --upgrade 更新'
+ # 安全下载 AstrBot 保护模块，校验后再安装；失败不会改变现有 V2Ray 状态。
+ if command -v curl >/dev/null 2>&1 && command -v sha256sum >/dev/null 2>&1; then
+   AB_TMP="$(mktemp -d)"
+   AB_URL='https://raw.githubusercontent.com/gaozhenyang56-blip/wayne-hyperos4/ubuntu-v2ray-guard/astrbot-guard.sh'
+   if curl -q -fsSL --connect-timeout 8 --max-time 25 "$AB_URL" -o "$AB_TMP/astrbot-guard.sh" &&
+      curl -q -fsSL --connect-timeout 8 --max-time 25 "$AB_URL.sha256" -o "$AB_TMP/astrbot-guard.sh.sha256" &&
+      (cd "$AB_TMP" && sha256sum -c astrbot-guard.sh.sha256) &&
+      bash -n "$AB_TMP/astrbot-guard.sh" &&
+      grep -Fq '# Managed by ubuntu-v2ray-guard.sh' "$AB_TMP/astrbot-guard.sh"; then
+       install -m 0755 "$AB_TMP/astrbot-guard.sh" /usr/local/sbin/v2ray-guard-astrbot
+       /usr/local/sbin/v2ray-guard-astrbot install || warn 'AstrBot 自动部署失败，请检查 Docker 或 systemd'
+   else
+       warn 'AstrBot 模块下载或校验失败；V2Ray 守护保持原有状态'
+   fi
+   rm -rf -- "$AB_TMP"
+ else
+   warn '缺少 curl 或 sha256sum，AstrBot 模块未安装'
+ fi
+ v2_msg '双服务守护 v2.3 已安装：输入 vg 打开中文菜单，同时查看 V2Ray 与 AstrBot 状态'
 fi
