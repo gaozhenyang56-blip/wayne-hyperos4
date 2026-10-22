@@ -1,0 +1,51 @@
+name: Deploy AstrBot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: astrbot-server-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      SSH_HOST: 107.150.7.124
+      SSH_USER: root
+      SSH_PORT: '22'
+    steps:
+      - name: Check out deployment files
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+
+      - name: Install SSH password client
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq sshpass
+
+      - name: Validate deployment script
+        run: bash -n deploy/astrbot/install.sh
+
+      - name: Connect and deploy
+        env:
+          SSHPASS: ${{ secrets.ASTRBOT_SSH_PASSWORD }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -n "$SSHPASS" || { echo 'Missing ASTRBOT_SSH_PASSWORD secret'; exit 1; }
+          known_hosts="$RUNNER_TEMP/astrbot_known_hosts"
+          remote_script="/tmp/astrbot-install-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.sh"
+          options=(-o ConnectTimeout=20 -o ConnectionAttempts=1 -o ServerAliveInterval=15 -o ServerAliveCountMax=3 -o StrictHostKeyChecking=accept-new -o "UserKnownHostsFile=$known_hosts")
+          # First contact records the host key; subsequent connections check it.
+          sshpass -e scp "${options[@]}" -P "$SSH_PORT" deploy/astrbot/install.sh "$SSH_USER@$SSH_HOST:$remote_script"
+          sshpass -e ssh "${options[@]}" -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "bash '$remote_script'; result=\$?; rm -f '$remote_script'; exit \$result"
+
+      - name: Connection details
+        run: |
+          echo 'AstrBot listens on server loopback port 6185.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Use SSH local forwarding to access the dashboard.' >> "$GITHUB_STEP_SUMMARY"
+          echo 'Initial dashboard credentials are in the server-local container logs; they are not uploaded to Actions.' >> "$GITHUB_STEP_SUMMARY"
