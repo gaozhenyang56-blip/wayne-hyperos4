@@ -69,6 +69,9 @@ UNIT
    msg "已保护 AstrBot systemd 服务：$AB_NAME；未重启正在运行的机器人"
  else
    local p
+   if loaded docker.service; then
+     systemctl enable docker.service >/dev/null 2>&1 || msg "Docker 服务未能设置开机启动，请检查 systemctl is-enabled docker"
+   fi
    p="$(docker inspect -f '{{.HostConfig.RestartPolicy.Name}}' "$AB_NAME" 2>/dev/null || :)"
    case "$p" in
     always|unless-stopped) msg "保留 Docker 自动重启策略：$p";;
